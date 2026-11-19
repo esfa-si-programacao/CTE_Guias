@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="handbook">
+  <title>Manual Educacional do Robô NAO6 — Guia para Alunos e Professores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Handbook) */
+      --background: #ffffff;
+      --surface-container-low: #f3f2f1;
+      --surface-container: #e8e7e5;
+      --surface-container-high: #dbdad9;
+
+      /* Ink */
+      --on-surface: #0b0c0c;
+      --on-surface-variant: #505a5f;
+
+      /* Rules */
+      --outline: #0b0c0c;
+      --outline-variant: #b1b4b6;
+
+      /* Accents */
+      --primary: #162e51;
+      --on-primary: #ffffff;
+      --primary-container: #d2e2f1;
+      --on-primary-container: #0c2d4a;
+      --secondary: #4c2c92;
+      --tertiary: #1a569e;
+      --error: #d4351c;
+      --on-error: #ffffff;
+      --error-container: #fbe8e5;
+
+      /* Semantic */
+      --positive: #00703c;
+      --on-positive: #ffffff;
+      --positive-container: #e3f2eb;
+      --warning: #b54708;
+      --warning-container: #fef3e6;
+      --on-warning-container: #5c2404;
+
+      /* Data series */
+      --data-1: #1a569e;
+      --data-2: #c75a0a;
+      --data-3: #28a197;
+      --data-4: #4c2c92;
+      --data-context: #b1b4b6;
+
+      /* Fonts */
+      --font-headline: 'Public Sans', sans-serif;
+      --font-body: 'Public Sans', sans-serif;
+      --font-label: 'Public Sans', sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* Shape (Handbook: square everywhere) */
+      --rounded: 0;
+      --rounded-lg: 0;
+      --rounded-full: 0;
+
+      /* Style effects */
+      --top-index-rule: 6px solid var(--primary);
+      --inset-rule: 5px solid var(--tertiary);
+      --inset-rule-error: 5px solid var(--error);
+      --inset-rule-positive: 5px solid var(--positive);
+      --inset-rule-warning: 5px solid var(--warning);
+      --button-ground: 0 2px 0 #091526;
+      --button-ground-secondary: 0 2px 0 #858686;
+      --focus-yellow: #ffdd00;
+      --focus: #ffdd00;
+      --focus-ring: 3px solid var(--focus-yellow);
+      --focus-bar: inset 0 0 0 2px var(--on-surface);
+      --focus-underline: 0 -2px var(--focus-yellow), 0 4px var(--on-surface);
+
+      /* Robot & Simulation tokens */
+      --robot-shell: #f3f2f1;
+      --robot-accent: #c75a0a;
+      --robot-dark: #1d1f20;
+      --robot-grey-light: #d5d7da;
+      --robot-anthracite: #42464a;
+      --robot-steel: #4a6b82;
+      --robot-midnight: #162e51;
+      --robot-sand: #c9b99b;
+      --robot-led-blue: #1a569e;
+      --robot-led-cyan: #28a197;
+      --robot-led-green: #00703c;
+      --robot-led-pink: #c23b75;
+      --robot-led-purple: #4c2c92;
+      --robot-led-amber: #c75a0a;
+      --sim-bg-normal: #e8e7e5;
+      --sim-bg-classroom: #dde5ed;
+      --sim-bg-moon: #23272e;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.5rem);
+      --headline-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+
+    .page-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-xl);
+    }
+    .page-shell * { min-width: 0; }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+      letter-spacing: -0.01em;
+      line-height: 1.12;
+      font-weight: 800;
+    }
+    h1 { font-size: var(--display-size); }
+    h2 { font-size: var(--headline-size); }
+    h3 { font-size: var(--subhead-size); font-weight: 700; }
+    h4 { font-size: 1.125rem; font-weight: 700; }
+
+    p {
+      margin: 0;
+      max-width: 68ch;
+      color: var(--on-surface);
+    }
+    ul, ol {
+      margin: 0;
+      padding-left: var(--space-lg);
+      max-width: 68ch;
+      display: grid;
+      gap: var(--space-xs);
+    }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--surface-container-low);
+      padding: 0.1em 0.35em;
+      border: 1px solid var(--outline-variant);
+      word-break: break-word;
+    }
+    pre {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule);
+      padding: var(--space-md);
+      margin: 0;
+      overflow-x: auto;
+      color: var(--on-surface);
+    }
+
+    /* Links & Focus (Handbook treatment 4) */
+    a {
+      color: var(--tertiary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    a:hover {
+      text-decoration-thickness: 3px;
+    }
+    a:visited {
+      color: var(--secondary);
+    }
+    a:focus-visible {
+      outline: none;
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+      text-decoration: none;
+      box-shadow: var(--focus-underline);
+    }
+
+    /* Index Header (Handbook treatment 1) */
+    .index-header {
+      border-top: var(--top-index-rule);
+      border-bottom: 1px solid var(--on-surface);
+      padding: var(--space-sm) 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .index-meta {
+      color: var(--on-surface-variant);
+    }
+
+    .hero-block {
+      display: grid;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-xl);
+    }
+    .hero-lede {
+      font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    /* Flush-left jump nav */
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-lg);
+      padding-top: var(--space-xs);
+      list-style: none;
+      padding-left: 0;
+      max-width: none;
+    }
+    .jump-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      font-weight: 700;
+    }
+
+    /* Key Figures Grid */
+    .figures-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+    .inset {
+      border-left: var(--inset-rule);
+      background: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+    }
+    .inset--warning {
+      border-left: var(--inset-rule-warning);
+      background: var(--warning-container);
+    }
+    .inset--warning h4, .inset--warning p, .inset--warning strong {
+      color: var(--on-warning-container);
+    }
+    .inset--error {
+      border-left: var(--inset-rule-error);
+      background: var(--error-container);
+    }
+    .inset--positive {
+      border-left: var(--inset-rule-positive);
+      background: var(--positive-container);
+    }
+    .inset--white {
+      background: var(--background);
+      border-left: var(--inset-rule);
+      border-top: 1px solid var(--outline-variant);
+      border-right: 1px solid var(--outline-variant);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .figure-label {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-weight: 700;
+    }
+    .figure-value {
+      font-size: var(--headline-size);
+      font-weight: 800;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .figure-desc {
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    /* Status Tags (Handbook) */
+    .tag {
+      display: inline-block;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--rounded);
+      width: fit-content;
+    }
+    .tag--error {
+      background: var(--error-container);
+      color: var(--error);
+    }
+    .tag--positive {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+    .tag--warning {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+    }
+
+    /* Buttons (Handbook treatment 3) */
+    .button {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.2;
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 0;
+      border-radius: var(--rounded);
+      padding: 0.65rem var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      box-shadow: var(--button-ground);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+      text-align: left;
+    }
+    .button:hover {
+      background: var(--on-primary-container);
+    }
+    .button:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+    .button--secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      box-shadow: var(--button-ground-secondary);
+      border: 1px solid var(--outline-variant);
+    }
+    .button--secondary:hover {
+      background: var(--surface-container);
+    }
+    .button--secondary[aria-pressed="true"],
+    .button--secondary.is-active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--tertiary);
+    }
+    .button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    summary:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Inputs */
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+    .field-hint {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+    .input-control, .select-control {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--on-surface);
+      background: var(--background);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded);
+      padding: 0.5rem var(--space-sm);
+      min-height: 44px;
+      width: 100%;
+    }
+    .select-control {
+      padding-right: var(--space-xl);
+    }
+
+    /* Section Structure */
+    .doc-section {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 2px solid var(--on-surface);
+    }
+    .section-header {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+    }
+
+    /* Step badges (Handbook treatment 1) */
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-weight: 800;
+      font-size: 0.875rem;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .steps-list {
+      display: grid;
+      gap: var(--space-md);
+      padding-left: 0;
+      list-style: none;
+      max-width: none;
+    }
+    .step-item {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      align-items: start;
+    }
+    .step-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .step-content {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Asymmetric 2-column grids */
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .split-grid--reverse {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    }
+
+    /* Interactive Anatomy Diagram */
+    .anatomy-panel {
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .nao-svg-wrap {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-md);
+    }
+    .nao-svg {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      display: block;
+    }
+    .hotspot-btn {
+      cursor: pointer;
+    }
+    .hotspot-btn circle,
+    .hotspot-btn rect {
+      transition: transform var(--dur-micro) var(--ease-out);
+    }
+    .hotspot-btn:focus-visible {
+      outline: var(--focus-ring);
+    }
+
+    /* Chest Button Simulator */
+    .chest-sim {
+      background: var(--surface-container-low);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      border-left: var(--inset-rule);
+    }
+    .chest-status-bar {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: center;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-md);
+    }
+    .led-indicator {
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.75rem;
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .led-indicator--green { background: var(--positive); color: var(--on-positive); }
+    .led-indicator--blue { background: var(--tertiary); color: var(--on-primary); }
+    .led-indicator--purple { background: var(--secondary); color: var(--on-primary); }
+    .led-indicator--amber { background: var(--data-2); color: var(--on-primary); }
+    .led-indicator--off { background: var(--surface-container-high); color: var(--on-surface); }
+
+    /* Tables (Handbook) */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.96875rem;
+    }
+    th, td {
+      text-align: left;
+      padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    th {
+      font-weight: 700;
+      border-bottom: 2px solid var(--on-surface);
+      color: var(--on-surface);
+    }
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Summary list (key-value) */
+    .summary-list {
+      display: grid;
+      border-top: 1px solid var(--outline-variant);
+    }
+    .summary-row {
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) minmax(0, 2fr);
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .summary-key { font-weight: 700; }
+
+    /* Checklist */
+    .checklist-grid {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      padding: var(--space-sm);
+      background: var(--surface-container-low);
+      cursor: pointer;
+    }
+    .check-item input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin: 2px 0 0 0;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    /* Diagnostic filter bar */
+    .filter-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: var(--space-md);
+      align-items: end;
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+    }
+    .trouble-cards {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .trouble-card {
+      border-top: 1px solid var(--outline-variant);
+      border-bottom: 1px solid var(--outline-variant);
+      border-right: 1px solid var(--outline-variant);
+      border-left: var(--inset-rule);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--background);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .trouble-card[data-severity="critical"] {
+      border-left: var(--inset-rule-error);
+    }
+    .trouble-card[data-severity="warning"] {
+      border-left: var(--inset-rule-warning);
+    }
+    .trouble-card[hidden] {
+      display: none;
+    }
+
+    /* Battery & BMS Simulator */
+    .bms-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-lg);
+      background: var(--surface-container-low);
+      padding: var(--space-lg);
+    }
+    .range-control {
+      width: 100%;
+      min-height: 44px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .battery-bar-outer {
+      height: 24px;
+      width: 100%;
+      background: var(--surface-container);
+      border: 2px solid var(--on-surface);
+      position: relative;
+    }
+    .battery-bar-inner {
+      height: 100%;
+      background: var(--positive);
+      transition: width var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: grid;
+      border-top: 1px solid var(--on-surface);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .faq-item[hidden] {
+      display: none;
+    }
+    .faq-trigger {
+      width: 100%;
+      background: var(--background);
+      border: 0;
+      padding: var(--space-md) 0;
+      text-align: left;
+      font-family: var(--font-headline);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      min-height: 48px;
+    }
+    .faq-trigger:hover {
+      color: var(--tertiary);
+    }
+    .faq-indicator {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .faq-panel {
+      padding: 0 0 var(--space-md) 0;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .faq-panel[hidden] {
+      display: none;
+    }
+
+    /* Video Chapters & 3D Simulator */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    #nao-3d-canvas-wrap {
+      width: 100%;
+      min-height: 420px;
+      height: 440px;
+      background: var(--sim-bg-normal);
+      border: 2px solid var(--on-surface);
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+    }
+    #nao-3d-canvas-wrap:active {
+      cursor: grabbing;
+    }
+    .sim-hud {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      right: var(--space-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none;
+      gap: var(--space-sm);
+    }
+    .sim-hud-badge {
+      background: var(--background);
+      border: 1px solid var(--on-surface);
+      padding: 0.25rem 0.5rem;
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface);
+      pointer-events: auto;
+    }
+    .sim-controls-panel {
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .console-box {
+      background: var(--on-surface);
+      color: var(--background);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      padding: var(--space-md);
+      min-height: 130px;
+      max-height: 180px;
+      overflow-y: auto;
+      border-left: var(--inset-rule);
+    }
+    .console-line {
+      margin-bottom: 0.25rem;
+    }
+    .chapter-card {
+      border-left: 5px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+      cursor: pointer;
+    }
+    .chapter-card.is-active {
+      border-left: var(--inset-rule);
+      background: var(--primary-container);
+    }
+    .chapter-card.is-active p,
+    .chapter-card.is-active h4 {
+      color: var(--on-primary-container);
+    }
+
+    .footer-note {
+      border-top: 2px solid var(--on-surface);
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-xl);
+      display: grid;
+      gap: var(--space-sm);
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+    }
+
+    @media (max-width: 900px) {
+      .split-grid,
+      .split-grid--reverse,
+      .bms-grid,
+      .sim-layout,
+      .filter-toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: var(--space-md);
+      }
+      .summary-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+      }
+      #nao-3d-canvas-wrap {
+        min-height: 360px;
+        height: 360px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="index-header">
+        <span>Manual de Referência Escolar — Robô Humanoide NAO6</span>
+        <span class="index-meta">NAOqi 2.8 · Choregraphe · Vittascience</span>
+      </div>
+      <div class="hero-block">
+        <h1>Documentação e Ajuda Completa para o Robô NAO</h1>
+        <p class="hero-lede">
+          Guia prático para alunos e professores: manuseamento seguro, arranque passo a passo, diagnóstico de rede e bateria, perguntas frequentes e laboratório de simulação 3D interativa.
+        </p>
+        <nav aria-label="Navegação principal do manual">
+          <ul class="jump-nav">
+            <li><a href="#iniciacao">1. Iniciação Rápida</a></li>
+            <li><a href="#resolucao">2. Resolução de Problemas</a></li>
+            <li><a href="#faq">3. Perguntas Frequentes (FAQ)</a></li>
+            <li><a href="#demos">4. Vídeo e Simulação 3D</a></li>
+          </ul>
+        </nav>
+
+        <div class="figures-grid" aria-label="Indicadores críticos de referência">
+          <div class="inset">
+            <span class="figure-label">Postura segura de arranque</span>
+            <span class="figure-value">Crouch</span>
+            <span class="figure-desc">Agachado antes de premir o botão do peito (~1 s).</span>
+          </div>
+          <div class="inset">
+            <span class="figure-label">Portas de ligação NAOqi</span>
+            <span class="figure-value">9559 / 9561</span>
+            <span class="figure-desc">9559 até NAOqi 2.8.7.4; 9561 na versão 2.8.7.7 e superior.</span>
+          </div>
+          <div class="inset">
+            <span class="figure-label">Autonomia por carga</span>
+            <span class="figure-value">45 min–2 h</span>
+            <span class="figure-desc">Consoante a intensidade dos movimentos e uso contínuo.</span>
+          </div>
+          <div class="inset">
+            <span class="figure-label">Manutenção preventiva BMS</span>
+            <span class="figure-value">1–3 meses</span>
+            <span class="figure-desc">Carregar totalmente para evitar bloqueio por descarga profunda.</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- SECÇÃO 1: GUIA DE INICIAÇÃO RÁPIDA -->
+      <section id="iniciacao" class="doc-section" aria-labelledby="h-iniciacao">
+        <div class="section-header">
+          <div class="section-kicker">
+            <span class="step-badge">1</span>
+            <span>Secção 1 — Primeiros Passos em Segurança</span>
+          </div>
+          <h2 id="h-iniciacao">Guia de Iniciação Rápida</h2>
+          <p>
+            Antes de ligar o robô NAO em sala de aula, cumpra rigorosamente as regras de transporte, escolha de superfície e sequência de arranque. Um manuseamento incorreto pode entalar os dedos do utilizador ou danificar os motores e articulações do robô.
+          </p>
+        </div>
+
+        <div class="split-grid">
+          <div>
+            <h3>Unboxing, transporte e sequência de arranque</h3>
+            <ol class="steps-list" style="margin-top: var(--space-md);">
+              <li class="step-item">
+                <span class="step-badge">1</span>
+                <div class="step-content">
+                  <h4>Transporte seguro com duas mãos pelo tronco</h4>
+                  <p>
+                    Coloque o NAO em <strong>modo Rest</strong> (motores desligados) e segure-o firmemente pela <strong>cintura/tronco com as duas mãos</strong>. Nunca puxe o robô pela cabeça, braços ou pernas.
+                  </p>
+                  <div class="inset inset--warning">
+                    <strong>Atenção aos dedos e articulações:</strong> Os dedos do NAO são frágeis — não os puxe porque podem soltar-se ou partir. Nunca coloque as mãos entre membros ou perto das articulações ao pegar no robô, pois há risco de entalamento.
+                  </div>
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-badge">2</span>
+                <div class="step-content">
+                  <h4>Superfície plana e postura segura (Crouch)</h4>
+                  <p>
+                    Use o robô apenas no interior, sobre uma <strong>superfície lisa e plana</strong> (evite tapetes ou alcatifas para garantir estabilidade). Mantenha-o afastado de escadas, declives e bordas de mesas — <strong>o NAO não vê onde a mesa termina</strong>.
+                  </p>
+                  <p>
+                    Antes de ligar, assegure que está numa <strong>Postura Segura</strong>: <strong>Crouch</strong> (agachado) ou <strong>Sitting</strong> (sentado), ou apoie uma mão nas costas durante a ativação.
+                  </p>
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-badge">3</span>
+                <div class="step-content">
+                  <h4>Ligar no botão do peito (~1 segundo)</h4>
+                  <p>
+                    Prima o <strong>botão do peito uma vez (~1 segundo)</strong>. O LED do peito passa por várias cores durante cerca de <strong>2 minutos</strong>. O arranque fica concluído quando o robô disser <code>«OGNAK GNOUK»</code>.
+                  </p>
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-badge">4</span>
+                <div class="step-content">
+                  <h4>Obter o endereço IP (premir 1 vez o peito)</h4>
+                  <p>
+                    Com o NAO ligado, prima o <strong>botão do peito 1 vez</strong>. O robô anuncia o seu nome e o endereço IP na rede local (por exemplo, <code>192.168.1.104</code>). Se o botão estiver a piscar, lerá a notificação pendente; prima outra vez enquanto fala para saltar a mensagem.
+                  </p>
+                </div>
+              </li>
+              <li class="step-item">
+                <span class="step-badge">5</span>
+                <div class="step-content">
+                  <h4>Desligar e guardar na caixa original (Reboxing)</h4>
+                  <p>
+                    Para desligar normalmente, prima e mantenha o botão do peito durante <strong>~3 segundos</strong> até ouvir <code>«Gnuk Gnuk»</code> (~1 minuto até todos os LEDs apagarem). Ao desligar, o NAO fecha as mãos automaticamente.
+                  </p>
+                  <p>
+                    Para guardar na caixa original: coloque em postura <em>Crouch</em>, apoie uma mão nas costas e outra sob os pés, insira pela cabeça na espuma branca e alinhe cuidadosamente mãos, dedos e pés antes de fechar a tampa sem forçar. <strong>Para armazenamento prolongado, retire a bateria</strong> (não a guarde dentro da caixa) e recarregue-a a cada 1 a 3 meses.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div style="display: grid; gap: var(--space-lg);">
+            <!-- Diagrama Anatómico Interativo -->
+            <div class="anatomy-panel">
+              <div>
+                <span class="tag">Diagrama Interativo</span>
+                <h3 style="margin-top: var(--space-xs);">Zonas, sensores e pontos de contacto do NAO6</h3>
+                <p style="font-size: 0.9375rem; color: var(--on-surface-variant);">
+                  Clique numa zona numerada do esquema para consultar a função dos sensores, LEDs e regras de segurança.
+                </p>
+              </div>
+
+              <div class="nao-svg-wrap">
+                <svg class="nao-svg" viewBox="0 0 320 420" role="img" aria-label="Esquema interativo das zonas do robô NAO6">
+                  <!-- Base / Floor -->
+                  <line x1="30" y1="400" x2="290" y2="400" stroke="var(--outline-variant)" stroke-width="2" />
+                  <!-- Head -->
+                  <rect x="115" y="25" width="90" height="75" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2.5" />
+                  <!-- Head top sensor -->
+                  <rect x="138" y="20" width="44" height="8" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Visor & Eyes -->
+                  <rect x="122" y="48" width="76" height="24" fill="var(--robot-dark)" />
+                  <circle cx="143" cy="60" r="7" fill="var(--robot-led-blue)" stroke="var(--background)" stroke-width="1.5" />
+                  <circle cx="177" cy="60" r="7" fill="var(--robot-led-blue)" stroke="var(--background)" stroke-width="1.5" />
+                  <!-- Ears -->
+                  <rect x="106" y="45" width="9" height="30" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="205" y="45" width="9" height="30" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Neck -->
+                  <rect x="148" y="100" width="24" height="14" fill="var(--robot-anthracite)" />
+                  <!-- Torso (Safe Hold Zone) -->
+                  <rect x="105" y="114" width="110" height="122" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2.5" />
+                  <rect x="113" y="122" width="94" height="106" fill="none" stroke="var(--positive)" stroke-width="2" stroke-dasharray="5 3" />
+                  <!-- Chest Button -->
+                  <circle cx="160" cy="156" r="14" fill="var(--background)" stroke="var(--on-surface)" stroke-width="2.5" />
+                  <circle cx="160" cy="156" r="8" fill="var(--primary)" />
+                  <!-- Sonars -->
+                  <circle cx="144" cy="196" r="6" fill="var(--robot-dark)" />
+                  <circle cx="176" cy="196" r="6" fill="var(--robot-dark)" />
+                  <!-- Left Arm -->
+                  <rect x="64" y="118" width="36" height="24" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="66" y="142" width="26" height="58" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="63" y="200" width="32" height="50" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Left Hand (fragile fingers) -->
+                  <rect x="65" y="250" width="28" height="24" fill="var(--robot-grey-light)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Right Arm -->
+                  <rect x="220" y="118" width="36" height="24" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="228" y="142" width="26" height="58" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="225" y="200" width="32" height="50" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Right Hand -->
+                  <rect x="227" y="250" width="28" height="24" fill="var(--robot-grey-light)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Pelvis -->
+                  <rect x="115" y="236" width="90" height="24" fill="var(--robot-accent)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Legs -->
+                  <rect x="116" y="260" width="36" height="62" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="168" y="260" width="36" height="62" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="116" y="322" width="36" height="58" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="168" y="322" width="36" height="58" fill="var(--robot-shell)" stroke="var(--on-surface)" stroke-width="2" />
+                  <!-- Feet & Foot LEDs -->
+                  <rect x="108" y="380" width="48" height="18" fill="var(--robot-grey-light)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="164" y="380" width="48" height="18" fill="var(--robot-grey-light)" stroke="var(--on-surface)" stroke-width="2" />
+                  <rect x="118" y="384" width="16" height="6" fill="var(--positive)" />
+                  <rect x="186" y="384" width="16" height="6" fill="var(--positive)" />
+
+                  <!-- Interactive Hotspots -->
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 1: Cabeça, câmara e sensor tátil" onclick="selectAnatomyZone('head')" onkeydown="handleHotspotKey(event, 'head')">
+                    <rect x="172" y="10" width="26" height="26" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />
+                    <text x="185" y="28" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="800">1</text>
+                  </g>
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 2: Olhos e orelhas LED" onclick="selectAnatomyZone('eyes')" onkeydown="handleHotspotKey(event, 'eyes')">
+                    <rect x="202" y="52" width="26" height="26" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />
+                    <text x="215" y="70" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="800">2</text>
+                  </g>
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 3: Botão do peito" onclick="selectAnatomyZone('chest')" onkeydown="handleHotspotKey(event, 'chest')">
+                    <rect x="172" y="143" width="26" height="26" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />
+                    <text x="185" y="161" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="800">3</text>
+                  </g>
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 4: Cintura — zona segura de transporte" onclick="selectAnatomyZone('waist')" onkeydown="handleHotspotKey(event, 'waist')">
+                    <rect x="108" y="210" width="26" height="26" fill="var(--positive)" stroke="var(--background)" stroke-width="2" />
+                    <text x="121" y="228" text-anchor="middle" fill="var(--on-positive)" font-size="13" font-weight="800">4</text>
+                  </g>
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 5: Dedos e articulações frágeis" onclick="selectAnatomyZone('hands')" onkeydown="handleHotspotKey(event, 'hands')">
+                    <rect x="44" y="246" width="26" height="26" fill="var(--error)" stroke="var(--background)" stroke-width="2" />
+                    <text x="57" y="264" text-anchor="middle" fill="var(--on-error)" font-size="13" font-weight="800">5</text>
+                  </g>
+                  <g class="hotspot-btn" tabindex="0" role="button" aria-label="Zona 6: LEDs dos pés e para-choques" onclick="selectAnatomyZone('feet')" onkeydown="handleHotspotKey(event, 'feet')">
+                    <rect x="208" y="372" width="26" height="26" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />
+                    <text x="221" y="390" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="800">6</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="button-row" aria-label="Seletores rápidos de zona anatómica">
+                <button type="button" class="button button--secondary is-active" data-zone-btn="chest" onclick="selectAnatomyZone('chest')">3. Botão Peito</button>
+                <button type="button" class="button button--secondary" data-zone-btn="waist" onclick="selectAnatomyZone('waist')">4. Tronco Seguro</button>
+                <button type="button" class="button button--secondary" data-zone-btn="hands" onclick="selectAnatomyZone('hands')">5. Dedos/Articulações</button>
+                <button type="button" class="button button--secondary" data-zone-btn="head" onclick="selectAnatomyZone('head')">1. Cabeça/Tátil</button>
+                <button type="button" class="button button--secondary" data-zone-btn="eyes" onclick="selectAnatomyZone('eyes')">2. Olhos LED</button>
+                <button type="button" class="button button--secondary" data-zone-btn="feet" onclick="selectAnatomyZone('feet')">6. Pés/Modo</button>
+              </div>
+
+              <div id="anatomy-detail" class="inset inset--white" aria-live="polite">
+                <span class="tag">Zona 3 — Botão do Peito</span>
+                <h4>Controlo principal e consulta de IP</h4>
+                <p>
+                  Desligado: prima ~1 s para ligar («OGNAK GNOUK»). Ligado: prima 1× para ouvir nome e endereço IP; prima 2× para ativar/desativar motores e Autonomous Life; mantenha 3 s para desligar normalmente («Gnuk Gnuk»).
+                </p>
+              </div>
+            </div>
+
+            <!-- Simulador do Botão do Peito -->
+            <div class="chest-sim" aria-labelledby="h-chest-sim">
+              <div>
+                <span class="tag">Simulador de Comandos Físicos</span>
+                <h3 id="h-chest-sim" style="margin-top: var(--space-xs);">Pratique os toques antes de usar o robô</h3>
+              </div>
+
+              <div class="chest-status-bar" aria-live="polite">
+                <div id="sim-led-dot" class="led-indicator led-indicator--green">ON</div>
+                <div>
+                  <strong id="sim-action-title">NAO Ligado (Postura Crouch)</strong>
+                  <p id="sim-action-output" style="font-size: 0.9375rem; margin-top: 2px;">
+                    Clique num dos comandos abaixo para simular a resposta de voz e LED do robô.
+                  </p>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button type="button" class="button" onclick="simulatePhysicalAction('boot')">Ligar (~1 s)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('ip')">1× Peito (IP)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('rest')">2× Peito (Rest/Life)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('off')">3 s Peito (Desligar)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('force')">8 s (Emergência)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('head1s')">Cabeça 1 s (Parar)</button>
+                <button type="button" class="button button--secondary" onclick="simulatePhysicalAction('head3s')">Cabeça 3 s (Dormir)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist de Aula -->
+        <div class="inset inset--white" style="margin-top: var(--space-sm);">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <h3>Lista de verificação rápida para início de aula</h3>
+            <span id="checklist-counter" class="tag">0 de 5 verificados</span>
+          </div>
+          <div class="checklist-grid">
+            <label class="check-item">
+              <input type="checkbox" onchange="updateChecklistCount()" />
+              <span>Robô colocado no chão ou superfície lisa, plana, sem tapetes e longe de bordas de mesa.</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateChecklistCount()" />
+              <span>NAO posicionado em postura segura (<strong>Crouch</strong> ou <strong>Sitting</strong>) antes de ligar.</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateChecklistCount()" />
+              <span>Saída de ar atrás da cabeça desobstruída (sem chapéus, fitas ou roupa no robô).</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateChecklistCount()" />
+              <span>Computador do aluno/professor ligado exatamente à mesma rede Wi-Fi ou Ethernet do NAO.</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateChecklistCount()" />
+              <span>Endereço IP confirmado premindo 1 vez o botão do peito após o som «OGNAK GNOUK».</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECÇÃO 2: MANUAL DE RESOLUÇÃO DE PROBLEMAS (TROUBLESHOOTING) -->
+      <section id="resolucao" class="doc-section" aria-labelledby="h-resolucao">
+        <div class="section-header">
+          <div class="section-kicker">
+            <span class="step-badge">2</span>
+            <span>Secção 2 — Diagnóstico e Correção</span>
+          </div>
+          <h2 id="h-resolucao">Manual de Resolução de Problemas Comuns (Troubleshooting)</h2>
+          <p>
+            Filtre por área ou pesquise pelo código de erro para resolver falhas de ligação em Choregraphe e Vittascience, erros de arranque em Windows ou macOS e alertas críticos de bateria.
+          </p>
+        </div>
+
+        <!-- Assistente de Triagem -->
+        <div class="filter-toolbar" role="region" aria-label="Filtro de resolução de problemas">
+          <div class="field-group">
+            <label class="field-label" for="trouble-search">Pesquisar sintoma, porta ou erro</label>
+            <input id="trouble-search" class="input-control" type="search" placeholder="Ex.: 9561, VCOMP120, Finder, BMS, IP" oninput="filterTroubleshooting()" />
+          </div>
+          <div class="field-group">
+            <span class="field-label">Categoria de problema</span>
+            <div class="button-row" style="margin-top: 2px;">
+              <button type="button" class="button button--secondary is-active" data-cat-btn="all" onclick="setTroubleCategory('all')">Todos</button>
+              <button type="button" class="button button--secondary" data-cat-btn="network" onclick="setTroubleCategory('network')">Rede &amp; Ligação</button>
+              <button type="button" class="button button--secondary" data-cat-btn="os" onclick="setTroubleCategory('os')">Windows / macOS / Linux</button>
+              <button type="button" class="button button--secondary" data-cat-btn="battery" onclick="setTroubleCategory('battery')">Bateria &amp; BMS</button>
+            </div>
+          </div>
+        </div>
+
+        <p id="trouble-count" class="figure-label" aria-live="polite">A mostrar 7 guias de resolução.</p>
+
+        <div id="trouble-list" class="trouble-cards">
+          <!-- Card 1: Portas & Rede Choregraphe -->
+          <article class="trouble-card" data-category="network" data-keywords="choregraphe naoqi porta 9559 9561 rede wifi ethernet sessao versao">
+            <span class="tag">Rede &amp; Ligação — Choregraphe</span>
+            <h3>O NAO não liga ao Choregraphe (portas 9559 / 9561 e sessão bloqueada)</h3>
+            <p>
+              Verifique os cinco pontos obrigatórios quando a ligação falha ou o robô não aparece na lista de descoberta:
+            </p>
+            <ul>
+              <li><strong>Mesma rede local:</strong> O computador e o NAO têm de estar exatamente na mesma rede Wi-Fi ou Ethernet (e sem bloqueio de Firewall).</li>
+              <li><strong>Porta correta por versão NAOqi:</strong> Confirme a porta utilizada na ligação manual:
+                <strong>NAOqi 2.8.7.4 e anteriores</strong> usam a porta <code>9559</code>; <strong>NAOqi 2.8.7.7 e mais recentes</strong> usam a porta <code>9561</code>.
+              </li>
+              <li><strong>Sessão única:</strong> Um robô só aceita uma ligação do Choregraphe de cada vez. Se um colega estiver ligado, ou se a sessão anterior não foi encerrada corretamente, <strong>reinicie o NAO</strong>.</li>
+              <li><strong>Versões idênticas:</strong> A versão do Choregraphe instalada no computador deve coincidir com a versão do NAOqi do robô.</li>
+            </ul>
+          </article>
+
+          <!-- Card 2: Vittascience Companion App -->
+          <article class="trouble-card" data-category="network" data-keywords="vittascience companion app firewall nao nao ip 192.168 solitario motors stop ciclo infinito">
+            <span class="tag">Rede &amp; Ligação — Vittascience</span>
+            <h3>Falha ao enviar programa na interface web Vittascience</h3>
+            <p>
+              O navegador não comunica diretamente com o robô sem a aplicação ponte local. Siga esta sequência:
+            </p>
+            <ul>
+              <li><strong>Instale e mantenha aberta a Vitta Companion App:</strong> Descarregue o instalador correspondente ao sistema operativo (<code>.exe</code> Windows, <code>.dmg</code> macOS ou <code>.deb</code> Linux), selecione o cartão do robô NAO e deixe a aplicação a correr em segundo plano (pode minimizar).</li>
+              <li><strong>Firewall e aviso de segurança Windows:</strong> No primeiro arranque no Windows, clique em <em>Mais opções</em> para validar a instalação e autorize a comunicação na <strong>Firewall</strong> quando solicitado.</li>
+              <li><strong>IP e credenciais padrão:</strong> Ao clicar em <em>«Enviar para o NAO»</em>, introduza o IP anunciado pelo botão do peito. As credenciais de fábrica são utilizador <code>nao</code> e palavra-passe <code>nao</code>.</li>
+              <li><strong>Ciclos infinitos e motores:</strong> Se enviar um bloco <em>«repetir indefinidamente»</em>, clique em <strong>Stop</strong> antes de enviar novo programa ou fechar o separador. Lembre-se de que o NAO sai do modo solitário ao ligar-se ao Vittascience e liberta os motores quando termina (prima 2× no peito para regressar ao modo solitário).</li>
+            </ul>
+          </article>
+
+          <!-- Card 3: Windows VCOMP120.DLL -->
+          <article class="trouble-card" data-category="os" data-severity="warning" data-keywords="windows vcomp120.dll redistributable 2013 2010 bonjour c++ erro arranque choregraphe">
+            <span class="tag tag--warning">Windows 10 (64-bit) — Erro de Arranque</span>
+            <h3>Erro «VCOMP120.DLL file cannot be found» ao abrir o Choregraphe</h3>
+            <p>
+              Este erro ocorre quando faltam componentes de tempo de execução C++ necessários para executar aplicações compiladas em Visual Studio.
+            </p>
+            <ul>
+              <li><strong>Método 1 — Instalação automática (recomendado):</strong> Descarregue e instale o pacote oficial <strong>Microsoft Visual C++ Redistributable Packages for Visual Studio 2013 (x64)</strong> (<code>vcredist_x64.exe</code>). Em Windows 10, garanta igualmente que o <strong>Visual C++ 2010 x64 Redistributable</strong> está instalado (além do serviço <strong>Bonjour</strong>, instalado automaticamente pelo assistente do Choregraphe).</li>
+              <li><strong>Método 2 — Instalação manual:</strong> Extraia o ficheiro <code>vcomp120.dll</code> de um pacote fidedigno e cole-o na pasta <code>C:\Windows\System32\</code>.</li>
+            </ul>
+          </article>
+
+          <!-- Card 4: macOS 15 Finder Permission -->
+          <article class="trouble-card" data-category="os" data-severity="warning" data-keywords="macos 15 finder permission null terminal choregraphe open anyway privacidade seguranca 3d view crashed">
+            <span class="tag tag--warning">macOS 15 — Permissões e Terminal</span>
+            <h3>Erro «The application "Finder" does not have permission to open "(null)"»</h3>
+            <p>
+              Em versões recentes do macOS, o Finder pode bloquear o arranque direto do Choregraphe. Execute esta solução alternativa pelo Terminal:
+            </p>
+            <ol>
+              <li>Abra a aplicação <strong>Terminal</strong> e arraste o ícone <code>Choregraphe.app</code> para dentro da janela do Terminal (apague o espaço em branco que possa aparecer no final do caminho).</li>
+              <li>Acrescente <code>/Contents/MacOS/choregraphe</code> ao caminho e prima <strong>Enter</strong>:
+                <pre>/Users/utilizador/Downloads/Choregraphe\ 2.8.8/Choregraphe.app/Contents/MacOS/choregraphe</pre>
+              </li>
+              <li>Quando surgir o aviso <em>«"Choregraphe" Not Opened»</em>, clique em <strong>Done</strong>.</li>
+              <li>Abra <strong>Definições do Sistema &gt; Privacidade e Segurança</strong>, desça até ao bloqueio do Choregraphe e clique em <strong>Abrir Mesmo Assim (Open Anyway)</strong>.</li>
+              <li>Regresse ao Terminal, prima a tecla <strong>Seta para cima</strong> para repetir o comando e execute novamente, confirmando em <em>Open Anyway</em>.</li>
+              <li><strong>Nota sobre vista 3D:</strong> Se surgir o erro <em>«The 3D view of Choregraphe has crashed»</em>, selecione <strong>Try once without the 3D</strong>.</li>
+            </ol>
+          </article>
+
+          <!-- Card 5: Linux Graphic Acceleration -->
+          <article class="trouble-card" data-category="os" data-keywords="linux ubuntu 16.04 permissao chmod no-ogre opengl aceleracao grafica">
+            <span class="tag">Linux (Ubuntu 16.04 64-bit) — Instalação &amp; OpenGL</span>
+            <h3>Permissões do instalador ou falha gráfica OpenGL em Linux</h3>
+            <p>
+              Verifique as permissões de execução antes de correr o ficheiro <code>.run</code> com privilégios de administrador (<code>sudo</code>):
+            </p>
+            <pre>sudo ./choregraphe-suite-x.x-linux64-setup.run</pre>
+            <p>
+              Se o computador não possuir controladores de aceleração gráfica OpenGL compatíveis e o programa fechar ao abrir, arranque o Choregraphe sem o motor 3D OGRE:
+            </p>
+            <pre>./choregraphe --no-ogre</pre>
+          </article>
+
+          <!-- Card 6: Tabela Portas & SOs -->
+          <article class="trouble-card" data-category="network" data-keywords="tabela portas 9559 9561 requisitos cpu ram opengl ubuntu windows mac">
+            <span class="tag">Referência Técnica</span>
+            <h3>Tabela de portas NAOqi e requisitos de computador</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Componente</th>
+                    <th>Especificação / Versão</th>
+                    <th class="num">Detalhe Crítico</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NAOqi ≤ 2.8.7.4</td>
+                    <td>Comunicação Choregraphe / SDK</td>
+                    <td class="num">Porta 9559</td>
+                  </tr>
+                  <tr>
+                    <td>NAOqi ≥ 2.8.7.7</td>
+                    <td>Comunicação Choregraphe / SDK</td>
+                    <td class="num">Porta 9561</td>
+                  </tr>
+                  <tr>
+                    <td>Hardware Mínimo</td>
+                    <td>CPU 1.5 GHz · 2 GB RAM · OpenGL</td>
+                    <td class="num">Ligado a Wi-Fi</td>
+                  </tr>
+                  <tr>
+                    <td>Hardware Recomendado</td>
+                    <td>CPU 3.4 GHz · 16 GB RAM · OpenGL</td>
+                    <td class="num">Ligado a Wi-Fi</td>
+                  </tr>
+                  <tr>
+                    <td>Sistemas Suportados</td>
+                    <td>Ubuntu 16.04 (64-bit) · Windows 10 (64-bit) · macOS 10.12+</td>
+                    <td class="num">Admin / sudo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Card 7: Sintomas de Bateria com Falha -->
+          <article class="trouble-card" data-category="battery" data-severity="critical" data-keywords="bateria falha defeito naoqi crash hissing sibilante carregador led verde descarga profunda bms">
+            <span class="tag tag--error">Crítico — Bateria &amp; Carregador</span>
+            <h3>Sintomas de bateria defeituosa ou em fim de vida útil</h3>
+            <p>
+              Se detetar qualquer um dos quatro sintomas abaixo, a bateria necessita de substituição e o robô deve ser encaminhado para suporte técnico (nunca tente desmontar uma bateria de iões de lítio):
+            </p>
+            <ul>
+              <li>O sistema operativo <strong>NAOqi bloqueia/crasha</strong> assim que tenta ativar as articulações do robô (geralmente ouve-se um <strong>som sibilante</strong> vindo do interior).</li>
+              <li>O NAO <strong>desliga-se automaticamente</strong> no instante em que retira o cabo do carregador.</li>
+              <li>O robô <strong>não funciona de todo</strong> se o carregador não estiver ligado à bateria.</li>
+              <li>Quando liga o carregador à bateria, o <strong>LED do carregador acende a verde</strong> mesmo com a bateria descarregada.</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Simulador Interativo de Bateria & Prevenção BMS -->
+        <div style="display: grid; gap: var(--space-md); margin-top: var(--space-md);">
+          <h3>Alertas de Bateria e Prevenção do Estado de Descarga Profunda (BMS)</h3>
+          <p>
+            A bateria do NAO integra uma placa eletrónica <strong>BMS (Battery Management System)</strong> que consome uma pequena corrente continuamente, mesmo quando o robô está desligado ou guardado na caixa. Se permanecer <strong>mais de 3 meses sem recarga</strong>, a placa BMS ativa uma proteção irreversível de <em>Descarga Profunda</em> e bloqueia a bateria para sempre. Utilize o simulador abaixo para verificar os avisos do robô e o risco nas pausas letivas.
+          </p>
+
+          <div class="bms-grid">
+            <div style="display: grid; gap: var(--space-md);">
+              <div class="field-group">
+                <label class="field-label" for="battery-range">Nível de carga da bateria (%)</label>
+                <input id="battery-range" class="range-control" type="range" min="0" max="100" value="30" oninput="updateBatteryFromRange(this.value)" />
+                <div style="display: flex; justify-content: space-between; font-size: var(--label-size); color: var(--on-surface-variant); font-weight: 700;">
+                  <span>0% (Vazia)</span>
+                  <span>15% (Urgente)</span>
+                  <span>30% (Aviso)</span>
+                  <span>100% (Cheia)</span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="months-range">Tempo sem recarga completa (meses)</label>
+                <input id="months-range" class="range-control" type="range" min="0" max="6" step="1" value="1" oninput="updateMonthsFromRange(this.value)" />
+                <div style="display: flex; justify-content: space-between; font-size: var(--label-size); color: var(--on-surface-variant); font-weight: 700;">
+                  <span>0 meses</span>
+                  <span>1–3 meses (Seguro)</span>
+                  <span>4–6 meses (Risco BMS)</span>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button type="button" class="button button--secondary" onclick="setBatteryPreset(100, 0)">100% Carga</button>
+                <button type="button" class="button button--secondary" onclick="setBatteryPreset(30, 1)">Aviso 30%</button>
+                <button type="button" class="button button--secondary" onclick="setBatteryPreset(15, 2)">Urgente 15%</button>
+                <button type="button" class="button button--secondary" onclick="setBatteryPreset(0, 4)">0% + Férias 4m</button>
+              </div>
+            </div>
+
+            <div class="inset inset--white" style="gap: var(--space-md);" aria-live="polite">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+                <span id="bms-badge" class="tag tag--warning">Aviso de Bateria</span>
+                <strong id="battery-pct-label" style="font-variant-numeric: tabular-nums;">30% · 1 mês sem carga</strong>
+              </div>
+              <div class="battery-bar-outer" aria-hidden="true">
+                <div id="battery-bar-fill" class="battery-bar-inner" style="width: 30%;"></div>
+              </div>
+              <div>
+                <div class="figure-label">Frase falada pelo NAO</div>
+                <p id="battery-voice-msg" style="font-weight: 700; margin-top: 2px;">
+                  «My battery will soon need charging.» (A bateria precisará de carregamento em breve.)
+                </p>
+              </div>
+              <div>
+                <div class="figure-label">Estado da placa BMS e ação recomendada</div>
+                <p id="bms-advice" style="font-size: 0.95rem; margin-top: 2px;">
+                  Intervalo seguro. Carregue a bateria em postura Crouch com o carregador oficial fornecido na caixa antes que atinja os 15%.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Patamar</th>
+                  <th>Notificação falada pelo NAO</th>
+                  <th>Ação imediata</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="num"><strong>100%</strong></td>
+                  <td><code>«My battery is now fully charged.»</code></td>
+                  <td>Desligue primeiro o cabo das costas do NAO e depois desligue o carregador da tomada.</td>
+                </tr>
+                <tr>
+                  <td class="num"><strong>30%</strong></td>
+                  <td><code>«My battery will soon need charging.»</code></td>
+                  <td>Planeie o encerramento da atividade e ligue o carregador (com o robô em postura <em>Crouch</em>).</td>
+                </tr>
+                <tr>
+                  <td class="num"><strong>15%</strong></td>
+                  <td><code>«My battery needs urgent charging.»</code></td>
+                  <td>Pare imediatamente exercícios motores intensivos e ligue à corrente.</td>
+                </tr>
+                <tr>
+                  <td class="num"><strong>0%</strong></td>
+                  <td><code>«My battery is totally empty. I'm shutting down.»</code></td>
+                  <td>O robô desliga-se automaticamente. Recarregue de imediato para evitar descarga profunda na BMS.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECÇÃO 3: PERGUNTAS FREQUENTES (FAQ) -->
+      <section id="faq" class="doc-section" aria-labelledby="h-faq">
+        <div class="section-header">
+          <div class="section-kicker">
+            <span class="step-badge">3</span>
+            <span>Secção 3 — Dúvidas Comuns em Sala de Aula</span>
+          </div>
+          <h2 id="h-faq">Perguntas Frequentes (FAQ)</h2>
+          <p>
+            Respostas objetivas para as dúvidas mais comuns de professores e alunos sobre autonomia, programação visual vs. Python, duração da bateria e manutenção do equipamento.
+          </p>
+        </div>
+
+        <div class="button-row" aria-label="Filtrar perguntas frequentes por tema">
+          <button type="button" class="button button--secondary is-active" data-faq-btn="all" onclick="filterFaq('all')">Todas (7)</button>
+          <button type="button" class="button button--secondary" data-faq-btn="autonomia" onclick="filterFaq('autonomia')">Autonomia (Autonomous Life)</button>
+          <button type="button" class="button button--secondary" data-faq-btn="programacao" onclick="filterFaq('programacao')">Programação</button>
+          <button type="button" class="button button--secondary" data-faq-btn="bateria" onclick="filterFaq('bateria')">Bateria</button>
+          <button type="button" class="button button--secondary" data-faq-btn="manutencao" onclick="filterFaq('manutencao')">Limpeza e Manutenção</button>
+        </div>
+
+        <div class="faq-list" id="faq-accordion">
+          <div class="faq-item" data-faq-cat="autonomia">
+            <button type="button" class="faq-trigger" aria-expanded="true" aria-controls="faq-p-1" onclick="toggleFaq(this)">
+              <span>O que é o Autonomous Life e como sei se o NAO está a ouvir?</span>
+              <span class="faq-indicator" aria-hidden="true">−</span>
+            </button>
+            <div id="faq-p-1" class="faq-panel">
+              <p>
+                O <strong>Autonomous Life</strong> é o comportamento de base que torna o NAO «vivo» e reativo. Quando combinado com o <em>Basic Channel</em>, o robô levanta-se se estiver nos pés (ou mantém-se sentado se estiver sentado) e orienta a cabeça para sons, movimento ou toque.
+              </p>
+              <ul>
+                <li><strong>Deteção de humano:</strong> A menos de <strong>1,5 metros (5 pés)</strong>, se identificar uma pessoa, os olhos exibem <strong>pestanas cor-de-rosa</strong> e o NAO procura manter contacto visual.</li>
+                <li><strong>Modo escuta:</strong> Os olhos ficam em <strong>azul rotativo</strong> e ouve-se um ligeiro som <em>«bloup» ascendente</em> ao iniciar a escuta e <em>descendente</em> ao terminar.</li>
+                <li><strong>Dica de diálogo:</strong> Fale claramente e sem pausas longas (pausas são interpretadas como fim da frase). Se os olhos estiverem brancos ou azul-pálido, o diálogo ainda não começou.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="autonomia">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-2" onclick="toggleFaq(this)">
+              <span>Qual a diferença entre Application Mode e NAO Activities Mode nos LEDs dos pés?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-2" class="faq-panel" hidden>
+              <p>
+                Os LEDs dos pés indicam o modo de interação ativo no NAO6:
+              </p>
+              <ul>
+                <li><strong>LEDs dos pés apagados (Application Mode):</strong> O robô executa aplicações instaladas e comportamentos/diálogos predefinidos.</li>
+                <li><strong>LEDs dos pés verdes (NAO Activities Mode):</strong> O robô utiliza inteligência artificial generativa para interagir de forma aberta com os utilizadores.</li>
+              </ul>
+              <p>
+                Para ativar ou desativar o Autonomous Life durante a aula, prima o botão do peito <strong>2 vezes</strong> (ou configure o arranque por defeito em <em>Advanced settings &gt; "Alive by default"</em> / aplicação <em>Robot Settings</em>).
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="programacao">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-3" onclick="toggleFaq(this)">
+              <span>Quando devemos usar blocos Blockly no Vittascience vs. caixas e Python no Choregraphe?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-3" class="faq-panel" hidden>
+              <p>
+                Ambas as plataformas funcionam com o NAO6 como modos separados (sem conflito entre si, desde que usadas uma de cada vez):
+              </p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Critério</th>
+                      <th>Vittascience (Web)</th>
+                      <th>Choregraphe Suite (Desktop)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Linguagem e abordagem</strong></td>
+                      <td>Blocos visuais <strong>Blockly</strong> (no bloco <em>on start</em>), Python equivalente e prompting IA.</td>
+                      <td>Fluxogramas com <strong>caixas</strong>, editor de linha temporal/movimentos, <strong>Python</strong> e <strong>Dialog</strong>.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Público recomendado</strong></td>
+                      <td>Iniciação rápida em sala de aula, ensino básico/secundário.</td>
+                      <td>Projetos avançados, coreografias detalhadas, depuração e robótica universitária.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Simulação integrada</strong></td>
+                      <td>Simulador 3D Three.js direto no browser em tempo real.</td>
+                      <td><em>Connect to virtual robot</em> (permite escolher modelo NAO ou Pepper em <em>Edit &gt; Preferences</em>).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ligação ao robô real</strong></td>
+                      <td>Via Wi-Fi + <em>Vitta Companion App</em> aberta no PC.</td>
+                      <td>Ligação direta por rede (porta 9559 ou 9561).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="programacao">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-4" onclick="toggleFaq(this)">
+              <span>Podemos programar sem ter o robô físico ligado naquele momento?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-4" class="faq-panel" hidden>
+              <p>
+                Sim. No <strong>Vittascience</strong>, a simulação 3D arranca automaticamente sempre que adiciona blocos ao espaço de trabalho e pode ser visualizada clicando em <strong>Play</strong>. No <strong>Choregraphe</strong>, abra o separador <em>Connection</em> e selecione <strong>Connect to virtual robot</strong> (para alterar o modelo virtual entre versões NAO e Pepper, aceda a <em>Edit &gt; Preferences &gt; Virtual robot</em>).
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="bateria">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-5" onclick="toggleFaq(this)">
+              <span>Quanto tempo dura a bateria do NAO numa aula normal?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-5" class="faq-panel" hidden>
+              <p>
+                A autonomia típica situa-se entre <strong>45 minutos e 2 horas</strong>, dependendo diretamente do esforço exigido aos motores. Coreografias contínuas, caminhada constante e levantamento de braços consomem energia mais depressa (~45 min), enquanto sessões de diálogo ou postura sentada permitem aproximar-se das 2 horas.
+              </p>
+              <p>
+                Utilize sempre o carregador oficial fornecido na caixa do NAO e nunca ligue o carregador se a temperatura ambiente ultrapassar os 40 °C. A bateria pode ser carregada mesmo quando retirada do robô.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="manutencao">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-6" onclick="toggleFaq(this)">
+              <span>Como limpar e desinfetar o robô NAO sem danificar os plásticos ou motores?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-6" class="faq-panel" hidden>
+              <p>
+                Desligue sempre o robô e retire o cabo do carregador antes de qualquer limpeza:
+              </p>
+              <ul>
+                <li><strong>O que usar:</strong> Pano macio e seco ou toalhetes desinfetantes apropriados (a documentação de apoio refere toalhetes à base de álcool isopropílico para desinfeção de superfícies em ambiente escolar, evitando excesso de humidade — o guia de precauções gerais recomenda pano seco ou toalhetes de limpeza suaves sem solventes agressivos).</li>
+                <li><strong>Estritamente proibido:</strong> <strong>Nunca use água</strong>, nunca manuseie com mãos molhadas, <strong>nunca aplique produtos à base de amoníaco</strong> e <strong>nunca lubrifique ou aplique óleo nas articulações</strong>.</li>
+                <li><strong>Ventilação e acessórios:</strong> O NAO não é um boneco — não vista roupas, não pinte nem cole adereços e <strong>nunca tape a grelha de ventilação na parte traseira da cabeça</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq-cat="manutencao">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-p-7" onclick="toggleFaq(this)">
+              <span>O que fazer se o NAO cair ao chão durante uma atividade?</span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-p-7" class="faq-panel" hidden>
+              <p>
+                Não entre em pânico nem tente agarrar o robô a meio de um movimento brusco. Ao detetar queda, a atividade atual é interrompida automaticamente e o NAO tenta recuperar a última postura estável (sentado ou de pé). Se uma tentativa falhar, o NAO remove a rigidez dos motores (<em>Stiffness</em>) para que um humano o possa colocar manualmente numa postura mais favorável (sentado ou <em>Crouch</em>), permitindo que a tentativa seguinte tenha sucesso.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECÇÃO 4: VÍDEO DE INÍCIO RÁPIDO E SIMULAÇÃO 3D INTERATIVA -->
+      <section id="demos" class="doc-section" aria-labelledby="h-demos">
+        <div class="section-header">
+          <div class="section-kicker">
+            <span class="step-badge">4</span>
+            <span>Secção 4 — Demonstração Guiada &amp; Laboratório Virtual</span>
+          </div>
+          <h2 id="h-demos">Vídeo de Início Rápido e Simulação 3D Interativa</h2>
+          <p>
+            Explore o guião interativo do vídeo tutorial «NAO &amp; Vittascience» por capítulos e teste em tempo real os comportamentos, cenários, cores e LEDs do robô NAO6 no simulador 3D integrado.
+          </p>
+        </div>
+
+        <div class="sim-layout">
+          <!-- Simulador 3D Three.js -->
+          <div style="display: grid; gap: var(--space-sm);">
+            <div id="nao-3d-canvas-wrap" role="region" aria-label="Área de simulação 3D interativa do robô NAO6">
+              <div class="sim-hud">
+                <span class="sim-hud-badge" id="sim-hud-state">Postura: Crouch (Segura)</span>
+                <div class="button-row" style="pointer-events: auto;">
+                  <button type="button" class="button button--secondary" style="min-height: 36px; padding: 4px 10px; font-size: 0.8125rem;" onclick="adjustSimZoom(-0.5)">+</button>
+                  <button type="button" class="button button--secondary" style="min-height: 36px; padding: 4px 10px; font-size: 0.8125rem;" onclick="adjustSimZoom(0.5)">−</button>
+                  <button type="button" class="button button--secondary" style="min-height: 36px; padding: 4px 10px; font-size: 0.8125rem;" onclick="resetSimCamera()">Repor Câmara</button>
+                </div>
+              </div>
+              <div id="nao-3d-fallback" hidden style="padding: var(--space-lg);">
+                <strong>Modo de visualização 2D ativo:</strong> O motor WebGL não está disponível neste ambiente. Os estados de consola e comandos continuam funcionais abaixo.
+              </div>
+            </div>
+
+            <div class="console-box" id="sim-console" aria-live="polite" aria-label="Consola de execução simulada">
+              <div class="console-line">[NAO6 Simulador] Pronto em postura segura Crouch. Selecione um programa à direita para testar.</div>
+            </div>
+          </div>
+
+          <!-- Painel de Controlo do Simulador -->
+          <div class="sim-controls-panel">
+            <div>
+              <span class="tag">Simulador Vittascience / NAO6</span>
+              <h3 style="margin-top: var(--space-xs);">Programas de demonstração</h3>
+            </div>
+
+            <div class="button-row">
+              <button type="button" class="button" onclick="runSimProgram('boot')">1. Arranque («OGNAK GNOUK»)</button>
+              <button type="button" class="button button--secondary" onclick="runSimProgram('ip')">2. Anunciar IP (1× Peito)</button>
+              <button type="button" class="button button--secondary" onclick="runSimProgram('listen')">3. Escuta (Autonomous Life)</button>
+              <button type="button" class="button button--secondary" onclick="runSimProgram('wave')">4. Acenar &amp; LEDs</button>
+              <button type="button" class="button button--secondary" onclick="runSimProgram('crouch')">5. Postura Crouch / Stop</button>
+            </div>
+
+            <div class="summary-list">
+              <div class="field-group" style="padding: var(--space-sm) 0;">
+                <label class="field-label" for="sim-scene-select">Cenário 3D (Scene)</label>
+                <select id="sim-scene-select" class="select-control" onchange="updateSimEnvironment(this.value)">
+                  <option value="normal">Normal (Estúdio Escolar)</option>
+                  <option value="classroom">Sala de Aula (Classroom)</option>
+                  <option value="moon">Decor Lunar (Moon)</option>
+                </select>
+              </div>
+
+              <div class="field-group" style="padding: var(--space-sm) 0;">
+                <label class="field-label" for="sim-color-select">Cor de proteção do NAO</label>
+                <select id="sim-color-select" class="select-control" onchange="updateSimRobotColor(this.value)">
+                  <option value="normal">Normal (Laranja Clássico)</option>
+                  <option value="grey">Cinza Claro (Gris Clair)</option>
+                  <option value="anthracite">Antracite</option>
+                  <option value="steel">Azul Aço (Bleu Acier)</option>
+                  <option value="midnight">Azul Noite (Bleu Nuit)</option>
+                  <option value="sand">Areia (Sable)</option>
+                </select>
+              </div>
+
+              <div class="field-group" style="padding: var(--space-sm) 0;">
+                <span class="field-label">Modo dos LEDs dos pés</span>
+                <div class="button-row" style="margin-top: 4px;">
+                  <button type="button" class="button button--secondary is-active" data-foot-btn="app" onclick="setFootMode('app')">App Mode (Desligado)</button>
+                  <button type="button" class="button button--secondary" data-foot-btn="ai" onclick="setFootMode('ai')">NAO Activities IA (Verde)</button>
+                </div>
+              </div>
+
+              <div class="field-group" style="padding: var(--space-sm) 0;">
+                <label class="check-item" style="background: var(--background); border: 1px solid var(--outline-variant);">
+                  <input id="sim-sound-toggle" type="checkbox" checked />
+                  <span>Ativar feedback sonoro sintetizado («bloup» e tons de arranque)</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <div class="figure-label" style="margin-bottom: 4px;">Equivalente em Python / Blockly</div>
+              <pre id="sim-code-preview"># Bloco: "Ao iniciar" (on start)
+nao.stand_up()
+nao.say("Ognak Gnouk! Pronto para a aula.")</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guia por Capítulos do Vídeo de Início Rápido -->
+        <div style="display: grid; gap: var(--space-md); margin-top: var(--space-md);">
+          <h3>Guião Interativo do Vídeo de Início Rápido (NAO &amp; Vittascience)</h3>
+          <p>
+            Baseado na sessão formativa <em>«NAO &amp; Vittascience: Iniciação à programação do robô humanoide»</em>. Selecione um capítulo abaixo para rever os passos críticos do vídeo e sincronizar a demonstração no simulador 3D acima.
+          </p>
+
+          <div class="split-grid--reverse split-grid">
+            <div style="display: grid; gap: var(--space-sm);" id="video-chapters">
+              <div class="chapter-card is-active" tabindex="0" role="button" onclick="selectVideoChapter(0)" onkeydown="handleChapterKey(event, 0)">
+                <span class="figure-label">Capítulo 01 · 00:00 – 03:30</span>
+                <h4>Apresentação do NAO, 21 idiomas e modos de programação</h4>
+                <p>Visão geral do hardware, suporte para 21 idiomas e comparação entre prompting IA, blocos visuais no Vittascience e fluxogramas no Choregraphe.</p>
+              </div>
+              <div class="chapter-card" tabindex="0" role="button" onclick="selectVideoChapter(1)" onkeydown="handleChapterKey(event, 1)">
+                <span class="figure-label">Capítulo 02 · 03:30 – 06:45</span>
+                <h4>Instalar a Vitta Companion App e autorizar Firewall</h4>
+                <p>Descarregar a aplicação ponte, avançar no aviso de segurança do Windows («Mais opções») e permitir acesso na Firewall antes de enviar programas por Wi-Fi.</p>
+              </div>
+              <div class="chapter-card" tabindex="0" role="button" onclick="selectVideoChapter(2)" onkeydown="handleChapterKey(event, 2)">
+                <span class="figure-label">Capítulo 03 · 06:45 – 09:20</span>
+                <h4>Obter o IP no botão do peito (ex.: «Groot», 192.168.1.104)</h4>
+                <p>Premir 1× o botão do peito para ouvir o nome do robô, o endereço IP na rede local e eventuais notificações de bateria (ex.: 100% carregada).</p>
+              </div>
+              <div class="chapter-card" tabindex="0" role="button" onclick="selectVideoChapter(3)" onkeydown="handleChapterKey(event, 3)">
+                <span class="figure-label">Capítulo 04 · 09:20 – 12:30</span>
+                <h4>Simular, enviar ao robô e parar ciclos infinitos</h4>
+                <p>Testar LEDs e falas no simulador 3D em tempo real, enviar ao NAO físico e usar sempre o botão <strong>Stop</strong> antes de relançar programas com ciclo infinito.</p>
+              </div>
+            </div>
+
+            <div class="inset inset--white" id="chapter-detail-box" style="gap: var(--space-md);" aria-live="polite">
+              <span class="tag" id="chapter-tag">Capítulo 01 em foco</span>
+              <h4 id="chapter-title">Apresentação do NAO, 21 idiomas e modos de programação</h4>
+              <p id="chapter-body">
+                No início do vídeo são apresentados os dois caminhos complementares para a sala de aula: começar rapidamente no browser com blocos Blockly no Vittascience (ou texto/prompting para IA generativa) e evoluir para o software Choregraphe quando forem necessárias coreografias complexas. O robô suporta 21 idiomas configuráveis na sua página web.
+              </p>
+              <div class="inset">
+                <strong>Dica do formador no vídeo:</strong> Pode ligar o robô ao Choregraphe ou ao Vittascience alternadamente sem conflito entre aplicações instaladas, desde que apenas uma plataforma esteja ligada ao NAO de cada vez.
+              </div>
+              <div class="button-row">
+                <button type="button" class="button" id="chapter-sim-btn" onclick="runCurrentChapterDemo()">Testar este capítulo no Simulador 3D</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      <strong>Fontes e referências técnicas utilizadas neste manual educacional:</strong>
+      <p>
+        Conteúdo compilado e estruturado exclusivamente a partir do <em>NAO Robot User Guide</em> (Maxtronics Robotics SAS, Model H25600), do <em>Choregraphe Suite Installation Guide &amp; Troubleshooting</em> (Maxtronics 2.8.7.4 / 2.8.8), do guia <em>Hello World!</em> (NAOqi Developer Guide) e da documentação e sessão formativa <em>Getting Started with the NAO Robot and Vittascience</em> (Nicolas Godeau / Vittascience).
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    /* =========================================================================
+       1. ANATOMY & CHEST BUTTON SIMULATOR (SECTION 1)
+       ========================================================================= */
+    const ANATOMY_DATA = {
+      chest: {
+        tag: `Zona 3 — Botão do Peito`,
+        title: `Controlo principal, arranque e consulta de IP`,
+        body: `Com o robô desligado: prima ~1 s para ligar («OGNAK GNOUK», ~2 min). Com o robô ligado: prima 1× para ouvir o nome e o endereço IP; prima 2× para alternar os motores/Autonomous Life; mantenha 3 s para desligar normalmente («Gnuk Gnuk»). Se o botão piscar, prima 1× para ouvir a notificação.`
+      },
+      waist: {
+        tag: `Zona 4 — Zona Segura de Transporte`,
+        title: `Segurar sempre pelo tronco/cintura com as duas mãos`,
+        body: `Coloque o NAO em modo Rest (motores desligados) e segure-o pela cintura. Nunca puxe pela cabeça, braços ou pernas nem coloque as mãos perto das articulações ou entre os membros, evitando entalamentos e danos nos motores.`
+      },
+      hands: {
+        tag: `Zona 5 — Dedos e Articulações Frágeis`,
+        title: `Nunca puxar pelos dedos nem forçar motores`,
+        body: `Os dedos do NAO são frágeis e podem partir-se ou soltar-se. Ao guardar na caixa original, certifique-se de que as mãos estão fechadas (acontece automaticamente ao desligar) e perfeitamente alinhadas na espuma antes de fechar a tampa.`
+      },
+      head: {
+        tag: `Zona 1 — Cabeça, Câmara e Sensor Tátil`,
+        title: `Acordar, parar atividade ou colocar a dormir`,
+        body: `Toque no sensor tátil da cabeça para acordar o NAO. Pouse a palma da mão na câmara superior e os dedos no sensor tátil durante 1 s («blop» → retire rápido → «click», LEDs verdes) para parar a atividade atual, ou durante 3 s («blop, blop, click», LEDs roxos) para o colocar a dormir. Nunca tape a ventilação traseira da cabeça.`
+      },
+      eyes: {
+        tag: `Zona 2 — Olhos e Orelhas LED`,
+        title: `Leitura visual do estado de escuta e deteção`,
+        body: `Olhos em azul rotativo significam que o NAO está a ouvir. Olhos brancos com pestanas cor-de-rosa indicam deteção de humano (a menos de 1,5 m). Olhos brancos ou azul-pálido significam que o diálogo ainda não começou.`
+      },
+      feet: {
+        tag: `Zona 6 — LEDs dos Pés e Para-choques`,
+        title: `Indicador de Modo Aplicações vs. Modo IA`,
+        body: `LEDs dos pés apagados indicam Application Mode (aplicações instaladas e comportamentos predefinidos). LEDs dos pés verdes indicam NAO Activities Mode (interação por inteligência artificial generativa).`
+      }
+    };
+
+    function selectAnatomyZone(zoneKey) {
+      const data = ANATOMY_DATA[zoneKey];
+      const box = document.getElementById('anatomy-detail');
+      if (!data || !box) return;
+
+      box.innerHTML = `
+        <span class="tag">${data.tag}</span>
+        <h4>${data.title}</h4>
+        <p>${data.body}</p>
+      `;
+
+      const btns = document.querySelectorAll('[data-zone-btn]');
+      btns.forEach(function (btn) {
+        const active = btn.getAttribute('data-zone-btn') === zoneKey;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    function handleHotspotKey(ev, zoneKey) {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        selectAnatomyZone(zoneKey);
+      }
+    }
+
+    const PHYSICAL_ACTIONS = {
+      boot: {
+        ledClass: 'led-indicator--blue',
+        ledText: 'BOOT',
+        title: `Arranque iniciado (~2 minutos em postura Crouch)`,
+        output: `LED do peito alterna cores durante o arranque. Quando concluir, o NAO anuncia: «OGNAK GNOUK».`,
+        sound: 'boot'
+      },
+      ip: {
+        ledClass: 'led-indicator--green',
+        ledText: 'IP',
+        title: `Leitura de Identidade e Endereço IP`,
+        output: `NAO fala: «Olá, o meu nome é NAO e o meu endereço internet é 192.168.1.104.» (Prima novamente para saltar a fala.)`,
+        sound: 'asc'
+      },
+      rest: {
+        ledClass: 'led-indicator--amber',
+        ledText: 'REST',
+        title: `Modo Rest / Autonomous Life alternado (2× Peito)`,
+        output: `Ao desligar motores: o robô suspira, passa à postura segura Crouch e desliga a rigidez para transporte seguro. Ao ligar: som alegre e ativa motores.`,
+        sound: 'click'
+      },
+      off: {
+        ledClass: 'led-indicator--off',
+        ledText: 'OFF',
+        title: `Encerramento normal (~1 minuto)`,
+        output: `Premiu 3 s. O NAO fecha as mãos automaticamente e diz: «Gnuk Gnuk». Todos os LEDs se apagam no final.`,
+        sound: 'desc'
+      },
+      force: {
+        ledClass: 'led-indicator--off',
+        ledText: 'EMG',
+        title: `Encerramento Forçado (8 s) — Apenas em emergência`,
+        output: `CUIDADO: Os motores desligam-se de imediato e o robô pode cair — segure pelo tronco! Diz «GNUK GNUK» e pode ocorrer perda de dados.`,
+        sound: 'desc'
+      },
+      head1s: {
+        ledClass: 'led-indicator--green',
+        ledText: 'STOP',
+        title: `Mão na cabeça 1 s — Parar atividade em curso`,
+        output: `Som «blop», retire rapidamente a mão, som «click» e LEDs dos olhos ficam verdes por instantes. Atividade terminada.`,
+        sound: 'click'
+      },
+      head3s: {
+        ledClass: 'led-indicator--purple',
+        ledText: 'ZZZ',
+        title: `Mão na cabeça 3 s — Colocar o NAO a dormir`,
+        output: `Sons «blop, blop, click» enquanto mantém a mão; olhos e LEDs ficam roxos por momentos antes de adormecer.`,
+        sound: 'desc'
+      }
+    };
+
+    function simulatePhysicalAction(actionKey) {
+      const action = PHYSICAL_ACTIONS[actionKey];
+      const dot = document.getElementById('sim-led-dot');
+      const titleEl = document.getElementById('sim-action-title');
+      const outEl = document.getElementById('sim-action-output');
+      if (!action || !dot || !titleEl || !outEl) return;
+
+      dot.className = `led-indicator ${action.ledClass}`;
+      dot.textContent = action.ledText;
+      titleEl.textContent = action.title;
+      outEl.textContent = action.output;
+      playSynthFeedback(action.sound);
+    }
+
+    function updateChecklistCount() {
+      const boxes = document.querySelectorAll('.check-item input[type="checkbox"]');
+      const counter = document.getElementById('checklist-counter');
+      if (!counter) return;
+      let checked = 0;
+      boxes.forEach(function (box) {
+        if (box.checked) checked++;
+      });
+      counter.textContent = `${checked} de ${boxes.length} verificados`;
+      counter.className = checked === boxes.length ? 'tag tag--positive' : 'tag';
+    }
+
+    /* =========================================================================
+       2. TROUBLESHOOTING FILTER & BATTERY / BMS SIMULATOR (SECTION 2)
+       ========================================================================= */
+    let activeTroubleCat = 'all';
+
+    function setTroubleCategory(cat) {
+      activeTroubleCat = cat;
+      const btns = document.querySelectorAll('[data-cat-btn]');
+      btns.forEach(function (btn) {
+        const active = btn.getAttribute('data-cat-btn') === cat;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      filterTroubleshooting();
+    }
+
+    function filterTroubleshooting() {
+      const input = document.getElementById('trouble-search');
+      const countEl = document.getElementById('trouble-count');
+      const cards = document.querySelectorAll('.trouble-card');
+      const query = input ? input.value.trim().toLowerCase() : '';
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const cat = card.getAttribute('data-category') || '';
+        const text = (card.textContent + ' ' + (card.getAttribute('data-keywords') || '')).toLowerCase();
+        const catMatch = activeTroubleCat === 'all' || cat === activeTroubleCat;
+        const textMatch = query === '' || text.indexOf(query) !== -1;
+        const show = catMatch && textMatch;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+
+      if (countEl) {
+        countEl.textContent = visible === 0
+          ? `Nenhum guia encontrado para «${query}». Tente pesquisar por 9559, VCOMP120, Finder ou BMS.`
+          : `A mostrar ${visible} guia(s) de resolução.`;
+      }
+    }
+
+    let currentBatteryPct = 30;
+    let currentStorageMonths = 1;
+
+    function updateBatteryFromRange(val) {
+      currentBatteryPct = parseInt(val, 10);
+      renderBatteryState();
+    }
+
+    function updateMonthsFromRange(val) {
+      currentStorageMonths = parseInt(val, 10);
+      renderBatteryState();
+    }
+
+    function setBatteryPreset(pct, months) {
+      currentBatteryPct = pct;
+      currentStorageMonths = months;
+      const bRange = document.getElementById('battery-range');
+      const mRange = document.getElementById('months-range');
+      if (bRange) bRange.value = pct;
+      if (mRange) mRange.value = months;
+      renderBatteryState();
+    }
+
+    function renderBatteryState() {
+      const badge = document.getElementById('bms-badge');
+      const label = document.getElementById('battery-pct-label');
+      const fill = document.getElementById('battery-bar-fill');
+      const voice = document.getElementById('battery-voice-msg');
+      const advice = document.getElementById('bms-advice');
+      if (!badge || !label || !fill || !voice || !advice) return;
+
+      const mLabel = currentStorageMonths === 1 ? '1 mês' : `${currentStorageMonths} meses`;
+      label.textContent = `${currentBatteryPct}% · ${mLabel} sem carga`;
+      fill.style.width = `${currentBatteryPct}%`;
+
+      if (currentBatteryPct === 0) {
+        voice.textContent = `«My battery is totally empty. I'm shutting down.» (Bateria totalmente vazia — a encerrar.)`;
+      } else if (currentBatteryPct <= 15) {
+        voice.textContent = `«My battery needs urgent charging.» (Carregamento urgente necessário.)`;
+      } else if (currentBatteryPct <= 30) {
+        voice.textContent = `«My battery will soon need charging.» (Carregamento necessário em breve.)`;
+      } else if (currentBatteryPct === 100) {
+        voice.textContent = `«My battery is now fully charged.» (Bateria totalmente carregada.)`;
+      } else {
+        voice.textContent = `Sem notificação de erro de carga (${currentBatteryPct}% disponível para a aula).`;
+      }
+
+      if (currentStorageMonths > 3) {
+        badge.className = 'tag tag--error';
+        badge.textContent = `PERIGO: Bloqueio BMS (Descarga Profunda)`;
+        fill.style.backgroundColor = 'var(--error)';
+        advice.textContent = `Passaram ${mLabel} sem recarga! A placa BMS consome energia em repouso e pode ativar o estado de Descarga Profunda, bloqueando permanentemente a bateria. Recarregue imediatamente até 100% e cumpra o ciclo de 1 a 3 meses.`;
+      } else if (currentBatteryPct <= 15) {
+        badge.className = 'tag tag--error';
+        badge.textContent = `Carga Crítica (${currentBatteryPct}%)`;
+        fill.style.backgroundColor = 'var(--error)';
+        advice.textContent = `Coloque o robô em postura Crouch e ligue de imediato o carregador oficial fornecido na caixa.`;
+      } else if (currentBatteryPct <= 30) {
+        badge.className = 'tag tag--warning';
+        badge.textContent = `Aviso de Bateria (${currentBatteryPct}%)`;
+        fill.style.backgroundColor = 'var(--data-2)';
+        advice.textContent = `Conclua a tarefa atual e prepare o carregamento. Período de armazenamento seguro (até 3 meses no máximo).`;
+      } else {
+        badge.className = 'tag tag--positive';
+        badge.textContent = `Estado Normal (${currentBatteryPct}%)`;
+        fill.style.backgroundColor = 'var(--positive)';
+        advice.textContent = `Bateria pronta para utilização em sala de aula. Lembre-se de agendar uma carga completa a cada 1 a 3 meses durante as pausas letivas.`;
+      }
+    }
+
+    /* =========================================================================
+       3. FAQ ACCORDION & CATEGORY FILTER (SECTION 3)
+       ========================================================================= */
+    function toggleFaq(btn) {
+      const panelId = btn.getAttribute('aria-controls');
+      const panel = panelId ? document.getElementById(panelId) : null;
+      const indicator = btn.querySelector('.faq-indicator');
+      if (!panel) return;
+
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      panel.hidden = isExpanded;
+      if (indicator) indicator.textContent = isExpanded ? '+' : '−';
+    }
+
+    function filterFaq(cat) {
+      const btns = document.querySelectorAll('[data-faq-btn]');
+      btns.forEach(function (btn) {
+        const active = btn.getAttribute('data-faq-btn') === cat;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(function (item) {
+        const itemCat = item.getAttribute('data-faq-cat');
+        item.hidden = !(cat === 'all' || itemCat === cat);
+      });
+    }
+
+    /* =========================================================================
+       4. VIDEO CHAPTERS & INTERACTIVE 3D SIMULATOR (THREE.JS + SYNTH AUDIO)
+       ========================================================================= */
+    const VIDEO_CHAPTERS = [
+      {
+        tag: `Capítulo 01 em foco`,
+        title: `Apresentação do NAO, 21 idiomas e modos de programação`,
+        body: `No início do vídeo são apresentados os dois caminhos complementares para a sala de aula: começar rapidamente no browser com blocos Blockly no Vittascience (ou texto/prompting para IA generativa) e evoluir para o software Choregraphe quando forem necessárias coreografias complexas. O robô suporta 21 idiomas configuráveis na sua página web.`,
+        program: `boot`
+      },
+      {
+        tag: `Capítulo 02 em foco`,
+        title: `Instalar a Vitta Companion App e autorizar Firewall`,
+        body: `Para que o navegador web comunique por Wi-Fi com o NAO físico, é obrigatório descarregar e executar em segundo plano a Vitta Companion App (.exe, .dmg ou .deb). No Windows pode surgir um aviso de segurança («Mais opções» para validar) e é necessário autorizar o acesso na Firewall.`,
+        program: `crouch`
+      },
+      {
+        tag: `Capítulo 03 em foco`,
+        title: `Obter o IP no botão do peito (ex.: «Groot», 192.168.1.104)`,
+        body: `Quando clica em «Enviar para o NAO», é pedido o endereço IP do robô. Basta premir uma vez o botão do peito: no exemplo do vídeo, o robô batizado «Groot» anuncia o IP 192.168.1.104 e informa que a bateria está totalmente carregada.`,
+        program: `ip`
+      },
+      {
+        tag: `Capítulo 04 em foco`,
+        title: `Simular, enviar ao robô e parar ciclos infinitos`,
+        body: `Enquanto o programa corre no robô físico, o simulador 3D mostra o comportamento em tempo real. Atenção essencial explicada no vídeo: se utilizar blocos «repetir indefinidamente», clique sempre em Stop antes de enviar um novo programa ou fechar a página.`,
+        program: `wave`
+      }
+    ];
+
+    let currentChapterIdx = 0;
+
+    function selectVideoChapter(idx) {
+      const ch = VIDEO_CHAPTERS[idx];
+      if (!ch) return;
+      currentChapterIdx = idx;
+
+      const cards = document.querySelectorAll('.chapter-card');
+      cards.forEach(function (card, i) {
+        card.classList.toggle('is-active', i === idx);
+      });
+
+      const tagEl = document.getElementById('chapter-tag');
+      const titleEl = document.getElementById('chapter-title');
+      const bodyEl = document.getElementById('chapter-body');
+      if (tagEl) tagEl.textContent = ch.tag;
+      if (titleEl) titleEl.textContent = ch.title;
+      if (bodyEl) bodyEl.textContent = ch.body;
+    }
+
+    function handleChapterKey(ev, idx) {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        selectVideoChapter(idx);
+      }
+    }
+
+    function runCurrentChapterDemo() {
+      const ch = VIDEO_CHAPTERS[currentChapterIdx];
+      if (ch) runSimProgram(ch.program);
+    }
+
+    /* Web Audio API Sound Feedback */
+    let audioCtx = null;
+
+    function playSynthFeedback(type) {
+      const toggle = document.getElementById('sim-sound-toggle');
+      if (toggle && !toggle.checked) return;
+      const AudioContextRef = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextRef) return;
+
+      try {
+        if (!audioCtx) audioCtx = new AudioContextRef();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'asc') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(420, now);
+          osc.frequency.exponentialRampToValueAtTime(740, now + 0.14);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+          osc.start(now);
+          osc.stop(now + 0.17);
+        } else if (type === 'desc') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(680, now);
+          osc.frequency.exponentialRampToValueAtTime(340, now + 0.18);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.21);
+        } else if (type === 'boot') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(392, now);
+          osc.frequency.setValueAtTime(523.25, now + 0.12);
+          osc.frequency.setValueAtTime(659.25, now + 0.24);
+          gain.gain.setValueAtTime(0.09, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+          osc.start(now);
+          osc.stop(now + 0.44);
+        } else {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(880, now);
+          gain.gain.setValueAtTime(0.04, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+          osc.start(now);
+          osc.stop(now + 0.07);
+        }
+      } catch (err) {
+        /* Ignore audio errors when autoplay restricted */
+      }
+    }
+
+    function appendConsoleLog(msg) {
+      const box = document.getElementById('sim-console');
+      if (!box) return;
+      const line = document.createElement('div');
+      line.className = 'console-line';
+      const now = new Date();
+      const ts = now.toTimeString().slice(0, 8);
+      line.textContent = `[${ts}] ${msg}`;
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    /* =========================================================================
+       THREE.JS 3D NAO6 MODEL & ANIMATION ENGINE
+       ========================================================================= */
+    let simState = {
+      pose: 'crouch',
+      eyeColorToken: '--robot-led-blue',
+      chestColorToken: '--primary',
+      footMode: 'app',
+      waveActive: false,
+      listenSpin: false,
+      cameraTheta: 0.35,
+      cameraPhi: 1.25,
+      cameraDist: 4.4
+    };
+
+    let threeObj = null;
+
+    function getTokenHexInt(tokenName) {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue(tokenName).trim();
+      if (raw && raw.startsWith('#')) {
+        return parseInt(raw.slice(1), 16);
+      }
+      return 0x162e51;
+    }
+
+    function initThreeSimulator() {
+      const wrap = document.getElementById('nao-3d-canvas-wrap');
+      const fallback = document.getElementById('nao-3d-fallback');
+      if (!wrap) return;
+
+      if (typeof THREE === 'undefined') {
+        if (fallback) fallback.hidden = false;
+        return;
+      }
+
+      try {
+        const width = wrap.clientWidth || 600;
+        const height = wrap.clientHeight || 440;
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(getTokenHexInt('--sim-bg-normal'));
+
+        const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 50);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        wrap.appendChild(renderer.domElement);
+
+        /* Lights */
+        const ambient = new THREE.AmbientLight(0xffffff, 0.72);
+        scene.add(ambient);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.85);
+        dirLight.position.set(3, 6, 4);
+        scene.add(dirLight);
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
+        fillLight.position.set(-4, 2, -2);
+        scene.add(fillLight);
+
+        /* Floor Grid */
+        const floorGeo = new THREE.PlaneGeometry(12, 12);
+        const floorMat = new THREE.MeshStandardMaterial({
+          color: getTokenHexInt('--surface-container-low'),
+          roughness: 0.9
+        });
+        const floor = new THREE.Mesh(floorGeo, floorMat);
+        floor.rotation.x = -Math.PI / 2;
+        scene.add(floor);
+
+        const grid = new THREE.GridHelper(10, 20, getTokenHexInt('--outline-variant'), getTokenHexInt('--outline-variant'));
+        grid.position.y = 0.005;
+        scene.add(grid);
+
+        /* Materials */
+        const shellMat = new THREE.MeshStandardMaterial({ color: getTokenHexInt('--robot-shell'), roughness: 0.45 });
+        const accentMat = new THREE.MeshStandardMaterial({ color: getTokenHexInt('--robot-accent'), roughness: 0.5 });
+        const darkMat = new THREE.MeshStandardMaterial({ color: getTokenHexInt('--robot-dark'), roughness: 0.6 });
+        const eyeMat = new THREE.MeshBasicMaterial({ color: getTokenHexInt('--robot-led-blue') });
+        const chestMat = new THREE.MeshBasicMaterial({ color: getTokenHexInt('--primary') });
+        const footLedMat = new THREE.MeshBasicMaterial({ color: getTokenHexInt('--robot-dark') });
+
+        /* Robot Hierarchy */
+        const robotRoot = new THREE.Group();
+        scene.add(robotRoot);
+
+        const torsoPivot = new THREE.Group();
+        torsoPivot.position.y = 1.05;
+        robotRoot.add(torsoPivot);
+
+        /* Torso */
+        const torsoMesh = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.72, 0.38), shellMat);
+        torsoMesh.position.y = 0.36;
+        torsoPivot.add(torsoMesh);
+
+        const chestTrim = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.14, 0.40), accentMat);
+        chestTrim.position.set(0, 0.64, 0);
+        torsoPivot.add(chestTrim);
+
+        const chestBtn = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.03, 24), chestMat);
+        chestBtn.rotation.x = Math.PI / 2;
+        chestBtn.position.set(0, 0.44, 0.195);
+        torsoPivot.add(chestBtn);
+
+        /* Head */
+        const headPivot = new THREE.Group();
+        headPivot.position.set(0, 0.76, 0);
+        torsoPivot.add(headPivot);
+
+        const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.27, 24, 20), shellMat);
+        headMesh.scale.set(1.08, 0.92, 0.98);
+        headMesh.position.y = 0.22;
+        headPivot.add(headMesh);
+
+        const visorMesh = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.12, 0.16), darkMat);
+        visorMesh.position.set(0, 0.22, 0.18);
+        headPivot.add(visorMesh);
+
+        const eyeL = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 20), eyeMat);
+        eyeL.rotation.x = Math.PI / 2;
+        eyeL.position.set(-0.09, 0.22, 0.26);
+        headPivot.add(eyeL);
+
+        const eyeR = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 20), eyeMat);
+        eyeR.rotation.x = Math.PI / 2;
+        eyeR.position.set(0.09, 0.22, 0.26);
+        headPivot.add(eyeR);
+
+        const earL = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.05, 18), accentMat);
+        earL.rotation.z = Math.PI / 2;
+        earL.position.set(-0.29, 0.22, 0);
+        headPivot.add(earL);
+
+        const earR = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.05, 18), accentMat);
+        earR.rotation.z = Math.PI / 2;
+        earR.position.set(0.29, 0.22, 0);
+        headPivot.add(earR);
+
+        /* Arms */
+        function buildArm(side) {
+          const shoulderPivot = new THREE.Group();
+          shoulderPivot.position.set(side * 0.42, 0.64, 0);
+          torsoPivot.add(shoulderPivot);
+
+          const shoulderBall = new THREE.Mesh(new THREE.SphereGeometry(0.10, 16, 16), accentMat);
+          shoulderPivot.add(shoulderBall);
+
+          const upperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.065, 0.34, 16), shellMat);
+          upperArm.position.y = -0.17;
+          shoulderPivot.add(upperArm);
+
+          const elbowPivot = new THREE.Group();
+          elbowPivot.position.y = -0.35;
+          shoulderPivot.add(elbowPivot);
+
+          const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.055, 0.32, 16), shellMat);
+          forearm.position.y = -0.16;
+          elbowPivot.add(forearm);
+
+          const hand = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.12, 0.10), accentMat);
+          hand.position.y = -0.34;
+          elbowPivot.add(hand);
+
+          return { shoulderPivot: shoulderPivot, elbowPivot: elbowPivot };
+        }
+
+        const leftArm = buildArm(-1);
+        const rightArm = buildArm(1);
+
+        /* Legs */
+        function buildLeg(side) {
+          const hipPivot = new THREE.Group();
+          hipPivot.position.set(side * 0.17, 0.02, 0);
+          torsoPivot.add(hipPivot);
+
+          const hipJoint = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 14), accentMat);
+          hipPivot.add(hipJoint);
+
+          const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.085, 0.46, 16), shellMat);
+          thigh.position.y = -0.23;
+          hipPivot.add(thigh);
+
+          const kneePivot = new THREE.Group();
+          kneePivot.position.y = -0.46;
+          hipPivot.add(kneePivot);
+
+          const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.075, 0.46, 16), shellMat);
+          shin.position.y = -0.23;
+          kneePivot.add(shin);
+
+          const anklePivot = new THREE.Group();
+          anklePivot.position.y = -0.47;
+          kneePivot.add(anklePivot);
+
+          const foot = new THREE.Mesh(new THREE.BoxGeometry(0.20, 0.10, 0.34), shellMat);
+          foot.position.set(0, -0.05, 0.06);
+          anklePivot.add(foot);
+
+          const footLed = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.03, 0.05), footLedMat);
+          footLed.position.set(0, -0.04, 0.22);
+          anklePivot.add(footLed);
+
+          return { hipPivot: hipPivot, kneePivot: kneePivot, anklePivot: anklePivot };
+        }
+
+        const leftLeg = buildLeg(-1);
+        const rightLeg = buildLeg(1);
+
+        threeObj = {
+          scene: scene,
+          camera: camera,
+          renderer: renderer,
+          floorMat: floorMat,
+          shellMat: shellMat,
+          accentMat: accentMat,
+          eyeMat: eyeMat,
+          chestMat: chestMat,
+          footLedMat: footLedMat,
+          torsoPivot: torsoPivot,
+          headPivot: headPivot,
+          leftArm: leftArm,
+          rightArm: rightArm,
+          leftLeg: leftLeg,
+          rightLeg: rightLeg
+        };
+
+        /* Pointer Orbit Drag */
+        let dragging = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        wrap.addEventListener('pointerdown', function (ev) {
+          dragging = true;
+          lastX = ev.clientX;
+          lastY = ev.clientY;
+        });
+        window.addEventListener('pointermove', function (ev) {
+          if (!dragging) return;
+          const dx = ev.clientX - lastX;
+          const dy = ev.clientY - lastY;
+          lastX = ev.clientX;
+          lastY = ev.clientY;
+          simState.cameraTheta -= dx * 0.008;
+          simState.cameraPhi = Math.max(0.45, Math.min(1.5, simState.cameraPhi - dy * 0.006));
+        });
+        window.addEventListener('pointerup', function () {
+          dragging = false;
+        });
+
+        window.addEventListener('resize', function () {
+          if (!wrap || !threeObj) return;
+          const w = wrap.clientWidth;
+          const h = wrap.clientHeight;
+          if (w > 0 && h > 0) {
+            threeObj.camera.aspect = w / h;
+            threeObj.camera.updateProjectionMatrix();
+            threeObj.renderer.setSize(w, h);
+          }
+        });
+
+        /* Single Animation Loop */
+        let startTime = performance.now();
+        function animate() {
+          requestAnimationFrame(animate);
+          const t = (performance.now() - startTime) * 0.001;
+
+          /* Target Pose Values */
+          let targetTorsoY = 1.03;
+          let targetHipX = 0;
+          let targetKneeX = 0;
+          let targetAnkleX = 0;
+          let targetRShoulderX = 0.15;
+          let targetRShoulderZ = 0.12;
+          let targetRElbowX = -0.3;
+          let targetLShoulderX = 0.15;
+          let targetLShoulderZ = -0.12;
+          let targetHeadY = 0;
+          let targetHeadX = 0;
+
+          if (simState.pose === 'crouch') {
+            targetTorsoY = 0.68;
+            targetHipX = -1.05;
+            targetKneeX = 1.9;
+            targetAnkleX = -0.85;
+            targetRShoulderX = 0.35;
+            targetLShoulderX = 0.35;
+            targetHeadX = 0.12;
+          } else if (simState.pose === 'listen') {
+            targetTorsoY = 1.03;
+            targetHeadY = Math.sin(t * 1.4) * 0.28;
+            targetHeadX = -0.05;
+          } else if (simState.pose === 'wave') {
+            targetTorsoY = 1.03;
+            targetRShoulderX = -2.4;
+            targetRShoulderZ = 0.45 + Math.sin(t * 6.0) * 0.25;
+            targetRElbowX = -0.7;
+            targetHeadY = -0.15;
+          }
+
+          /* Smooth interpolation */
+          const k = 0.08;
+          torsoPivot.position.y += (targetTorsoY - torsoPivot.position.y) * k;
+          leftLeg.hipPivot.rotation.x += (targetHipX - leftLeg.hipPivot.rotation.x) * k;
+          rightLeg.hipPivot.rotation.x += (targetHipX - rightLeg.hipPivot.rotation.x) * k;
+          leftLeg.kneePivot.rotation.x += (targetKneeX - leftLeg.kneePivot.rotation.x) * k;
+          rightLeg.kneePivot.rotation.x += (targetKneeX - rightLeg.kneePivot.rotation.x) * k;
+          leftLeg.anklePivot.rotation.x += (targetAnkleX - leftLeg.anklePivot.rotation.x) * k;
+          rightLeg.anklePivot.rotation.x += (targetAnkleX - rightLeg.anklePivot.rotation.x) * k;
+
+          rightArm.shoulderPivot.rotation.x += (targetRShoulderX - rightArm.shoulderPivot.rotation.x) * k;
+          rightArm.shoulderPivot.rotation.z += (targetRShoulderZ - rightArm.shoulderPivot.rotation.z) * k;
+          rightArm.elbowPivot.rotation.x += (targetRElbowX - rightArm.elbowPivot.rotation.x) * k;
+          leftArm.shoulderPivot.rotation.x += (targetLShoulderX - leftArm.shoulderPivot.rotation.x) * k;
+          leftArm.shoulderPivot.rotation.z += (targetLShoulderZ - leftArm.shoulderPivot.rotation.z) * k;
+
+          headPivot.rotation.y += (targetHeadY - headPivot.rotation.y) * k;
+          headPivot.rotation.x += (targetHeadX - headPivot.rotation.x) * k;
+
+          /* Camera Spherical Position */
+          const cx = simState.cameraDist * Math.sin(simState.cameraPhi) * Math.sin(simState.cameraTheta);
+          const cy = 0.95 + simState.cameraDist * Math.cos(simState.cameraPhi);
+          const cz = simState.cameraDist * Math.sin(simState.cameraPhi) * Math.cos(simState.cameraTheta);
+          camera.position.set(cx, cy, cz);
+          camera.lookAt(0, 0.95, 0);
+
+          renderer.render(scene, camera);
+        }
+        animate();
+      } catch (err) {
+        if (fallback) fallback.hidden = false;
+      }
+    }
+
+    function adjustSimZoom(delta) {
+      simState.cameraDist = Math.max(2.6, Math.min(7.0, simState.cameraDist + delta));
+    }
+
+    function resetSimCamera() {
+      simState.cameraTheta = 0.35;
+      simState.cameraPhi = 1.25;
+      simState.cameraDist = 4.4;
+    }
+
+    function updateSimEnvironment(sceneKey) {
+      const wrap = document.getElementById('nao-3d-canvas-wrap');
+      const tokenMap = {
+        normal: '--sim-bg-normal',
+        classroom: '--sim-bg-classroom',
+        moon: '--sim-bg-moon'
+      };
+      const token = tokenMap[sceneKey] || '--sim-bg-normal';
+      if (wrap) wrap.style.background = `var(${token})`;
+      if (threeObj) {
+        threeObj.scene.background = new THREE.Color(getTokenHexInt(token));
+      }
+      appendConsoleLog(`Cenário 3D alterado para: ${sceneKey}.`);
+    }
+
+    function updateSimRobotColor(colorKey) {
+      const tokenMap = {
+        normal: '--robot-accent',
+        grey: '--robot-grey-light',
+        anthracite: '--robot-anthracite',
+        steel: '--robot-steel',
+        midnight: '--robot-midnight',
+        sand: '--robot-sand'
+      };
+      const token = tokenMap[colorKey] || '--robot-accent';
+      if (threeObj) {
+        threeObj.accentMat.color.setHex(getTokenHexInt(token));
+      }
+      appendConsoleLog(`Cor de proteção do NAO alterada (${colorKey}).`);
+    }
+
+    function setFootMode(mode) {
+      simState.footMode = mode;
+      const btns = document.querySelectorAll('[data-foot-btn]');
+      btns.forEach(function (btn) {
+        const active = btn.getAttribute('data-foot-btn') === mode;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      if (threeObj) {
+        const tok = mode === 'ai' ? '--robot-led-green' : '--robot-dark';
+        threeObj.footLedMat.color.setHex(getTokenHexInt(tok));
+      }
+      appendConsoleLog(
+        mode === 'ai'
+          ? `LEDs dos pés: VERDES (NAO Activities — IA Generativa ativa).`
+          : `LEDs dos pés: APAGADOS (Application Mode — apps instaladas).`
+      );
+    }
+
+    function runSimProgram(progKey) {
+      const hud = document.getElementById('sim-hud-state');
+      const codeEl = document.getElementById('sim-code-preview');
+
+      if (progKey === 'boot') {
+        simState.pose = 'stand';
+        if (threeObj) {
+          threeObj.eyeMat.color.setHex(getTokenHexInt('--robot-led-blue'));
+          threeObj.chestMat.color.setHex(getTokenHexInt('--robot-led-green'));
+        }
+        if (hud) hud.textContent = `Postura: Standing (Arranque Concluído)`;
+        if (codeEl) {
+          codeEl.textContent = `# Arranque seguro -> Standing\nnao.boot_complete() # "OGNAK GNOUK"\nnao.stand_up()`;
+        }
+        playSynthFeedback('boot');
+        appendConsoleLog(`Arranque concluído: «OGNAK GNOUK». NAO levantou-se da postura Crouch.`);
+      } else if (progKey === 'ip') {
+        if (threeObj) {
+          threeObj.chestMat.color.setHex(getTokenHexInt('--robot-led-cyan'));
+        }
+        if (hud) hud.textContent = `IP Local: 192.168.1.104 (Porta 9561)`;
+        if (codeEl) {
+          codeEl.textContent = `# Premir 1x botão do peito\nip = nao.get_ip_address()\nnao.say("O meu IP é " + ip)`;
+        }
+        playSynthFeedback('asc');
+        appendConsoleLog(`Botão do peito premido 1×: «Chamo-me NAO, IP 192.168.1.104». Bateria 95%.`);
+      } else if (progKey === 'listen') {
+        simState.pose = 'listen';
+        if (threeObj) {
+          threeObj.eyeMat.color.setHex(getTokenHexInt('--robot-led-pink'));
+          setTimeout(function () {
+            if (threeObj) threeObj.eyeMat.color.setHex(getTokenHexInt('--robot-led-blue'));
+          }, 900);
+        }
+        if (hud) hud.textContent = `Autonomous Life: A escutar (Olhos Azuis)`;
+        if (codeEl) {
+          codeEl.textContent = `# Autonomous Life + Basic Channel\nnao.detect_human(distance=1.5)\nnao.set_eye_leds("rotating_blue")`;
+        }
+        playSynthFeedback('asc');
+        appendConsoleLog(`Humano detetado a < 1,5 m (pestanas rosa) → Modo escuta ativo (olhos azuis + «bloup»).`);
+      } else if (progKey === 'wave') {
+        simState.pose = 'wave';
+        if (threeObj) {
+          threeObj.eyeMat.color.setHex(getTokenHexInt('--robot-led-cyan'));
+          threeObj.chestMat.color.setHex(getTokenHexInt('--robot-led-amber'));
+        }
+        if (hud) hud.textContent = `Em execução: Acenar + Saudação`;
+        if (codeEl) {
+          codeEl.textContent = `# Bloco Vittascience: Saudar turma\nnao.set_leds("eyes", color="cyan")\nnao.wave_right_arm()\nnao.say("Olá turma! Vamos programar.")`;
+        }
+        playSynthFeedback('click');
+        appendConsoleLog(`Programa em execução: Aceno de braço direito + LEDs ciano. (Use Stop antes de reiniciar ciclos infinitos.)`);
+      } else if (progKey === 'crouch') {
+        simState.pose = 'crouch';
+        if (threeObj) {
+          threeObj.eyeMat.color.setHex(getTokenHexInt('--robot-led-blue'));
+          threeObj.chestMat.color.setHex(getTokenHexInt('--primary'));
+        }
+        if (hud) hud.textContent = `Postura: Crouch (Segura / Stop)`;
+        if (codeEl) {
+          codeEl.textContent = `# Parar execução e postura segura\nnao.stop_all()\nnao.go_to_posture("Crouch")\nnao.rest()`;
+        }
+        playSynthFeedback('desc');
+        appendConsoleLog(`Programa parado (Stop). Robô recolhido à postura segura Crouch.`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      renderBatteryState();
+      updateChecklistCount();
+      initThreeSimulator();
+    });
+  </script>
+</body>
+</html>

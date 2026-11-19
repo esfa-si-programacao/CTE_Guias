@@ -268,6 +268,63 @@ video {
 }
 .btn:hover { border-color: var(--acc); color: var(--acc); }
 
+/* Banner Ajuda IA (Em preparação) */
+.ai-banner-soon {
+  background: linear-gradient(135deg, #252E3C 0%, #313E52 60%, #3C2A57 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 20px rgba(31, 42, 54, 0.12);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+}
+.ai-banner-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 740px;
+}
+.ai-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFD2B3;
+}
+.ai-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #FFD2B3;
+  margin-bottom: 3px;
+}
+.ai-banner-soon h2 { margin: 0 0 4px; font-size: 1.16rem; color: #fff; }
+.ai-banner-soon p { margin: 0; font-size: 0.89rem; color: #D1DFEC; }
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFE0C7;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 18px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
 footer {
   text-align: center;
   padding: 20px 24px;
@@ -343,6 +400,26 @@ footer {
 </div>
 
 <main class="container">
+  <section class="ai-banner-soon" aria-label="Assistente de Ajuda IA em preparação">
+    <div class="ai-banner-info">
+      <div class="ai-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/>
+          <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="ai-tag">Ajuda IA · Em Preparação</span>
+        <h2>Brevemente: Assistente de Ajuda IA dos Meta Quest 3 VR</h2>
+        <p>Estamos a preparar um assistente interativo com Inteligência Artificial onde professores e alunos poderão colocar questões sobre utilização, ajuste IPD, Vista Real (Passthrough), limites de segurança e devolução dos óculos Meta Quest 3.</p>
+      </div>
+    </div>
+    <span class="ai-status-pill">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Disponível brevemente
+    </span>
+  </section>
+
   <section class="card-section" id="video-tutorial">
     <div class="sec-head">
       <div>
@@ -418,6 +495,63 @@ footer {
             <p>Documento-fonte estruturado em Markdown com toda a informação técnica e prompts prontos para o Google NotebookLM / Gemini.</p>
           </div>
           <div class="doc-foot"><span class="doc-file">Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md</span><span class="doc-cta">Abrir &rarr;</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card-section" id="ajuda-extra">
+    <div class="sec-head">
+      <div>
+        <h2>Ajuda Extra — 5 Sites e Vídeos Recomendados</h2>
+        <p>Seleção de recursos oficiais, pedagógicos, técnicos e científicos sobre Realidade Virtual e Meta Quest 3 na educação.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="docs-grid">
+        <a class="doc-card" href="https://www.meta.com/help/quest/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-html">Técnico · Oficial Meta</span>
+            <h3>Centro de Ajuda Oficial Meta Quest</h3>
+            <p>Documentação oficial de suporte para configuração, ajuste IPD, definição do Limite de Segurança (Boundary), Passthrough, limpeza e resolução de problemas.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">meta.com/help/quest</span><span class="doc-cta">Abrir ajuda &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://www.meta.com/quest/education" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-png">Pedagógico · Educação</span>
+            <h3>Meta for Education — VR e MR em Sala de Aula</h3>
+            <p>Portal dedicado a escolas e professores com exemplos de utilização educativa, gestão de dispositivos em turma e experiências imersivas de aprendizagem.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">meta.com/quest/education</span><span class="doc-cta">Explorar &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://developers.meta.com/horizon" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-md">Técnico · Desenvolvimento</span>
+            <h3>Meta Horizon Developers (Criar Apps VR / WebXR)</h3>
+            <p>Portal técnico oficial com documentação e percursos de aprendizagem para alunos e docentes criarem as suas próprias aplicações VR e Realidade Mista.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">developers.meta.com</span><span class="doc-cta">Abrir portal &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://vhil.stanford.edu/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-mp4">Científico · Investigação</span>
+            <h3>Stanford Virtual Human Interaction Lab (VHIL)</h3>
+            <p>Laboratório académico de referência mundial (Universidade de Stanford) que investiga os efeitos cognitivos, psicológicos e pedagógicos da Realidade Virtual.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">vhil.stanford.edu</span><span class="doc-cta">Consultar &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://www.youtube.com/metaquest" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-pdf">Vídeos · Oficial Meta</span>
+            <h3>Canal Oficial Meta Quest no YouTube</h3>
+            <p>Vídeos oficiais com demonstrações visuais de funcionalidades do Meta Quest 3, controladores Touch Plus, Realidade Mista e boas práticas de utilização.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">youtube.com/metaquest</span><span class="doc-cta">Ver vídeos &#8599;</span></div>
         </a>
       </div>
     </div>

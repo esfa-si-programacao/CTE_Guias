@@ -207,6 +207,8 @@ main.container {
 .fmt-html { background: var(--teal-soft); color: var(--teal); }
 .fmt-docx { background: var(--blue-soft); color: var(--blue); }
 .fmt-pptx { background: var(--acc-soft); color: #B4530C; }
+.fmt-red { background: var(--red-soft); color: var(--red); }
+.fmt-green { background: var(--green-soft); color: var(--green); }
 .doc-card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--dark); }
 .doc-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
 .doc-foot {
@@ -234,6 +236,63 @@ main.container {
   font-size: 0.88rem;
 }
 .rule-box strong { display: block; color: var(--red); margin-bottom: 3px; }
+
+/* Banner Ajuda IA (Em preparação) */
+.ai-banner-soon {
+  background: linear-gradient(135deg, #252E3C 0%, #313E52 60%, #244956 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 20px rgba(31, 42, 54, 0.12);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+}
+.ai-banner-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 740px;
+}
+.ai-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFD2B3;
+}
+.ai-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #FFD2B3;
+  margin-bottom: 3px;
+}
+.ai-banner-soon h2 { margin: 0 0 4px; font-size: 1.16rem; color: #fff; }
+.ai-banner-soon p { margin: 0; font-size: 0.89rem; color: #D1DFEC; }
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFE0C7;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 18px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
 
 footer {
   text-align: center;
@@ -308,6 +367,26 @@ footer {
 </div>
 
 <main class="container">
+  <section class="ai-banner-soon" aria-label="Assistente de Ajuda IA em preparação">
+    <div class="ai-banner-info">
+      <div class="ai-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/>
+          <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="ai-tag">Ajuda IA · Em Preparação</span>
+        <h2>Brevemente: Assistente de Ajuda IA do DJI Avata 2</h2>
+        <p>Estamos a preparar um assistente interativo com Inteligência Artificial onde professores e alunos poderão colocar questões sobre preparação, modos de voo, regras ANAC/UE e resolução de problemas do DJI Avata 2.</p>
+      </div>
+    </div>
+    <span class="ai-status-pill">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Disponível brevemente
+    </span>
+  </section>
+
   <section class="card-section">
     <div class="sec-head">
       <h2>Documentos e Recursos do DJI Avata 2</h2>
@@ -365,6 +444,61 @@ footer {
         <div class="rule-box"><strong>2. Sem Sensores Frontais</strong>O Avata 2 tem visão inferior e traseira — não evita obstáculos à frente, dos lados nem por cima.</div>
         <div class="rule-box"><strong>3. Limites Legais UE/ANAC</strong>Máximo 120 m de altura, consultar <code>dnt.anac.pt</code>, nunca sobrevoar ajuntamentos e confirmar registo de operador.</div>
         <div class="rule-box"><strong>4. Protetor do Gimbal</strong>Retire sempre o protetor da câmara antes de ligar o drone e volte a colocá-lo ao arrumar.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card-section" id="ajuda-extra">
+    <div class="sec-head">
+      <h2>Ajuda Extra — 5 Sites e Vídeos Recomendados</h2>
+      <p>Fontes oficiais, técnicas e regulamentares (DJI, ANAC Portugal e EASA) para apoio a professores e alunos.</p>
+    </div>
+    <div class="sec-body">
+      <div class="docs-grid">
+        <a class="doc-card" href="https://www.dji.com/avata-2/video" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-red">Vídeos · Oficial DJI</span>
+            <h3>DJI Avata 2 — Tutoriais Oficiais em Vídeo</h3>
+            <p>Vídeos curtos do fabricante sobre primeira utilização, emparelhamento, DJI Goggles 3, controlo com RC Motion 3 e manobras Easy ACRO.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">dji.com/avata-2/video</span><span class="doc-cta">Ver vídeos &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://www.dji.com/avata-2/downloads" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-html">Técnico · Oficial DJI</span>
+            <h3>Centro de Manuais e Firmware DJI Avata 2</h3>
+            <p>Repositório oficial sempre atualizado com manual completo do fabricante, guias de segurança, notas de firmware e aplicações DJI Fly / Assistant 2.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">dji.com/avata-2/downloads</span><span class="doc-cta">Abrir site &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://uas.anac.pt/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-docx">Legal · ANAC Portugal</span>
+            <h3>Portal UAS da ANAC — Registo e Formação A1/A3</h3>
+            <p>Plataforma oficial em Portugal para registo obrigatório de operador de drone e realização da formação e exame online de piloto remoto A1/A3.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">uas.anac.pt</span><span class="doc-cta">Abrir portal &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://dnt.anac.pt/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-pptx">Segurança · Espaço Aéreo</span>
+            <h3>ANAC DNT — Mapa de Zonas Geográficas UAS</h3>
+            <p>Ferramenta oficial indispensável antes de qualquer voo escolar para consultar zonas proibidas, restritas ou condicionadas no território português.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">dnt.anac.pt</span><span class="doc-cta">Consultar mapa &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://www.easa.europa.eu/en/domains/civil-drones" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-green">Científico · Normativo UE</span>
+            <h3>EASA — Regulamentação Europeia de Drones Civis</h3>
+            <p>Documentação oficial da Agência Europeia para a Segurança da Aviação sobre classe C1, categoria aberta A1/A3 e normas técnicas europeias de voo.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">easa.europa.eu</span><span class="doc-cta">Abrir site &#8599;</span></div>
+        </a>
       </div>
     </div>
   </section>

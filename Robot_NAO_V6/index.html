@@ -439,6 +439,44 @@ main.container {
 }
 .ai-cta:hover { background: #cf5e0e; transform: translateY(-1px); }
 
+/* Vídeo Tutorial Embutido */
+.video-wrap {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.video-wrap video {
+  width: 100%;
+  border-radius: 10px;
+  background: #000;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.12);
+}
+.video-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.video-points li {
+  background: var(--light);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-size: 0.88rem;
+}
+.video-points li.warn {
+  background: var(--red-soft);
+  border-color: #F0CFCB;
+  border-left-color: var(--red);
+}
+.video-points strong { display: block; color: var(--dark); margin-bottom: 2px; }
+.video-points li.warn strong { color: var(--red); }
+
 footer {
   text-align: center;
   padding: 20px 24px;
@@ -450,7 +488,7 @@ footer {
 
 @media (max-width: 960px) {
   .paths-grid { grid-template-columns: repeat(2, 1fr); }
-  .diag-grid { grid-template-columns: 1fr; }
+  .diag-grid, .video-wrap { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .paths-grid, .check-grid, .led-buttons { grid-template-columns: 1fr; }
@@ -558,6 +596,31 @@ footer {
     </a>
   </section>
 
+  <!-- SECÇÃO: VÍDEO TUTORIAL -->
+  <section class="card-section" id="video-tutorial">
+    <div class="sec-head">
+      <div>
+        <h2>Vídeo Tutorial — Como Ligar o Robô NAO e Descobrir o Seu IP</h2>
+        <p>Veja o passo a passo antes de iniciar a sua primeira sessão prática com o Robot NAO V6 (<code>INV-217</code>).</p>
+      </div>
+      <a class="btn" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" target="_blank" rel="noopener noreferrer">Abrir / Transferir Vídeo (.MP4) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" type="video/mp4">
+          O seu navegador não suporta reprodução de vídeo. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
+        </video>
+        <ul class="video-points">
+          <li><strong>1. Postura Segura no Chão</strong>Coloque o NAO V6 em piso plano e liso na postura de agachamento (<em>Crouch</em>), segurando sempre pelo tronco.</li>
+          <li class="warn"><strong>2. Aguardar ~60 s Imóvel</strong>Prima o botão do peito (~1 s) e não toque no robô enquanto calibra o giroscópio até dizer <em>"Ognak Gnouk"</em>.</li>
+          <li><strong>3. Ouvir o Endereço IP</strong>Com o robô ligado, dê <strong>1 clique curto no botão do peito</strong>: o NAO anuncia o seu IP em Português.</li>
+          <li><strong>4. Ligar ao Choregraphe 2.8</strong>Introduza o IP ouvido na Antena Verde (porta <code>9559</code>) e pause a Vida Autónoma (ícone Coração).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- SECÇÃO 1: DIAGNÓSTICO INTERATIVO -->
   <section class="card-section" id="diagnostico">
     <div class="sec-head">
@@ -617,6 +680,15 @@ footer {
             <p>Aceda ao assistente interativo com Inteligência Artificial treinado na documentação do NAO V6 do CTE para esclarecer dúvidas em tempo real.</p>
           </div>
           <div class="doc-foot"><span class="doc-file">notebook.google.com</span><span class="doc-cta">Abrir IA &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">
+          <div>
+            <span class="fmt-badge fmt-md">Vídeo · .MP4</span>
+            <h3>Como Ligar o Robô NAO e Descobrir o IP</h3>
+            <p>Vídeo tutorial prático com o arranque seguro do Robot NAO V6 (INV-217) e como obter o endereço IP através do botão do peito.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4</span><span class="doc-cta">Ver vídeo &rarr;</span></div>
         </a>
 
         <a class="doc-card" href="NAO_V6_Infografico_Inicio_Rapido.html">
@@ -730,6 +802,64 @@ footer {
         <li><label><input type="checkbox" id="hub-c5"><span><strong>5. Inspeção visual:</strong> Sem marcas de queda, peças soltas ou cabos danificados.</span></label></li>
         <li><label><input type="checkbox" id="hub-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar se bateria &lt; 30% ou se houve qualquer anomalia.</span></label></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- SECÇÃO 4: AJUDA EXTRA (5 SITES E VÍDEOS RECOMENDADOS) -->
+  <section class="card-section" id="ajuda-extra">
+    <div class="sec-head">
+      <div>
+        <h2>Ajuda Extra — 5 Sites e Vídeos Recomendados</h2>
+        <p>Seleção de fontes oficiais, pedagógicas, técnicas e científicas para aprofundar o trabalho com o Robot NAO V6.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="docs-grid">
+        <a class="doc-card" href="https://doc.aldebaran.com/2-8/nao_user/index.html" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-html">Técnico · Oficial</span>
+            <h3>Guia Oficial do Utilizador NAO6 (NAOqi 2.8)</h3>
+            <p>Documentação técnica primária da Aldebaran sobre primeiros passos, segurança física, botão do peito, bateria, rede e manutenção do NAO V6.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir site &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://doc.aldebaran.com/2-8/software/choregraphe/index.html" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-docx">Pedagógico · Software</span>
+            <h3>Documentação Oficial do Choregraphe 2.8</h3>
+            <p>Manual estruturado da interface Choregraphe 2.8: diagramas de fluxo, biblioteca de caixas, Timeline, diálogos e simulação no Robô Virtual.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir guia &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://doc.aldebaran.com/2-8/dev/python/index.html" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-pptx">Técnico · Programação</span>
+            <h3>NAOqi 2.8 — Python SDK &amp; Tutoriais</h3>
+            <p>Referência técnica e tutoriais práticos dos módulos Python (<code>ALTextToSpeech</code>, <code>ALMotion</code>, <code>ALLeds</code>, eventos e sensores) para projetos avançados.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir SDK &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://spl.robocup.org/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-md">Científico · Investigação</span>
+            <h3>RoboCup Standard Platform League (SPL)</h3>
+            <p>Competição científica internacional de robótica humanoide autónoma baseada no NAO, com desafios reais de visão computacional e IA que inspiram projetos escolares.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">spl.robocup.org</span><span class="doc-cta">Explorar &#8599;</span></div>
+        </a>
+
+        <a class="doc-card" href="https://www.youtube.com/@RoboPhil/playlists" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="fmt-badge fmt-pdf">Vídeos · Pedagógico</span>
+            <h3>Tutoriais em Vídeo NAO &amp; Choregraphe (RoboPhil)</h3>
+            <p>Listas de reprodução passo a passo no YouTube para iniciantes e intermédios: programação visual no Choregraphe, sensores, fala e integração em Python.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">youtube.com/@RoboPhil</span><span class="doc-cta">Ver vídeos &#8599;</span></div>
+        </a>
+      </div>
     </div>
   </section>
 

@@ -240,6 +240,7 @@ main.container {
 .fmt-pptx { background: var(--acc-soft); color: #B4530C; }
 .fmt-pdf { background: var(--red-soft); color: var(--red); }
 .fmt-md { background: var(--purple-soft); color: var(--purple); }
+.fmt-png { background: var(--green-soft); color: var(--green); }
 .doc-card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--dark); }
 .doc-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
 .doc-foot {
@@ -439,43 +440,21 @@ main.container {
 }
 .ai-cta:hover { background: #cf5e0e; transform: translateY(-1px); }
 
-/* Vídeo Tutorial Embutido */
+/* Vídeo Tutorial Embutido (compacto) */
 .video-wrap {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 22px;
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
 }
 .video-wrap video {
   width: 100%;
+  max-width: 460px;
   border-radius: 10px;
   background: #000;
   border: 1px solid var(--line);
   box-shadow: 0 6px 18px rgba(31, 42, 54, 0.12);
 }
-.video-points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.video-points li {
-  background: var(--light);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--teal);
-  border-radius: 8px;
-  padding: 10px 13px;
-  font-size: 0.88rem;
-}
-.video-points li.warn {
-  background: var(--red-soft);
-  border-color: #F0CFCB;
-  border-left-color: var(--red);
-}
-.video-points strong { display: block; color: var(--dark); margin-bottom: 2px; }
-.video-points li.warn strong { color: var(--red); }
 
 footer {
   text-align: center;
@@ -488,7 +467,7 @@ footer {
 
 @media (max-width: 960px) {
   .paths-grid { grid-template-columns: repeat(2, 1fr); }
-  .diag-grid, .video-wrap { grid-template-columns: 1fr; }
+  .diag-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .paths-grid, .check-grid, .led-buttons { grid-template-columns: 1fr; }
@@ -596,31 +575,6 @@ footer {
     </a>
   </section>
 
-  <!-- SECÇÃO: VÍDEO TUTORIAL -->
-  <section class="card-section" id="video-tutorial">
-    <div class="sec-head">
-      <div>
-        <h2>Vídeo Tutorial — Como Ligar o Robô NAO e Descobrir o Seu IP</h2>
-        <p>Veja o passo a passo antes de iniciar a sua primeira sessão prática com o Robot NAO V6 (<code>INV-217</code>).</p>
-      </div>
-      <a class="btn" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" target="_blank" rel="noopener noreferrer">Abrir / Transferir Vídeo (.MP4) &rarr;</a>
-    </div>
-    <div class="sec-body">
-      <div class="video-wrap">
-        <video controls preload="metadata">
-          <source src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" type="video/mp4">
-          O seu navegador não suporta reprodução de vídeo. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
-        </video>
-        <ul class="video-points">
-          <li><strong>1. Postura Segura no Chão</strong>Coloque o NAO V6 em piso plano e liso na postura de agachamento (<em>Crouch</em>), segurando sempre pelo tronco.</li>
-          <li class="warn"><strong>2. Aguardar ~60 s Imóvel</strong>Prima o botão do peito (~1 s) e não toque no robô enquanto calibra o giroscópio até dizer <em>"Ognak Gnouk"</em>.</li>
-          <li><strong>3. Ouvir o Endereço IP</strong>Com o robô ligado, dê <strong>1 clique curto no botão do peito</strong>: o NAO anuncia o seu IP em Português.</li>
-          <li><strong>4. Ligar ao Choregraphe 2.8</strong>Introduza o IP ouvido na Antena Verde (porta <code>9559</code>) e pause a Vida Autónoma (ícone Coração).</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- SECÇÃO 1: DIAGNÓSTICO INTERATIVO -->
   <section class="card-section" id="diagnostico">
     <div class="sec-head">
@@ -698,6 +652,15 @@ footer {
             <p>Folha visual pronta a imprimir em A4 (para plastificar na mala) com os 6 passos, anatomia, botão do peito, LEDs e 5 regras de ouro.</p>
           </div>
           <div class="doc-foot"><span class="doc-file">NAO_V6_Infografico_Inicio_Rapido.html</span><span class="doc-cta">Abrir &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Gui%C3%A3o_R%C3%A1pido_do_Robo_Humanoide.png">
+          <div>
+            <span class="fmt-badge fmt-png">Imagem · .PNG</span>
+            <h3>Infográfico — Guião Rápido do Robô Humanoide</h3>
+            <p>Infográfico visual em alta resolução (PNG) pronto para projeção rápida em sala de aula ou impressão junto do equipamento.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Guião_Rápido_do_Robo_Humanoide.png</span><span class="doc-cta">Ver imagem &rarr;</span></div>
         </a>
 
         <a class="doc-card" href="NAO_V6_Manual_Utilizador.html">
@@ -784,7 +747,26 @@ footer {
     </div>
   </section>
 
-  <!-- SECÇÃO 3: CHECKLIST RÁPIDA DE DEVOLUÇÃO -->
+  <!-- SECÇÃO 3: VÍDEO TUTORIAL -->
+  <section class="card-section" id="video-tutorial">
+    <div class="sec-head">
+      <div>
+        <h2>Vídeo Tutorial — Como Ligar o Robô NAO e Descobrir o Seu IP</h2>
+        <p>Veja o passo a passo antes de iniciar a sua primeira sessão prática com o Robot NAO V6 (<code>INV-217</code>).</p>
+      </div>
+      <a class="btn" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" target="_blank" rel="noopener noreferrer">Abrir / Transferir Vídeo (.MP4) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" type="video/mp4">
+          O seu navegador não suporta reprodução de vídeo. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECÇÃO 4: CHECKLIST RÁPIDA DE DEVOLUÇÃO -->
   <section class="card-section" id="checklist">
     <div class="sec-head">
       <div>

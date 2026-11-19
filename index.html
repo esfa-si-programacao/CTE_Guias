@@ -185,21 +185,21 @@ main.container {
 }
 .equip-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 22px;
 }
 
 .equip-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
   background: #fff;
   border: 1px solid var(--line);
   border-top: 4px solid var(--acc);
   border-radius: 14px;
-  padding: 24px;
   box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06);
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
 }
@@ -210,35 +210,49 @@ main.container {
 }
 .equip-card.teal { border-top-color: var(--teal); }
 .equip-card.teal:hover { border-color: var(--teal); }
-.equip-card.blue { border-top-color: var(--blue); }
-.equip-card.blue:hover { border-color: var(--blue); }
 .equip-card.purple { border-top-color: var(--purple); }
 .equip-card.purple:hover { border-color: var(--purple); }
 
-.equip-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-.equip-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
-  background: var(--dark);
-  color: #fff;
+/* Área da imagem do equipamento */
+.equip-media {
+  position: relative;
+  height: 190px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  padding: 18px 20px;
+  overflow: hidden;
 }
-.equip-icon svg { width: 32px; height: 32px; }
-.equip-badges {
+.equip-media img {
+  max-width: 100%;
+  max-height: 154px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.22s ease;
+}
+.equip-card:hover .equip-media img {
+  transform: scale(1.05);
+}
+
+.equip-body {
+  padding: 18px 22px 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+}
+
+.equip-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 .cat-badge {
   font-size: 0.72rem;
@@ -251,25 +265,24 @@ main.container {
   color: #B4530C;
 }
 .equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal); }
-.equip-card.blue .cat-badge { background: var(--blue-soft); color: var(--blue); }
 .equip-card.purple .cat-badge { background: var(--purple-soft); color: var(--purple); }
 
 .inv-badge {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--grey);
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
 .equip-card h2 {
-  margin: 0 0 6px;
-  font-size: 1.32rem;
+  margin: 0 0 8px;
+  font-size: 1.24rem;
   color: var(--dark);
   line-height: 1.25;
 }
 .equip-card p {
   margin: 0 0 16px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--grey);
 }
 
@@ -280,7 +293,7 @@ main.container {
   margin-bottom: 18px;
 }
 .mini-tag {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 600;
   background: var(--light);
   border: 1px solid var(--line);
@@ -289,31 +302,41 @@ main.container {
   border-radius: 6px;
 }
 
+/* Rodapé corrigido: nunca sai fora da caixa */
 .equip-footer {
   border-top: 1px dashed var(--line);
-  padding-top: 13px;
+  padding-top: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 .folder-path {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  flex: 1 1 140px;
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--grey);
 }
-.folder-path svg { width: 15px; height: 15px; }
+.folder-path svg { width: 15px; height: 15px; flex-shrink: 0; }
+.folder-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .open-cta {
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: var(--acc);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .equip-card.teal .open-cta { color: var(--teal); }
-.equip-card.blue .open-cta { color: var(--blue); }
 .equip-card.purple .open-cta { color: var(--purple); }
 
 .empty-state {
@@ -335,7 +358,7 @@ footer {
   background: #fff;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 720px) {
   .equip-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -351,7 +374,7 @@ footer {
     </div>
     <div class="hero-stats">
       <div class="stat-card">
-        <span class="stat-num">4</span>
+        <span class="stat-num">3</span>
         <span class="stat-label">Equipamentos</span>
       </div>
     </div>
@@ -365,7 +388,7 @@ footer {
       <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
     </div>
     <div class="filter-pills" role="group" aria-label="Filtrar por área">
-      <button type="button" class="pill active" data-cat="all">Todos (4)</button>
+      <button type="button" class="pill active" data-cat="all">Todos (3)</button>
       <button type="button" class="pill" data-cat="robotica">Robótica</button>
       <button type="button" class="pill" data-cat="drones">Drones</button>
       <button type="button" class="pill" data-cat="vr">Realidade Virtual</button>
@@ -378,140 +401,93 @@ footer {
 
     <!-- 1. Robot NAO V6 -->
     <a class="equip-card" href="Robot_NAO_V6/index.html" data-cat="robotica">
-      <div>
-        <div class="equip-top">
-          <div class="equip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="6" y="3" width="12" height="7" rx="3.5"/>
-              <circle cx="9.8" cy="6.5" r="1"/><circle cx="14.2" cy="6.5" r="1"/>
-              <rect x="7.5" y="11" width="9" height="6.5" rx="2"/>
-              <circle cx="12" cy="14" r="1.1"/>
-              <path d="M7.5 12.5 L4.5 16.5 M16.5 12.5 L19.5 16.5 M10 17.5 L9.5 21.5 M14 17.5 L14.5 21.5"/>
-            </svg>
-          </div>
-          <div class="equip-badges">
+      <div class="equip-media">
+        <img src="Robot_NAO_V6/nao_v6.jpg" alt="Robot Humanoide NAO V6">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
             <span class="cat-badge">Robótica Humanoide</span>
             <span class="inv-badge">INV-217 · Oficinas</span>
           </div>
+          <h2>Robot NAO V6 (H25600)</h2>
+          <p>Centro de ajuda completo para professores e alunos: arranque seguro, Choregraphe 2.8 + Robô Virtual, projetos em Português, diagnóstico interativo de LEDs e Assistente IA.</p>
+          <div class="tags-row">
+            <span class="mini-tag">Ajuda IA</span>
+            <span class="mini-tag">Infográfico A4</span>
+            <span class="mini-tag">Manuais Web &amp; Word</span>
+            <span class="mini-tag">Quiz</span>
+            <span class="mini-tag">Slides PPTX</span>
+          </div>
         </div>
-        <h2>Robot NAO V6 (H25600)</h2>
-        <p>Centro de ajuda completo para professores e alunos: arranque seguro, Choregraphe 2.8 + Robô Virtual, projetos em Português, diagnóstico interativo de LEDs e Assistente IA.</p>
-        <div class="tags-row">
-          <span class="mini-tag">Ajuda IA</span>
-          <span class="mini-tag">Infográfico A4</span>
-          <span class="mini-tag">Manuais Web &amp; Word</span>
-          <span class="mini-tag">Quiz</span>
-          <span class="mini-tag">Slides PPTX</span>
+        <div class="equip-footer">
+          <span class="folder-path" title="Robot_NAO_V6/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span class="folder-name">Robot_NAO_V6/</span>
+          </span>
+          <span class="open-cta">Abrir ajuda &rarr;</span>
         </div>
-      </div>
-      <div class="equip-footer">
-        <span class="folder-path">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          Robot_NAO_V6/index.html
-        </span>
-        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
       </div>
     </a>
 
     <!-- 2. DJI Avata 2 -->
     <a class="equip-card teal" href="DJI_Avata_Drone/index.html" data-cat="drones">
-      <div>
-        <div class="equip-top">
-          <div class="equip-icon" aria-hidden="true">
-            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="45" cy="38" r="26"/><circle cx="155" cy="38" r="26"/><circle cx="45" cy="86" r="26"/><circle cx="155" cy="86" r="26"/>
-              <path d="M65 50 L85 58 M135 50 L115 58 M65 74 L85 66 M135 74 L115 66"/><rect x="82" y="48" width="36" height="28" rx="9"/>
-            </svg>
-          </div>
-          <div class="equip-badges">
-            <span class="cat-badge">Drones FPV</span>
-            <span class="inv-badge">Classe UE C1</span>
-          </div>
-        </div>
-        <h2>DJI Avata 2 — Drone FPV</h2>
-        <p>Documentação completa do conjunto Drone DJI Avata 2, óculos DJI Goggles 3 e comando DJI RC Motion 3, incluindo regras ANAC/UE e checklist de voo.</p>
-        <div class="tags-row">
-          <span class="mini-tag">Manual Web</span>
-          <span class="mini-tag">Checklist de Voo</span>
-          <span class="mini-tag">Guia Rápido Word</span>
-          <span class="mini-tag">Slides PPTX</span>
-        </div>
+      <div class="equip-media">
+        <img src="DJI_Avata_Drone/dji_avata_2.png" alt="Drone FPV DJI Avata 2 com DJI Goggles 3 e RC Motion 3">
       </div>
-      <div class="equip-footer">
-        <span class="folder-path">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          DJI_Avata_Drone/index.html
-        </span>
-        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
+            <span class="cat-badge">Drones FPV</span>
+            <span class="inv-badge">INV-151 · Classe C1</span>
+          </div>
+          <h2>DJI Avata 2 — Drone FPV</h2>
+          <p>Documentação completa do conjunto Drone DJI Avata 2, óculos DJI Goggles 3 e comando DJI RC Motion 3, incluindo regras ANAC/UE e checklist de voo.</p>
+          <div class="tags-row">
+            <span class="mini-tag">Manual Web</span>
+            <span class="mini-tag">Checklist de Voo</span>
+            <span class="mini-tag">Guia Rápido Word</span>
+            <span class="mini-tag">Slides PPTX</span>
+          </div>
+        </div>
+        <div class="equip-footer">
+          <span class="folder-path" title="DJI_Avata_Drone/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span class="folder-name">DJI_Avata_Drone/</span>
+          </span>
+          <span class="open-cta">Abrir ajuda &rarr;</span>
+        </div>
       </div>
     </a>
 
     <!-- 3. Meta Quest 3 VR -->
     <a class="equip-card purple" href="Meta_Quest_3_VR/index.html" data-cat="vr">
-      <div>
-        <div class="equip-top">
-          <div class="equip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="10" rx="4"/>
-              <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
-              <circle cx="7.5" cy="12" r="1.5"/>
-              <circle cx="12" cy="12" r="1.5"/>
-              <circle cx="16.5" cy="12" r="1.5"/>
-            </svg>
-          </div>
-          <div class="equip-badges">
+      <div class="equip-media">
+        <img src="Meta_Quest_3_VR/meta_quest_3.jpg" alt="Óculos de Realidade Virtual Meta Quest 3">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
             <span class="cat-badge">Realidade Virtual</span>
-            <span class="inv-badge">INV-081 / INV-082 · D1.4C-MF-A01</span>
+            <span class="inv-badge">INV-081 / INV-082</span>
+          </div>
+          <h2>Meta Quest 3 VR — Realidade Virtual e Mista</h2>
+          <p>Recursos visuais e multimédia para utilização imediata dos óculos Meta Quest 3 e controladores Touch Plus, da abertura da mala à devolução.</p>
+          <div class="tags-row">
+            <span class="mini-tag">Infográfico A4</span>
+            <span class="mini-tag">Vídeo 5 Passos</span>
+            <span class="mini-tag">Guia PDF</span>
+            <span class="mini-tag">Poster PNG</span>
+            <span class="mini-tag">NotebookLM</span>
           </div>
         </div>
-        <h2>Meta Quest 3 VR — Realidade Virtual e Mista</h2>
-        <p>Recursos visuais e multimédia para utilização imediata dos óculos Meta Quest 3 e controladores Touch Plus, da abertura da mala à devolução.</p>
-        <div class="tags-row">
-          <span class="mini-tag">Infográfico A4</span>
-          <span class="mini-tag">Vídeo 5 Passos</span>
-          <span class="mini-tag">Guia PDF</span>
-          <span class="mini-tag">Poster PNG</span>
-          <span class="mini-tag">NotebookLM</span>
+        <div class="equip-footer">
+          <span class="folder-path" title="Meta_Quest_3_VR/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span class="folder-name">Meta_Quest_3_VR/</span>
+          </span>
+          <span class="open-cta">Abrir ajuda &rarr;</span>
         </div>
-      </div>
-      <div class="equip-footer">
-        <span class="folder-path">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          Meta_Quest_3_VR/index.html
-        </span>
-        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
-      </div>
-    </a>
-
-    <!-- 4. Meta Quest 3 (Documentos Office Editáveis) -->
-    <a class="equip-card blue" href="Meta_Quest_3/index.html" data-cat="vr">
-      <div>
-        <div class="equip-top">
-          <div class="equip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="10" rx="4"/>
-              <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
-              <path d="M7 11h10"/>
-            </svg>
-          </div>
-          <div class="equip-badges">
-            <span class="cat-badge">Realidade Virtual · Office</span>
-            <span class="inv-badge">Documentos Editáveis</span>
-          </div>
-        </div>
-        <h2>Meta Quest 3 — Documentos Office Editáveis</h2>
-        <p>Versões editáveis em Microsoft Word e PowerPoint do guia de início rápido e apresentação de sala de aula do sistema Meta Quest 3.</p>
-        <div class="tags-row">
-          <span class="mini-tag">Word (.docx)</span>
-          <span class="mini-tag">PowerPoint (.pptx)</span>
-        </div>
-      </div>
-      <div class="equip-footer">
-        <span class="folder-path">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          Meta_Quest_3/index.html
-        </span>
-        <span class="open-cta">Abrir documentos &rarr;</span>
       </div>
     </a>
 

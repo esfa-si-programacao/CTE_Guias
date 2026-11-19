@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta Quest 3 VR — Sistema de Ajuda Online (CTE · INV-081 / INV-082)</title>
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-soft: #F4ECF7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.84rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.topbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 36px 24px 44px;
+  border-bottom: 4px solid var(--acc);
+}
+.hero-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #FFD2B3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.75rem); line-height: 1.12; }
+.hero .sub { color: #C2D1E0; font-size: 1.04rem; margin: 10px 0 0; max-width: 690px; }
+.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.hero-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  color: #E2ECF5;
+}
+.hero-pill strong { color: #FFB37B; }
+.hero-art {
+  width: 136px;
+  height: 120px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--acc);
+}
+
+.paths-wrap {
+  max-width: 1180px;
+  width: 100%;
+  margin: -26px auto 0;
+  padding: 0 24px;
+}
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.path-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--acc);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 22px rgba(31,42,54,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.path-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(31,42,54,0.12); }
+.path-card.teal { border-top-color: var(--teal); }
+.path-card.purple { border-top-color: var(--purple); }
+.path-tag { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--acc); margin-bottom: 4px; }
+.path-card.teal .path-tag { color: var(--teal); }
+.path-card.purple .path-tag { color: var(--purple); }
+.path-card h2 { margin: 0 0 6px; font-size: 1.08rem; color: var(--dark); }
+.path-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
+.path-cta { font-size: 0.84rem; font-weight: 700; color: var(--dark); }
+
+main.container {
+  max-width: 1180px;
+  width: 100%;
+  margin: 28px auto 52px;
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.card-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(31,42,54,0.05);
+}
+.sec-head {
+  background: var(--light);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sec-head h2 { margin: 0; font-size: 1.25rem; color: var(--dark); }
+.sec-head p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 20px 24px; }
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 16px;
+  background: #FAFBFD;
+  transition: all 0.16s ease;
+}
+.doc-card:hover {
+  border-color: var(--acc);
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(31,42,54,0.08);
+}
+.fmt-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.fmt-html { background: var(--teal-soft); color: var(--teal); }
+.fmt-pdf { background: var(--red-soft); color: var(--red); }
+.fmt-mp4 { background: var(--purple-soft); color: var(--purple); }
+.fmt-png { background: var(--green-soft); color: var(--green); }
+.fmt-md { background: var(--blue-soft); color: var(--blue); }
+.doc-card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--dark); }
+.doc-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
+.doc-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+}
+.doc-file { color: var(--grey); font-family: ui-monospace, Consolas, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 68%; }
+.doc-cta { font-weight: 700; color: var(--acc); white-space: nowrap; }
+
+.video-wrap {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 22px;
+  align-items: center;
+}
+video {
+  width: 100%;
+  border-radius: 10px;
+  background: #000;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(31,42,54,0.12);
+}
+.rules-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.rules-list li {
+  background: var(--red-soft);
+  border: 1px solid #F0CFCB;
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-size: 0.87rem;
+}
+.rules-list li.ok { background: var(--teal-soft); border-color: #B2DCE3; border-left-color: var(--teal); }
+.rules-list strong { display: block; color: var(--red); margin-bottom: 2px; }
+.rules-list li.ok strong { color: var(--teal); }
+
+.btn {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  padding: 7px 14px;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.btn:hover { border-color: var(--acc); color: var(--acc); }
+
+footer {
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 0.85rem;
+  color: var(--grey);
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+@media (max-width: 860px) { .paths-grid, .video-wrap { grid-template-columns: 1fr; } .hero-art { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div><a href="../index.html">&larr; Voltar ao Portal Geral do CTE</a></div>
+    <div>Artigos <strong>INV-081 / INV-082</strong> · Armário <strong>D1.4C-MF-A01</strong></div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">CTE Informático · Realidade Virtual e Mista · INV-081 / INV-082</div>
+      <h1>Meta Quest 3 VR</h1>
+      <p class="sub">Guias visuais, vídeo passo a passo, poster de iniciação rápida e documentação base para utilização imediata e segura dos óculos Meta Quest 3 e controladores Touch Plus.</p>
+      <div class="hero-pills">
+        <span class="hero-pill"><strong>Espaço:</strong> 2 × 2 m livres</span>
+        <span class="hero-pill"><strong>Vista Real:</strong> 2 toques na lateral</span>
+        <span class="hero-pill"><strong>Recentrar:</strong> Botão Meta 2 seg</span>
+        <span class="hero-pill"><strong>Autonomia:</strong> ~2 horas</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="84" height="84" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="10" rx="4"/>
+        <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
+        <circle cx="7.5" cy="12" r="1.5"/>
+        <circle cx="12" cy="12" r="1.5"/>
+        <circle cx="16.5" cy="12" r="1.5"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="paths-wrap">
+  <div class="paths-grid">
+    <a class="path-card" href="Meta_Quest_3_Infografico_Inicio_Rapido.html">
+      <div>
+        <div class="path-tag">Início Rápido (A4)</div>
+        <h2>Infográfico de 5 Passos</h2>
+        <p>Folha interativa pronta a imprimir com anatomia dos óculos, comandos Touch Plus e checklist de devolução.</p>
+      </div>
+      <span class="path-cta">Abrir Infográfico &rarr;</span>
+    </a>
+    <a class="path-card purple" href="#video-tutorial">
+      <div>
+        <div class="path-tag">Vídeo Tutorial</div>
+        <h2>Ver em 5 Passos (.MP4)</h2>
+        <p>Assista diretamente na página desde a abertura da mala até à definição do limite de segurança e devolução.</p>
+      </div>
+      <span class="path-cta">Ver Vídeo &rarr;</span>
+    </a>
+    <a class="path-card teal" href="Guia_de_Inicia%C3%A7%C3%A3o_ao_Meta_Quest_3.pdf">
+      <div>
+        <div class="path-tag">Consulta / Impressão</div>
+        <h2>Guia Ilustrado em PDF</h2>
+        <p>Versão portátil pronta a abrir em qualquer dispositivo ou partilhar com os alunos antes da aula.</p>
+      </div>
+      <span class="path-cta">Abrir PDF &rarr;</span>
+    </a>
+  </div>
+</div>
+
+<main class="container">
+  <section class="card-section" id="video-tutorial">
+    <div class="sec-head">
+      <div>
+        <h2>Vídeo Tutorial &amp; 4 Regras de Ouro</h2>
+        <p>Como usar os Meta Quest 3 do CTE em 5 passos rápidos e seguros.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4" type="video/mp4">
+          O seu navegador não suporta reprodução de vídeo. <a href="Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4">Transferir vídeo MP4</a>.
+        </video>
+        <ul class="rules-list">
+          <li><strong>1. PROIBIDO Sol Direto nas Lentes</strong>As lentes funcionam como lupa e queimam permanentemente os ecrãs em segundos. Use sempre o protetor opaco ao arrumar.</li>
+          <li><strong>2. Fitas nos Pulsos Obrigatórias</strong>Passe sempre as fitas dos dois controladores Touch Plus pelos pulsos antes de iniciar.</li>
+          <li><strong>3. Respeitar o Limite e Parar se Tonto</strong>Mantenha 2 × 2 m livres; ao primeiro sinal de tontura ou desconforto, retire os óculos.</li>
+          <li class="ok"><strong>4. Vista Real (Passthrough) Instantânea</strong>Dê 2 toques suaves na lateral dos óculos para ver a sala real a cores sem os retirar.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card-section">
+    <div class="sec-head">
+      <div>
+        <h2>Todos os Recursos da Pasta Meta_Quest_3_VR/</h2>
+        <p>Infográfico web, guia PDF, vídeo tutorial, poster de alta resolução e documento-fonte NotebookLM.</p>
+      </div>
+      <a class="btn" href="../Meta_Quest_3/index.html">Ver documentos Office editáveis (.docx / .pptx) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <div class="docs-grid">
+        <a class="doc-card" href="Meta_Quest_3_Infografico_Inicio_Rapido.html">
+          <div>
+            <span class="fmt-badge fmt-html">HTML · Infográfico A4</span>
+            <h3>Infográfico de Início Rápido (Web)</h3>
+            <p>Folha visual interativa (pronta a imprimir em A4) com os 5 passos de utilização, esquema dos comandos, regras de ouro e checklist de devolução.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Meta_Quest_3_Infografico_Inicio_Rapido.html</span><span class="doc-cta">Abrir &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Guia_de_Inicia%C3%A7%C3%A3o_ao_Meta_Quest_3.pdf">
+          <div>
+            <span class="fmt-badge fmt-pdf">PDF · Documento</span>
+            <h3>Guia de Iniciação ao Meta Quest 3</h3>
+            <p>Guia ilustrado em formato PDF para consulta rápida pelos alunos e professores durante as sessões de Realidade Virtual.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Guia_de_Iniciação_ao_Meta_Quest_3.pdf</span><span class="doc-cta">Abrir PDF &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4">
+          <div>
+            <span class="fmt-badge fmt-mp4">Vídeo · .MP4</span>
+            <h3>Como Usar os Meta Quest 3 em 5 Passos</h3>
+            <p>Vídeo tutorial passo a passo desde a abertura da mala requisitada até à colocação dos óculos, definição do limite e devolução.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4</span><span class="doc-cta">Abrir vídeo &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Guia_de_Inicia%C3%A7%C3%A3o_R%C3%A1pida_RV.png">
+          <div>
+            <span class="fmt-badge fmt-png">Imagem · .PNG</span>
+            <h3>Poster — Guia de Iniciação Rápida RV</h3>
+            <p>Infográfico visual em alta resolução (PNG) ideal para projeção rápida ou impressão junto do armário de arrumação.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Guia_de_Iniciação_Rápida_RV.png</span><span class="doc-cta">Ver imagem &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md">
+          <div>
+            <span class="fmt-badge fmt-md">Markdown · .MD</span>
+            <h3>Guia Base &amp; Prompts NotebookLM</h3>
+            <p>Documento-fonte estruturado em Markdown com toda a informação técnica e prompts prontos para o Google NotebookLM / Gemini.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md</span><span class="doc-cta">Abrir &rarr;</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Sistema de Ajuda Meta Quest 3 VR (INV-081 / INV-082) · <a href="../index.html" style="color:var(--teal)">Voltar ao Portal Geral</a>
+</footer>
+</body>
+</html>

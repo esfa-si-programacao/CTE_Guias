@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta Quest 3 — Documentos Office Editáveis (CTE)</title>
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.84rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.topbar-in {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 36px 24px 34px;
+  border-bottom: 4px solid var(--acc);
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #FFD2B3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.hero h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.15; }
+.hero .sub { color: #C2D1E0; font-size: 1rem; margin: 8px 0 0; max-width: 680px; }
+
+main.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 28px auto 52px;
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.card-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(31,42,54,0.05);
+}
+.sec-head {
+  background: var(--light);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 24px;
+}
+.sec-head h2 { margin: 0; font-size: 1.22rem; color: var(--dark); }
+.sec-head p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 20px 24px; }
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+}
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 18px;
+  background: #FAFBFD;
+  transition: all 0.16s ease;
+}
+.doc-card:hover {
+  border-color: var(--acc);
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(31,42,54,0.08);
+}
+.fmt-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.fmt-docx { background: var(--blue-soft); color: var(--blue); }
+.fmt-pptx { background: var(--acc-soft); color: #B4530C; }
+.doc-card h3 { margin: 0 0 6px; font-size: 1.05rem; color: var(--dark); }
+.doc-card p { margin: 0 0 14px; font-size: 0.88rem; color: var(--grey); }
+.doc-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+}
+.doc-file { color: var(--grey); font-family: ui-monospace, Consolas, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%; }
+.doc-cta { font-weight: 700; color: var(--acc); white-space: nowrap; }
+
+.cross-link {
+  background: var(--teal-soft);
+  border: 1px solid #B2DCE3;
+  border-left: 5px solid var(--teal);
+  border-radius: 11px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cross-link h3 { margin: 0 0 3px; font-size: 1rem; color: var(--dark); }
+.cross-link p { margin: 0; font-size: 0.88rem; color: #364554; }
+.btn-teal {
+  text-decoration: none;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 9px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.btn-teal:hover { background: #166570; }
+
+footer {
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 0.85rem;
+  color: var(--grey);
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div><a href="../index.html">&larr; Voltar ao Portal Geral do CTE</a></div>
+    <div>Pasta <strong>Meta_Quest_3/</strong> · 2 ficheiros Office</div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">CTE Informático · Ficheiros Editáveis Office</div>
+      <h1>Meta Quest 3 — Documentos Word &amp; PowerPoint</h1>
+      <p class="sub">Versões editáveis do guia de início rápido e da apresentação de sala de aula do sistema Meta Quest 3, prontas a adaptar pelos professores.</p>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card-section">
+    <div class="sec-head">
+      <h2>Documentos Disponíveis para Transferência</h2>
+      <p>Ficheiros editáveis em formato Microsoft Word (.docx) e PowerPoint (.pptx).</p>
+    </div>
+    <div class="sec-body">
+      <div class="docs-grid">
+        <a class="doc-card" href="Meta_Quest_3_Guia_Inicio_Rapido.docx">
+          <div>
+            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
+            <h3>Guia de Início Rápido (Word)</h3>
+            <p>Documento Word editável com as instruções essenciais de preparação, ajuste do visor, controlos Touch Plus e cuidados de segurança.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Meta_Quest_3_Guia_Inicio_Rapido.docx</span><span class="doc-cta">Transferir &rarr;</span></div>
+        </a>
+
+        <a class="doc-card" href="Meta_Quest_3_Guia_Inicio_Rapido.pptx">
+          <div>
+            <span class="fmt-badge fmt-pptx">PowerPoint · .PPTX</span>
+            <h3>Apresentação de Início Rápido</h3>
+            <p>Apresentação em PowerPoint para introdução rápida ao uso seguro dos óculos Meta Quest 3 em contexto de sala de aula.</p>
+          </div>
+          <div class="doc-foot"><span class="doc-file">Meta_Quest_3_Guia_Inicio_Rapido.pptx</span><span class="doc-cta">Transferir &rarr;</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="cross-link">
+    <div>
+      <h3>Procura o Infográfico A4, o Guia PDF ou o Vídeo em 5 Passos?</h3>
+      <p>Os recursos multimédia e interativos completos dos Meta Quest 3 (INV-081 / INV-082) estão disponíveis no Hub de Realidade Virtual.</p>
+    </div>
+    <a class="btn-teal" href="../Meta_Quest_3_VR/index.html">Abrir Hub Meta Quest 3 VR &rarr;</a>
+  </aside>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Meta Quest 3 (Documentos Office) · <a href="../index.html" style="color:var(--teal)">Voltar ao Portal Geral</a>
+</footer>
+</body>
+</html>

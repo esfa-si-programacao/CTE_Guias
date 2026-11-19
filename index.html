@@ -14,10 +14,6 @@
   --teal-soft: #E6F4F6;
   --blue: #1D63B8;
   --blue-soft: #EBF3FC;
-  --red: #C0392B;
-  --red-soft: #FBE9E7;
-  --green: #1E8449;
-  --green-soft: #E8F6EF;
   --purple: #6C3483;
   --purple-soft: #F4ECF7;
   --light: #F3F6F9;
@@ -27,13 +23,8 @@
   --bg: #EEF2F6;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -50,10 +41,9 @@ body {
 header.hero {
   background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
   color: #fff;
-  padding: 40px 24px 36px;
+  padding: 40px 24px 44px;
   border-bottom: 4px solid var(--acc);
 }
-
 .hero-inner {
   max-width: 1180px;
   margin: 0 auto;
@@ -63,7 +53,6 @@ header.hero {
   gap: 32px;
   flex-wrap: wrap;
 }
-
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -79,43 +68,37 @@ header.hero {
   border-radius: 999px;
   margin-bottom: 12px;
 }
-
 .hero h1 {
   margin: 0;
   font-size: clamp(1.85rem, 4vw, 2.75rem);
   line-height: 1.15;
 }
-
 .hero .sub {
   color: #C2D1E0;
-  font-size: 1.1rem;
+  font-size: 1.06rem;
   margin: 10px 0 0;
   max-width: 680px;
 }
-
 .hero-stats {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
-
 .stat-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
-  padding: 12px 18px;
-  min-width: 120px;
+  padding: 12px 22px;
+  min-width: 135px;
   text-align: center;
 }
-
 .stat-num {
   display: block;
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 800;
   color: var(--acc);
   line-height: 1.1;
 }
-
 .stat-label {
   font-size: 0.78rem;
   color: #C2D1E0;
@@ -127,10 +110,9 @@ header.hero {
 .controls-wrap {
   max-width: 1180px;
   width: 100%;
-  margin: -22px auto 0;
+  margin: -24px auto 0;
   padding: 0 24px;
 }
-
 .controls-bar {
   background: #fff;
   border: 1px solid var(--line);
@@ -143,12 +125,10 @@ header.hero {
   gap: 16px;
   flex-wrap: wrap;
 }
-
 .search-box {
   position: relative;
   flex: 1 1 280px;
 }
-
 .search-box svg {
   position: absolute;
   left: 12px;
@@ -159,7 +139,6 @@ header.hero {
   color: var(--grey);
   pointer-events: none;
 }
-
 .search-box input {
   width: 100%;
   font: inherit;
@@ -171,24 +150,21 @@ header.hero {
   background: var(--light);
   transition: border-color 0.15s, background 0.15s;
 }
-
 .search-box input:focus {
   outline: none;
   border-color: var(--acc);
   background: #fff;
 }
-
 .filter-pills {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
 }
-
 .pill {
   font: inherit;
-  font-size: 0.82rem;
+  font-size: 0.83rem;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 6px 13px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
@@ -196,244 +172,171 @@ header.hero {
   cursor: pointer;
   transition: all 0.15s ease;
 }
+.pill:hover { border-color: var(--acc); color: var(--acc); }
+.pill.active { background: var(--dark); border-color: var(--dark); color: #fff; }
 
-.pill:hover {
-  border-color: var(--acc);
-  color: var(--acc);
-}
-
-.pill.active {
-  background: var(--dark);
-  border-color: var(--dark);
-  color: #fff;
-}
-
-/* Conteúdo Principal */
+/* Grelha de Equipamentos */
 main.container {
   max-width: 1180px;
   width: 100%;
-  margin: 28px auto 48px;
+  margin: 30px auto 54px;
   padding: 0 24px;
   flex: 1;
 }
+.equip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
 
-/* Secção de cada Equipamento / Pasta */
-.equip-section {
+.equip-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
   background: #fff;
   border: 1px solid var(--line);
+  border-top: 4px solid var(--acc);
   border-radius: 14px;
-  margin-bottom: 28px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(31, 42, 54, 0.05);
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
 }
+.equip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(31, 42, 54, 0.12);
+  border-color: var(--acc);
+}
+.equip-card.teal { border-top-color: var(--teal); }
+.equip-card.teal:hover { border-color: var(--teal); }
+.equip-card.blue { border-top-color: var(--blue); }
+.equip-card.blue:hover { border-color: var(--blue); }
+.equip-card.purple { border-top-color: var(--purple); }
+.equip-card.purple:hover { border-color: var(--purple); }
 
-.equip-header {
-  background: var(--light);
-  border-bottom: 1px solid var(--line);
-  padding: 20px 24px;
+.equip-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.equip-title-group {
-  display: flex;
-  align-items: center;
   gap: 16px;
+  margin-bottom: 14px;
 }
-
 .equip-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
   background: var(--dark);
-  color: var(--acc);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
+.equip-icon svg { width: 32px; height: 32px; }
+.equip-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+.cat-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--acc-soft);
+  color: #B4530C;
+}
+.equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal); }
+.equip-card.blue .cat-badge { background: var(--blue-soft); color: var(--blue); }
+.equip-card.purple .cat-badge { background: var(--purple-soft); color: var(--purple); }
 
-.equip-icon svg {
-  width: 30px;
-  height: 30px;
+.inv-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
-.equip-title-group h2 {
-  margin: 0;
-  font-size: 1.35rem;
+.equip-card h2 {
+  margin: 0 0 6px;
+  font-size: 1.32rem;
   color: var(--dark);
+  line-height: 1.25;
 }
-
-.equip-desc {
-  margin: 3px 0 0;
-  font-size: 0.9rem;
+.equip-card p {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
   color: var(--grey);
 }
 
-.folder-badge {
-  display: inline-flex;
-  align-items: center;
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.82rem;
-  background: #fff;
+  margin-bottom: 18px;
+}
+.mini-tag {
+  font-size: 0.76rem;
+  font-weight: 600;
+  background: var(--light);
   border: 1px solid var(--line);
   color: var(--dark2);
-  padding: 5px 12px;
-  border-radius: 8px;
-}
-
-.folder-badge svg {
-  width: 16px;
-  height: 16px;
-  color: var(--acc);
-}
-
-/* Grelha de Ficheiros / Guias */
-.docs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 16px;
-  padding: 22px 24px;
-}
-
-.doc-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 16px;
-  text-decoration: none;
-  color: var(--text);
-  background: #fff;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-}
-
-.doc-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--acc);
-  box-shadow: 0 8px 20px rgba(31, 42, 54, 0.09);
-}
-
-.doc-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.fmt-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
   padding: 3px 9px;
   border-radius: 6px;
 }
 
-.fmt-html { background: var(--acc-soft); color: #B4530C; border: 1px solid #F5CBA7; }
-.fmt-pdf { background: var(--red-soft); color: var(--red); border: 1px solid #E6B0AA; }
-.fmt-docx { background: var(--blue-soft); color: var(--blue); border: 1px solid #AED6F1; }
-.fmt-pptx { background: #FEF5E7; color: #CA6F1E; border: 1px solid #FAD7A0; }
-.fmt-mp4 { background: var(--purple-soft); color: var(--purple); border: 1px solid #D7BDE2; }
-.fmt-png { background: var(--green-soft); color: var(--green); border: 1px solid #A9DFBF; }
-.fmt-md { background: var(--teal-soft); color: var(--teal); border: 1px solid #A3D9E0; }
-
-.doc-action-icon {
-  color: var(--grey);
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  transition: color 0.15s, transform 0.15s;
-}
-
-.doc-card:hover .doc-action-icon {
-  color: var(--acc);
-  transform: translate(2px, -2px);
-}
-
-.doc-title {
-  margin: 0 0 6px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--dark);
-  line-height: 1.3;
-}
-
-.doc-summary {
-  margin: 0 0 14px;
-  font-size: 0.86rem;
-  color: var(--grey);
-}
-
-.doc-footer {
+.equip-footer {
   border-top: 1px dashed var(--line);
-  padding-top: 10px;
+  padding-top: 13px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  font-size: 0.78rem;
+  gap: 10px;
+}
+.folder-path {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.8rem;
   color: var(--grey);
 }
-
-.doc-filename {
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 210px;
-}
-
-.doc-cta {
-  font-weight: 600;
+.folder-path svg { width: 15px; height: 15px; }
+.open-cta {
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--acc);
   white-space: nowrap;
 }
+.equip-card.teal .open-cta { color: var(--teal); }
+.equip-card.blue .open-cta { color: var(--blue); }
+.equip-card.purple .open-cta { color: var(--purple); }
 
-/* Estado sem resultados */
 .empty-state {
   display: none;
   text-align: center;
+  padding: 40px 20px;
   background: #fff;
   border: 1px dashed var(--line);
   border-radius: 12px;
-  padding: 40px 20px;
   color: var(--grey);
 }
 
-/* Rodapé */
 footer {
-  background: var(--dark);
-  color: #9FB1C3;
   text-align: center;
+  padding: 22px 24px;
   font-size: 0.85rem;
-  padding: 20px 24px;
+  color: var(--grey);
   border-top: 1px solid var(--line);
+  background: #fff;
 }
 
-footer strong {
-  color: #fff;
-}
-
-@media (max-width: 720px) {
-  header.hero {
-    padding: 28px 18px;
-  }
-  .controls-wrap, main.container {
-    padding: 0 16px;
-  }
-  .equip-header, .docs-grid {
-    padding: 16px;
-  }
+@media (max-width: 860px) {
+  .equip-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -442,21 +345,14 @@ footer strong {
 <header class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Centro Tecnológico Especializado (CTE)
-      </div>
-      <h1>Guias e Manuais de Equipamentos</h1>
-      <p class="sub">Repositório central de manuais de utilizador, infográficos de início rápido, apresentações e vídeos tutoriais dos equipamentos do CTE.</p>
+      <div class="hero-badge">CTE Informático · Centro Tecnológico Especializado</div>
+      <h1>Portal de Guias e Manuais</h1>
+      <p class="sub">Selecione um equipamento abaixo para aceder ao respetivo centro de ajuda online (manuais, infográficos, apresentações, vídeos e assistentes de apoio).</p>
     </div>
     <div class="hero-stats">
       <div class="stat-card">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Pastas</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">11</span>
-        <span class="stat-label">Documentos</span>
+        <span class="stat-num">4</span>
+        <span class="stat-label">Equipamentos</span>
       </div>
     </div>
   </div>
@@ -466,268 +362,164 @@ footer strong {
   <div class="controls-bar">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, guia ou nome de ficheiro..." aria-label="Pesquisar guias e manuais">
+      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
     </div>
-    <div class="filter-pills" role="group" aria-label="Filtrar por formato">
-      <button type="button" class="pill active" data-filter="all">Todos (11)</button>
-      <button type="button" class="pill" data-filter="html">Web / HTML</button>
-      <button type="button" class="pill" data-filter="pdf">PDF</button>
-      <button type="button" class="pill" data-filter="docx">Word (.docx)</button>
-      <button type="button" class="pill" data-filter="pptx">PowerPoint (.pptx)</button>
-      <button type="button" class="pill" data-filter="mp4">Vídeo (.mp4)</button>
-      <button type="button" class="pill" data-filter="png">Imagem (.png)</button>
-      <button type="button" class="pill" data-filter="md">Markdown (.md)</button>
+    <div class="filter-pills" role="group" aria-label="Filtrar por área">
+      <button type="button" class="pill active" data-cat="all">Todos (4)</button>
+      <button type="button" class="pill" data-cat="robotica">Robótica</button>
+      <button type="button" class="pill" data-cat="drones">Drones</button>
+      <button type="button" class="pill" data-cat="vr">Realidade Virtual</button>
     </div>
   </div>
 </div>
 
 <main class="container">
+  <div class="equip-grid" id="equipGrid">
 
-  <!-- 1. DJI Avata 2 (Pasta DJI_Avata_Drone) -->
-  <section class="equip-section" data-section>
-    <div class="equip-header">
-      <div class="equip-title-group">
-        <div class="equip-icon" aria-hidden="true">
-          <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="45" cy="38" r="26"/><circle cx="155" cy="38" r="26"/><circle cx="45" cy="86" r="26"/><circle cx="155" cy="86" r="26"/>
-            <path d="M65 50 L85 58 M135 50 L115 58 M65 74 L85 66 M135 74 L115 66"/><rect x="82" y="48" width="36" height="28" rx="9"/>
-          </svg>
+    <!-- 1. Robot NAO V6 -->
+    <a class="equip-card" href="Robot_NAO_V6/index.html" data-cat="robotica">
+      <div>
+        <div class="equip-top">
+          <div class="equip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="3" width="12" height="7" rx="3.5"/>
+              <circle cx="9.8" cy="6.5" r="1"/><circle cx="14.2" cy="6.5" r="1"/>
+              <rect x="7.5" y="11" width="9" height="6.5" rx="2"/>
+              <circle cx="12" cy="14" r="1.1"/>
+              <path d="M7.5 12.5 L4.5 16.5 M16.5 12.5 L19.5 16.5 M10 17.5 L9.5 21.5 M14 17.5 L14.5 21.5"/>
+            </svg>
+          </div>
+          <div class="equip-badges">
+            <span class="cat-badge">Robótica Humanoide</span>
+            <span class="inv-badge">INV-217 · Oficinas</span>
+          </div>
         </div>
-        <div>
-          <h2>DJI Avata 2 — Drone FPV</h2>
-          <p class="equip-desc">Drone DJI Avata 2 · Óculos DJI Goggles 3 · Comando de movimento DJI RC Motion 3</p>
+        <h2>Robot NAO V6 (H25600)</h2>
+        <p>Centro de ajuda completo para professores e alunos: arranque seguro, Choregraphe 2.8 + Robô Virtual, projetos em Português, diagnóstico interativo de LEDs e Assistente IA.</p>
+        <div class="tags-row">
+          <span class="mini-tag">Ajuda IA</span>
+          <span class="mini-tag">Infográfico A4</span>
+          <span class="mini-tag">Manuais Web &amp; Word</span>
+          <span class="mini-tag">Quiz</span>
+          <span class="mini-tag">Slides PPTX</span>
         </div>
       </div>
-      <span class="folder-badge" title="Pasta do equipamento">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-        DJI_Avata_Drone/
-      </span>
-    </div>
+      <div class="equip-footer">
+        <span class="folder-path">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Robot_NAO_V6/index.html
+        </span>
+        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
+      </div>
+    </a>
 
-    <div class="docs-grid">
-      <a class="doc-card" href="DJI_Avata_Drone/DJI_Avata_2_Manual_Utilizador.html" data-format="html">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-html">HTML · Interativo</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    <!-- 2. DJI Avata 2 -->
+    <a class="equip-card teal" href="DJI_Avata_Drone/index.html" data-cat="drones">
+      <div>
+        <div class="equip-top">
+          <div class="equip-icon" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="45" cy="38" r="26"/><circle cx="155" cy="38" r="26"/><circle cx="45" cy="86" r="26"/><circle cx="155" cy="86" r="26"/>
+              <path d="M65 50 L85 58 M135 50 L115 58 M65 74 L85 66 M135 74 L115 66"/><rect x="82" y="48" width="36" height="28" rx="9"/>
+            </svg>
           </div>
-          <h3 class="doc-title">Manual de Utilizador (Web)</h3>
-          <p class="doc-summary">Manual completo com índice navegável, preparação, regras ANAC/UE, modos de voo, segurança e checklist interativa antes do voo.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="DJI_Avata_2_Manual_Utilizador.html">DJI_Avata_2_Manual_Utilizador.html</span>
-          <span class="doc-cta">Abrir manual &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="DJI_Avata_Drone/DJI_Avata_2_Manual_Utilizador.docx" data-format="docx">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <div class="equip-badges">
+            <span class="cat-badge">Drones FPV</span>
+            <span class="inv-badge">Classe UE C1</span>
           </div>
-          <h3 class="doc-title">Manual de Utilizador (Word)</h3>
-          <p class="doc-summary">Versão em documento Word editável e pronta a imprimir do manual completo de operação e manutenção do DJI Avata 2.</p>
         </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="DJI_Avata_2_Manual_Utilizador.docx">DJI_Avata_2_Manual_Utilizador.docx</span>
-          <span class="doc-cta">Transferir &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="DJI_Avata_Drone/DJI_Avata_2_Guia_Inicio_Rapido.docx" data-format="docx">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </div>
-          <h3 class="doc-title">Guia de Início Rápido (Word)</h3>
-          <p class="doc-summary">Guia resumido com os passos essenciais para ligar, verificar a segurança, descolar, controlar e aterrar o drone.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="DJI_Avata_2_Guia_Inicio_Rapido.docx">DJI_Avata_2_Guia_Inicio_Rapido.docx</span>
-          <span class="doc-cta">Transferir &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="DJI_Avata_Drone/DJI_Avata_2_Guia_Inicio_Rapido.pptx" data-format="pptx">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-pptx">PowerPoint · .PPTX</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </div>
-          <h3 class="doc-title">Apresentação de Início Rápido</h3>
-          <p class="doc-summary">Diapositivos para apresentação em sala de aula sobre os componentes, controlos e regras de segurança do DJI Avata 2.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="DJI_Avata_2_Guia_Inicio_Rapido.pptx">DJI_Avata_2_Guia_Inicio_Rapido.pptx</span>
-          <span class="doc-cta">Transferir &rarr;</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- 2. Meta Quest 3 VR (Pasta Meta_Quest_3_VR) -->
-  <section class="equip-section" data-section>
-    <div class="equip-header">
-      <div class="equip-title-group">
-        <div class="equip-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="10" rx="4"/>
-            <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
-            <circle cx="7.5" cy="12" r="1.5"/>
-            <circle cx="12" cy="12" r="1.5"/>
-            <circle cx="16.5" cy="12" r="1.5"/>
-          </svg>
-        </div>
-        <div>
-          <h2>Meta Quest 3 VR — Realidade Virtual e Mista</h2>
-          <p class="equip-desc">Óculos Meta Quest 3 + 2 Controladores Touch Plus (Artigos INV-081 / INV-082 · Armário D1.4C-MF-A01)</p>
+        <h2>DJI Avata 2 — Drone FPV</h2>
+        <p>Documentação completa do conjunto Drone DJI Avata 2, óculos DJI Goggles 3 e comando DJI RC Motion 3, incluindo regras ANAC/UE e checklist de voo.</p>
+        <div class="tags-row">
+          <span class="mini-tag">Manual Web</span>
+          <span class="mini-tag">Checklist de Voo</span>
+          <span class="mini-tag">Guia Rápido Word</span>
+          <span class="mini-tag">Slides PPTX</span>
         </div>
       </div>
-      <span class="folder-badge" title="Pasta do equipamento">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-        Meta_Quest_3_VR/
-      </span>
-    </div>
+      <div class="equip-footer">
+        <span class="folder-path">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          DJI_Avata_Drone/index.html
+        </span>
+        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
+      </div>
+    </a>
 
-    <div class="docs-grid">
-      <a class="doc-card" href="Meta_Quest_3_VR/Meta_Quest_3_Infografico_Inicio_Rapido.html" data-format="html">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-html">HTML · Infográfico A4</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    <!-- 3. Meta Quest 3 VR -->
+    <a class="equip-card purple" href="Meta_Quest_3_VR/index.html" data-cat="vr">
+      <div>
+        <div class="equip-top">
+          <div class="equip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="10" rx="4"/>
+              <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
+              <circle cx="7.5" cy="12" r="1.5"/>
+              <circle cx="12" cy="12" r="1.5"/>
+              <circle cx="16.5" cy="12" r="1.5"/>
+            </svg>
           </div>
-          <h3 class="doc-title">Infográfico de Início Rápido (Web)</h3>
-          <p class="doc-summary">Folha visual interativa (pronta a imprimir em A4) com os 5 passos de utilização, esquema dos comandos, regras de ouro e checklist de devolução.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Meta_Quest_3_Infografico_Inicio_Rapido.html">Meta_Quest_3_Infografico_Inicio_Rapido.html</span>
-          <span class="doc-cta">Abrir infográfico &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="Meta_Quest_3_VR/Guia_de_Inicia%C3%A7%C3%A3o_ao_Meta_Quest_3.pdf" data-format="pdf">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-pdf">PDF · Documento</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <div class="equip-badges">
+            <span class="cat-badge">Realidade Virtual</span>
+            <span class="inv-badge">INV-081 / INV-082 · D1.4C-MF-A01</span>
           </div>
-          <h3 class="doc-title">Guia de Iniciação ao Meta Quest 3</h3>
-          <p class="doc-summary">Guia ilustrado em formato PDF para consulta rápida pelos alunos e professores durante as sessões de Realidade Virtual.</p>
         </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Guia_de_Iniciação_ao_Meta_Quest_3.pdf">Guia_de_Iniciação_ao_Meta_Quest_3.pdf</span>
-          <span class="doc-cta">Abrir PDF &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="Meta_Quest_3_VR/Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4" data-format="mp4">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-mp4">Vídeo · .MP4</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </div>
-          <h3 class="doc-title">Como Usar os Meta Quest 3 em 5 Passos</h3>
-          <p class="doc-summary">Vídeo tutorial passo a passo desde a abertura da mala requisitada até à colocação dos óculos, definição do limite e devolução.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4">Como_Usar_os_Meta_Quest_3_em_5_Passos.mp4</span>
-          <span class="doc-cta">Ver vídeo &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="Meta_Quest_3_VR/Guia_de_Inicia%C3%A7%C3%A3o_R%C3%A1pida_RV.png" data-format="png">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-png">Imagem · .PNG</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
-          <h3 class="doc-title">Poster — Guia de Iniciação Rápida RV</h3>
-          <p class="doc-summary">Infográfico visual em alta resolução (PNG) ideal para projeção rápida ou impressão junto do armário de arrumação.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Guia_de_Iniciação_Rápida_RV.png">Guia_de_Iniciação_Rápida_RV.png</span>
-          <span class="doc-cta">Ver imagem &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="Meta_Quest_3_VR/Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md" data-format="md">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-md">Markdown · .MD</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <h3 class="doc-title">Guia Base &amp; Prompts NotebookLM</h3>
-          <p class="doc-summary">Documento-fonte estruturado em Markdown com toda a informação técnica e prompts prontos para o Google NotebookLM / Gemini.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md">Meta_Quest_3_Guia_Inicio_Rapido_NotebookLM.md</span>
-          <span class="doc-cta">Abrir ficheiro &rarr;</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- 3. Meta Quest 3 (Pasta Meta_Quest_3) -->
-  <section class="equip-section" data-section>
-    <div class="equip-header">
-      <div class="equip-title-group">
-        <div class="equip-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="10" rx="4"/>
-            <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
-            <path d="M7 11h10"/>
-          </svg>
-        </div>
-        <div>
-          <h2>Meta Quest 3 — Documentos Office Editáveis</h2>
-          <p class="equip-desc">Guias de início rápido do sistema Meta Quest 3 em formato Word e PowerPoint</p>
+        <h2>Meta Quest 3 VR — Realidade Virtual e Mista</h2>
+        <p>Recursos visuais e multimédia para utilização imediata dos óculos Meta Quest 3 e controladores Touch Plus, da abertura da mala à devolução.</p>
+        <div class="tags-row">
+          <span class="mini-tag">Infográfico A4</span>
+          <span class="mini-tag">Vídeo 5 Passos</span>
+          <span class="mini-tag">Guia PDF</span>
+          <span class="mini-tag">Poster PNG</span>
+          <span class="mini-tag">NotebookLM</span>
         </div>
       </div>
-      <span class="folder-badge" title="Pasta do equipamento">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-        Meta_Quest_3/
-      </span>
-    </div>
+      <div class="equip-footer">
+        <span class="folder-path">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Meta_Quest_3_VR/index.html
+        </span>
+        <span class="open-cta">Abrir centro de ajuda &rarr;</span>
+      </div>
+    </a>
 
-    <div class="docs-grid">
-      <a class="doc-card" href="Meta_Quest_3/Meta_Quest_3_Guia_Inicio_Rapido.docx" data-format="docx">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <!-- 4. Meta Quest 3 (Documentos Office Editáveis) -->
+    <a class="equip-card blue" href="Meta_Quest_3/index.html" data-cat="vr">
+      <div>
+        <div class="equip-top">
+          <div class="equip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="10" rx="4"/>
+              <path d="M9 17c1-1.5 2-2 3-2s2 .5 3 2"/>
+              <path d="M7 11h10"/>
+            </svg>
           </div>
-          <h3 class="doc-title">Guia de Início Rápido (Word)</h3>
-          <p class="doc-summary">Documento Word com as instruções essenciais de preparação, ajuste do visor, controlos Touch Plus e cuidados de segurança.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Meta_Quest_3_Guia_Inicio_Rapido.docx">Meta_Quest_3_Guia_Inicio_Rapido.docx</span>
-          <span class="doc-cta">Transferir &rarr;</span>
-        </div>
-      </a>
-
-      <a class="doc-card" href="Meta_Quest_3/Meta_Quest_3_Guia_Inicio_Rapido.pptx" data-format="pptx">
-        <div>
-          <div class="doc-top">
-            <span class="fmt-badge fmt-pptx">PowerPoint · .PPTX</span>
-            <svg class="doc-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <div class="equip-badges">
+            <span class="cat-badge">Realidade Virtual · Office</span>
+            <span class="inv-badge">Documentos Editáveis</span>
           </div>
-          <h3 class="doc-title">Apresentação de Início Rápido</h3>
-          <p class="doc-summary">Apresentação em PowerPoint para introdução rápida ao uso seguro dos óculos Meta Quest 3 em contexto de sala de aula.</p>
         </div>
-        <div class="doc-footer">
-          <span class="doc-filename" title="Meta_Quest_3_Guia_Inicio_Rapido.pptx">Meta_Quest_3_Guia_Inicio_Rapido.pptx</span>
-          <span class="doc-cta">Transferir &rarr;</span>
+        <h2>Meta Quest 3 — Documentos Office Editáveis</h2>
+        <p>Versões editáveis em Microsoft Word e PowerPoint do guia de início rápido e apresentação de sala de aula do sistema Meta Quest 3.</p>
+        <div class="tags-row">
+          <span class="mini-tag">Word (.docx)</span>
+          <span class="mini-tag">PowerPoint (.pptx)</span>
         </div>
-      </a>
-    </div>
-  </section>
+      </div>
+      <div class="equip-footer">
+        <span class="folder-path">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Meta_Quest_3/index.html
+        </span>
+        <span class="open-cta">Abrir documentos &rarr;</span>
+      </div>
+    </a>
 
-  <div class="empty-state" id="emptyState">
-    Nenhum documento encontrado para os critérios de pesquisa ou filtro selecionados.
   </div>
 
+  <div class="empty-state" id="emptyState">
+    Nenhum equipamento encontrado para os critérios de pesquisa ou filtro selecionados.
+  </div>
 </main>
 
 <footer>
@@ -738,45 +530,36 @@ footer strong {
 (function() {
   var searchInput = document.getElementById("searchInput");
   var pills = Array.prototype.slice.call(document.querySelectorAll(".pill"));
-  var sections = Array.prototype.slice.call(document.querySelectorAll("[data-section]"));
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".equip-card"));
   var emptyState = document.getElementById("emptyState");
-  var activeFormat = "all";
+  var activeCat = "all";
 
   function applyFilters() {
     var query = (searchInput.value || "").trim().toLowerCase();
-    var totalVisible = 0;
+    var visible = 0;
 
-    sections.forEach(function(section) {
-      var cards = Array.prototype.slice.call(section.querySelectorAll(".doc-card"));
-      var sectionText = (section.querySelector(".equip-header").textContent || "").toLowerCase();
-      var visibleInSection = 0;
+    cards.forEach(function(card) {
+      var cat = card.getAttribute("data-cat");
+      var text = (card.textContent || "").toLowerCase();
+      var matchesCat = (activeCat === "all" || cat === activeCat);
+      var matchesQuery = (!query || text.indexOf(query) !== -1);
 
-      cards.forEach(function(card) {
-        var fmt = card.getAttribute("data-format");
-        var text = (card.textContent || "").toLowerCase() + " " + sectionText;
-        var matchesFormat = (activeFormat === "all" || fmt === activeFormat);
-        var matchesQuery = (!query || text.indexOf(query) !== -1);
-
-        if (matchesFormat && matchesQuery) {
-          card.style.display = "";
-          visibleInSection++;
-          totalVisible++;
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      section.style.display = visibleInSection > 0 ? "" : "none";
+      if (matchesCat && matchesQuery) {
+        card.style.display = "";
+        visible++;
+      } else {
+        card.style.display = "none";
+      }
     });
 
-    emptyState.style.display = totalVisible === 0 ? "block" : "none";
+    emptyState.style.display = visible === 0 ? "block" : "none";
   }
 
   pills.forEach(function(pill) {
     pill.addEventListener("click", function() {
       pills.forEach(function(p) { p.classList.remove("active"); });
       pill.classList.add("active");
-      activeFormat = pill.getAttribute("data-filter") || "all";
+      activeCat = pill.getAttribute("data-cat") || "all";
       applyFilters();
     });
   });

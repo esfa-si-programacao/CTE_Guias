@@ -3,20 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robot NAO V6 — Manual Técnico, Rede e Manutenção (CTE · INV-217)</title>
+<title>Robô NAO V6 — Manual Técnico, Rede e Manutenção (CTE · INV-217)</title>
+<meta name="description" content="Ajuda rápida para usar o robô NAO V6 do CTE: arranque, programação no Choregraphe, diagnóstico de problemas e devolução.">
+<meta property="og:title" content="Robô NAO V6 — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Administração de rede escolar, NAOqi 2.8, gestão de bateria e BMS, limpeza segura, troubleshooting e protocolo de avarias.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Cellipse cx='32' cy='24' rx='16' ry='13' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='25' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Ccircle cx='39' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Crect x='20' y='40' width='24' height='15' rx='6' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='47' r='4' fill='%23E8711C'/%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F3F5;
   --blue: #1D63B8;
   --blue-soft: #EBF3FC;
   --red: #C0392B;
+  --red-text: #A93226;
   --red-soft: #FBE9E7;
   --green: #1E8449;
+  --green-text: #17693A;
   --green-soft: #E8F6EF;
   --light: #EEF2F5;
   --line: #D5DCE3;
@@ -108,7 +118,7 @@ nav.toc > ul > li { margin: 6px 0; }
 nav.toc > ul > li > a { font-weight: 600; }
 nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
 nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
-nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal); }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
 
 main { min-width: 0; max-width: 850px; }
 section { margin-bottom: 42px; }
@@ -119,7 +129,7 @@ section > h2 {
   border-bottom: 2px solid var(--light);
   padding-bottom: 6px;
 }
-h3 { font-size: 1.14rem; color: var(--teal); margin: 24px 0 8px; }
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
 p { margin: 0 0 12px; }
 ul, ol { margin: 0 0 14px; padding-left: 24px; }
 li { margin: 4px 0; }
@@ -148,11 +158,11 @@ table.log tbody tr { background: #fff; }
   margin: 14px 0 18px;
 }
 .note.info { background: var(--teal-soft); border-color: var(--teal); }
-.note.info strong { color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
 .note.warn { background: var(--acc-soft); border-color: var(--acc); }
-.note.warn strong { color: #B4530C; }
+.note.warn strong { color: var(--acc-text); }
 .note.danger { background: var(--red-soft); border-color: var(--red); }
-.note.danger strong { color: var(--red); }
+.note.danger strong { color: var(--red-text); }
 
 .filter-input {
   width: 100%;
@@ -167,33 +177,57 @@ table.log tbody tr { background: #fff; }
 
 .btn {
   font: inherit;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border: 1px solid var(--line);
   background: #fff;
+  color: var(--dark);
   border-radius: 6px;
-  padding: 7px 14px;
+  padding: 8px 14px;
   cursor: pointer;
 }
-.btn:hover { border-color: var(--teal); color: var(--teal); }
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
 
 footer {
   text-align: center;
   color: var(--grey);
-  font-size: 0.85rem;
-  padding: 24px;
+  font-size: 0.86rem;
+  padding: 24px 24px 96px;
   border-top: 1px solid var(--line);
   background: var(--light);
 }
+
+/* Botão flutuante Ajuda */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; gap: 16px; }
   nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
 }
 @media print {
-  .topbar, nav.toc, .filter-input, .no-print { display: none !important; }
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
   header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
-  .hero .sub { color: var(--teal); }
+  .hero .sub { color: var(--teal-text); }
   .hero .meta { color: var(--grey); }
   .layout { display: block; padding: 10px 0 0; }
   main { max-width: none; }
@@ -206,11 +240,11 @@ footer {
 
 <div class="topbar">
   <div class="topbar-in">
-    <div><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Hub Robot NAO V6</a> &rsaquo; Manual Técnico</div>
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Robô NAO V6</a> &rsaquo; Manual Técnico</nav>
     <div class="topbar-links">
-      <a href="NAO_V6_Infografico_Inicio_Rapido.html">Infográfico A4</a>
+      <a href="NAO_V6_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
       <a href="NAO_V6_Manual_Utilizador.html">Manual de Utilizador</a>
-      <a href="NAO_V6_Quiz_Habilitacao.html">Quiz</a>
+      <a href="NAO_V6_Quiz_Habilitacao.html">Carta de Condução</a>
     </div>
   </div>
 </div>
@@ -219,9 +253,9 @@ footer {
   <div class="hero-in">
     <div>
       <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
-      <h1>Robot NAO V6 — Manual Técnico e Manutenção</h1>
+      <h1>Robô NAO V6 — Manual Técnico e Manutenção</h1>
       <p class="sub">Administração de Rede Escolar, NAOqi 2.8, Gestão de Bateria e Diagnóstico de Problemas</p>
-      <p class="meta">Modelo H25600 · Inventário <strong>INV-217</strong> (Oficinas) · Versão 1.0 · novembro de 2026</p>
+      <p class="meta">Modelo H25600 · Inventário <strong>INV-217</strong> (Oficinas) · Versão 1.1 · novembro de 2026</p>
     </div>
     <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
   </div>
@@ -256,12 +290,13 @@ footer {
   <main>
     <section id="t1">
       <h2>1. Âmbito e política de segurança</h2>
-      <p>Este guia técnico destina-se aos <strong>docentes responsáveis pelo CTE e equipa de apoio informático</strong>. Centraliza os procedimentos de rede, administração do sistema <strong>NAOqi 2.8</strong>, manutenção preventiva e diagnóstico de avarias do <strong>Robot NAO V6 (H25600 · <code>INV-217</code>)</strong>.</p>
+      <p>Este guia técnico destina-se aos <strong>docentes responsáveis pelo CTE e equipa de apoio informático</strong>. Centraliza os procedimentos de rede, administração do sistema <strong>NAOqi 2.8</strong>, manutenção preventiva e diagnóstico de avarias do <strong>Robô NAO V6 (H25600 · <code>INV-217</code>)</strong>.</p>
       <aside class="note danger"><strong>Política de Credenciais (Portal Online):</strong> As palavras-passe administrativas da conta do robô, SSH ou redes Wi-Fi internas da escola <strong>nunca devem ser publicadas</strong> nestas páginas web nem impressas na mala. As credenciais são geridas exclusivamente pela equipa responsável do CTE.</aside>
     </section>
 
     <section id="t2">
       <h2>2. Arquitetura Hardware &amp; Software (H25600)</h2>
+      <!-- CONFIRMAR: versão exata do NAOqi instalada no INV-217 (porta 9559 até 2.8.7.4 vs porta 9561 a partir de 2.8.7.7) -->
       <div class="tw">
         <table>
           <colgroup><col style="width:32%"><col style="width:68%"></colgroup>
@@ -269,7 +304,7 @@ footer {
           <tbody>
             <tr><th scope="row">Modelo e Cinemática</th><td>H25600 · 25 graus de liberdade (cabeça 2, braços 5×2, mãos 1×2, pélvis/pernas 11) · Altura 574 mm · Peso 5,5 kg.</td></tr>
             <tr><th scope="row">CPU / Memória</th><td>Intel Atom E3845 Quad-Core @ 1,91 GHz · 4 GB DDR3 RAM · 32 GB eMMC flash.</td></tr>
-            <tr><th scope="row">Sistema Operativo</th><td><strong>NAOqi 2.8</strong> (Linux embebido) · Porta de comunicação TCP padrão: <code>9559</code> · Descoberta local via mDNS (<code>nao.local</code>).</td></tr>
+            <tr><th scope="row">Sistema Operativo</th><td><strong>NAOqi 2.8</strong> (Linux embebido) · Porta TCP: <code>9559</code> (NAOqi &le; 2.8.7.4) ou <code>9561</code> (NAOqi &ge; 2.8.7.7) · Descoberta local via mDNS (<code>nao.local</code>).</td></tr>
             <tr><th scope="row">Software Cliente</th><td><strong>Choregraphe Suite 2.8</strong> (Windows 64-bit / Linux / macOS; motor Python interno 2.7; sem licença paga).</td></tr>
             <tr><th scope="row">Sensores</th><td>2× câmaras HD OV5640 (5 MP) · 4× microfones omnidirecionais · 2× sonares frontais · IMU (acelerómetro 3 eixos + giroscópio 3 eixos) · 3 sensores táteis cabeça · 3×2 sensores táteis mãos · 2× bumpers pés · 4×2 FSRs pés.</td></tr>
             <tr><th scope="row">Interfaces Físicas</th><td><strong>Tampa traseira da cabeça:</strong> RJ45 Gigabit Ethernet (10/100/1000) + USB (manutenção/recovery). <strong>Costas do tronco:</strong> conector de carga DC 25,2 V.</td></tr>
@@ -294,8 +329,9 @@ footer {
       <p>As redes escolares implementam controlos de segurança que frequentemente impedem o emparelhamento automático:</p>
       <ul>
         <li><strong>Portal Cativo (<em>Captive Portal</em>):</strong> O NAO não tem navegador visível para introduzir utilizador/password em páginas de login web. Deve ligar-se a uma rede Wi-Fi escolar sem portal cativo (WPA2-PSK ou endereço MAC autorizado na rede técnica/CTE).</li>
-        <li><strong>Isolamento de Clientes (<em>AP / Client Isolation</em>) ou VLANs separadas:</strong> Se o PC do aluno estiver numa VLAN diferente da do NAO ou houver isolamento entre clientes Wi-Fi, o Choregraphe não consegue alcançar a porta TCP <code>9559</code>.</li>
-        <li><strong>Descoberta mDNS bloqueada:</strong> Mesmo quando o tráfego IP funciona, o NAO pode não surgir na lista automática do Choregraphe. Nesses casos, testar <code>ping &lt;IP-do-NAO&gt;</code> e ligar sempre por <strong>"Use fixed IP/hostname"</strong> na porta <code>9559</code>.</li>
+        <li><strong>Isolamento de Clientes (<em>AP / Client Isolation</em>) ou VLANs separadas:</strong> Se o PC do aluno estiver numa VLAN diferente da do NAO ou houver isolamento entre clientes Wi-Fi, o Choregraphe não consegue alcançar a porta TCP <code>9559</code> (ou <code>9561</code> em NAOqi &ge; 2.8.7.7).</li>
+        <li><strong>Descoberta mDNS bloqueada:</strong> Mesmo quando o tráfego IP funciona, o NAO pode não surgir na lista automática do Choregraphe. Nesses casos, testar <code>ping &lt;IP-do-NAO&gt;</code> e ligar sempre por <strong>"Use fixed IP/hostname"</strong> na porta correspondente (<code>9559</code> até NAOqi 2.8.7.4; <code>9561</code> a partir de 2.8.7.7).</li>
+        <li><strong>Sessão única no Choregraphe:</strong> O robô aceita apenas uma ligação Choregraphe de cada vez. Se outro PC estiver ligado ou uma sessão anterior ficou bloqueada, desligue a sessão anterior ou reinicie o NAO.</li>
         <li><strong>Firewall Windows nos PCs das salas:</strong> Garantir exceção de entrada/saída para <code>choregraphe.exe</code> e <code>naoqi-bin.exe</code> nos computadores utilizados pelos alunos.</li>
       </ul>
 
@@ -312,20 +348,28 @@ footer {
     <section id="t4">
       <h2>4. Manutenção preventiva</h2>
 
-      <h3 id="t4-1">4.1 Gestão de bateria e pausas letivas (férias)</h3>
+      <h3 id="t4-1">4.1 Gestão de bateria, BMS e pausas letivas (férias)</h3>
       <ul>
         <li>Recarregue sempre que a bateria desça abaixo de <strong>20%–30%</strong> (LED vermelho a piscar indica &lt; 20%).</li>
-        <li>Carregamento completo demora cerca de <strong>90 minutos</strong> com o carregador oficial <code>25,2 V / 2 A</code>.</li>
+        <li>Carregamento completo demora cerca de <strong>90 minutos</strong> com o carregador oficial <code>25,2 V / 2 A</code>. Nunca carregue se a temperatura ambiente ultrapassar 40 °C.</li>
         <li>Não deixe o robô ligado à tomada continuamente durante semanas.</li>
-        <li><strong>Férias escolares (&gt; 2 semanas sem utilização):</strong> desligue totalmente o robô com a bateria entre <strong>40% e 60%</strong> e guarde-o na mala em local seco entre <strong>15 °C e 25 °C</strong>.</li>
+        <li><strong>Pausas curtas (2 semanas a 1 mês):</strong> desligue totalmente o robô com a bateria entre <strong>40% e 60%</strong> e guarde-o na mala em local seco entre <strong>15 °C e 25 °C</strong>.</li>
+        <li><strong>Férias prolongadas (&gt; 1 a 3 meses sem utilização — proteção BMS):</strong> a placa eletrónica de gestão da bateria (<strong>BMS</strong>) consome uma pequena corrente contínua mesmo com o robô desligado. Se ficar <strong>mais de 3 meses sem recarga</strong>, a BMS pode ativar o modo de <strong>Descarga Profunda</strong> e bloquear a bateria de forma irreversível. Para pausas longas (ex.: verão), <strong>retire a bateria do robô</strong> (não a guarde instalada na mala) e faça uma <strong>recarga completa a cada 1 a 3 meses</strong>.</li>
       </ul>
+      <aside class="note danger"><strong>Sintomas de bateria defeituosa ou bloqueada pela BMS (contactar suporte técnico — nunca abrir a bateria):</strong>
+        <ul style="margin:6px 0 0">
+          <li>O sistema NAOqi bloqueia/encerra subitamente ao tentar ativar as articulações (muitas vezes com um som sibilante interno);</li>
+          <li>O NAO desliga-se no instante em que retira o cabo do carregador ou não funciona sem o carregador ligado;</li>
+          <li>O LED do carregador fica imediatamente verde mesmo com a bateria descarregada.</li>
+        </ul>
+      </aside>
 
       <h3 id="t4-2">4.2 Limpeza física segura</h3>
       <ul>
-        <li>Efetuar apenas com o robô <strong>completamente desligado</strong> e sem carregador ligado.</li>
-        <li>Limpar a carcaça plástica com pano de microfibra seco ou muito ligeiramente humedecido com água pura; secar de imediato.</li>
-        <li>Limpar as duas câmaras (testa e boca) apenas com pano de microfibra seco e suave.</li>
-        <li><strong>Proibido:</strong> álcool isopropílico/etílico agressivo, lixívia, limpa-vidros, toalhetes abrasivos ou pulverizar líquidos/ar comprimido diretamente nas articulações, altifalantes ou microfones.</li>
+        <li>Efetuar apenas com o robô <strong>completamente desligado</strong> e sem carregador ligado (nunca manusear com mãos molhadas).</li>
+        <li>Limpar a carcaça plástica e as duas câmaras (testa e boca) apenas com <strong>pano de microfibra macio e seco</strong> (ou toalhetes secos próprios para limpeza de equipamento eletrónico).</li>
+        <li>Manter sempre desobstruída a <strong>grelha de ventilação atrás da cabeça</strong> e nunca vestir roupas ou colar autocolantes/acessórios no robô.</li>
+        <li><strong>Estritamente proibido:</strong> <strong>água</strong>, produtos à base de <strong>álcool ou amoníaco</strong>, lixívia, limpa-vidros, toalhetes abrasivos, ar comprimido nas juntas/microfones ou <strong>lubrificar/aplicar óleo</strong> nas articulações.</li>
       </ul>
 
       <h3 id="t4-3">4.3 Limpeza periódica de aplicações dos alunos</h3>
@@ -348,7 +392,7 @@ footer {
           <tbody>
             <tr><td><strong>1</strong></td><td><strong>Não liga ao premir o botão do peito</strong></td><td>Bateria descarregada a 0% ou ficha do carregador mal encaixada.</td><td>Ligar o carregador oficial nas costas do tronco durante ≥ 15 min, verificar LED do carregador e premir o botão do peito ~1 s.</td></tr>
             <tr><td><strong>2</strong></td><td><strong>Diz que não tem rede / não anuncia IP</strong></td><td>Wi-Fi escolar indisponível, portal cativo ou chave alterada.</td><td>1) Ligar o <strong>cabo Ethernet (RJ45)</strong> atrás da cabeça; 2) 1 clique no peito para ouvir o IP Ethernet; 3) Aceder a <code>http://&lt;IP&gt;</code> para reconfigurar o Wi-Fi se necessário.</td></tr>
-            <tr><td><strong>3</strong></td><td><strong>Choregraphe não encontra o NAO na rede</strong></td><td>PC e NAO em VLANs diferentes, isolamento de clientes Wi-Fi, mDNS bloqueado ou Firewall do Windows.</td><td>1) Testar <code>ping &lt;IP&gt;</code>; 2) Ligar por <strong>Use fixed IP/hostname</strong> (porta <code>9559</code>); 3) Permitir <code>choregraphe</code> na Firewall; 4) Usar cabo Ethernet direto como plano B.</td></tr>
+            <tr><td><strong>3</strong></td><td><strong>Choregraphe não encontra o NAO na rede</strong></td><td>PC e NAO em VLANs diferentes, isolamento de clientes Wi-Fi, mDNS bloqueado, Firewall do Windows ou porta/sessão presa.</td><td>1) Testar <code>ping &lt;IP&gt;</code>; 2) Ligar por <strong>Use fixed IP/hostname</strong> (porta <code>9559</code> até NAOqi 2.8.7.4; <code>9561</code> a partir de 2.8.7.7); 3) Permitir <code>choregraphe</code> na Firewall; 4) Confirmar que nenhum outro PC está ligado ao NAO (sessão única); 5) Usar cabo Ethernet direto como plano B.</td></tr>
             <tr><td><strong>4</strong></td><td><strong>Erro de versão incompatível no Choregraphe</strong></td><td>Versão 2.1 ou 2.5 instalada no PC.</td><td>Instalar a <strong>Choregraphe Suite 2.8</strong> (única série compatível com NAO V6 / NAOqi 2.8).</td></tr>
             <tr><td><strong>5</strong></td><td><strong>Mexe-se sozinho / interrompe programas</strong></td><td><strong>Autonomous Life</strong> ativa por defeito no arranque.</td><td>Clicar no ícone do <strong>coração</strong> no Choregraphe para pausar/desativar a Vida Autónoma durante a aula.</td></tr>
             <tr><td><strong>6</strong></td><td><strong>Programa corre mas motores não mexem</strong></td><td>Rigidez desligada (<em>Stiffness OFF</em> / modo <em>Rest</em>).</td><td>Clicar em <strong>Wake Up (Sol)</strong> no Choregraphe ou incluir a caixa <code>Wake Up</code> / <code>Stand</code> no início do diagrama.</td></tr>
@@ -359,6 +403,13 @@ footer {
           </tbody>
         </table>
       </div>
+
+      <h3 id="t5-os">Erros frequentes de instalação do Choregraphe (Windows / macOS / Linux)</h3>
+      <ul>
+        <li><strong>Windows — erro <code>VCOMP120.DLL file cannot be found</code>:</strong> instale os pacotes oficiais <strong>Microsoft Visual C++ Redistributable 2013 (x64)</strong> e <strong>2010 (x64)</strong>, e confirme que o serviço <strong>Bonjour</strong> foi instalado pelo assistente do Choregraphe.</li>
+        <li><strong>macOS — erro de permissão do Finder (<code>does not have permission to open "(null)"</code>):</strong> arranque pelo Terminal o binário interno <code>.../Choregraphe.app/Contents/MacOS/choregraphe</code>, autorize em <em>Definições do Sistema &gt; Privacidade e Segurança &gt; Abrir Mesmo Assim</em> e repita o comando. Se a vista 3D encerrar, escolha <em>Try once without the 3D</em>.</li>
+        <li><strong>Linux — falha gráfica OpenGL ao abrir:</strong> execute o instalador com <code>sudo</code> e, em PCs sem aceleração OpenGL compatível, arranque com <code>./choregraphe --no-ogre</code>.</li>
+      </ul>
     </section>
 
     <section id="t6">
@@ -395,8 +446,17 @@ footer {
 </div>
 
 <footer>
-  <strong>CTE Informático</strong> · Manual Técnico do Robot NAO V6 (H25600 · <code>INV-217</code>) · Uso interno para docentes responsáveis e apoio técnico.
+  <strong>CTE Informático</strong> · Manual Técnico do Robô NAO V6 (H25600 · <code>INV-217</code>) · Uso interno para docentes responsáveis e apoio técnico.
 </footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
 
 <script>
 (function() {

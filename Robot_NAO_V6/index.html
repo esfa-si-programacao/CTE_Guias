@@ -3,20 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robot NAO V6 — Sistema de Ajuda Online (CTE · INV-217)</title>
+<title>Robô NAO V6 — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para usar o robô NAO V6 do CTE: arranque, programação no Choregraphe, diagnóstico de problemas e devolução.">
+<meta property="og:title" content="Robô NAO V6 — Pôr o NAO a funcionar na aula (CTE)">
+<meta property="og:description" content="Ajuda rápida para usar o robô NAO V6 do CTE: arranque, programação no Choregraphe, diagnóstico de problemas e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Cellipse cx='32' cy='24' rx='16' ry='13' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='25' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Ccircle cx='39' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Crect x='20' y='40' width='24' height='15' rx='6' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='47' r='4' fill='%23E8711C'/%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F4F6;
   --blue: #1D63B8;
+  --blue-text: #18539B;
   --blue-soft: #EBF3FC;
   --red: #C0392B;
+  --red-text: #A93226;
   --red-soft: #FBE9E7;
   --green: #1E8449;
+  --green-text: #17693A;
   --green-soft: #E8F6EF;
   --purple: #6C3483;
   --purple-soft: #F4ECF7;
@@ -29,7 +41,8 @@
   --bg: #EEF2F6;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
@@ -41,142 +54,124 @@ body {
   flex-direction: column;
 }
 
-/* Barra superior */
+/* Barra superior / Breadcrumb comum */
 .topbar {
   background: #151E27;
   color: #C7D6E5;
-  font-size: 0.84rem;
-  padding: 8px 24px;
+  font-size: 0.88rem;
+  padding: 8px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .topbar-in {
-  max-width: 1180px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
 .topbar a:hover { text-decoration: underline; }
 
-/* Cabeçalho Hero */
+/* Cabeçalho Hero compacto */
 header.hero {
   background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
   color: #fff;
-  padding: 36px 24px 44px;
+  padding: 24px 20px 28px;
   border-bottom: 4px solid var(--acc);
 }
 .hero-inner {
-  max-width: 1180px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  flex-wrap: wrap;
+  gap: 24px;
 }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.22);
-  color: #FFD2B3;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 999px;
-  margin-bottom: 10px;
-}
-.hero h1 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.75rem); line-height: 1.12; }
-.hero .sub { color: #C2D1E0; font-size: 1.04rem; margin: 10px 0 0; max-width: 680px; }
-.hero-pills {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-.hero-pill {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 0.82rem;
-  color: #E2ECF5;
-}
-.hero-pill strong { color: #FFB37B; }
-
-.hero-robot {
-  width: 132px;
-  height: 152px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
+.hero-media {
+  width: 116px;
+  height: 132px;
+  border-radius: 14px;
+  background: #fff;
+  border: 2px solid rgba(255,255,255,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   flex-shrink: 0;
+  padding: 6px;
 }
-
-/* 4 Caminhos Rápidos por Perfil */
-.paths-wrap {
-  max-width: 1180px;
-  width: 100%;
-  margin: -26px auto 0;
-  padding: 0 24px;
+.hero-media.svg-fallback {
+  background: rgba(255,255,255,0.07);
 }
-.paths-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+.hero-media img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
-.path-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--acc);
-  border-radius: 12px;
-  padding: 16px 18px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 8px 22px rgba(31,42,54,0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3.6vw, 2.35rem);
+  line-height: 1.14;
+}
+.hero .sub {
+  color: #D4E1EE;
+  font-size: 1.02rem;
+  margin: 8px 0 0;
+}
+.hero-actions {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
 }
-.path-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(31,42,54,0.12); }
-.path-card.teal { border-top-color: var(--teal); }
-.path-card.red { border-top-color: var(--red); }
-.path-card.blue { border-top-color: var(--blue); }
-.path-tag {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--acc);
-  margin-bottom: 4px;
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  background: var(--acc-btn);
+  border: 2px solid var(--acc-btn);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.96rem;
+  padding: 10px 20px;
+  border-radius: 9px;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
-.path-card.teal .path-tag { color: var(--teal); }
-.path-card.red .path-tag { color: var(--red); }
-.path-card.blue .path-tag { color: var(--blue); }
-.path-card h2 { margin: 0 0 6px; font-size: 1.08rem; color: var(--dark); }
-.path-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
-.path-cta { font-size: 0.84rem; font-weight: 700; color: var(--dark); }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.55);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.96rem;
+  padding: 10px 18px;
+  border-radius: 9px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
 
-/* Conteúdo Principal */
+/* Conteúdo principal */
 main.container {
-  max-width: 1180px;
+  max-width: 1120px;
   width: 100%;
-  margin: 28px auto 52px;
-  padding: 0 24px;
+  margin: 18px auto 28px;
+  padding: 0 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 16px;
 }
 
 .card-section {
@@ -184,111 +179,179 @@ main.container {
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(31,42,54,0.05);
+  box-shadow: 0 4px 14px rgba(31,42,54,0.05);
 }
 .sec-head {
   background: var(--light);
   border-bottom: 1px solid var(--line);
-  padding: 18px 24px;
+  padding: 12px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   flex-wrap: wrap;
 }
-.sec-head h2 { margin: 0; font-size: 1.25rem; color: var(--dark); }
-.sec-head p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
-.sec-body { padding: 20px 24px; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
 
-/* Grelha de Documentos */
-.docs-grid {
+/* Secção Percurso (5 passos) */
+.percurso-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: 245px 1fr;
   gap: 14px;
+  align-items: stretch;
 }
-.doc-card {
+.steps-right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.step-card {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  border-radius: 11px;
+  padding: 12px 14px;
+  background: #FAFBFD;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid var(--line);
-  border-radius: 11px;
-  padding: 16px;
-  background: #FAFBFD;
-  transition: all 0.16s ease;
+  gap: 8px;
 }
-.doc-card:hover {
-  border-color: var(--acc);
+.step-card.step-video {
+  border-top-color: var(--acc);
   background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(31,42,54,0.08);
 }
-.fmt-badge {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 3px 9px;
-  border-radius: 999px;
-  margin-bottom: 8px;
-}
-.fmt-html { background: var(--teal-soft); color: var(--teal); }
-.fmt-quiz { background: var(--green-soft); color: var(--green); }
-.fmt-docx { background: var(--blue-soft); color: var(--blue); }
-.fmt-pptx { background: var(--acc-soft); color: #B4530C; }
-.fmt-pdf { background: var(--red-soft); color: var(--red); }
-.fmt-md { background: var(--purple-soft); color: var(--purple); }
-.fmt-png { background: var(--green-soft); color: var(--green); }
-.doc-card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--dark); }
-.doc-card p { margin: 0 0 12px; font-size: 0.86rem; color: var(--grey); }
-.doc-foot {
+.step-head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-  font-size: 0.78rem;
+  gap: 8px;
+  margin-bottom: 3px;
 }
-.doc-file { color: var(--grey); font-family: ui-monospace, Consolas, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 68%; }
-.doc-cta { font-weight: 700; color: var(--acc); white-space: nowrap; }
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--dark);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.84rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-video .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+.action-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--acc-text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
 
-/* Diagnóstico Interativo: LEDs + Sintomas */
+.video-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.video-box video {
+  display: block;
+  max-height: 310px;
+  width: auto;
+  max-width: 100%;
+  background: #000;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+}
+
+/* Preciso de... (3 atalhos) */
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.shortcut-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 3px 10px rgba(31,42,54,0.04);
+}
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note {
+  margin-top: 4px !important;
+  font-size: 0.84rem !important;
+  color: var(--dark) !important;
+  font-weight: 600;
+}
+.shortcut-alt {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--teal-text);
+  text-decoration: none;
+}
+.shortcut-alt:hover { text-decoration: underline; }
+
+/* Diagnóstico Interativo */
 .diag-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 22px;
+  gap: 16px;
 }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
 .led-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
-  margin-bottom: 14px;
+  gap: 7px;
+  margin-bottom: 10px;
 }
 .led-btn {
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 600;
-  padding: 10px 12px;
-  border-radius: 9px;
+  padding: 8px 10px;
+  border-radius: 8px;
   border: 1.5px solid var(--line);
   background: var(--light);
   color: var(--dark);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
   text-align: left;
-  transition: all 0.15s ease;
+  transition: all 0.14s ease;
 }
-.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 4px 10px rgba(31,42,54,0.08); }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
 .led-orb {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   flex-shrink: 0;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.22);
 }
 .orb-pulse { background: #fff; box-shadow: 0 0 8px #5dade2; animation: pulse 1.4s infinite; }
 .orb-white { background: #fff; box-shadow: 0 0 4px #9fb6cc; }
@@ -302,176 +365,295 @@ main.container {
   border: 1.5px solid var(--line);
   border-left: 5px solid var(--teal);
   border-radius: 10px;
-  padding: 14px 16px;
+  padding: 13px 15px;
   background: var(--teal-soft);
 }
 .diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
 .diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
 .diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
-.diag-panel h3 { margin: 0 0 6px; font-size: 1rem; color: var(--dark); }
-.diag-panel p { margin: 0 0 6px; font-size: 0.89rem; }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
 .diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(31,42,54,0.22);
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
 
 .sym-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 7px;
+  margin-bottom: 12px;
 }
 .sym-btn {
   font: inherit;
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 600;
   padding: 7px 12px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   background: #fff;
   color: var(--dark);
   cursor: pointer;
   transition: all 0.14s ease;
 }
-.sym-btn:hover { border-color: var(--acc); color: var(--acc); }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
 .sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
 
-/* Checklist */
+/* Documentos (5 linhas compactas) */
+.docs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.doc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.fmt-link {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: var(--light);
+  color: var(--dark);
+  white-space: nowrap;
+  transition: border-color 0.14s ease, background 0.14s ease;
+}
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+/* Checklist de devolução */
 .check-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
+  gap: 7px;
   list-style: none;
   padding: 0;
-  margin: 0 0 12px;
+  margin: 0;
 }
 .check-grid label {
   display: flex;
-  gap: 10px;
+  gap: 9px;
   align-items: flex-start;
   background: var(--light);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 8px 10px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 .check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
 .check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready {
+  margin-top: 14px;
+  padding: 12px 15px;
+  border-radius: 9px;
+  background: var(--green-soft);
+  border: 1.5px solid var(--green);
+  color: #124C2A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-weight: 700;
+  font-size: 0.94rem;
+}
+
 .btn {
   font: inherit;
-  font-size: 0.86rem;
-  font-weight: 600;
-  border: 1px solid var(--line);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1.5px solid var(--line);
   background: #fff;
   color: var(--dark);
   padding: 7px 14px;
-  border-radius: 7px;
+  border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
-.btn:hover { border-color: var(--acc); color: var(--acc); }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green {
+  background: var(--green-text);
+  border-color: var(--green-text);
+  color: #fff;
+}
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
 
-/* Banner Ajuda IA */
-.ai-banner {
-  background: linear-gradient(135deg, #221B3A 0%, #2D3561 55%, #1E5D70 100%);
-  color: #fff;
-  border-radius: 14px;
-  padding: 20px 24px;
+/* Acordeões recolhidos (<details>) */
+.details-stack {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  box-shadow: 0 8px 24px rgba(34, 27, 58, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  flex-direction: column;
+  gap: 10px;
 }
-.ai-banner-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  max-width: 740px;
-}
-.ai-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #FFD2B3;
-}
-.ai-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #A8F0FA;
-  margin-bottom: 3px;
-}
-.ai-banner h2 {
-  margin: 0 0 4px;
-  font-size: 1.2rem;
-  color: #fff;
-}
-.ai-banner p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #D7E3F0;
-}
-.ai-cta {
-  text-decoration: none;
-  background: var(--acc);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 11px 20px;
-  border-radius: 9px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(232, 113, 28, 0.35);
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.ai-cta:hover { background: #cf5e0e; transform: translateY(-1px); }
-
-/* Vídeo Tutorial Embutido (compacto) */
-.video-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  align-items: flex-start;
-}
-.video-wrap video {
-  width: 100%;
-  max-width: 460px;
-  border-radius: 10px;
-  background: #000;
+details.fold-box {
+  background: #fff;
   border: 1px solid var(--line);
-  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(31,42,54,0.04);
 }
+details.fold-box summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--dark);
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before {
+  content: "▸";
+  display: inline-block;
+  color: var(--acc-text);
+  font-size: 1.05rem;
+  transition: transform 0.15s ease;
+}
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.specs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
 
+/* Saber mais (ligações oficiais) */
+.ext-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 20px;
+}
+.ext-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line);
+}
+.ext-list a {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--teal-text);
+  text-decoration: none;
+}
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+/* Rodapé com espaço para o selo Netlify */
 footer {
   text-align: center;
-  padding: 20px 24px;
-  font-size: 0.85rem;
+  padding: 16px 20px 96px;
+  font-size: 0.88rem;
   color: var(--grey);
   border-top: 1px solid var(--line);
   background: #fff;
 }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+/* Botão flutuante Ajuda (canto inferior esquerdo) */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
 @media (max-width: 960px) {
-  .paths-grid { grid-template-columns: repeat(2, 1fr); }
-  .diag-grid { grid-template-columns: 1fr; }
+  .percurso-grid { grid-template-columns: 1fr; }
+  .video-box video { max-height: 250px; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .paths-grid, .check-grid, .led-buttons { grid-template-columns: 1fr; }
-  .hero-robot { display: none; }
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 78px; height: 92px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.38rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary { width: 100%; padding: 9px 16px; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
 }
 </style>
 </head>
@@ -479,26 +661,17 @@ footer {
 
 <div class="topbar">
   <div class="topbar-in">
-    <div><a href="../index.html">&larr; Voltar ao Portal Geral do CTE</a></div>
-    <div>Equipamento <strong>INV-217</strong> · Oficinas · Unidade Única</div>
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; Robô NAO V6</nav>
+    <span>CTE Informático</span>
   </div>
 </div>
 
 <header class="hero">
   <div class="hero-inner">
-    <div>
-      <div class="hero-badge">CTE Informático · Sistema de Ajuda Online · INV-217</div>
-      <h1>Robot Humanoide NAO V6</h1>
-      <p class="sub">Centro de apoio para professores e alunos que requisitam o Robot NAO V6 (modelo H25600) — do arranque seguro à programação em Choregraphe 2.8, diagnóstico interativo e manutenção técnica.</p>
-      <div class="hero-pills">
-        <span class="hero-pill"><strong>Idioma:</strong> Português</span>
-        <span class="hero-pill"><strong>Rede:</strong> Wi-Fi Escola ou Ethernet</span>
-        <span class="hero-pill"><strong>Software:</strong> Choregraphe 2.8 + Robô Virtual</span>
-        <span class="hero-pill"><strong>Mala:</strong> 4 itens (NAO · Carregador · RJ45 · Mala)</span>
-      </div>
-    </div>
-    <div class="hero-robot" aria-hidden="true">
-      <svg viewBox="0 0 120 150" width="96" height="122" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): substituir src por nao_v6_foto.jpg quando existir a fotografia do NAO do CTE -->
+      <img src="nao_v6.jpg" alt="Robô NAO V6 do CTE" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 120 150" width="84" height="106" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <ellipse cx="60" cy="28" rx="22" ry="18" fill="rgba(255,255,255,0.08)"/>
         <path d="M40 24 Q60 15 80 24" stroke="#FFB37B" stroke-width="2.2"/>
         <circle cx="51" cy="28" r="4.5" fill="#4CE0F5" stroke="none"/>
@@ -511,348 +684,394 @@ footer {
         <rect x="65" y="136" width="18" height="7" rx="3" fill="rgba(255,255,255,0.22)"/>
       </svg>
     </div>
+    <div class="hero-copy">
+      <h1>Pôr o NAO a funcionar na aula</h1>
+      <p class="sub">Do primeiro arranque à devolução, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+      </div>
+    </div>
   </div>
 </header>
 
-<!-- 4 PERCURSOS POR OBJETIVO -->
-<div class="paths-wrap">
-  <div class="paths-grid">
-    <a class="path-card" href="NAO_V6_Infografico_Inicio_Rapido.html">
-      <div>
-        <div class="path-tag">Início Rápido (5 min)</div>
-        <h2>Vou usar pela 1.ª vez</h2>
-        <p>Veja o infográfico A4 com os 6 passos, regras de segurança e faça o Quiz antes de mexer no robô.</p>
-      </div>
-      <span class="path-cta">Abrir Infográfico A4 &rarr;</span>
-    </a>
-    <a class="path-card teal" href="NAO_V6_Manual_Utilizador.html#s5">
-      <div>
-        <div class="path-tag">Sala de Aula &amp; Programação</div>
-        <h2>Quero programar em aula</h2>
-        <p>Instalar Choregraphe 2.8, trabalhar no Robô Virtual, ligar por Wi-Fi/Ethernet e 5 projetos em Português.</p>
-      </div>
-      <span class="path-cta">Ir para Programação &rarr;</span>
-    </a>
-    <a class="path-card red" href="#diagnostico">
-      <div>
-        <div class="path-tag">Ajuda Imediata</div>
-        <h2>Algo não está a funcionar</h2>
-        <p>Identifique a cor do LED do peito ou escolha o sintoma para ver logo a causa e a solução.</p>
-      </div>
-      <span class="path-cta">Abrir Diagnóstico &rarr;</span>
-    </a>
-    <a class="path-card blue" href="NAO_V6_Manual_Tecnico.html">
-      <div>
-        <div class="path-tag">Equipa CTE &amp; Docentes</div>
-        <h2>Área Técnica e Manutenção</h2>
-        <p>Consola web, rede escolar, gestão de bateria em férias, limpeza e protocolo de avarias.</p>
-      </div>
-      <span class="path-cta">Abrir Manual Técnico &rarr;</span>
-    </a>
-  </div>
-</div>
-
 <main class="container">
 
-  <!-- DESTAQUE: AJUDA IA (NOTEBOOKLM) -->
-  <section class="ai-banner" aria-label="Assistente de Ajuda IA">
-    <div class="ai-banner-info">
-      <div class="ai-icon" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/>
-          <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/>
-        </svg>
-      </div>
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
       <div>
-        <span class="ai-tag">Ajuda IA · Assistente Interativo (NotebookLM)</span>
-        <h2>Tem dúvidas? Pergunte ao Assistente IA do Robot NAO V6</h2>
-        <p>Coloque questões em Português sobre arranque, segurança, ligação ao Choregraphe 2.8, projetos ou resolução de problemas e obtenha respostas imediatas baseadas nos manuais do CTE.</p>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem antes de requisitar e utilizar o robô NAO V6 em sala de aula.</p>
       </div>
     </div>
-    <a class="ai-cta" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">
-      Colocar Questão à IA
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-    </a>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <!-- Passo 1 com vídeo embutido -->
+        <article class="step-card step-video">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o vídeo</h3></div>
+            <p>Ligar o NAO e descobrir o IP (1 min).</p>
+          </div>
+          <div class="video-box">
+            <video controls preload="metadata" src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4#t=0.5">
+              <!-- FASE 3 (P4): descomentar quando existir o ficheiro de legendas
+              <track kind="captions" src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.vtt" srclang="pt" label="Português" default>
+              -->
+              O seu navegador não suporta vídeo HTML5. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
+            </video>
+          </div>
+        </article>
+
+        <!-- Passos 2 a 5 -->
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Condução</h3></div>
+              <p>8 perguntas de segurança, com cartão para imprimir.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="NAO_V6_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Programar no Robô Virtual</h3></div>
+              <p>Instalar o Choregraphe 2.8 e testar sem o robô.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="NAO_V6_Manual_Utilizador.html#s5">Instalar &rarr;</a>
+              <a class="action-link teal" href="NAO_V6_Manual_Utilizador.html#s6">Robô Virtual &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Testar no NAO real</h3></div>
+              <p>Requisitar, ligar por Wi-Fi ou Ethernet e correr o programa.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Requisitar &#8599;</a>
+              <a class="action-link teal" href="NAO_V6_Manual_Utilizador.html#s7">Ligar ao NAO &rarr;</a>
+              <a class="action-link teal" href="NAO_V6_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Devolver</h3></div>
+              <p>6 verificações antes de entregar.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- SECÇÃO 1: DIAGNÓSTICO INTERATIVO -->
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pelo LED do peito ou sintoma.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Ideias de projetos</h3>
+          <p>5 mini-projetos progressivos em Português (Choregraphe e Python).</p>
+        </div>
+        <!-- FASE 3 (P2): atualizar href para NAO_V6_Projetos.html quando existir -->
+        <a class="action-link teal" href="NAO_V6_Manual_Utilizador.html#s8">Ver mini-projetos &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais do CTE.</p>
+          <p class="shortcut-note">Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Sem conta? Use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
   <section class="card-section" id="diagnostico">
     <div class="sec-head">
       <div>
-        <h2>Diagnóstico Rápido Interativo (LEDs &amp; Problemas Comuns)</h2>
-        <p>Clique no estado luminoso do botão do peito ou no sintoma observado durante a aula.</p>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione a cor da luz do botão do peito ou o sintoma observado durante a aula.</p>
       </div>
-      <a class="btn" href="NAO_V6_Manual_Tecnico.html#t5">Ver tabela completa (10 casos) &rarr;</a>
+      <a class="btn" href="NAO_V6_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
     </div>
     <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias de apoio no diagnóstico:
+           nao_v6_botao_peito.jpg (botão do peito em grande plano)
+           nao_v6_tampa_ethernet.jpg (tampa atrás da cabeça aberta)
+           chor_autonomous_life.png (ícone do coração no Choregraphe) -->
       <div class="diag-grid">
         <div>
-          <h3 style="margin:0 0 10px;font-size:0.96rem;color:var(--dark)">1. O que indica a luz do Botão do Peito?</h3>
+          <h3 class="diag-sub">1. Luz do botão do peito</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="boot"><span class="led-orb orb-pulse"></span>Branco a pulsar</button>
-            <button type="button" class="led-btn" data-led="ready"><span class="led-orb orb-white"></span>Branco fixo</button>
-            <button type="button" class="led-btn" data-led="green"><span class="led-orb orb-green"></span>Verde fixo</button>
-            <button type="button" class="led-btn" data-led="amber"><span class="led-orb orb-amber"></span>Amarelo / Laranja</button>
-            <button type="button" class="led-btn" data-led="red"><span class="led-orb orb-red"></span>Vermelho a piscar</button>
-            <button type="button" class="led-btn" data-led="flash"><span class="led-orb orb-blue"></span>Flashes / Azul</button>
+            <button type="button" class="led-btn active" data-led="boot" aria-pressed="true"><span class="led-orb orb-pulse"></span>Branco a pulsar</button>
+            <button type="button" class="led-btn" data-led="ready" aria-pressed="false"><span class="led-orb orb-white"></span>Branco fixo</button>
+            <button type="button" class="led-btn" data-led="green" aria-pressed="false"><span class="led-orb orb-green"></span>Verde fixo</button>
+            <button type="button" class="led-btn" data-led="amber" aria-pressed="false"><span class="led-orb orb-amber"></span>Amarelo / Laranja</button>
+            <button type="button" class="led-btn" data-led="red" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="flash" aria-pressed="false"><span class="led-orb orb-blue"></span>Flashes / Azul</button>
           </div>
-          <div class="diag-panel" id="ledResult"></div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
 
         <div>
-          <h3 style="margin:0 0 10px;font-size:0.96rem;color:var(--dark)">2. Qual é o problema em sala de aula?</h3>
+          <h3 class="diag-sub">2. Problema em sala de aula</h3>
           <div class="sym-pills" id="symButtons">
-            <button type="button" class="sym-btn active" data-sym="noip">Sem IP / Sem Wi-Fi</button>
-            <button type="button" class="sym-btn" data-sym="notfound">Choregraphe não deteta</button>
-            <button type="button" class="sym-btn" data-sym="life">Mexe-se sozinho</button>
-            <button type="button" class="sym-btn" data-sym="stiff">Motores não mexem</button>
-            <button type="button" class="sym-btn" data-sym="heat">Sobreaquecimento</button>
-            <button type="button" class="sym-btn" data-sym="fall">Cai ao andar</button>
-            <button type="button" class="sym-btn" data-sym="lang">Voz / Português</button>
-            <button type="button" class="sym-btn" data-sym="freeze">Totalmente bloqueado</button>
+            <button type="button" class="sym-btn active" data-sym="noip" aria-pressed="true">Sem IP / Sem Wi-Fi</button>
+            <button type="button" class="sym-btn" data-sym="notfound" aria-pressed="false">Choregraphe não deteta</button>
+            <button type="button" class="sym-btn" data-sym="life" aria-pressed="false">Mexe-se sozinho</button>
+            <button type="button" class="sym-btn" data-sym="stiff" aria-pressed="false">Motores não mexem</button>
+            <button type="button" class="sym-btn" data-sym="heat" aria-pressed="false">Sobreaquecimento</button>
+            <button type="button" class="sym-btn" data-sym="fall" aria-pressed="false">Cai ao andar</button>
+            <button type="button" class="sym-btn" data-sym="lang" aria-pressed="false">Voz / Português</button>
+            <button type="button" class="sym-btn" data-sym="freeze" aria-pressed="false">Totalmente bloqueado</button>
           </div>
-          <div class="diag-panel warn" id="symResult"></div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECÇÃO 2: TODOS OS DOCUMENTOS E GUIAS -->
+  <!-- 4. DOCUMENTOS (5 LINHAS COMPACTAS) -->
   <section class="card-section" id="documentos">
     <div class="sec-head">
       <div>
-        <h2>Biblioteca de Manuais, Guias e Ferramentas Online</h2>
-        <p>Versões web interativas para consultar no ecrã e ficheiros editáveis (Word, PowerPoint, PDF e Markdown) para sala de aula.</p>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e ficheiros prontos a imprimir ou editar.</p>
       </div>
     </div>
     <div class="sec-body">
-      <div class="docs-grid">
-        <a class="doc-card" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-md">Ajuda IA · NotebookLM</span>
-            <h3>Assistente IA — Colocar Questões</h3>
-            <p>Aceda ao assistente interativo com Inteligência Artificial treinado na documentação do NAO V6 do CTE para esclarecer dúvidas em tempo real.</p>
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="NAO_V6_Infografico_Inicio_Rapido.html">Ver online</a>
+            <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido_ecra.webp" target="_blank" rel="noopener noreferrer">Ver imagem (150 KB)</a>
+            <a class="fmt-link" href="Gui%C3%A3o_R%C3%A1pido_do_Robo_Humanoide.png" download>Imprimir (PNG · 4,4 MB)</a>
+            <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido.pdf">PDF · 86 KB</a>
+            <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido.docx">Word · 7 KB</a>
           </div>
-          <div class="doc-foot"><span class="doc-file">notebook.google.com</span><span class="doc-cta">Abrir IA &#8599;</span></div>
-        </a>
-
-        <a class="doc-card" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">
-          <div>
-            <span class="fmt-badge fmt-md">Vídeo · .MP4</span>
-            <h3>Como Ligar o Robô NAO e Descobrir o IP</h3>
-            <p>Vídeo tutorial prático com o arranque seguro do Robot NAO V6 (INV-217) e como obter o endereço IP através do botão do peito.</p>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador e Programação</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="NAO_V6_Manual_Utilizador.html">Ver online</a>
+            <a class="fmt-link" href="NAO_V6_Manual_Utilizador.docx">Word · 10 KB</a>
           </div>
-          <div class="doc-foot"><span class="doc-file">Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4</span><span class="doc-cta">Ver vídeo &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Infografico_Inicio_Rapido.html">
-          <div>
-            <span class="fmt-badge fmt-html">HTML · Infográfico A4</span>
-            <h3>Infográfico de Início Rápido</h3>
-            <p>Folha visual pronta a imprimir em A4 (para plastificar na mala) com os 6 passos, anatomia, botão do peito, LEDs e 5 regras de ouro.</p>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Apresentação para a 1.ª aula (10 diapositivos)</span>
+          <div class="doc-formats">
+            <a class="fmt-link" href="NAO_V6_Apresentacao_Sala_Aula.pptx">PowerPoint · 39 KB</a>
           </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Infografico_Inicio_Rapido.html</span><span class="doc-cta">Abrir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="Gui%C3%A3o_R%C3%A1pido_do_Robo_Humanoide.png">
-          <div>
-            <span class="fmt-badge fmt-png">Imagem · .PNG</span>
-            <h3>Infográfico — Guião Rápido do Robô Humanoide</h3>
-            <p>Infográfico visual em alta resolução (PNG) pronto para projeção rápida em sala de aula ou impressão junto do equipamento.</p>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Vídeo: ligar o NAO e descobrir o IP</span>
+          <div class="doc-formats">
+            <a class="fmt-link" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" download>Transferir MP4 · 5,7 MB</a>
           </div>
-          <div class="doc-foot"><span class="doc-file">Guião_Rápido_do_Robo_Humanoide.png</span><span class="doc-cta">Ver imagem &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Manual_Utilizador.html">
-          <div>
-            <span class="fmt-badge fmt-html">HTML · Manual Web</span>
-            <h3>Manual de Utilizador e Programação</h3>
-            <p>Guia completo com instalação do Choregraphe 2.8, Robô Virtual, ligação Wi-Fi/Ethernet, 5 mini-projetos em Português (incl. Python) e checklists.</p>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Condução</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="NAO_V6_Quiz_Habilitacao.html">Fazer o quiz</a>
           </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Manual_Utilizador.html</span><span class="doc-cta">Abrir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Manual_Tecnico.html">
-          <div>
-            <span class="fmt-badge fmt-html">HTML · Área Técnica</span>
-            <h3>Manual Técnico e Manutenção</h3>
-            <p>Consola web interna, limitações de Wi-Fi escolar, configuração via Ethernet, manutenção de bateria, limpeza e 10 cenários de troubleshooting.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Manual_Tecnico.html</span><span class="doc-cta">Abrir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Quiz_Habilitacao.html">
-          <div>
-            <span class="fmt-badge fmt-quiz">Quiz · Interativo</span>
-            <h3>Carta de Condução do NAO V6</h3>
-            <p>Questionário rápido de 8 perguntas de segurança e operação com explicação imediata e cartão de habilitação imprimível para os alunos.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Quiz_Habilitacao.html</span><span class="doc-cta">Fazer Quiz &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Apresentacao_Sala_Aula.pptx">
-          <div>
-            <span class="fmt-badge fmt-pptx">PowerPoint · .PPTX</span>
-            <h3>Apresentação de Sala de Aula (10 Slides)</h3>
-            <p>Diapositivos com notas do orador para o professor projetar antes da 1.ª aula: anatomia, segurança, Robô Virtual, Choregraphe e devolução.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Apresentacao_Sala_Aula.pptx</span><span class="doc-cta">Transferir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Guia_Inicio_Rapido.pdf">
-          <div>
-            <span class="fmt-badge fmt-pdf">PDF · Pronto a Imprimir</span>
-            <h3>Guia de Início Rápido (PDF)</h3>
-            <p>Versão PDF limpa e portátil para impressão imediata ou partilha rápida com alunos e professores no Moodle / Google Classroom.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Guia_Inicio_Rapido.pdf</span><span class="doc-cta">Abrir PDF &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Guia_Inicio_Rapido.docx">
-          <div>
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <h3>Guia de Início Rápido (Word)</h3>
-            <p>Versão editável em Word do guia resumido para adaptar a qualquer disciplina ou ficha de trabalho da escola.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Guia_Inicio_Rapido.docx</span><span class="doc-cta">Transferir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Manual_Utilizador.docx">
-          <div>
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <h3>Manual de Utilizador (Word)</h3>
-            <p>Documento Word completo e editável do Manual de Utilizador, Choregraphe 2.8, projetos em Português e tabela de requisições.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Manual_Utilizador.docx</span><span class="doc-cta">Transferir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Manual_Tecnico.docx">
-          <div>
-            <span class="fmt-badge fmt-docx">Word · .DOCX</span>
-            <h3>Manual Técnico (Word)</h3>
-            <p>Documento Word editável para o dossier técnico das Oficinas do CTE (rede, manutenção, troubleshooting e ficha de inspeção).</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Manual_Tecnico.docx</span><span class="doc-cta">Transferir &rarr;</span></div>
-        </a>
-
-        <a class="doc-card" href="NAO_V6_Base_Conhecimento_NotebookLM.md">
-          <div>
-            <span class="fmt-badge fmt-md">Markdown · NotebookLM</span>
-            <h3>Documento-Fonte &amp; Prompts NotebookLM</h3>
-            <p>Base de conhecimento mestre estruturada com 5 prompts prontos a copiar para gerar vídeos, podcasts e slides no Google NotebookLM / Gemini.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">NAO_V6_Base_Conhecimento_NotebookLM.md</span><span class="doc-cta">Abrir &rarr;</span></div>
-        </a>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- SECÇÃO 3: VÍDEO TUTORIAL -->
-  <section class="card-section" id="video-tutorial">
+  <!-- 5. CHECKLIST DE DEVOLUÇÃO -->
+  <section class="card-section" id="devolucao">
     <div class="sec-head">
       <div>
-        <h2>Vídeo Tutorial — Como Ligar o Robô NAO e Descobrir o Seu IP</h2>
-        <p>Veja o passo a passo antes de iniciar a sua primeira sessão prática com o Robot NAO V6 (<code>INV-217</code>).</p>
-      </div>
-      <a class="btn" href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" target="_blank" rel="noopener noreferrer">Abrir / Transferir Vídeo (.MP4) &rarr;</a>
-    </div>
-    <div class="sec-body">
-      <div class="video-wrap">
-        <video controls preload="metadata">
-          <source src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4" type="video/mp4">
-          O seu navegador não suporta reprodução de vídeo. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECÇÃO 4: CHECKLIST RÁPIDA DE DEVOLUÇÃO -->
-  <section class="card-section" id="checklist">
-    <div class="sec-head">
-      <div>
-        <h2>Checklist Rápida de Devolução (Mala <code>INV-217</code>)</h2>
-        <p>Marque os 6 pontos antes de entregar o equipamento no CTE / Oficinas.</p>
+        <h2>Checklist de devolução</h2>
+        <p>Confirme os 6 pontos antes de entregar a mala no CTE (as marcações limpam-se automaticamente ao fim de 4 h).</p>
       </div>
       <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
     </div>
     <div class="sec-body">
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia da mala aberta com os 4 itens
+      <figure style="margin:0 0 14px">
+        <img src="nao_v6_mala.jpg" alt="Mala aberta do NAO V6 com os 4 itens: robô, carregador 25,2 V, cabo Ethernet e mala" loading="lazy" style="width:100%;max-width:680px;border-radius:10px;border:1px solid var(--line)">
+      </figure>
+      -->
       <ul class="check-grid">
         <li><label><input type="checkbox" id="hub-c1"><span><strong>1. Aplicações limpas:</strong> Comportamentos de teste parados/removidos.</span></label></li>
-        <li><label><input type="checkbox" id="hub-c2"><span><strong>2. Encerramento seguro:</strong> Postura <em>Crouch</em> → ~3 s peito → <strong>todos os LEDs apagados</strong>.</span></label></li>
+        <li><label><input type="checkbox" id="hub-c2"><span><strong>2. Encerramento seguro:</strong> Postura <em>Crouch</em> &rarr; ~3 s peito &rarr; <strong>todos os LEDs apagados</strong>.</span></label></li>
         <li><label><input type="checkbox" id="hub-c3"><span><strong>3. Cabos e tampa:</strong> Carregador e cabo Ethernet desligados; tampa traseira fechada.</span></label></li>
         <li><label><input type="checkbox" id="hub-c4"><span><strong>4. Mala completa (4 itens):</strong> NAO V6, Carregador 25,2 V, Cabo Ethernet e Mala.</span></label></li>
         <li><label><input type="checkbox" id="hub-c5"><span><strong>5. Inspeção visual:</strong> Sem marcas de queda, peças soltas ou cabos danificados.</span></label></li>
         <li><label><input type="checkbox" id="hub-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar se bateria &lt; 30% ou se houve qualquer anomalia.</span></label></li>
       </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Tudo pronto para devolver.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar devolução &#8599;</a>
+      </div>
     </div>
   </section>
 
-  <!-- SECÇÃO 4: AJUDA EXTRA (5 SITES E VÍDEOS RECOMENDADOS) -->
-  <section class="card-section" id="ajuda-extra">
-    <div class="sec-head">
-      <div>
-        <h2>Ajuda Extra — 5 Sites e Vídeos Recomendados</h2>
-        <p>Seleção de fontes oficiais, pedagógicas, técnicas e científicas para aprofundar o trabalho com o Robot NAO V6.</p>
+  <!-- 6. SECÇÕES RECOLHIDAS (DOCENTES/CTE + FICHA DO EQUIPAMENTO) -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico e Manutenção</strong> (rede escolar, BMS/bateria, limpeza e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="NAO_V6_Manual_Tecnico.html">Ver online</a>
+              <a class="fmt-link" href="NAO_V6_Manual_Tecnico.docx">Word · 9 KB</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento mestre)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="NAO_V6_Base_Conhecimento_NotebookLM.md">Markdown · 34 KB</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Línguas, Inclusão, Matemática/Física, Dias Abertos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="NAO_V6_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
       </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-217 · Oficinas (unidade única)</li>
+          <li><strong>Modelo e sistema:</strong> H25600 · NAOqi 2.8</li>
+          <li><strong>Idioma configurado:</strong> Português</li>
+          <li><strong>Rede:</strong> Wi-Fi da escola ou cabo Ethernet (RJ45)</li>
+          <li><strong>Software:</strong> Choregraphe 2.8 + Robô Virtual</li>
+          <li><strong>Mala (4 itens):</strong> NAO V6, carregador 25,2 V, cabo Ethernet RJ45 e mala</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
     </div>
     <div class="sec-body">
-      <div class="docs-grid">
-        <a class="doc-card" href="https://doc.aldebaran.com/2-8/nao_user/index.html" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-html">Técnico · Oficial</span>
-            <h3>Guia Oficial do Utilizador NAO6 (NAOqi 2.8)</h3>
-            <p>Documentação técnica primária da Aldebaran sobre primeiros passos, segurança física, botão do peito, bateria, rede e manutenção do NAO V6.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir site &#8599;</span></div>
-        </a>
-
-        <a class="doc-card" href="https://doc.aldebaran.com/2-8/software/choregraphe/index.html" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-docx">Pedagógico · Software</span>
-            <h3>Documentação Oficial do Choregraphe 2.8</h3>
-            <p>Manual estruturado da interface Choregraphe 2.8: diagramas de fluxo, biblioteca de caixas, Timeline, diálogos e simulação no Robô Virtual.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir guia &#8599;</span></div>
-        </a>
-
-        <a class="doc-card" href="https://doc.aldebaran.com/2-8/dev/python/index.html" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-pptx">Técnico · Programação</span>
-            <h3>NAOqi 2.8 — Python SDK &amp; Tutoriais</h3>
-            <p>Referência técnica e tutoriais práticos dos módulos Python (<code>ALTextToSpeech</code>, <code>ALMotion</code>, <code>ALLeds</code>, eventos e sensores) para projetos avançados.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">doc.aldebaran.com</span><span class="doc-cta">Abrir SDK &#8599;</span></div>
-        </a>
-
-        <a class="doc-card" href="https://spl.robocup.org/" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-md">Científico · Investigação</span>
-            <h3>RoboCup Standard Platform League (SPL)</h3>
-            <p>Competição científica internacional de robótica humanoide autónoma baseada no NAO, com desafios reais de visão computacional e IA que inspiram projetos escolares.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">spl.robocup.org</span><span class="doc-cta">Explorar &#8599;</span></div>
-        </a>
-
-        <a class="doc-card" href="https://www.youtube.com/@RoboPhil/playlists" target="_blank" rel="noopener noreferrer">
-          <div>
-            <span class="fmt-badge fmt-pdf">Vídeos · Pedagógico</span>
-            <h3>Tutoriais em Vídeo NAO &amp; Choregraphe (RoboPhil)</h3>
-            <p>Listas de reprodução passo a passo no YouTube para iniciantes e intermédios: programação visual no Choregraphe, sensores, fala e integração em Python.</p>
-          </div>
-          <div class="doc-foot"><span class="doc-file">youtube.com/@RoboPhil</span><span class="doc-cta">Ver vídeos &#8599;</span></div>
-        </a>
-      </div>
+      <ul class="ext-list">
+        <li>
+          <a href="https://doc.aldebaran.com/2-8/family/nao_user_guide/index.html" target="_blank" rel="noopener noreferrer">Guia Oficial do Utilizador NAO6 (NAOqi 2.8) &#8599;</a>
+          <p>Primeiros passos, segurança, bateria e manutenção.</p>
+        </li>
+        <li>
+          <a href="https://doc.aldebaran.com/2-8/family/nao_user_guide/chest_button_usages.html" target="_blank" rel="noopener noreferrer">Botão do peito — o que faz cada toque (oficial) &#8599;</a>
+          <p>Significado oficial de cada clique e LED do peito.</p>
+        </li>
+        <li>
+          <a href="https://doc.aldebaran.com/2-8/software/choregraphe/index.html" target="_blank" rel="noopener noreferrer">Documentação Oficial do Choregraphe 2.8 &#8599;</a>
+          <p>Interface, caixas, Timeline e Robô Virtual.</p>
+        </li>
+        <li>
+          <a href="https://doc.aldebaran.com/2-8/software/choregraphe/tutos/index.html" target="_blank" rel="noopener noreferrer">Tutoriais Oficiais do Choregraphe 2.8 &#8599;</a>
+          <p>Exercícios passo a passo para programar comportamentos.</p>
+        </li>
+        <li>
+          <a href="https://doc.aldebaran.com/2-8/dev/python/index.html" target="_blank" rel="noopener noreferrer">NAOqi 2.8 — Python SDK e Tutoriais &#8599;</a>
+          <p>Referência dos módulos Python para projetos avançados.</p>
+        </li>
+        <li>
+          <a href="https://spl.robocup.org/" target="_blank" rel="noopener noreferrer">RoboCup Standard Platform League (SPL) &#8599;</a>
+          <p>Competição internacional com robôs NAO (visão e IA).</p>
+        </li>
+      </ul>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <strong>CTE Informático</strong> · Sistema de Ajuda Online do Robot NAO V6 (H25600 · <code>INV-217</code>) · <a href="../index.html" style="color:var(--teal)">Voltar ao Portal Geral</a>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online do Robô NAO V6 · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
 </footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
 
 <script>
 (function() {
+  var CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
+    urlRequisicao: "",          // formulário de requisição do NAO
+    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+    checklistValidadeHoras: 4
+  };
+
+  // Fallback seguro da imagem do topo para o SVG do robô
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  // Elementos dependentes de CONFIG
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  // Dados de diagnóstico (mantidos intactos)
   var LED_INFO = {
     boot: {
       cls: "",
@@ -943,25 +1162,39 @@ footer {
     }
   };
 
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="NAO_V6_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) {
+      html += ' · Contacte o CTE: ' + contactShort;
+    }
+    html += '</div>';
+    return html;
+  }
+
   var ledRes = document.getElementById("ledResult");
   var symRes = document.getElementById("symResult");
 
   function renderLed(key) {
     var d = LED_INFO[key];
     ledRes.className = "diag-panel " + d.cls;
-    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>";
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
   }
   function renderSym(key) {
     var d = SYM_INFO[key];
     symRes.className = "diag-panel " + d.cls;
-    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>";
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
   }
 
   var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
   ledBtns.forEach(function(b) {
     b.addEventListener("click", function() {
-      ledBtns.forEach(function(x) { x.classList.remove("active"); });
+      ledBtns.forEach(function(x) {
+        x.classList.remove("active");
+        x.setAttribute("aria-pressed", "false");
+      });
       b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
       renderLed(b.getAttribute("data-led"));
     });
   });
@@ -969,8 +1202,12 @@ footer {
   var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
   symBtns.forEach(function(b) {
     b.addEventListener("click", function() {
-      symBtns.forEach(function(x) { x.classList.remove("active"); });
+      symBtns.forEach(function(x) {
+        x.classList.remove("active");
+        x.setAttribute("aria-pressed", "false");
+      });
       b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
       renderSym(b.getAttribute("data-sym"));
     });
   });
@@ -978,22 +1215,48 @@ footer {
   renderLed("boot");
   renderSym("noip");
 
-  // Checklist persistente
+  // Checklist de devolução com validade de CONFIG.checklistValidadeHoras
   var KEY = "nao-v6-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
   var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
   var saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) {
+      saved = raw.itens;
+    } else if (raw) {
+      localStorage.removeItem(KEY);
+    }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
   boxes.forEach(function(b) {
     b.checked = !!saved[b.id];
     b.addEventListener("change", function() {
       saved[b.id] = b.checked;
-      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
     });
   });
+  syncReturnState();
+
   document.getElementById("hubResetCheck").addEventListener("click", function() {
     boxes.forEach(function(b) { b.checked = false; });
     saved = {};
     try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
   });
 })();
 </script>

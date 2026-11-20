@@ -3,18 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carta de Condução do Robot NAO V6 — Quiz de Habilitação (CTE)</title>
+<title>Carta de Condução do Robô NAO V6 — Quiz de Habilitação (CTE)</title>
+<meta name="description" content="Ajuda rápida para usar o robô NAO V6 do CTE: arranque, programação no Choregraphe, diagnóstico de problemas e devolução.">
+<meta property="og:title" content="Carta de Condução do Robô NAO V6 — CTE Informático">
+<meta property="og:description" content="Verificação rápida de 8 perguntas de segurança e operação do robô NAO V6, com cartão de habilitação imprimível e código de verificação.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Cellipse cx='32' cy='24' rx='16' ry='13' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='25' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Ccircle cx='39' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Crect x='20' y='40' width='24' height='15' rx='6' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='47' r='4' fill='%23E8711C'/%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F4F6;
   --green: #1E8449;
+  --green-text: #17693A;
   --green-soft: #E8F6EF;
   --red: #C0392B;
+  --red-text: #A93226;
   --red-soft: #FBE9E7;
   --light: #F3F6F9;
   --line: #D5DCE3;
@@ -36,7 +47,7 @@ body {
 header.hero {
   background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
   color: #fff;
-  padding: 28px 24px 24px;
+  padding: 26px 24px 24px;
   border-bottom: 4px solid var(--acc);
 }
 .hero-inner {
@@ -49,30 +60,30 @@ header.hero {
   flex-wrap: wrap;
 }
 .crumb {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: #C7D6E5;
   margin-bottom: 6px;
 }
-.crumb a { color: #FFD2B3; text-decoration: none; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
 .crumb a:hover { text-decoration: underline; }
-.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.15rem); }
-.hero p { margin: 6px 0 0; color: #C7D6E5; font-size: 0.96rem; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
 .nav-btn {
   text-decoration: none;
   background: rgba(255,255,255,0.12);
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.24);
-  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 9px 15px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
 }
-.nav-btn:hover { background: var(--acc); border-color: var(--acc); }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
 
 main {
   max-width: 880px;
   width: 100%;
-  margin: 24px auto 48px;
+  margin: 24px auto 40px;
   padding: 0 20px;
   flex: 1;
 }
@@ -88,7 +99,7 @@ main {
 .progress-top {
   display: flex;
   justify-content: space-between;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--grey);
   margin-bottom: 8px;
@@ -109,13 +120,13 @@ main {
 
 .q-badge {
   display: inline-block;
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   background: var(--teal-soft);
-  color: var(--teal);
-  padding: 3px 10px;
+  color: var(--teal-text);
+  padding: 3px 11px;
   border-radius: 999px;
   margin-bottom: 10px;
 }
@@ -145,7 +156,7 @@ main {
   transition: all 0.15s ease;
 }
 .opt-btn:hover:not(:disabled) {
-  border-color: var(--acc);
+  border-color: var(--acc-btn);
   background: var(--acc-soft);
 }
 .opt-btn:disabled { cursor: default; }
@@ -156,7 +167,7 @@ main {
   background: #fff;
   border: 1px solid var(--line);
   font-weight: 800;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -165,15 +176,15 @@ main {
 .opt-btn.correct {
   background: var(--green-soft);
   border-color: var(--green);
-  color: #145A32;
+  color: #124C2A;
 }
-.opt-btn.correct .opt-letter { background: var(--green); color: #fff; border-color: var(--green); }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
 .opt-btn.wrong {
   background: var(--red-soft);
   border-color: var(--red);
-  color: #78281F;
+  color: #6B2119;
 }
-.opt-btn.wrong .opt-letter { background: var(--red); color: #fff; border-color: var(--red); }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
 
 .feedback {
   display: none;
@@ -183,8 +194,8 @@ main {
   font-size: 0.94rem;
   border: 1px solid;
 }
-.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #145A32; }
-.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #78281F; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
 
 .q-actions {
   margin-top: 18px;
@@ -198,46 +209,91 @@ main {
   font-weight: 700;
   padding: 10px 18px;
   border-radius: 8px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   background: #fff;
   color: var(--dark);
   cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-.btn:hover { border-color: var(--acc); color: var(--acc); }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
 .btn-primary {
-  background: var(--acc);
-  border-color: var(--acc);
+  background: var(--acc-btn);
+  border-color: var(--acc-btn);
   color: #fff;
 }
-.btn-primary:hover { background: #cf5e0e; color: #fff; }
-.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
 
-/* Certificado */
+/* Resultados e falhas críticas */
 .result-card { display: none; text-align: center; }
 .score-big {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 900;
   margin: 8px 0 4px;
 }
-.score-big.pass { color: var(--green); }
-.score-big.fail { color: var(--red); }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
 
+.crit-alert {
+  display: none;
+  max-width: 640px;
+  margin: 16px auto;
+  text-align: left;
+  background: var(--red-soft);
+  border: 1.5px solid #E5B4AE;
+  border-left: 5px solid var(--red);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #5D1B14;
+  font-size: 0.92rem;
+}
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+/* Formulário do Cartão */
 .cert-form {
-  max-width: 460px;
-  margin: 18px auto;
+  max-width: 520px;
+  margin: 18px auto 14px;
   display: grid;
-  grid-template-columns: 1fr 140px;
-  gap: 10px;
+  grid-template-columns: 1fr 165px;
+  gap: 12px;
   text-align: left;
 }
-.cert-form label { font-size: 0.8rem; font-weight: 700; color: var(--grey); display: block; margin-bottom: 4px; }
+.cert-form label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 4px;
+}
+.cert-form .req { color: var(--red-text); }
 .cert-form input {
   width: 100%;
   font: inherit;
+  font-size: 0.95rem;
   padding: 9px 12px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   border-radius: 8px;
+  background: #fff;
+  color: var(--text);
 }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err {
+  display: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--red-text);
+  margin-top: 4px;
+}
+.field-err.show { display: block; }
+
 .certificate {
   display: none;
   margin: 22px auto 10px;
@@ -257,39 +313,82 @@ main {
   border-radius: 4px;
   margin-bottom: 16px;
 }
-.cert-tag { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
-.certificate h2 { margin: 6px 0 4px; font-size: 1.6rem; color: var(--dark); }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
 .cert-name {
   font-size: 1.45rem;
   font-weight: 800;
-  color: var(--acc);
+  color: var(--acc-text);
   margin: 12px 0 4px;
   border-bottom: 2px solid var(--line);
   display: inline-block;
   padding: 0 24px 4px;
 }
+.cert-code-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--light);
+  border: 1px solid var(--line);
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+.cert-code-box code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--dark);
+}
 .cert-meta {
   display: flex;
   justify-content: space-between;
-  margin-top: 22px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
   padding-top: 12px;
   border-top: 1px dashed var(--line);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: var(--grey);
 }
 
 footer {
   text-align: center;
-  padding: 18px;
-  font-size: 0.84rem;
+  padding: 20px 24px 96px;
+  font-size: 0.86rem;
   color: var(--grey);
   border-top: 1px solid var(--line);
   background: #fff;
 }
 
+/* Botão flutuante Ajuda (canto inferior esquerdo) */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
 @media print {
-  header.hero, .progress-card, .q-card, .no-print, footer { display: none !important; }
-  body { background: #fff; }
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
   main { margin: 0; max-width: none; padding: 0; }
   .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
   .certificate { display: block !important; max-width: none; }
@@ -304,11 +403,11 @@ footer {
 <header class="hero">
   <div class="hero-inner">
     <div>
-      <div class="crumb"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Robot NAO V6</a> &rsaquo; Quiz de Habilitação</div>
-      <h1>Carta de Condução do Robot NAO V6</h1>
-      <p>Valide em 2 minutos se domina as regras de segurança e operação antes de manusear o NAO físico (<code>INV-217</code>).</p>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Robô NAO V6</a> &rsaquo; Carta de Condução</nav>
+      <h1>Carta de Condução do Robô NAO V6</h1>
+      <p>Valide em 2 minutos as regras de segurança e operação antes de manusear o NAO físico (<code>INV-217</code>).</p>
     </div>
-    <a class="nav-btn" href="index.html">&larr; Voltar ao Hub NAO V6</a>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página do NAO</a>
   </div>
 </header>
 
@@ -325,9 +424,9 @@ footer {
     <span class="q-badge" id="qCat">Segurança</span>
     <h2 class="q-title" id="qText"></h2>
     <div class="options" id="optionsBox"></div>
-    <div class="feedback" id="feedbackBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
     <div class="q-actions">
-      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima Pergunta &rarr;</button>
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
     </div>
   </section>
 
@@ -335,38 +434,46 @@ footer {
     <div class="no-print">
       <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
       <div class="score-big" id="resScore">0 / 8</div>
-      <p id="resMsg" style="color:var(--grey);max-width:560px;margin:0 auto 14px"></p>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
 
       <div id="passControls" style="display:none">
         <div class="cert-form">
           <div>
-            <label for="studentName">Nome do Aluno / Utilizador</label>
-            <input type="text" id="studentName" placeholder="Ex.: Ana Silva">
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
           </div>
           <div>
-            <label for="studentClass">Turma / Grupo</label>
-            <input type="text" id="studentClass" placeholder="Ex.: 11.º GPSI">
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º GPSI">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
           </div>
         </div>
         <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
           <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
-          <button class="btn" type="button" id="retryBtnPass">Repetir Quiz</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
         </div>
       </div>
 
       <div id="failControls" style="display:none;margin-top:14px">
-        <a class="btn" href="NAO_V6_Infografico_Inicio_Rapido.html" style="text-decoration:none;margin-right:8px">Rever Infográfico Rápido</a>
-        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar Novamente</button>
+        <a class="btn" href="NAO_V6_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
       </div>
     </div>
 
     <div class="certificate" id="certificateBox">
       <div class="cert-tag">CTE Informático · Equipamento INV-217</div>
-      <h2>Cartão de Habilitação — Robot NAO V6</h2>
-      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação do Robot Humanoide NAO V6 (H25600).</p>
-      <div class="cert-name" id="certNamePreview">Nome do Utilizador</div>
-      <div style="font-size:0.9rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
-      <div style="margin-top:12px;font-size:0.86rem;color:var(--green);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%)</div>
+      <h2>Cartão de Habilitação — Robô NAO V6</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação do Robô Humanoide NAO V6 (H25600).</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
       <div class="cert-meta">
         <span>Data: <strong id="certDate"></strong></span>
         <span>Visto do Professor: _______________________</span>
@@ -376,112 +483,236 @@ footer {
 </main>
 
 <footer>
-  <strong>CTE Informático</strong> · Quiz Interativo de Segurança · Robot NAO V6 (<code>INV-217</code>) · Mínimo de aprovação: <strong>6 em 8 (75%)</strong>
+  <strong>CTE Informático</strong> · Carta de Condução do Robô NAO V6 (<code>INV-217</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
 </footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
 
 <script>
 (function() {
   var QUESTIONS = [
     {
-      cat: "Segurança Física",
-      q: "Qual é a única forma correta de levantar e transportar o Robot NAO V6?",
+      cat: "Segurança física",
+      critica: true,
+      q: "Como se deve levantar e transportar o NAO?",
       opts: [
-        "Segurá-lo pelos dois braços para o manter equilibrado.",
-        "Segurá-lo firmemente com as duas mãos pelo tronco/cintura.",
-        "Pegar-lhe pela cabeça e por uma perna.",
-        "Arrastá-lo suavemente pelos pés no chão."
+        "Pelos dois braços, para o manter bem equilibrado no ar.",
+        "Com as duas mãos à volta do tronco, junto à cintura.",
+        "Pela cabeça, que é a parte mais robusta do robô.",
+        "Pelas pernas, mantendo-o virado para o chão."
       ],
       ans: 1,
-      exp: "Deve segurar sempre o NAO V6 com as duas mãos à volta do tronco/cintura. Pegar pela cabeça, braços ou pernas danifica os motores e engrenagens."
+      exp: "Segure sempre o NAO com as duas mãos à volta do tronco/cintura. Pegar pela cabeça, braços ou pernas pode danificar motores e engrenagens."
     },
     {
-      cat: "Proteção dos Motores",
-      q: "O braço do NAO está numa posição incómoda e os motores estão rígidos (Stiffness ON). O que deve fazer?",
+      cat: "Proteção dos motores",
+      critica: true,
+      q: "Os motores estão rígidos e um braço ficou numa posição incómoda. O que deve fazer?",
       opts: [
-        "Dobrar o braço devagar à força até ficar no lugar.",
-        "Puxar a bateria para fora enquanto está ligado.",
-        "Dar 2 cliques rápidos no botão do peito (ou clicar em Rest no Choregraphe) para libertar os motores antes de mexer.",
-        "Empurrar suavemente o ombro até ouvir um estalido."
+        "Dobrar o braço devagar até voltar ao lugar.",
+        "Empurrar o ombro devagar até ouvir um pequeno estalido.",
+        "Pôr o robô em descanso (Rest) e só depois mexer.",
+        "Retirar a bateria com o robô ainda ligado."
       ],
       ans: 2,
-      exp: "Nunca force uma articulação rígida! Liberte primeiro a rigidez dos motores (2 cliques rápidos no peito ou botão Rest no Choregraphe)."
+      exp: "Nunca force uma articulação rígida. Liberte primeiro a rigidez dos motores: Rest no Choregraphe (ícone da Lua) ou 2 cliques rápidos no botão do peito."
     },
     {
-      cat: "Arranque e Calibração",
-      q: "Porque NÃO deve tocar nem levantar o NAO durante os ~60 segundos iniciais após premir o botão do peito?",
+      cat: "Arranque e calibração",
+      critica: true,
+      q: "Porque não deve tocar no NAO nos cerca de 60 segundos depois de o ligar?",
       opts: [
-        "Porque o robô está a calibrar o giroscópio/IMU; mexer nele prejudica o equilíbrio ao andar.",
-        "Porque os sensores táteis dão choque elétrico durante o arranque.",
-        "Porque o Wi-Fi só liga se estiver no escuro.",
-        "Não há problema em mexer nele enquanto arranca."
+        "Os sensores táteis podem dar um pequeno choque.",
+        "Está a calibrar o giroscópio usado no equilíbrio.",
+        "A bateria ainda está a aquecer e pode desligar-se.",
+        "Está a descarregar o idioma Português da Internet."
+      ],
+      ans: 1,
+      exp: "Durante o arranque (até dizer 'Ognak Gnouk'), o NAO calibra a unidade inercial (giroscópio/IMU). Mexer-lhe nessa altura prejudica o equilíbrio ao andar."
+    },
+    {
+      cat: "Cabos",
+      critica: true,
+      q: "O Wi-Fi falhou e ligou o cabo Ethernet atrás da cabeça do NAO. Que cuidado é obrigatório?",
+      opts: [
+        "Ligar também o carregador para a ligação ficar estável.",
+        "Manter o robô sempre de pé para o cabo não dobrar.",
+        "Não o pôr a andar enquanto o cabo estiver ligado.",
+        "Desligar o Wi-Fi do computador antes de o pôr a andar."
+      ],
+      ans: 2,
+      exp: "Com o cabo Ethernet (ou o carregador) ligado, faça apenas testes sem caminhada: fala, gestos, LEDs. Desligue o cabo antes de pôr o robô a andar."
+    },
+    {
+      cat: "Encerramento",
+      critica: true,
+      q: "Como se desliga o NAO antes de o arrumar na mala?",
+      opts: [
+        "Premir o peito ~1 s e fechar logo a mala.",
+        "Deixá-lo ligado em Rest dentro da mala, para arrancar mais depressa.",
+        "Manter o peito premido ~8 s, que é o mais rápido e seguro.",
+        "Em Crouch, premir o peito ~3 s e esperar os LEDs apagarem."
+      ],
+      ans: 3,
+      exp: "Desligue em postura Crouch: mantenha o botão do peito premido ~3 s ('Gnuk Gnuk') e espere que TODOS os LEDs apaguem. Os 8 s são só para emergências."
+    },
+    {
+      cat: "Rede e endereço IP",
+      critica: false,
+      q: "Como descobre o endereço IP do NAO para o ligar ao Choregraphe?",
+      opts: [
+        "Dando 1 clique curto no peito: o NAO diz o IP.",
+        "Mantendo o botão do peito premido durante 8 s.",
+        "Lendo a etiqueta dentro do compartimento da bateria.",
+        "Tocando ao mesmo tempo nos sensores dos dois pés."
       ],
       ans: 0,
-      exp: "Durante o arranque (~60 s, até dizer 'Ognak Gnouk'), o NAO calibra a sua unidade inercial (IMU). Mantê-lo imóvel em postura estável garante boa estabilidade."
+      exp: "Com o NAO ligado, 1 clique curto no botão do peito faz o robô dizer em voz alta o nome, o endereço IP e eventuais notificações."
     },
     {
-      cat: "Rede e Endereço IP",
-      q: "Como descobre rapidamente o endereço IP atual do Robot NAO V6 para o ligar ao Choregraphe?",
+      cat: "Fluxo de trabalho",
+      critica: false,
+      q: "Só há um NAO na escola. Qual é a forma certa de trabalhar em aula?",
       opts: [
-        "Abrindo o compartimento da bateria para ler a etiqueta.",
-        "Mantendo o botão do peito premido durante 8 segundos.",
-        "Dando 1 clique curto no botão do peito — o NAO anuncia o IP em Português.",
-        "Tocando simultaneamente nos dois pés do robô."
+        "Ligar todos os computadores ao NAO ao mesmo tempo.",
+        "Programar só quando o robô estiver a carregar.",
+        "Testar no Robô Virtual e só depois no NAO físico.",
+        "Usar qualquer versão do Choregraphe, porque são iguais."
       ],
       ans: 2,
-      exp: "Com o NAO ligado, 1 clique curto no botão do peito faz o robô dizer em voz alta o seu nome, endereço IP e eventuais notificações em Português."
-    },
-    {
-      cat: "Gestão da Turma e Software",
-      q: "Como só existe 1 Robot NAO V6 na escola (INV-217), qual é o software e fluxo de trabalho corretos em aula?",
-      opts: [
-        "Usar Choregraphe 2.1 e ligar todos os PCs ao robô físico ao mesmo tempo.",
-        "Usar Choregraphe 2.8, desenvolver e testar primeiro no Robô Virtual e só no final transferir para o NAO físico.",
-        "Usar qualquer versão do Choregraphe diretamente em cima de uma mesa estreita.",
-        "Programar apenas quando o carregador está ligado à tomada e o robô a caminhar."
-      ],
-      ans: 1,
-      exp: "O NAO V6 (NAOqi 2.8) exige o Choregraphe 2.8. Todos os grupos validam o comportamento no Robô Virtual antes de executar no robô físico."
+      exp: "O NAO V6 usa o Choregraphe 2.8. Cada grupo desenvolve e valida primeiro no Robô Virtual e só no fim transfere para o NAO físico."
     },
     {
       cat: "Programação",
-      q: "Está a testar o seu programa, mas o NAO olha para os colegas, mexe-se sozinho e interrompe a execução. Qual é a causa provável?",
+      critica: false,
+      q: "Durante o teste, o NAO olha para os colegas e interrompe o programa. Qual é a causa provável?",
       opts: [
-        "O cabo Ethernet está desligado.",
+        "A Vida Autónoma está ligada e deve ser pausada.",
+        "O cabo Ethernet está desligado da cabeça.",
         "O idioma Português não suporta movimentos.",
-        "A Vida Autónoma (Autonomous Life) está ativa e deve ser pausada/desligada no ícone do coração no Choregraphe.",
-        "A bateria está a 100%."
+        "O robô está em descanso (Rest) há demasiado tempo seguido."
+      ],
+      ans: 0,
+      exp: "A Vida Autónoma (Autonomous Life) arranca ligada. No Choregraphe, clique no ícone do coração para a pausar antes de correr o programa da turma."
+    },
+    {
+      cat: "Superfície",
+      critica: false,
+      q: "Onde deve pôr o NAO a andar?",
+      opts: [
+        "Numa alcatifa macia, para amortecer as quedas.",
+        "Em cima de uma mesa grande, longe da beira.",
+        "Em chão plano e firme, com cerca de 1,5 × 1,5 m livre.",
+        "Em qualquer piso, desde que o Wi-Fi da sala esteja estável."
       ],
       ans: 2,
-      exp: "A Autonomous Life vem ativa por defeito no arranque. Ao programar no Choregraphe, clique no ícone do coração para a pausar e evitar interferências."
+      exp: "Use apenas piso plano, liso e firme, com uma área livre de cerca de 1,5 × 1,5 m. Alcatifas e mesas aumentam muito o risco de queda (o NAO não deteta a borda da mesa)."
     },
     {
-      cat: "Cabos e Superfície",
-      q: "O Wi-Fi da escola falhou e ligou o cabo Ethernet atrás da cabeça do NAO. Que cuidado é obrigatório?",
+      cat: "Bateria",
+      critica: false,
+      q: "O LED do peito está vermelho a piscar lentamente. O que significa e o que faz?",
       opts: [
-        "Pode pô-lo a correr e dançar normalmente porque o cabo é resistente.",
-        "Executar apenas testes sem caminhada (fala, gestos, visão) e desligar o cabo antes de o pôr a andar.",
-        "Deixar a tampa traseira fora da mala para sempre.",
-        "Ligar também o carregador ao mesmo tempo para o pôr a caminhar mais depressa."
+        "Está a atualizar o sistema: não o desligue.",
+        "Bateria crítica: pare, ponha em Rest e ligue o carregador.",
+        "Acabou de arrancar e está pronto para trabalhar.",
+        "Ligou-se ao Wi-Fi da escola com sucesso."
       ],
       ans: 1,
-      exp: "Nunca deixe o NAO caminhar com o cabo Ethernet ou o carregador ligados — pode arrancar os conectores internos ou fazê-lo cair."
+      exp: "Vermelho a piscar indica bateria crítica (abaixo de 20%). Pare o programa, ponha o robô em Rest e ligue o carregador oficial de 25,2 V."
     },
     {
-      cat: "Encerramento e Devolução",
-      q: "Qual é o procedimento correto para desligar o NAO V6 antes de o arrumar na mala INV-217?",
+      cat: "Ligação ao Choregraphe",
+      critica: false,
+      q: "O Choregraphe não encontra o NAO na lista. Qual é o primeiro passo?",
       opts: [
-        "Desligar no botão ~1 segundo e fechar logo a mala com os olhos acesos.",
-        "Colocar em postura Crouch, manter o botão do peito premido ~3 s ('Gnuk Gnuk') e aguardar que TODOS os LEDs apaguem completamente.",
-        "Premir sempre o botão durante 8 segundos para desligar mais depressa.",
-        "Colocá-lo na mala ligado em modo Rest para arrancar mais rápido na próxima aula."
+        "Reinstalar o Choregraphe numa versão mais antiga e compatível.",
+        "Mudar o idioma do robô para Inglês e reiniciar.",
+        "Desligar o robô com o peito premido durante 8 s.",
+        "Usar 'Use fixed IP/hostname' com o IP que o NAO disse."
+      ],
+      ans: 3,
+      exp: "Nas redes escolares a deteção automática falha muitas vezes. Na Antena Verde, use 'Use fixed IP/hostname' com o IP dito pelo NAO (porta 9559)."
+    },
+    {
+      cat: "Sobreaquecimento",
+      critica: false,
+      q: "As articulações estão quentes e perdem força. O que deve fazer?",
+      opts: [
+        "Continuar a aula, mas com movimentos mais lentos.",
+        "Pôr o NAO em descanso (Rest) durante 10 a 15 minutos.",
+        "Desligá-lo com 8 s no peito e voltar a ligar logo.",
+        "Colocá-lo junto a uma janela aberta e continuar."
       ],
       ans: 1,
-      exp: "O encerramento seguro faz-se em Crouch premindo ~3 segundos até ouvir 'Gnuk Gnuk' e esperando que todas as luzes se apaguem totalmente antes de arrumar."
+      exp: "Em sobreaquecimento, coloque o NAO em Rest durante 10 a 15 minutos para os motores arrefecerem. Evite deixá-lo muito tempo de pé parado."
+    },
+    {
+      cat: "Fala",
+      critica: false,
+      q: "O programa corre, mas o NAO não fala em Português. O que falta?",
+      opts: [
+        "Ligar o cabo Ethernet atrás da cabeça.",
+        "Aumentar o volume do robô e o brilho dos LEDs dos olhos.",
+        "Uma caixa 'Set Language' (Portuguese) no início.",
+        "Pôr o robô em Crouch antes de cada frase."
+      ],
+      ans: 2,
+      exp: "Acrescente a caixa 'Set Language' (Portuguese) no início do projeto. Para o reconhecimento de voz, fale de frente, a 50–100 cm, numa sala silenciosa."
+    },
+    {
+      cat: "Fim do programa",
+      critica: false,
+      q: "Em que posição deve terminar sempre um programa?",
+      opts: [
+        "Numa postura estável: Stand ou Rest.",
+        "Com os braços levantados, para se ver o fim.",
+        "A meio de um passo, para retomar depois.",
+        "Tanto faz, o robô corrige a posição sozinho."
+      ],
+      ans: 0,
+      exp: "Termine sempre numa postura estável (Stand ou Rest). Valide isto no Robô Virtual antes de pedir o NAO físico."
+    },
+    {
+      cat: "Emergência",
+      critica: false,
+      q: "O NAO bloqueou totalmente e não responde a nada. O que deve fazer?",
+      opts: [
+        "Retirar a bateria enquanto ainda está ligado.",
+        "Dar cliques rápidos no peito até ele reagir.",
+        "Deitá-lo no chão e esperar que se desbloqueie.",
+        "Segurá-lo pelo tronco e premir o peito ~8 s."
+      ],
+      ans: 3,
+      exp: "Segure firmemente o robô pelo tronco e mantenha o botão do peito premido cerca de 8 s até todos os LEDs apagarem. Espere 15 s, pouse-o em Crouch e volte a ligar."
+    },
+    {
+      cat: "Devolução",
+      critica: false,
+      q: "Na devolução, quando é obrigatório avisar o CTE?",
+      opts: [
+        "Só se o robô tiver caído mais de três vezes.",
+        "Se a bateria estiver abaixo de 30% ou houve anomalia.",
+        "Nunca: basta deixar a mala fechada nas Oficinas.",
+        "Só se a turma não tiver terminado o projeto."
+      ],
+      ans: 1,
+      exp: "Avise sempre o CTE se a bateria ficar abaixo de 30% ou se houve qualquer anomalia (queda, ruído, peça solta), para o robô estar pronto para a turma seguinte."
     }
   ];
 
-  var idx = 0, score = 0, answered = false;
   var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [];
+  var idx = 0, score = 0, answered = false;
+  var failedCriticals = [];
+  var certDateStr = "";
 
   var qCounter = document.getElementById("qCounter");
   var scoreLive = document.getElementById("scoreLive");
@@ -494,26 +725,94 @@ footer {
   var quizCard = document.getElementById("quizCard");
   var progressCard = document.getElementById("progressCard");
   var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i];
+      copy[i] = copy[j];
+      copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) {
+        return { text: text, isCorrect: i === q.ans };
+      });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) {
+        if (shuffledOpts[k].isCorrect) { newAns = k; break; }
+      }
+      return {
+        cat: q.cat,
+        critica: q.critica,
+        q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns,
+        exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|NAO-INV217").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
 
   function renderQuestion() {
     answered = false;
-    var item = QUESTIONS[idx];
-    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + QUESTIONS.length;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
     scoreLive.textContent = "Pontuação: " + score;
-    barFill.style.width = ((idx / QUESTIONS.length) * 100) + "%";
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
     qCat.textContent = item.cat;
     qText.textContent = item.q;
     feedbackBox.style.display = "none";
     feedbackBox.className = "feedback";
     nextBtn.disabled = true;
-    nextBtn.textContent = (idx === QUESTIONS.length - 1) ? "Ver Resultado Final →" : "Próxima Pergunta →";
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
 
     optionsBox.innerHTML = "";
     item.opts.forEach(function(txt, i) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "opt-btn";
-      btn.innerHTML = '<span class="opt-letter">' + LETTERS[i] + '</span><span>' + txt + '</span>';
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
       btn.addEventListener("click", function() { selectOption(i); });
       optionsBox.appendChild(btn);
     });
@@ -522,7 +821,7 @@ footer {
   function selectOption(choice) {
     if (answered) return;
     answered = true;
-    var item = QUESTIONS[idx];
+    var item = attempt[idx];
     var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
     btns.forEach(function(b, i) {
       b.disabled = true;
@@ -536,6 +835,9 @@ footer {
       feedbackBox.className = "feedback ok";
       feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
     } else {
+      if (item.critica) {
+        failedCriticals.push(item);
+      }
       feedbackBox.className = "feedback err";
       feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
     }
@@ -549,31 +851,52 @@ footer {
     progressCard.style.display = "none";
     resultCard.style.display = "block";
 
-    var pct = Math.round((score / QUESTIONS.length) * 100);
-    var passed = score >= 6; // 75% mínimo (6/8)
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
     var resScore = document.getElementById("resScore");
     var resMsg = document.getElementById("resMsg");
-    resScore.textContent = score + " / " + QUESTIONS.length + " (" + pct + "%)";
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
     resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
 
     if (passed) {
-      resMsg.textContent = "Excelente! Demonstrou conhecer as regras essenciais de segurança e operação do Robot NAO V6 (INV-217). Preencha o seu nome abaixo para emitir o cartão de habilitação.";
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de segurança e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
       document.getElementById("passControls").style.display = "block";
       document.getElementById("failControls").style.display = "none";
       document.getElementById("certificateBox").style.display = "block";
-      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + QUESTIONS.length + " (" + pct + "%)";
-      var d = new Date();
-      document.getElementById("certDate").textContent = d.toLocaleDateString("pt-PT");
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
     } else {
-      resMsg.textContent = "Ainda faltam rever algumas regras importantes de segurança (mínimo 6 em 8). Consulte o Infográfico de Início Rápido e tente novamente antes de manusear o robô físico.";
       document.getElementById("passControls").style.display = "none";
       document.getElementById("failControls").style.display = "block";
       document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra de segurança «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de manusear o robô físico.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
     }
   }
 
   function restart() {
-    idx = 0; score = 0;
+    attempt = buildAttempt();
+    idx = 0;
+    score = 0;
+    failedCriticals = [];
     resultCard.style.display = "none";
     quizCard.style.display = "block";
     progressCard.style.display = "block";
@@ -581,24 +904,42 @@ footer {
   }
 
   nextBtn.addEventListener("click", function() {
-    if (idx < QUESTIONS.length - 1) { idx++; renderQuestion(); }
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
     else showResults();
   });
 
   document.getElementById("retryBtnPass").addEventListener("click", restart);
   document.getElementById("retryBtnFail").addEventListener("click", restart);
-  document.getElementById("printCertBtn").addEventListener("click", function() { window.print(); });
 
-  var sName = document.getElementById("studentName");
-  var sClass = document.getElementById("studentClass");
-  sName.addEventListener("input", function() {
-    document.getElementById("certNamePreview").textContent = sName.value.trim() || "Nome do Utilizador";
-  });
-  sClass.addEventListener("input", function() {
-    document.getElementById("certClassPreview").textContent = sClass.value.trim() || "—";
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) {
+      sName.classList.add("invalid");
+      sName.setAttribute("aria-invalid", "true");
+      errName.classList.add("show");
+      ok = false;
+    }
+    if (!c) {
+      sClass.classList.add("invalid");
+      sClass.setAttribute("aria-invalid", "true");
+      errClass.classList.add("show");
+      ok = false;
+    }
+    if (!ok) {
+      if (!n) sName.focus();
+      else sClass.focus();
+      return;
+    }
+    updateCertificatePreview();
+    window.print();
   });
 
-  renderQuestion();
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
 })();
 </script>
 </body>

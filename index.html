@@ -4,13 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CTE — Portal de Guias e Manuais de Equipamentos</title>
+<meta name="description" content="Portal de ajuda online do Centro Tecnológico Especializado (CTE) Informático: manuais, guias de início rápido, vídeos e ferramentas para os equipamentos requisitáveis.">
+<meta property="og:title" content="CTE — Portal de Guias e Manuais de Equipamentos">
+<meta property="og:description" content="Acesso rápido aos centros de ajuda online dos equipamentos do CTE Informático (Robô NAO V6, Drone DJI Avata 2, Meta Quest 3 VR).">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='800' fill='%23E8711C'%3ECTE%3C/text%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F4F6;
   --blue: #1D63B8;
   --blue-soft: #EBF3FC;
@@ -22,6 +29,7 @@
   --text: #1F2A36;
   --bg: #EEF2F6;
 }
+[hidden] { display: none !important; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -255,16 +263,16 @@ main.container {
   margin-bottom: 10px;
 }
 .cat-badge {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 3px 10px;
   border-radius: 999px;
   background: var(--acc-soft);
-  color: #B4530C;
+  color: var(--acc-text);
 }
-.equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal); }
+.equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal-text); }
 .equip-card.purple .cat-badge { background: var(--purple-soft); color: var(--purple); }
 
 .inv-badge {
@@ -302,41 +310,25 @@ main.container {
   border-radius: 6px;
 }
 
-/* Rodapé corrigido: nunca sai fora da caixa */
+/* Rodapé do cartão */
 .equip-footer {
   border-top: 1px dashed var(--line);
   padding-top: 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 8px 12px;
   flex-wrap: wrap;
   min-width: 0;
 }
-.folder-path {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  flex: 1 1 140px;
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.78rem;
-  color: var(--grey);
-}
-.folder-path svg { width: 15px; height: 15px; flex-shrink: 0; }
-.folder-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .open-cta {
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  color: var(--acc);
+  color: var(--acc-text);
   white-space: nowrap;
   flex-shrink: 0;
 }
-.equip-card.teal .open-cta { color: var(--teal); }
+.equip-card.teal .open-cta { color: var(--teal-text); }
 .equip-card.purple .open-cta { color: var(--purple); }
 
 .empty-state {
@@ -351,7 +343,7 @@ main.container {
 
 footer {
   text-align: center;
-  padding: 22px 24px;
+  padding: 22px 24px 96px;
   font-size: 0.85rem;
   color: var(--grey);
   border-top: 1px solid var(--line);
@@ -387,7 +379,7 @@ footer {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
     </div>
-    <div class="filter-pills" role="group" aria-label="Filtrar por área">
+    <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por área">
       <button type="button" class="pill active" data-cat="all">Todos (3)</button>
       <button type="button" class="pill" data-cat="robotica">Robótica</button>
       <button type="button" class="pill" data-cat="drones">Drones</button>
@@ -399,10 +391,10 @@ footer {
 <main class="container">
   <div class="equip-grid" id="equipGrid">
 
-    <!-- 1. Robot NAO V6 -->
+    <!-- 1. Robô NAO V6 -->
     <a class="equip-card" href="Robot_NAO_V6/index.html" data-cat="robotica">
       <div class="equip-media">
-        <img src="Robot_NAO_V6/nao_v6.jpg" alt="Robot Humanoide NAO V6">
+        <img src="Robot_NAO_V6/nao_v6.jpg" alt="Robô Humanoide NAO V6">
       </div>
       <div class="equip-body">
         <div>
@@ -410,22 +402,18 @@ footer {
             <span class="cat-badge">Robótica Humanoide</span>
             <span class="inv-badge">INV-217 · Oficinas</span>
           </div>
-          <h2>Robot NAO V6 (H25600)</h2>
+          <h2>Robô NAO V6 (H25600)</h2>
           <p>Centro de ajuda completo para professores e alunos: arranque seguro, Choregraphe 2.8 + Robô Virtual, projetos em Português, diagnóstico interativo de LEDs e Assistente IA.</p>
           <div class="tags-row">
             <span class="mini-tag">Ajuda IA</span>
             <span class="mini-tag">Vídeo MP4</span>
-            <span class="mini-tag">Infográfico A4</span>
+            <span class="mini-tag">Guia de Início Rápido</span>
             <span class="mini-tag">Manuais Web &amp; Word</span>
-            <span class="mini-tag">Quiz</span>
+            <span class="mini-tag">Carta de Condução</span>
             <span class="mini-tag">Slides PPTX</span>
           </div>
         </div>
         <div class="equip-footer">
-          <span class="folder-path" title="Robot_NAO_V6/index.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <span class="folder-name">Robot_NAO_V6/</span>
-          </span>
           <span class="open-cta">Abrir ajuda &rarr;</span>
         </div>
       </div>
@@ -452,10 +440,6 @@ footer {
           </div>
         </div>
         <div class="equip-footer">
-          <span class="folder-path" title="DJI_Avata_Drone/index.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <span class="folder-name">DJI_Avata_Drone/</span>
-          </span>
           <span class="open-cta">Abrir ajuda &rarr;</span>
         </div>
       </div>
@@ -483,10 +467,6 @@ footer {
           </div>
         </div>
         <div class="equip-footer">
-          <span class="folder-path" title="Meta_Quest_3_VR/index.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <span class="folder-name">Meta_Quest_3_VR/</span>
-          </span>
           <span class="open-cta">Abrir ajuda &rarr;</span>
         </div>
       </div>
@@ -506,10 +486,16 @@ footer {
 <script>
 (function() {
   var searchInput = document.getElementById("searchInput");
+  var filterPills = document.getElementById("filterPills");
   var pills = Array.prototype.slice.call(document.querySelectorAll(".pill"));
   var cards = Array.prototype.slice.call(document.querySelectorAll(".equip-card"));
   var emptyState = document.getElementById("emptyState");
   var activeCat = "all";
+
+  // Mostrar filtros por categoria apenas quando houver 6 ou mais equipamentos
+  if (filterPills && cards.length < 6) {
+    filterPills.hidden = true;
+  }
 
   function applyFilters() {
     var query = (searchInput.value || "").trim().toLowerCase();

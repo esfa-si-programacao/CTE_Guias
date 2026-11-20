@@ -3,21 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robot NAO V6 — Manual de Utilizador e Programação (CTE · INV-217)</title>
+<title>Robô NAO V6 — Manual de Utilizador e Programação (CTE · INV-217)</title>
+<meta name="description" content="Ajuda rápida para usar o robô NAO V6 do CTE: arranque, programação no Choregraphe, diagnóstico de problemas e devolução.">
+<meta property="og:title" content="Robô NAO V6 — Manual de Utilizador e Programação (CTE)">
+<meta property="og:description" content="Manual completo do robô NAO V6: segurança física, arranque, Choregraphe 2.8, Robô Virtual, 5 mini-projetos em Português e checklists.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Cellipse cx='32' cy='24' rx='16' ry='13' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='25' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Ccircle cx='39' cy='24' r='3.5' fill='%234CE0F5'/%3E%3Crect x='20' y='40' width='24' height='15' rx='6' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='47' r='4' fill='%23E8711C'/%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --light: #EEF2F5;
   --line: #D5DCE3;
   --grey: #5B6672;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F3F5;
   --red: #C0392B;
+  --red-text: #A93226;
   --red-soft: #FBE9E7;
   --green: #1E8449;
+  --green-text: #17693A;
   --green-soft: #E8F6EF;
   --bg: #fff;
   --text: #1F2A36;
@@ -108,7 +118,7 @@ nav.toc a {
   padding: 3px 7px;
   border-radius: 5px;
 }
-nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc); }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
 
 main { min-width: 0; max-width: 840px; }
 section { margin-bottom: 42px; }
@@ -120,8 +130,10 @@ section > h2 {
   border-bottom: 2px solid var(--light);
   padding-bottom: 6px;
 }
-h3 { font-size: 1.18rem; color: var(--acc); margin: 26px 0 8px; }
-h4 { font-size: 1rem; color: var(--teal); margin: 16px 0 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
 p { margin: 0 0 12px; }
 ul, ol { margin: 0 0 14px; padding-left: 24px; }
 li { margin: 4px 0; }
@@ -150,13 +162,24 @@ table.log tbody tr { background: #fff; }
   margin: 14px 0 18px;
 }
 .note.info { background: var(--teal-soft); border-color: var(--teal); }
-.note.info strong { color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
 .note.warn { background: var(--acc-soft); border-color: var(--acc); }
-.note.warn strong { color: #B4530C; }
+.note.warn strong { color: var(--acc-text); }
 .note.danger { background: var(--red-soft); border-color: var(--red); }
-.note.danger strong { color: var(--red); }
+.note.danger strong { color: var(--red-text); }
 .note.ok { background: var(--green-soft); border-color: var(--green); }
-.note.ok strong { color: var(--green); }
+.note.ok strong { color: var(--green-text); }
+
+/* Figuras (Fase 3) */
+.doc-fig {
+  margin: 14px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #FAFBFD;
+}
+.doc-fig img { display: block; width: 100%; max-width: 1200px; height: auto; }
+.doc-fig figcaption { padding: 8px 12px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); }
 
 /* Cartões de projeto */
 .proj-card {
@@ -176,17 +199,19 @@ table.log tbody tr { background: #fff; }
   margin-bottom: 6px;
 }
 .proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .lvl {
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   padding: 3px 9px;
   border-radius: 999px;
   background: var(--teal-soft);
-  color: var(--teal);
+  color: var(--teal-text);
 }
-.lvl.inter { background: var(--acc-soft); color: #B4530C; }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
 .lvl.adv { background: #F4ECF7; color: #6C3483; }
+.lvl.phys { background: var(--red-soft); color: var(--red-text); text-transform: none; }
 
 /* Bloco de código com botão copiar */
 .code-wrap {
@@ -252,17 +277,40 @@ button.reset {
   cursor: pointer;
   margin: 6px 8px 14px 0;
 }
-button.reset:hover { border-color: var(--acc); color: var(--acc); }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
 
 .hint { color: var(--grey); font-size: 0.9rem; }
 footer {
   text-align: center;
   color: var(--grey);
-  font-size: 0.85rem;
-  padding: 24px;
+  font-size: 0.86rem;
+  padding: 24px 24px 96px;
   border-top: 1px solid var(--line);
   background: var(--light);
 }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+/* Botão flutuante Ajuda */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; gap: 16px; }
@@ -272,9 +320,10 @@ footer {
 }
 @media (max-width: 600px) { .hero-art { display: none; } }
 @media print {
-  .topbar, nav.toc, button.reset, .copy-btn, .hint { display: none !important; }
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
   header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
-  .hero .sub { color: var(--acc); }
+  .hero .sub { color: var(--acc-text); }
   .hero .kit, .hero .ver { color: var(--grey); }
   .layout { display: block; padding: 12px 0 0; }
   main { max-width: none; }
@@ -289,10 +338,10 @@ footer {
 
 <div class="topbar">
   <div class="topbar-in">
-    <div><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Hub Robot NAO V6</a> &rsaquo; Manual de Utilizador</div>
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Robô NAO V6</a> &rsaquo; Manual de Utilizador</nav>
     <div class="topbar-links">
-      <a href="NAO_V6_Infografico_Inicio_Rapido.html">Infográfico A4</a>
-      <a href="NAO_V6_Quiz_Habilitacao.html">Quiz de Habilitação</a>
+      <a href="NAO_V6_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="NAO_V6_Quiz_Habilitacao.html">Carta de Condução</a>
       <a href="NAO_V6_Manual_Tecnico.html">Manual Técnico</a>
     </div>
   </div>
@@ -301,10 +350,10 @@ footer {
 <header class="hero">
   <div class="hero-in">
     <div>
-      <h1>Robot NAO V6</h1>
+      <h1>Robô NAO V6</h1>
       <p class="sub">Manual de Utilizador e Programação (Choregraphe 2.8)</p>
       <p class="kit">Modelo H25600 · Inventário CTE <strong>INV-217</strong> (1 unidade · Oficinas) · Idioma Português</p>
-      <p class="ver">Centro Tecnológico Especializado (CTE) Informático · Versão 1.0 · novembro de 2026</p>
+      <p class="ver">Centro Tecnológico Especializado (CTE) Informático · Versão 1.1 · novembro de 2026</p>
     </div>
     <svg viewBox="0 0 120 150" aria-hidden="true" class="hero-art" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
       <ellipse cx="60" cy="28" rx="22" ry="18" fill="rgba(255,255,255,0.08)"/>
@@ -369,9 +418,9 @@ footer {
     <!-- SECÇÃO 1 -->
     <section id="s1">
       <h2>1. Sobre este manual</h2>
-      <p>Este manual explica como manusear em segurança, ligar, programar e devolver o <strong>Robot Humanoide NAO V6 (modelo H25600)</strong> do Centro Tecnológico Especializado (CTE) Informático, registado com o código de inventário <code>INV-217</code>.</p>
+      <p>Este manual explica como manusear em segurança, ligar, programar e devolver o <strong>Robô Humanoide NAO V6 (modelo H25600)</strong> do Centro Tecnológico Especializado (CTE) Informático, registado com o código de inventário <code>INV-217</code>.</p>
       <p>Destina-se a <strong>professores e alunos</strong>, mesmo sem experiência prévia em robótica humanoide. Para definições administrativas de rede escolar, manutenção preventiva e resolução aprofundada de avarias, consulte o <a href="NAO_V6_Manual_Tecnico.html">Manual Técnico do NAO V6</a>.</p>
-      <aside class="note warn"><strong>Equipamento Único na Escola (INV-217):</strong> Existe apenas <strong>1 Robot NAO V6</strong> no CTE. Antes de utilizar o robô físico em turma, recomenda-se que os alunos realizem o <a href="NAO_V6_Quiz_Habilitacao.html">Quiz de Habilitação (Carta de Condução)</a> e validem sempre os seus programas primeiro no <strong>Robô Virtual do Choregraphe 2.8</strong>.</aside>
+      <aside class="note warn"><strong>Equipamento Único na Escola (INV-217):</strong> Existe apenas <strong>1 Robô NAO V6</strong> no CTE. Antes de utilizar o robô físico em turma, recomenda-se que os alunos realizem a <a href="NAO_V6_Quiz_Habilitacao.html">Carta de Condução (Quiz de Habilitação)</a> e validem sempre os seus programas primeiro no <strong>Robô Virtual do Choregraphe 2.8</strong>.</aside>
     </section>
 
     <!-- SECÇÃO 2 -->
@@ -381,7 +430,7 @@ footer {
       <h3 id="s2-1">2.1 Conteúdo da mala INV-217</h3>
       <p>Ao requisitar o conjunto <code>INV-217</code> nas Oficinas do CTE, confirme sempre a presença dos <strong>4 elementos</strong>:</p>
       <ol>
-        <li><strong>Robot Humanoide NAO V6 (H25600)</strong> — com bateria Li-Ion já instalada no compartimento traseiro.</li>
+        <li><strong>Robô Humanoide NAO V6 (H25600)</strong> — com bateria Li-Ion já instalada no compartimento traseiro.</li>
         <li><strong>Carregador / Fonte de Alimentação Oficial</strong> — adaptador AC/DC (<code>25,2 V · 2 A</code>) e cabo de corrente.</li>
         <li><strong>Cabo de Rede Ethernet (RJ45)</strong> — alternativa direta e fiável para ligação quando o Wi-Fi não está disponível.</li>
         <li><strong>Mala de Transporte Acolchoada</strong> — caixa moldada para proteção e arrumação segura.</li>
@@ -425,14 +474,15 @@ footer {
       <h2>3. Regras de segurança física</h2>
       <aside class="note danger"><strong>Leia antes de ligar o NAO:</strong> Quedas ou força manual sobre motores rígidos podem causar avarias mecânicas graves e imobilizar o único NAO da escola durante meses.</aside>
       <ol>
-        <li><strong>Usar sempre no chão plano e liso:</strong> Reserve uma área livre de pelo menos <code>1,5 × 1,5 m</code> sem mochilas, cadeiras nem cabos. Nunca deixe o NAO caminhar em cima de mesas, em alcatifa felpuda, em piso molhado/escorregadio ou perto de degraus.</li>
+        <li><strong>Usar sempre no chão plano e liso:</strong> Reserve uma área livre de pelo menos <code>1,5 × 1,5 m</code> sem mochilas, cadeiras nem cabos. Nunca deixe o NAO caminhar em cima de mesas (<strong>o NAO não deteta onde a mesa termina</strong>), em alcatifa felpuda, em piso molhado/escorregadio ou perto de degraus.</li>
         <li><strong>Segurar sempre pelo tronco/cintura com as duas mãos:</strong> <strong>NUNCA</strong> levante nem segure o robô pela cabeça, braços, pulsos, dedos ou pernas.</li>
         <li><strong>Nunca forçar articulações rígidas (<em>Stiffness ON</em>):</strong> Se os motores estiverem ativos, não tente dobrar braços ou pernas à mão. Coloque primeiro o NAO em descanso (<strong>2 cliques rápidos no peito</strong> ou botão <em>Rest</em> no Choregraphe).</li>
         <li><strong>Atenção aos dedos perto das juntas:</strong> Mantenha os dedos afastados do pescoço, ombros, cotovelos, ancas e joelhos quando os motores estiverem ligados — há risco de entalamento.</li>
         <li><strong>Não mexer durante o arranque (~60 s):</strong> Ao arrancar, o NAO calibra o giroscópio (IMU). Tocar ou levantar o robô nessa fase afeta o equilíbrio ao andar.</li>
-        <li><strong>Zero cabos em movimento:</strong> Retire sempre o cabo do carregador e o cabo Ethernet antes de executar movimentos de marcha ou dança.</li>
+        <li><strong>Zero cabos em movimento e ventilação livre:</strong> Retire sempre o cabo do carregador e o cabo Ethernet antes de executar movimentos de marcha ou dança. Não vista roupas nem tape a grelha de ventilação na parte traseira da cabeça.</li>
         <li><strong>Arrefecer entre testes:</strong> Sempre que os alunos estiverem a alterar código no computador, clique em <strong>Rest (Lua)</strong> no Choregraphe para desligar a rigidez dos motores, evitar sobreaquecimento e poupar bateria.</li>
       </ol>
+      <aside class="note info"><strong>Se o NAO cair durante uma atividade:</strong> não tente agarrá-lo bruscamente a meio de um movimento. O robô interrompe automaticamente a atividade e tenta recuperar a postura; se não conseguir, desliga a rigidez dos motores para que o possa colocar em postura segura (<em>Crouch</em>) e avaliar se houve danos.</aside>
     </section>
 
     <!-- SECÇÃO 4 -->
@@ -443,7 +493,7 @@ footer {
       <ol>
         <li>Retire o NAO da mala segurando pelo tronco e pouse-o no chão em postura estável de agachamento (<strong>Crouch</strong> — joelhos fletidos e pés bem apoiados).</li>
         <li>Prima o <strong>botão do peito uma vez (~1 segundo)</strong>.</li>
-        <li><strong>Afaste as mãos e aguarde cerca de 60 segundos</strong> enquanto as luzes do peito, cabeça e orelhas pulsam.</li>
+        <li><strong>Afaste as mãos e aguarde cerca de 1 a 2 minutos</strong> (mínimo ~60 s) enquanto as luzes do peito, cabeça e orelhas pulsam.</li>
         <li>Quando o arranque terminar, os olhos iluminam-se de forma estável e o NAO diz <strong>"Ognak Gnouk"</strong>.</li>
         <li>Dê <strong>1 clique curto no botão do peito</strong>: o NAO diz em voz alta o seu nome e o <strong>endereço IP</strong> em Português. Anote esse endereço.</li>
       </ol>
@@ -516,6 +566,16 @@ footer {
         </li>
         <li>Guarde o projeto (<code>File &rarr; Save project</code>).</li>
       </ol>
+      <!-- FASE 3 (P1): descomentar quando fornecer as capturas do Choregraphe 2.8
+      <figure class="doc-fig">
+        <img src="chor_connect_virtual.png" alt="Menu Connection — Connect to virtual robot no Choregraphe 2.8" loading="lazy">
+        <figcaption>Ligação ao Robô Virtual no Choregraphe 2.8.</figcaption>
+      </figure>
+      <figure class="doc-fig">
+        <img src="chor_box_library.png" alt="Biblioteca de caixas (Box Library) e diagrama de fluxo no Choregraphe 2.8" loading="lazy">
+        <figcaption>Biblioteca de caixas (Box Library) e área de programação visual.</figcaption>
+      </figure>
+      -->
     </section>
 
     <!-- SECÇÃO 7 -->
@@ -530,6 +590,16 @@ footer {
         <li>Selecione o NAO na lista detetada e clique em <strong>Select</strong>.</li>
         <li>Se o NAO não aparecer automaticamente (comum em redes escolares), clique em <strong>Use fixed IP/hostname</strong>, escreva o IP ouvido (porta padrão <code>9559</code>) e clique em <strong>Select</strong>.</li>
       </ol>
+      <!-- FASE 3 (P1): descomentar quando fornecer as capturas do Choregraphe 2.8
+      <figure class="doc-fig">
+        <img src="chor_antena_verde.png" alt="Botão da Antena Verde (Connect to) na barra do Choregraphe 2.8" loading="lazy">
+        <figcaption>Ícone da Antena Verde para alternar entre Robô Virtual e NAO físico.</figcaption>
+      </figure>
+      <figure class="doc-fig">
+        <img src="chor_fixed_ip.png" alt="Campo Use fixed IP/hostname com IP e porta no Choregraphe 2.8" loading="lazy">
+        <figcaption>Ligação direta por endereço IP fixo quando a rede escolar bloqueia deteção automática.</figcaption>
+      </figure>
+      -->
 
       <h3 id="s7-2">7.2 Via cabo Ethernet (RJ45) — Plano B fiável</h3>
       <p>Se o Wi-Fi da escola estiver lento, bloqueado ou numa sub-rede diferente, use o cabo Ethernet incluído na mala:</p>
@@ -539,6 +609,12 @@ footer {
         <li>Aguarde ~10 segundos e dê <strong>1 clique curto no botão do peito</strong> para ouvir o novo IP Ethernet (em ligação direta ao PC, costuma começar por <code>169.254.x.x</code>).</li>
         <li>No Choregraphe, ligue usando esse IP (ou <code>nao.local</code>).</li>
       </ol>
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia
+      <figure class="doc-fig">
+        <img src="nao_v6_tampa_ethernet.jpg" alt="Tampa traseira da cabeça do NAO V6 aberta com a porta Ethernet RJ45 visível" loading="lazy">
+        <figcaption>Localização da porta Ethernet (RJ45) sob a tampa traseira da cabeça.</figcaption>
+      </figure>
+      -->
       <aside class="note danger"><strong>Atenção com o cabo ligado:</strong> Nunca execute programas de marcha/caminhada enquanto o cabo Ethernet estiver ligado atrás da cabeça. Faça apenas testes estáticos (fala, gestos, visão, sensores) e desligue o cabo + feche a tampa antes de andar.</aside>
 
       <h3 id="s7-3">7.3 Os 5 botões essenciais da barra do Choregraphe</h3>
@@ -560,34 +636,35 @@ footer {
     <!-- SECÇÃO 8 -->
     <section id="s8">
       <h2>8. 5 Mini-projetos progressivos em Português</h2>
-      <p>Sugestão de percurso gradual para trabalhar com turmas — todos podem ser desenvolvidos primeiro no Robô Virtual:</p>
+      <!-- CONFIRMAR: limitações do robô virtual no Choregraphe 2.8 -->
+      <p>Sugestão de percurso gradual para trabalhar com turmas — todos podem ser <strong>construídos</strong> no Robô Virtual; os projetos 2 e 4 só podem ser <strong>testados</strong> no NAO físico:</p>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 1 — "Olá, CTE!" (Falar em Português e Acenar)</h4><span class="lvl">Iniciante · 15 min</span></div>
-        <p><strong>Caixas:</strong> <code>Set Language</code> (<em>Portuguese</em>) &rarr; <code>Wake Up</code> &rarr; <code>Animated Say</code> (<em>"Olá! Eu sou o Robot NAO do CTE Informático."</em>) &rarr; <code>Rest</code>.</p>
+        <div class="proj-head"><h4>Projeto 1 — "Olá, CTE!" (Falar em Português e Acenar)</h4><div class="proj-badges"><span class="lvl">Iniciante · 15 min</span></div></div>
+        <p><strong>Caixas:</strong> <code>Set Language</code> (<em>Portuguese</em>) &rarr; <code>Wake Up</code> &rarr; <code>Animated Say</code> (<em>"Olá! Eu sou o Robô NAO do CTE Informático."</em>) &rarr; <code>Rest</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Aprender a encadear caixas, configurar Português e terminar sempre em modo seguro <code>Rest</code>.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 2 — "Sensores Táteis e Emoções com LEDs"</h4><span class="lvl">Iniciante · 25 min</span></div>
+        <div class="proj-head"><h4>Projeto 2 — "Sensores Táteis e Emoções com LEDs"</h4><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
         <p><strong>Caixas:</strong> <code>Tactile Head</code> ligado a três ramos: Frente &rarr; <code>Eye LEDs</code> (Verde) + <code>Say</code> (<em>"Olá, tudo bem?"</em>); Meio &rarr; Azul + <em>"Estou a pensar..."</em>; Trás &rarr; Amarelo + <em>"Cuidado atrás!"</em>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Explorar eventos dos 3 sensores capacitivos da cabeça e resposta visual com LEDs.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 3 — "Coreografia Segura na Timeline"</h4><span class="lvl inter">Intermédio · 40 min</span></div>
+        <div class="proj-head"><h4>Projeto 3 — "Coreografia Segura na Timeline"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 40 min</span></div></div>
         <p><strong>Caixas:</strong> <code>Stand</code> &rarr; <code>Timeline</code> (criar poses de saudação/exercício de braços com <em>keyframes</em> espaçados e movimentos suaves) &rarr; <code>Stand</code> &rarr; <code>Rest</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Controlar articulações sem colisões, validando o equilíbrio no Robô Virtual antes do teste físico.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 4 — "Interação por Voz ou Visão"</h4><span class="lvl inter">Intermédio · 45 min</span></div>
+        <div class="proj-head"><h4>Projeto 4 — "Interação por Voz ou Visão"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
         <p><strong>Variante Voz:</strong> <code>Set Language</code> (<em>Portuguese</em>) &rarr; <code>Speech Reco.</code> (lista curta: <code>sentar;levantar;olá;parar</code>) &rarr; <code>Switch Case</code> &rarr; ações correspondentes. <em>(Reduza o ruído da sala para melhor reconhecimento.)</em></p>
         <p style="margin:0"><strong>Variante Visão:</strong> <code>Face Detection</code> ou <code>NAO Mark</code> para cumprimentar automaticamente quando deteta um rosto ou cartão visual.</p>
       </div>
 
       <div class="proj-card" id="s8-python">
-        <div class="proj-head"><h4>Projeto 5 — "Introdução a Python no NAO V6"</h4><span class="lvl adv">Avançado · 45–60 min</span></div>
+        <div class="proj-head"><h4>Projeto 5 — "Introdução a Python no NAO V6"</h4><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
         <p>Arraste uma caixa vazia <strong>Python Script</strong> no Choregraphe e faça duplo clique para editar o código. <em>Nota: o motor interno do Choregraphe 2.8 utiliza <strong>Python 2.7</strong> com os serviços NAOqi 2.8 (<code>ALTextToSpeech</code>, <code>ALLeds</code>, <code>ALMotion</code>, <code>ALRobotPosture</code>).</em></p>
         <div class="code-wrap">
           <button class="copy-btn" type="button" data-copy>Copiar código</button>
@@ -625,8 +702,8 @@ footer {
       <ol>
         <li>Coloque o NAO em postura <strong>Crouch / Rest</strong> (no Choregraphe ou com 2 cliques no botão do peito).</li>
         <li><strong>Mantenha premido o botão do peito ~3 segundos</strong> até ouvir <strong>"Gnuk Gnuk"</strong>.</li>
-        <li><strong>Aguarde 20–30 segundos até TODOS os LEDs apagarem completamente.</strong> Nunca guarde o robô ainda ligado!</li>
-        <li>Retire quaisquer cabos, feche a tampa traseira da cabeça e encaixe os 4 itens na mala <code>INV-217</code>.</li>
+        <li><strong>Aguarde até TODOS os LEDs apagarem completamente</strong> (cerca de 20–60 segundos). Ao desligar, o robô fecha automaticamente as mãos. Nunca guarde o robô ainda ligado!</li>
+        <li>Retire quaisquer cabos, feche a tampa traseira da cabeça, encaixe os 4 itens na mala <code>INV-217</code> com as mãos e dedos alinhados nos recortes da espuma e feche a tampa <strong>sem forçar</strong>.</li>
       </ol>
 
       <h3 id="s9-1">9.1 Checklist interativa de entrega e devolução</h3>
@@ -662,20 +739,37 @@ footer {
 </div>
 
 <footer>
-  <strong>CTE Informático</strong> · Manual de Utilizador do Robot NAO V6 (H25600 · <code>INV-217</code>) · Em caso de dúvida técnica, consulte o <a href="NAO_V6_Manual_Tecnico.html">Manual Técnico</a>.
+  <strong>CTE Informático</strong> · Manual de Utilizador do Robô NAO V6 (H25600 · <code>INV-217</code>) · Em caso de dúvida técnica, consulte o <a href="NAO_V6_Manual_Tecnico.html">Manual Técnico</a>.
 </footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
 
 <script>
 (function() {
   var KEY = "nao-v6-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000; // 4 horas
   var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
   var saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) {
+      saved = raw.itens;
+    } else if (raw) {
+      localStorage.removeItem(KEY);
+    }
+  } catch (e) {}
   boxes.forEach(function(b) {
     b.checked = !!saved[b.id];
     b.addEventListener("change", function() {
       saved[b.id] = b.checked;
-      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
     });
   });
   var resetBtn = document.getElementById("resetChecklist");

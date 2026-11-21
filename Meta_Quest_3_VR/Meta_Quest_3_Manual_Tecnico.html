@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta Quest 3 VR — Manual Técnico, Higiene e Manutenção (CTE · INV-081 / INV-082)</title>
+<meta name="description" content="Gestão da frota de 10 kits Meta Quest 3 VR do CTE: Wi-Fi escolar e Casting, emparelhamento Touch Plus, baterias/pilhas, desinfeção, troubleshooting (10 casos) e protocolo de avarias.">
+<meta property="og:title" content="Meta Quest 3 VR — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Administração dos 10 kits Meta Quest 3 (INV-081 / INV-082), Wi-Fi escolar, Casting, gestão de baterias/pilhas AA, limpeza segura e resolução de 10 problemas.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='11' y='21' width='42' height='22' rx='8' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Crect x='19' y='27' width='5' height='10' rx='2.5' fill='%234CE0F5'/%3E%3Crect x='29.5' y='27' width='5' height='10' rx='2.5' fill='%23E8711C'/%3E%3Crect x='40' y='27' width='5' height='10' rx='2.5' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.84rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.topbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero {
+  background: linear-gradient(135deg, #16222E 0%, #1F3A4D 100%);
+  color: #fff;
+  padding: 38px 24px 34px;
+  border-bottom: 4px solid var(--teal);
+}
+.hero-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.badge-tech {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(30, 126, 140, 0.35);
+  border: 1px solid rgba(114, 217, 232, 0.4);
+  color: #9EEAF5;
+  padding: 4px 11px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); line-height: 1.12; }
+.hero .sub { color: #9EEAF5; font-size: 1.15rem; margin: 6px 0 10px; font-weight: 600; }
+.hero .meta { color: #B8CAD9; font-size: 0.92rem; margin: 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 265px 1fr;
+  gap: 44px;
+  padding: 32px 24px 80px;
+}
+nav.toc {
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  font-size: 0.88rem;
+  border-right: 1px solid var(--line);
+  padding-right: 16px;
+}
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
+
+main { min-width: 0; max-width: 850px; }
+section { margin-bottom: 42px; }
+section > h2 {
+  font-size: 1.55rem;
+  margin: 0 0 12px;
+  color: var(--dark);
+  border-bottom: 2px solid var(--light);
+  padding-bottom: 6px;
+}
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--light);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note {
+  border: 1px solid;
+  border-left-width: 5px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 14px 0 18px;
+}
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.filter-input {
+  width: 100%;
+  font: inherit;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: var(--light);
+}
+.filter-input:focus { outline: none; border-color: var(--teal); background: #fff; }
+
+.btn {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
+
+footer {
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.86rem;
+  padding: 24px 24px 96px;
+  border-top: 1px solid var(--line);
+  background: var(--light);
+}
+
+/* Botão flutuante Ajuda */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+}
+@media print {
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--teal-text); }
+  .hero .meta { color: var(--grey); }
+  .layout { display: block; padding: 10px 0 0; }
+  main { max-width: none; }
+  tr, .note { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Meta Quest 3 VR</a> &rsaquo; Manual Técnico</nav>
+    <div class="topbar-links">
+      <a href="Meta_Quest_3_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Meta_Quest_3_Manual_Utilizador.html">Manual de Utilizador</a>
+      <a href="Meta_Quest_3_Quiz_Habilitacao.html">Carta de Condução VR</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
+      <h1>Meta Quest 3 VR — Manual Técnico e Manutenção</h1>
+      <p class="sub">Gestão de Frota (10 Kits), Wi-Fi Escolar, Casting, Higiene, Baterias e Troubleshooting</p>
+      <p class="meta">Inventário <strong>INV-081 / INV-082</strong> · Armário <code>D1.4C-MF-A01</code> · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice técnico">
+    <h2>Índice Técnico</h2>
+    <ul>
+      <li><a href="#t1">1. Âmbito e política de segurança</a></li>
+      <li><a href="#t2">2. Arquitetura Hardware &amp; Software</a></li>
+      <li><a href="#t3">3. Frota, Wi-Fi Escolar e Casting</a>
+        <ul>
+          <li><a href="#t3-1">3.1 Organização dos 10 kits</a></li>
+          <li><a href="#t3-2">3.2 Wi-Fi escolar e Casting</a></li>
+          <li><a href="#t3-3">3.3 Emparelhar comandos Touch Plus</a></li>
+        </ul>
+      </li>
+      <li><a href="#t4">4. Manutenção preventiva e higiene</a>
+        <ul>
+          <li><a href="#t4-1">4.1 Baterias, 18 W, pilhas AA e férias</a></li>
+          <li><a href="#t4-2">4.2 Limpeza e desinfeção segura</a></li>
+          <li><a href="#t4-3">4.3 Atualizações e apps dos alunos</a></li>
+        </ul>
+      </li>
+      <li><a href="#t5">5. Matriz de Troubleshooting (10 casos)</a></li>
+      <li><a href="#t6">6. Emergência, danos solares e avarias</a></li>
+      <li><a href="#t7">7. Ficha técnica de manutenção</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="t1">
+      <h2>1. Âmbito e política de segurança</h2>
+      <p>Este guia técnico destina-se aos <strong>docentes responsáveis pelo CTE e equipa de apoio informático</strong>. Centraliza a administração dos <strong>10 kits Meta Quest 3 VR</strong> (<code>INV-081</code>: óculos + controladores Touch Plus; <code>INV-082</code>: malas de transporte, arrumação no armário <code>D1.4C-MF-A01</code>).</p>
+      <aside class="note danger"><strong>Política de Credenciais (Portal Online):</strong> As credenciais das contas Meta institucionais, códigos PIN de desbloqueio, palavras-passe de Wi-Fi da escola ou chaves de gestão MDM <strong>nunca devem ser publicadas</strong> nestas páginas web nem coladas nas malas. São geridas exclusivamente pela equipa responsável do CTE.</aside>
+    </section>
+
+    <section id="t2">
+      <h2>2. Arquitetura Hardware &amp; Software</h2>
+      <!-- CONFIRMAR: confirmar capacidade de armazenamento exata (128 GB vs 512 GB) e modelo de gestão de contas (contas Meta individuais CTE vs Meta Horizon Managed Services) nos kits INV-081 -->
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:32%"><col style="width:68%"></colgroup>
+          <thead><tr><th>Subsistema</th><th>Detalhes Técnicos (Meta Quest 3)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Sistema Operativo</th><td><strong>Meta Horizon OS</strong> (baseado em Android) · Modo autónomo (<em>standalone</em>) + suporte WebXR no Meta Horizon Browser.</td></tr>
+            <tr><th scope="row">Ótica e Ecrãs</th><td>Lentes <em>pancake</em> · <strong>2064 × 2208 px por olho</strong> · 72 / 80 / 90 / 120 Hz · 110° FOV horizontal · Roda IPD mecânica (58–70 mm).</td></tr>
+            <tr><th scope="row">Rastreio e Realidade Mista</th><td>6DoF <em>inside-out</em> com 3 cápsulas frontais (câmaras RGB a cores para <em>Passthrough</em> + sensor de profundidade) e Rastreio de Mãos integrado.</td></tr>
+            <tr><th scope="row">Controladores</th><td>2× <strong>Meta Quest Touch Plus</strong> (sem aro, sensores IR + IMU, háptica TruTouch) · <strong>1 pilha AA</strong> por comando.</td></tr>
+            <tr><th scope="row">Conectividade e Portas</th><td>Wi-Fi 6E · Bluetooth · Porta <strong>USB-C</strong> (carregamento 18 W / dados / PCVR) · Ficha áudio 3,5 mm.</td></tr>
+            <tr><th scope="row">Peso e Alimentação</th><td><strong>515 g</strong> · Autonomia <strong>~2 horas</strong> · Transformador oficial USB-C <strong>18 W</strong> (~2 h 30 min carga completa).</td></tr>
+            <tr><th scope="row">Arrumação CTE</th><td>Armário <code>D1.4C-MF-A01</code> · 10 malas numeradas <code>INV-082</code> com óculos <code>INV-081</code> correspondentes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t3">
+      <h2>3. Gestão de Frota, Wi-Fi Escolar e Casting</h2>
+
+      <h3 id="t3-1">3.1 Organização e numeração dos 10 kits</h3>
+      <ul>
+        <li>Manter cada visor <code>INV-081</code>, os respetivos 2 comandos Touch Plus (L e R) e a mala <code>INV-082</code> etiquetados com o mesmo número (<strong>Kit 1 a Kit 10</strong>) — evita misturar comandos emparelhados com visores diferentes!</li>
+        <li>Antes de entregar à turma, confirmar rapidamente carga suficiente (&gt; 50%), pilhas AA funcionais, presença do pano de microfibra e protetor opaco de lentes.</li>
+        <li>Se for usada uma gestão centralizada de dispositivos ou PIN de bloqueio de compras/definições, manter esse controlo ativo para evitar alterações acidentais por alunos.</li>
+      </ul>
+
+      <h3 id="t3-2">3.2 Limitações habituais do Wi-Fi escolar e do <em>Casting</em></h3>
+      <ul>
+        <li><strong>Portal Cativo (<em>Captive Portal</em>):</strong> Embora o Meta Quest 3 tenha navegador interno, autenticações frequentes em portais cativos atrasam a aula. Sempre que possível, associar os óculos à rede Wi-Fi técnica/CTE (WPA2/WPA3-PSK ou autorização por endereço MAC).</li>
+        <li><strong>Isolamento de Clientes (<em>AP / Client Isolation</em>) ou VLANs diferentes:</strong> Para projetar a imagem em <a href="https://horizon.meta.com/casting" target="_blank" rel="noopener noreferrer">horizon.meta.com/casting</a>, o computador da sala e o Meta Quest 3 têm de estar na <strong>mesma sub-rede Wi-Fi</strong> (sem bloqueio de comunicação entre clientes) e autenticados na <strong>mesma conta Meta</strong>.</li>
+        <li><strong>Banda 2,4 GHz vs 5 GHz:</strong> Em routers com redes separadas, ligar ambos os equipamentos à mesma banda (preferencialmente 5 GHz pela menor latência do <em>Casting</em>).</li>
+        <li><strong>WebXR em sala de aula (A-Frame):</strong> O Meta Horizon Browser exige ligação <strong>HTTPS</strong> para ativar o modo imersivo VR (<code>Enter VR</code>). Alojar projetos de alunos em páginas HTTPS (ex.: Netlify / GitHub Pages) ou testar em servidor local com túnel/certificado válido.</li>
+      </ul>
+
+      <h3 id="t3-3">3.3 Emparelhar novamente comandos Touch Plus</h3>
+      <p>Se um comando for trocado por engano entre kits ou perder o emparelhamento após atualização:</p>
+      <ol>
+        <li>Na aplicação <strong>Meta Horizon</strong> (telemóvel/tablet de administração), abra <strong>Menu &rarr; Dispositivos</strong> e selecione o visor pretendido.</li>
+        <li>Aceda a <strong>Definições dos óculos &rarr; Controladores &rarr; Emparelhar novo controlador</strong> e escolha Esquerdo ou Direito.</li>
+        <li>No comando, mantenha premidos os botões até o LED piscar e vibrar:
+          <ul>
+            <li><strong>Comando Direito (R):</strong> manter <strong>Meta (∞) + B</strong></li>
+            <li><strong>Comando Esquerdo (L):</strong> manter <strong>Menu (≡) + Y</strong></li>
+          </ul>
+        </li>
+        <li>Quando o emparelhamento concluir, o LED pisca 1 vez e o comando aparece ativo no visor.</li>
+      </ol>
+    </section>
+
+    <section id="t4">
+      <h2>4. Manutenção preventiva e higiene</h2>
+
+      <h3 id="t4-1">4.1 Gestão de baterias, carregador 18 W, pilhas AA e pausas letivas</h3>
+      <ul>
+        <li><strong>Carregamento seguro:</strong> Utilizar o transformador oficial USB-C de <strong>18 W</strong> (ou estação de carregamento certificada equivalente). Evitar portas USB de baixa potência de computadores, que prolongam muito a carga ou provocam erros no LED.</li>
+        <li><strong>LED de carga:</strong> Laranja fixo = a carregar (~2 h 30 min de 0% a 100%); Verde fixo = 100% carregado. Evitar deixar os óculos permanentemente ligados à corrente durante semanas.</li>
+        <li><strong>Pilhas AA dos comandos Touch Plus:</strong> Substituir sempre <strong>ambas as pilhas AA (L e R) em conjunto</strong> usando pilhas alcalinas de boa qualidade (ou recarregáveis de 1,5 V recomendadas).</li>
+        <li><strong>Férias e pausas prolongadas (&gt; 2 semanas sem uso):</strong>
+          <ul>
+            <li>Desligar totalmente os óculos (não deixar em suspensão!) com a bateria entre <strong>40% e 60%</strong> e guardar na mala <code>INV-082</code> em local seco e fresco, longe de janelas/sol;</li>
+            <li><strong>Retirar as pilhas AA de todos os comandos Touch Plus</strong> nas pausas longas (ex.: férias de verão) para evitar fugas ácidas e corrosão irreversível dos contactos!</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 id="t4-2">4.2 Limpeza e desinfeção segura entre turmas</h3>
+      <ul>
+        <li><strong>Lentes internas (regra absoluta):</strong> Limpar <strong>exclusivamente com pano de microfibra ótico seco</strong>, em movimentos circulares suaves do centro para a borda. <strong>Proibido:</strong> álcool, limpa-vidros, água, toalhetes húmidos, papel ou ar comprimido.</li>
+        <li><strong>Interface facial (uso entre alunos):</strong> Higienizar entre turmas com <strong>toalhetes antibacterianos sem álcool</strong> e sem químicos abrasivos. Para limpeza periódica profunda, retirar a interface facial (encaixe de pressão), lavar à mão com <strong>água fria e detergente líquido suave</strong>, enxaguar bem (sem submergir longamente a base plástica) e deixar <strong>secar totalmente ao ar</strong> antes de voltar a encaixar.</li>
+        <li><strong>Exterior do visor, fita e comandos:</strong> Limpar com toalhete antibacteriano sem álcool bem escorrido, evitando entrada de humidade nas portas USB-C, grelhas de som, microfones e câmaras.</li>
+        <li><strong>Câmaras frontais (3 cápsulas):</strong> Passar pano de microfibra seco para evitar erros de rastreio e imagem tremente.</li>
+      </ul>
+
+      <h3 id="t4-3">4.3 Gestão de armazenamento, contas e atualizações</h3>
+      <p>No final de cada mês ou período letivo, verificar nos 10 kits:</p>
+      <ul>
+        <li>Atualizações pendentes do sistema <strong>Meta Horizon OS</strong> e das aplicações educativas instaladas (fazer antes da aula, com bateria &gt; 50%, para não interromper o tempo letivo);</li>
+        <li>Remoção de capturas de ecrã, gravações ou ficheiros temporários criados por alunos para preservar espaço livre;</li>
+        <li>Verificação do estado das fitas elásticas, velcros, fitas de pulso e limpeza dos panos de microfibra.</li>
+      </ul>
+    </section>
+
+    <section id="t5">
+      <h2>5. Matriz de resolução de problemas (Troubleshooting)</h2>
+      <p>Filtre rapidamente pelo sintoma observado em aula:</p>
+      <input type="search" class="filter-input" id="tsFilter" placeholder="Pesquisar sintoma (ex.: desfocada, comando, pilha, Wi-Fi, Casting, limite, bloqueado, sol, enjoo)...">
+      <div class="tw">
+        <table id="tsTable">
+          <colgroup><col style="width:5%"><col style="width:24%"><col style="width:28%"><col style="width:43%"></colgroup>
+          <thead><tr><th>#</th><th>Sintoma</th><th>Causas Prováveis</th><th>Solução Passo a Passo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td><strong>Não liga / LED apagado</strong></td><td>Bateria descarregada a 0% ou cabo/carregador de baixa potência.</td><td>Ligar ao transformador oficial USB-C de <strong>18 W</strong> durante &ge; 15 min, confirmar LED laranja e premir o botão de energia <strong>3 s</strong>.</td></tr>
+            <tr><td><strong>2</strong></td><td><strong>LED vermelho fixo ou a piscar</strong></td><td>Bateria crítica (&lt; 10%) ou fonte de alimentação incompatível.</td><td>Desligar os óculos e ligar diretamente a tomada de parede com carregador oficial de 18 W (evitar extensões USB/portas de PC).</td></tr>
+            <tr><td><strong>3</strong></td><td><strong>Imagem desfocada ou dupla</strong></td><td>Visor mal posicionado no rosto, IPD desajustado ou dedadas nas lentes.</td><td>Ajustar altura no rosto e fita superior, rodar a <strong>roda IPD</strong> (base esquerda) até focar e limpar lentes só com <strong>microfibra seca</strong>.</td></tr>
+            <tr><td><strong>4</strong></td><td><strong>Menu sumiu ou ficou atrás</strong></td><td>Utilizador rodou o corpo ou mudou de lugar após arranque.</td><td>Olhar em frente e manter premido o <strong>botão Meta (∞)</strong> no comando direito durante <strong>2 segundos</strong> para recentrar.</td></tr>
+            <tr><td><strong>5</strong></td><td><strong>Comando não responde / LED SOS</strong></td><td>Modo de espera, pilha AA gasta, erro interno (SOS) ou comando de outro kit.</td><td>1) Premir um botão; 2) Retirar/recolocar ou substituir as <strong>2 pilhas AA</strong>; 3) Confirmar n.º do kit ou reemparelhar na app Meta Horizon (<code>Meta+B</code> / <code>Menu+Y</code>).</td></tr>
+            <tr><td><strong>6</strong></td><td><strong>Imagem a tremer / Limite perdido</strong></td><td>Sala escura (&lt; 50 lux), reflexos fortes/sol ou 3 câmaras frontais sujas/tapadas.</td><td>Acender luz uniforme (sem sol direto), limpar as 3 cápsulas frontais com pano seco, recentrar e criar novo Limite (<em>Definições → Limite</em>).</td></tr>
+            <tr><td><strong>7</strong></td><td><strong>Sem som ou volume muito baixo</strong></td><td>Volume físico baixo, som silenciado ou dispositivo Bluetooth ligado.</td><td>Premir <strong>Volume (+)</strong> na base direita; confirmar nas Definições Rápidas que o som não está mudo nem redirecionado para Bluetooth.</td></tr>
+            <tr><td><strong>8</strong></td><td><strong>Não projeta no PC (<em>Casting</em>)</strong></td><td>PC e óculos em VLANs/bandas Wi-Fi distintas, isolamento de clientes ou conta Meta diferente.</td><td>Confirmar mesma rede Wi-Fi e mesma conta em <code>horizon.meta.com/casting</code> (Chrome/Edge). Alternativa: projetar na app Meta Horizon num telemóvel/tablet na mesma rede.</td></tr>
+            <tr><td><strong>9</strong></td><td><strong>Ecrã preto ou óculos bloqueados</strong></td><td>Sensor da testa obstruído (cabelo/fita), modo suspensão ou app congelada.</td><td>Desobstruir sensor entre as lentes; dar 1 clique curto em energia; se não responder, manter <strong>botão de energia 10–15 segundos</strong> para reinício forçado.</td></tr>
+            <tr><td><strong>10</strong></td><td><strong>Enjoo, tonturas ou mal-estar</strong></td><td>Cinetose (movimento virtual rápido), IPD incorreto ou sessão prolongada.</td><td><strong>Parar de imediato</strong>, tirar os óculos e descansar sentado. Nas sessões seguintes usar modo Estacionário, verificar IPD e respeitar pausas (máx. 30 min + 15 min pausa).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t6">
+      <h2>6. Emergência, danos solares nas lentes e protocolo de avarias</h2>
+      <aside class="note danger"><strong>Critérios de Retirada Imediata de Serviço:</strong> Retire imediatamente o kit de circulação, identifique o n.º do kit (1–10) e reporte à coordenação do CTE se observar qualquer um dos seguintes sinais:
+        <ul style="margin:6px 0 0">
+          <li><strong>Mancha permanente amarela, roxa ou preta no ecrã</strong> (sinal clássico de <strong>queimadura solar</strong> nas lentes internas — dano irreversível fora de garantia normal);</li>
+          <li>Lentes riscadas, partidas ou cápsulas das câmaras frontais rachadas após queda;</li>
+          <li>Porta USB-C folgada, sobreaquecimento anómalo durante carga ou cheiro a queimado;</li>
+          <li>Corrosão/fuga de ácido no compartimento das pilhas AA dos comandos;</li>
+          <li>Fita de pulso partida, apoio facial rasgado ou falhas repetidas após reinício forçado.</li>
+        </ul>
+      </aside>
+      <p><strong>Não abrir a carcaça dos óculos nem dos comandos</strong> fora da assistência autorizada. Ao registar uma ocorrência, anote: data, n.º do kit (<code>1</code> a <code>10</code>), descrição exata do problema, padrão do LED e eventual mensagem no ecrã.</p>
+    </section>
+
+    <section id="t7">
+      <h2>7. Ficha técnica de inspeção e manutenção (<code>INV-081 / INV-082</code>)</h2>
+      <p>Recomenda-se uma inspeção periódica (mensal ou no final de cada período letivo) aos 10 kits do armário <code>D1.4C-MF-A01</code>:</p>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Responsável</th><th>Kits Verificados (1–10)</th><th>Lentes / Higiene Facial</th><th>Bateria / Pilhas AA / Fitas</th><th>Atualizações / Observações</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual Técnico Meta Quest 3 VR (<code>INV-081 / INV-082</code>) · Uso interno para docentes responsáveis e apoio técnico.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var inp = document.getElementById("tsFilter");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#tsTable tbody tr"));
+  if (inp) {
+    inp.addEventListener("input", function() {
+      var q = (inp.value || "").trim().toLowerCase();
+      rows.forEach(function(r) {
+        r.style.display = (!q || r.textContent.toLowerCase().indexOf(q) !== -1) ? "" : "none";
+      });
+    });
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

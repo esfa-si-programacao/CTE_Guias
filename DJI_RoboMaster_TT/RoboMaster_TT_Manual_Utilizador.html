@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI RoboMaster TT — Manual de Utilizador e Programação (CTE · INV-144)</title>
+<meta name="description" content="Manual completo do drone educativo DJI RoboMaster TT (Tello Talent) do CTE: segurança, LEDs, Mind+, Python (djitellopy), módulo ESP32, matriz LED 8×8, ToF, Mission Pads e 5 projetos.">
+<meta property="og:title" content="DJI RoboMaster TT — Manual de Utilizador e Programação (CTE)">
+<meta property="og:description" content="Manual completo do drone DJI RoboMaster TT (INV-144): segurança em interiores, Mind+, Python SDK 3.0, matriz 8×8, sensor ToF, Mission Pads e 5 projetos.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='18' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='18' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='46' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='46' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Cline x1='24' y1='24' x2='40' y2='40' stroke='%23fff' stroke-width='3'/%3E%3Cline x1='40' y1='24' x2='24' y2='40' stroke='%23fff' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' rx='4' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.3rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 142px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 104px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI RoboMaster TT</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="RoboMaster_TT_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="RoboMaster_TT_Quiz_Habilitacao.html">Carta de Piloto</a>
+      <a href="RoboMaster_TT_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>DJI RoboMaster TT</h1>
+      <p class="sub">Manual de Utilizador e Programação (Mind+, Python &amp; SDK 3.0)</p>
+      <p class="kit">Tello Talent · Inventário CTE <strong>INV-144</strong> (10 unidades · Estúdio 4C · Armário <code>D1.4C-MF-A04</code>)</p>
+      <p class="ver">Centro Tecnológico Especializado (CTE) Informático · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <svg viewBox="0 0 140 110" aria-hidden="true" class="hero-art" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="34" cy="28" r="18" stroke="#4CE0F5"/>
+      <circle cx="106" cy="28" r="18" stroke="#4CE0F5"/>
+      <circle cx="34" cy="82" r="18" stroke="#4CE0F5"/>
+      <circle cx="106" cy="82" r="18" stroke="#4CE0F5"/>
+      <line x1="46" y1="40" x2="94" y2="70"/>
+      <line x1="94" y1="40" x2="46" y2="70"/>
+      <rect x="52" y="37" width="36" height="36" rx="8" fill="#E8711C" stroke="#fff"/>
+      <circle cx="64" cy="50" r="3" fill="#fff" stroke="none"/>
+      <circle cx="76" cy="50" r="3" fill="#fff" stroke="none"/>
+      <rect x="61" y="59" width="18" height="4" rx="2" fill="#4CE0F5" stroke="none"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer o RoboMaster TT</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Conteúdo do kit INV-144</a></li>
+          <li><a href="#s2-2">2.2 Anatomia e módulo ESP32</a></li>
+          <li><a href="#s2-3">2.3 Especificações técnicas</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras de segurança em sala</a></li>
+      <li><a href="#s4">4. Ligar, modos Wi-Fi e LEDs</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Ligar e associar Wi-Fi</a></li>
+          <li><a href="#s4-2">4.2 Botão e interruptor AP/Station</a></li>
+          <li><a href="#s4-3">4.3 Significado do LED frontal</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Programar: Mind+ e Python</a></li>
+      <li><a href="#s6">6. Primeiro voo seguro</a></li>
+      <li><a href="#s7">7. ESP32, Matriz 8×8, ToF e Pads</a>
+        <ul>
+          <li><a href="#s7-1">7.1 Matriz LED 8×8 e LED RGB</a></li>
+          <li><a href="#s7-2">7.2 Sensor de distância ToF</a></li>
+          <li><a href="#s7-3">7.3 Mission Pads (IDs 1–12)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s8">8. 5 Mini-projetos progressivos</a>
+        <ul>
+          <li><a href="#s8-python">Projeto 5: Python com djitellopy</a></li>
+          <li><a href="#s8-inter">Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Desligar, devolver e registar</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist interativa</a></li>
+          <li><a href="#s9-2">9.2 Registo de requisições</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>Este manual explica como preparar, voar em segurança, programar (em blocos <strong>Mind+</strong> ou em <strong>Python / SDK 3.0</strong>) e devolver o drone educativo <strong>DJI RoboMaster TT (Tello Talent)</strong> do CTE Informático, registado com o inventário <code>INV-144</code> (10 unidades, Estúdio 4C, armário <code>D1.4C-MF-A04</code>).</p>
+      <p>Destina-se a <strong>professores e alunos</strong> de iniciação e programação/robótica. Para configuração de enxames (<em>swarms</em>) em Wi-Fi 5,8 GHz, substituição correta de hélices A/B, manutenção de baterias LiPo e troubleshooting aprofundado, consulte o <a href="RoboMaster_TT_Manual_Tecnico.html">Manual Técnico do RoboMaster TT</a>.</p>
+      <aside class="note info"><strong>Antes do primeiro voo:</strong> Recomenda-se que todos os alunos concluam a <a href="RoboMaster_TT_Quiz_Habilitacao.html">Carta de Piloto e Programador</a> e testem primeiro os comandos de LED/matriz em cima da mesa antes de executar o primeiro <code>takeoff</code>.</aside>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer o RoboMaster TT</h2>
+
+      <h3 id="s2-1">2.1 Conteúdo do kit (<code>INV-144</code>)</h3>
+      <p>Ao requisitar um kit no armário <code>D1.4C-MF-A04</code>, confirme a presença dos componentes:</p>
+      <ol>
+        <li><strong>Drone DJI RoboMaster TT (Tello Talent)</strong> com os <strong>4 protetores de hélices</strong> montados e 4 hélices intactas.</li>
+        <li><strong>Módulo de Expansão Open-Source ESP32</strong> com <strong>matriz LED 8×8</strong> (vermelho/azul), LED RGB no topo, sensor de distância <strong>ToF</strong> e cabo micro-USB de ligação ao drone.</li>
+        <li><strong>Bateria LiPo 3,8 V (1100 mAh)</strong> inserida no compartimento traseiro.</li>
+        <li><strong>Cabo micro-USB</strong> e <strong>Mission Pads</strong> (tapetes numerados 1–12, quando requisitados para navegação de precisão).</li>
+      </ol>
+
+      <h3 id="s2-2">2.2 Anatomia e módulo de expansão ESP32</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+          <thead><tr><th>Zona</th><th>Componentes e Função</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Topo (Módulo ESP32)</th><td>Microcontrolador <strong>ESP32 dual-core 160 MHz</strong> (compatível com Arduino e MicroPython), <strong>matriz LED 8×8</strong> (vermelho/azul), <strong>LED RGB</strong> programável, <strong>sensor ToF</strong> frontal (distância até 1,2 m), conector de 14 pinos (I²C/UART/SPI/GPIO/PWM) e interruptor <strong>AP / Station</strong>.</td></tr>
+            <tr><th scope="row">Frente do drone</th><td>Câmara <strong>5 MP / vídeo HD 720p a 30 fps</strong> (FOV 82,6°) e <strong>LED de estado frontal</strong> da aeronave.</td></tr>
+            <tr><th scope="row">Laterais</th><td><strong>Botão de energia</strong> (1 clique liga/desliga; premir ~5 s repõe o Wi-Fi) e <strong>porta micro-USB</strong> de carregamento.</td></tr>
+            <tr><th scope="row">Braços e hélices</th><td>4 motores com 4 hélices (pares A/B diagonais) e <strong>4 protetores de hélices obrigatórios</strong>.</td></tr>
+            <tr><th scope="row">Base e traseira</th><td><strong>Sensores óticos de visão inferior</strong> (mantêm a estabilidade e leem <em>Mission Pads</em>), barómetro e compartimento da bateria LiPo 1100 mAh.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-3">2.3 Especificações técnicas principais</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:36%"><col style="width:64%"></colgroup>
+          <thead><tr><th>Característica</th><th>Especificação Oficial (RoboMaster TT)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Peso e dimensões</th><td><strong>87 g</strong> (drone, hélices, protetores e bateria) + <strong>~12,5 g</strong> (módulo ESP32/LED) · 98 × 92,5 × 41 mm</td></tr>
+            <tr><th scope="row">Autonomia de voo</th><td><strong>~8 minutos</strong> com módulo ESP32 montado (até <strong>13 min</strong> sem módulos, em condições ideais)</td></tr>
+            <tr><th scope="row">Bateria</th><td>LiPo amovível <strong>1100 mAh · 3,8 V</strong></td></tr>
+            <tr><th scope="row">Desempenho máximo</th><td>Velocidade máx. 8 m/s · Distância máx. 100 m · Altura máx. 30 m <em>(no CTE voar sempre em interiores!)</em></td></tr>
+            <tr><th scope="row">Conectividade</th><td><strong>Wi-Fi dual-band 2,4 GHz e 5,8 GHz</strong> · Modos <strong>AP</strong> (individual) e <strong>Station</strong> (enxame até 16 drones)</td></tr>
+            <tr><th scope="row">Programação</th><td><strong>SDK 3.0</strong> (UDP porta <code>8889</code> / estado <code>8890</code>) · Mind+ (blocos), Python (<code>djitellopy</code>), MicroPython e Arduino</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras de segurança de voo em sala de aula</h2>
+      <aside class="note danger"><strong>Uso exclusivo em interiores no CTE:</strong> Apesar de pesar apenas 87 g, as hélices rodam a alta velocidade e podem magoar olhos, dedos ou prender cabelos. Cumpra rigorosamente as 6 regras abaixo em todas as aulas.</aside>
+      <ol>
+        <li><strong>Protetores de hélices sempre montados:</strong> Nunca ligue nem faça descolar o drone sem os <strong>4 protetores</strong> encaixados e sem verificar se existem hélices rachadas ou empenadas.</li>
+        <li><strong>Espaço interior livre e sem vento:</strong> Reserve uma zona mínima de <strong><code>3 m × 3 m</code></strong> sem alunos na área de voo, longe de projetores, candeeiros, ventoinhas, ar condicionado forte e janelas abertas.</li>
+        <li><strong>Zero mãos no ar:</strong> Mantenha o drone longe de rostos e cabelos compridos (prender o cabelo durante os testes). <strong>Nunca tente agarrar o drone com as hélices a rodar</strong> — envie sempre <code>land</code> ou <code>emergency</code> primeiro.</li>
+        <li><strong>Boa iluminação e chão com contraste:</strong> Os sensores óticos inferiores precisam de luz uniforme e chão com textura para segurar o drone no lugar. Evite voar sobre pisos pretos lisos, espelhados ou com luz fraca.</li>
+        <li><strong>Desligar durante a edição de código:</strong> O RoboMaster TT arrefece com o fluxo de ar das hélices. Se ficar ligado parado sobre a mesa enquanto os alunos editam código, sobreaquece rapidamente e desliga-se sozinho.</li>
+        <li><strong>Voo autónomo seguro no código:</strong> Limite distâncias iniciais a <code>30–80 cm</code>, inclua sempre um comando final <code>land</code> (em Python, dentro de <code>try / finally</code>) e tenha um colega observador pronto a interromper o programa.</li>
+      </ol>
+    </section>
+
+    <section id="s4">
+      <h2>4. Ligar, modos Wi-Fi e LEDs</h2>
+
+      <h3 id="s4-1">4.1 Ligar e associar o computador ao Wi-Fi do drone</h3>
+      <ol>
+        <li>Insira uma bateria carregada até ouvir o clique de encaixe e confirme que o cabo micro-USB do módulo ESP32 está bem ligado.</li>
+        <li>Pouse o drone numa superfície plana e prima <strong>1 vez o botão de energia lateral</strong>.</li>
+        <li>O LED frontal faz um autoteste alternando vermelho/verde/amarelo e depois pisca conforme o estado de visão/ligação.</li>
+        <li>No computador, ligue-se à rede Wi-Fi do drone (ex.: <code>RMTT-xxxxxx</code> ou <code>TELLO-xxxxxx</code>). O endereço IP do drone em modo direto é sempre <code>192.168.10.1</code>.</li>
+      </ol>
+
+      <h3 id="s4-2">4.2 Botão de energia e interruptor AP / Station</h3>
+      <ul>
+        <li><strong>Botão de energia (lateral do drone):</strong> 1 clique curto liga ou desliga o drone; manter premido <strong>~5 segundos</strong> (com o drone ligado) repõe as definições de Wi-Fi de fábrica.</li>
+        <li><strong>Interruptor no módulo ESP32:</strong>
+          <ul>
+            <li><strong>Modo AP (<em>Access Point</em> — uso normal em aula):</strong> o drone cria a sua própria rede Wi-Fi direta para 1 computador ou tablet.</li>
+            <li><strong>Modo Station (enxames):</strong> o drone liga-se a um router Wi-Fi dedicado para voar em grupo (até 16 drones) — gerido pelo docente.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 id="s4-3">4.3 Significado do LED frontal da aeronave</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:32%"><col style="width:40%"></colgroup>
+          <thead><tr><th>Padrão do LED Frontal</th><th>Significado</th><th>O que fazer</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Verde (2 piscadelas periódicas)</strong></td><td>Sistema de visão inferior ativo</td><td>Pronto a descolar em segurança.</td></tr>
+            <tr><td><strong>Roxo a piscar lentamente</strong></td><td>SDK 3.0 conectado</td><td>Ligação ativa com Mind+ ou Python.</td></tr>
+            <tr><td><strong>Roxo a piscar rapidamente</strong></td><td>SDK sem comandos (&gt; 15 s)</td><td>Reenviar <code>command</code> ou verificar ligação Wi-Fi.</td></tr>
+            <tr><td><strong>Amarelo lento</strong></td><td>Sem posicionamento ótico (ATTI)</td><td>Aumentar a luz da sala e usar piso com textura.</td></tr>
+            <tr><td><strong>Amarelo rápido</strong></td><td>Sinal perdido / à espera de Wi-Fi</td><td>Associar o PC à rede <code>RMTT-xxxxxx</code>.</td></tr>
+            <tr><td><strong>Vermelho a piscar</strong></td><td>Bateria baixa (lento) ou crítica (rápido)</td><td>Aterrar imediatamente, arrefecer e trocar bateria.</td></tr>
+            <tr><td><strong>Vermelho fixo</strong></td><td>Erro crítico / drone inclinado</td><td>Desligar, pousar plano e reiniciar; se persistir, avisar CTE.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Software de programação: Mind+ e Python</h2>
+      <!-- CONFIRMAR: confirmar qual ambiente principal está instalado nos PCs do Estúdio 4C (Mind+, Python/VS Code com djitellopy ou ambos) -->
+      <ul>
+        <li><strong>Mind+ (blocos visuais e código — recomendado para iniciação):</strong> Instale o <a href="https://mindplus.cc/" target="_blank" rel="noopener noreferrer">Mind+ &#8599;</a>, adicione a extensão oficial <strong>RoboMaster TT</strong> e escolha <em>Modo Online</em> (controlo imediato por Wi-Fi) ou <em>Modo Offline</em> (gravar código MicroPython/Arduino diretamente no chip ESP32 por USB).</li>
+        <li><strong>Python com <code>djitellopy</code> (recomendado para cursos de Informática/GPSI):</strong> Instale a biblioteca com <code>pip install djitellopy</code> (ou utilize o SDK oficial <code>robomaster</code> da DJI). Na primeira execução, clique em <strong>Permitir acesso</strong> na Firewall do Windows para a porta UDP <code>8889</code>.</li>
+      </ul>
+      <aside class="note warn"><strong>Atenção à rede escolar:</strong> Ao ligar o portátil ao Wi-Fi direto do drone (<code>RMTT-xxxxxx</code>), o portátil fica temporariamente sem acesso à Internet. Instale o Mind+ ou o pacote <code>djitellopy</code> <strong>antes</strong> de trocar de rede Wi-Fi!</aside>
+    </section>
+
+    <section id="s6">
+      <h2>6. Primeiro voo seguro em sala de aula</h2>
+      <ol>
+        <li>Confirme bateria &gt; 30%, 4 protetores montados, espaço livre de <code>3 × 3 m</code> e iluminação acesa.</li>
+        <li>Ligue o drone em piso plano e confirme o LED frontal em <strong>verde (2 piscadelas)</strong>.</li>
+        <li>Associe o PC à rede Wi-Fi do drone e execute primeiro um teste sem voo (ex.: ler bateria e acender o LED RGB do topo).</li>
+        <li>Afaste todos os alunos pelo menos <strong>1,5 m</strong> da zona de descolagem e corra o primeiro programa simples: <code>takeoff</code> → aguardar 3 s → <code>land</code>.</li>
+        <li>Após aterrar, desligue o drone enquanto ajusta o programa seguinte para evitar aquecimento e poupar os ~8 min de bateria.</li>
+      </ol>
+    </section>
+
+    <section id="s7">
+      <h2>7. Módulo ESP32, Matriz LED 8×8, Sensor ToF e Mission Pads</h2>
+
+      <h3 id="s7-1">7.1 Matriz LED 8×8 e LED RGB do topo</h3>
+      <ul>
+        <li><strong>LED RGB estático:</strong> <code>EXT led r g b</code> (ex.: <code>EXT led 255 120 0</code> para laranja; valores de 0 a 255).</li>
+        <li><strong>LED RGB a pulsar:</strong> <code>EXT led br t r g b</code> (frequência <code>t</code> entre 0,1 e 2,5 Hz).</li>
+        <li><strong>Texto deslizante na matriz 8×8:</strong> <code>EXT mled l b 2 CTE</code> — direção (<code>l</code> esq., <code>r</code> dir., <code>u</code> cima, <code>d</code> baixo), cor (<code>r</code> vermelho, <code>b</code> azul, <code>p</code> roxo), velocidade e texto.</li>
+        <li><strong>Desenho personalizado na matriz 8×8:</strong> <code>EXT mled g &lt;64 caracteres&gt;</code> usando <code>0</code> (apagado), <code>r</code> (vermelho), <code>b</code> (azul) ou <code>p</code> (roxo).</li>
+      </ul>
+
+      <h3 id="s7-2">7.2 Sensor infravermelho de distância (ToF)</h3>
+      <p>O sensor frontal ToF do módulo de expansão mede a distância a obstáculos até cerca de <strong>1,2 m</strong> (em interiores com superfícies claras) usando o comando <code>EXT tof?</code> (devolve o valor em milímetros). Ideal para criar rotinas que travam ou desviam quando o drone se aproxima de uma parede ou cartão!</p>
+
+      <h3 id="s7-3">7.3 Mission Pads (Navegação de Precisão)</h3>
+      <p>Os <strong>Mission Pads</strong> (IDs 1 a 12) são tapetes visuais colocados no chão que permitem ao drone saber a sua posição exata relativa (<code>x, y, z</code>) em centímetros:</p>
+      <ol>
+        <li>Ative a leitura com <code>mon</code> e selecione o sensor inferior com <code>mdirection 0</code>.</li>
+        <li>Voe entre <strong>0,4 m e 1,0 m</strong> de altura acima dos tapetes com boa iluminação.</li>
+        <li>Use comandos como <code>go 0 0 80 30 m1</code> (voar exatamente para 80 cm acima do centro do Mission Pad n.º 1 à velocidade de 30 cm/s).</li>
+      </ol>
+    </section>
+
+    <section id="s8">
+      <h2>8. 5 Mini-projetos progressivos em sala de aula</h2>
+      <p>Sugestão de percurso gradual — comece sempre pelos projetos sem voo ou de trajeto curto:</p>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 1 — "Semáforo e Mensagem na Matriz 8×8" (Sem Voo)</h4><div class="proj-badges"><span class="lvl">Iniciante · 20 min</span></div></div>
+        <p><strong>Comandos:</strong> <code>command</code> &rarr; ler <code>battery?</code> &rarr; alternar o LED RGB (<code>EXT led</code>) entre vermelho, amarelo e verde &rarr; apresentar texto deslizante <code>CTE</code> na matriz 8×8 (<code>EXT mled</code>).</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Validar a ligação Wi-Fi, o protocolo SDK 3.0 e o módulo ESP32 com total segurança sobre a mesa.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 2 — "Polígono Autónomo (Quadrado de 60 cm)"</h4><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span></div></div>
+        <p><strong>Sequência:</strong> <code>takeoff</code> &rarr; ciclo de 4 repetições (<code>forward 60</code> + <code>cw 90</code> + mudar cor do LED a cada lado) &rarr; <code>land</code>.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Aplicar ciclos (<em>loops</em>) e geometria espacial em voo interior controlado.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 3 — "Guarda de Obstáculos com Sensor ToF"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 35 min</span></div></div>
+        <p><strong>Lógica:</strong> Ler continuamente <code>EXT tof?</code>. Enquanto a distância for &gt; 600 mm, LED verde e avançar em passos curtos de 25 cm; se detetar obstáculo (&lt; 600 mm), LED vermelho, ícone de alerta na matriz 8×8 e aterrar ou rodar 90°.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Combinar sensores de distância em tempo real com tomada de decisão condicional.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 4 — "Entrega de Precisão com Mission Pads"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span></div></div>
+        <p><strong>Lógica:</strong> Colocar dois Mission Pads (ID 1 e ID 2) a 1 m de distância &rarr; <code>mon</code> &rarr; <code>takeoff</code> &rarr; centrar sobre o Pad 1 &rarr; saltar para o Pad 2 (<code>jump 100 0 80 30 0 m1 m2</code>) &rarr; <code>land</code>.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Dominar sistemas de coordenadas 3D (x, y, z) e aterragem exata em alvo visual.</p>
+      </div>
+
+      <div class="proj-card" id="s8-python">
+        <div class="proj-head"><h4>Projeto 5 — "Voo Seguro em Python com Matriz LED (<code>djitellopy</code>)"</h4><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
+        <p>Exemplo completo e seguro em Python (note o bloco <code>try / finally</code> para garantir a aterragem mesmo em caso de erro ou interrupção <code>Ctrl+C</code>):</p>
+        <div class="code-wrap">
+          <button class="copy-btn" type="button" data-copy>Copiar código</button>
+<pre><code>from djitellopy import Tello
+import time
+
+tello = Tello()
+tello.connect()
+print(f"Bateria atual: {tello.get_battery()}%")
+
+if tello.get_battery() &lt; 25:
+    print("Bateria baixa! Troque antes de descolar.")
+else:
+    try:
+        # Acender LED RGB verde e escrever na matriz 8x8
+        tello.send_expansion_command("led 0 255 0")
+        tello.send_expansion_command("mled l b 2 CTE")
+        time.sleep(1.5)
+
+        tello.takeoff()
+        for _ in range(4):
+            tello.move_forward(50)
+            tello.rotate_clockwise(90)
+    finally:
+        tello.send_expansion_command("led 255 120 0")
+        tello.land()
+        tello.end()</code></pre>
+        </div>
+      </div>
+
+      <h3 id="s8-inter">Ideias interdisciplinares para professores</h3>
+      <ul>
+        <li><strong>Matemática e Geometria:</strong> polígonos regulares, ângulos externos, vetores e coordenadas 3D com Mission Pads.</li>
+        <li><strong>Física:</strong> forças de sustentação, velocidade média, medição de distância por tempo de voo ótico (ToF) e estabilidade.</li>
+        <li><strong>Programação, IoT e Eletrónica:</strong> ligação de sensores externos nos 14 pinos do ESP32 (I²C/GPIO) e visão computacional em Python/OpenCV com o fluxo 720p.</li>
+        <li><strong>Dias Abertos da Escola:</strong> coreografia sincronizada em enxame (modo Station) com mensagens animadas nas matrizes LED 8×8.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Desligar, devolver e registar</h2>
+      <ol>
+        <li>Aterre completamente o drone e aguarde que as 4 hélices parem.</li>
+        <li>Prima o botão de energia lateral para desligar totalmente o drone (todos os LEDs apagados).</li>
+        <li>Deixe a bateria arrefecer alguns minutos antes de guardar ou colocar à carga.</li>
+        <li>Confirme o interruptor do módulo ESP32 em modo <strong>AP</strong>, os <strong>4 protetores montados</strong> e a integridade das 4 hélices.</li>
+        <li>Arrume no kit numerado (<code>1</code> a <code>10</code>) e entregue no armário <code>D1.4C-MF-A04</code> (Estúdio 4C), avisando o CTE se a bateria ficou gasta ou se houve alguma colisão.</li>
+      </ol>
+
+      <h3 id="s9-1">9.1 Checklist interativa de entrega e devolução</h3>
+      <ul class="check">
+        <li><label><input type="checkbox" id="rmtt-u1"><span><strong>Entrega:</strong> Kit conferido (drone, 4 protetores, hélices intactas, bateria e módulo ESP32/8×8).</span></label></li>
+        <li><label><input type="checkbox" id="rmtt-u2"><span><strong>Entrega:</strong> Sala preparada (3 × 3 m livres, boa luz, janelas fechadas, sem ventoinhas).</span></label></li>
+        <li><label><input type="checkbox" id="rmtt-u3"><span><strong>Aula:</strong> LED frontal verde (2×) confirmado e drone desligado entre edições longas de código.</span></label></li>
+        <li><label><input type="checkbox" id="rmtt-u4"><span><strong>Devolução:</strong> Drone desligado e frio (LEDs apagados) e interruptor ESP32 no modo AP.</span></label></li>
+        <li><label><input type="checkbox" id="rmtt-u5"><span><strong>Devolução:</strong> 4 protetores e 4 hélices sem danos, sensores limpos a seco e Mission Pads conferidos.</span></label></li>
+        <li><label><input type="checkbox" id="rmtt-u6"><span><strong>CTE:</strong> Reportado n.º do kit (1–10), bateria descarregada ou qualquer colisão/anomalia.</span></label></li>
+      </ul>
+      <button class="reset" type="button" id="resetChecklist">Limpar lista</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir manual / ficha</button>
+
+      <h3 id="s9-2">9.2 Registo de utilizações / requisições (<code>INV-144</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Kit(s) N.º</th><th>Professor / Turma</th><th>Sala</th><th>Bateria Final</th><th>Estado / Ocorrências</th><th>Rubrica</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Imprima esta secção se pretender manter uma folha de registo em papel junto ao armário <code>D1.4C-MF-A04</code>.</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador DJI RoboMaster TT (<code>INV-144</code>) · Em caso de dúvida técnica, consulte o <a href="RoboMaster_TT_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "rmtt-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar código"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

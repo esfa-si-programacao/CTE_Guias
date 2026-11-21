@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI Pocket 2 Creator Combo — Manual de Utilizador e Produção Vídeo (CTE · INV-152)</title>
+<meta name="description" content="Manual completo da câmara estabilizada DJI Pocket 2 Creator Combo do CTE: proteção do gimbal, Botão Função, modos de estabilização, microfone sem fios, DJI Mimo, 5 projetos vídeo e checklists.">
+<meta property="og:title" content="DJI Pocket 2 Creator Combo — Manual de Utilizador e Produção Vídeo (CTE)">
+<meta property="og:description" content="Manual completo da DJI Pocket 2 Creator Combo (INV-152): acessórios, proteção física, microfone sem fios, ActiveTrack, transferência PC e 5 projetos vídeo.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='22' y='10' width='20' height='15' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='17.5' r='4.2' fill='%231F2A36' stroke='%23E8711C' stroke-width='2.4'/%3E%3Crect x='24' y='28' width='16' height='26' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='27.5' y='32' width='9' height='8' rx='1.5' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.3rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 108px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 82px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI Pocket 2 Creator Combo</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="DJI_Pocket_2_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="DJI_Pocket_2_Quiz_Habilitacao.html">Carta de Operador</a>
+      <a href="DJI_Pocket_2_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>DJI Pocket 2 Creator Combo</h1>
+      <p class="sub">Manual de Utilizador, Estabilização e Produção de Vídeo</p>
+      <p class="kit">Inventário CTE <strong>INV-152</strong> (4 kits · Estúdio 4C · Armário branco com tabuleiros junto à janela)</p>
+      <p class="ver">Centro Tecnológico Especializado (CTE) Informático · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <svg viewBox="0 0 110 130" aria-hidden="true" class="hero-art" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="34" y="14" width="42" height="28" rx="9" fill="rgba(255,255,255,0.1)"/>
+      <circle cx="55" cy="28" r="9" stroke="#E8711C" stroke-width="3"/>
+      <circle cx="55" cy="28" r="3.5" fill="#4CE0F5" stroke="none"/>
+      <path d="M55 42 L55 50"/>
+      <rect x="37" y="50" width="36" height="66" rx="10" fill="rgba(255,255,255,0.08)"/>
+      <rect x="44" y="58" width="22" height="18" rx="3" fill="#4CE0F5" opacity="0.85" stroke="none"/>
+      <circle cx="49" cy="88" r="4" fill="#E8711C" stroke="none"/>
+      <circle cx="62" cy="88" r="4" fill="#fff" stroke="none"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer a Creator Combo</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Peças do kit INV-152</a></li>
+          <li><a href="#s2-2">2.2 Anatomia da câmara</a></li>
+          <li><a href="#s2-3">2.3 Especificações técnicas</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Proteção física e ética/RGPD</a></li>
+      <li><a href="#s4">4. Botões, ecrã tátil e LEDs</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Botões e Botão Função</a></li>
+          <li><a href="#s4-2">4.2 Gestos e Mini-Joystick</a></li>
+          <li><a href="#s4-3">4.3 Significado dos LEDs</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Modos de gimbal e ActiveTrack</a></li>
+      <li><a href="#s6">6. Microfone sem fios e áudio</a></li>
+      <li><a href="#s7">7. DJI Mimo e transferência PC</a>
+        <ul>
+          <li><a href="#s7-1">7.1 Ligar à app DJI Mimo</a></li>
+          <li><a href="#s7-2">7.2 Copiar vídeos para o PC</a></li>
+        </ul>
+      </li>
+      <li><a href="#s8">8. 5 Projetos vídeo para a aula</a>
+        <ul>
+          <li><a href="#s8-roteiro">Projeto 5: Mini-Documentário (Guião)</a></li>
+          <li><a href="#s8-inter">Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Desligar, devolver e registar</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist interativa</a></li>
+          <li><a href="#s9-2">9.2 Registo de requisições</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>Este manual explica como preparar, filmar com estabilização de 3 eixos, gravar áudio profissional sem fios, transferir ficheiros e devolver a <strong>DJI Pocket 2 Creator Combo</strong> do CTE Informático, registada com o inventário <code>INV-152</code> (4 kits, Estúdio 4C, Armário branco com tabuleiros junto à janela).</p>
+      <p>Destina-se a <strong>professores e alunos</strong> de todas as disciplinas para produção de vídeos educativos, reportagens, experiências laboratoriais e eventos escolares. Para gestão de cartões microSD, emparelhamento de microfones, calibração de gimbal e troubleshooting avançado, consulte o <a href="DJI_Pocket_2_Manual_Tecnico.html">Manual Técnico da DJI Pocket 2</a>.</p>
+      <aside class="note info"><strong>Antes da primeira gravação:</strong> Recomenda-se que os alunos realizem a <a href="DJI_Pocket_2_Quiz_Habilitacao.html">Carta de Operador de Câmara</a> e confiram todas as peças pequenas da Creator Combo no levantamento e na devolução.</aside>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer a DJI Pocket 2 Creator Combo</h2>
+
+      <h3 id="s2-1">2.1 Peças oficiais do kit Creator Combo (<code>INV-152</code>)</h3>
+      <p>O conjunto Creator Combo traz acessórios modulares valiosos e compactos. Confira os itens no levantamento e na devolução:</p>
+      <ol>
+        <li><strong>Câmara DJI Pocket 2</strong> (com <strong>capa rígida protetora</strong> e <strong>fita de pulso</strong>) + <strong>cartão microSD</strong> (até 256 GB).</li>
+        <li><strong>Punho <em>Do-It-All Handle</em></strong> (substitui a base inferior para dar Wi-Fi/BT, recetor de microfone sem fios, altifalante, jack 3,5 mm, USB-C e rosca 1/4").</li>
+        <li><strong>Transmissor de Microfone Sem Fios DJI</strong> + <strong>Para-vento cinzento (<em>Windscreen</em>)</strong> para exteriores.</li>
+        <li><strong>Mini-Tripé DJI Pocket 2</strong> + <strong>Suporte de tripé (1/4")</strong>.</li>
+        <li><strong>Lente Grande Angular magnética</strong> (encaixa na frente da lente e tem lugar próprio dentro da capa rígida!).</li>
+        <li><strong>Mini-Joystick de controlo</strong> + <strong>Adaptadores de smartphone (USB-C e Lightning)</strong> + <strong>Cabo duplo de carregamento USB-A → 2× USB-C</strong>.</li>
+      </ol>
+
+      <h3 id="s2-2">2.2 Anatomia da câmara</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+          <thead><tr><th>Zona</th><th>Componentes e Função</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Topo (Gimbal 3 eixos)</th><td>Câmara 4K / 64 MP montada num estabilizador motorizado de 3 eixos. <strong>Nunca segurar nem rodar à mão!</strong></td></tr>
+            <tr><th scope="row">Frente do corpo</th><td><strong>Ecrã tátil</strong>, ranhura modular para adaptador de telemóvel ou Mini-Joystick, <strong>LED de estado</strong>, <strong>Botão Gravar (vermelho)</strong> e <strong>Botão Função</strong>.</td></tr>
+            <tr><th scope="row">Laterais</th><td><strong>Lado esquerdo:</strong> ranhura do cartão <strong>microSD</strong>. <strong>Lado direito:</strong> <strong>Botão de Energia</strong> (premir ~1 s para ligar/desligar).</td></tr>
+            <tr><th scope="row">Base amovível</th><td>Desliza-se para trocar a base simples pelo <strong>Do-It-All Handle</strong> (obrigatório para microfone sem fios e Wi-Fi) ou suporte de tripé 1/4".</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-3">2.3 Especificações técnicas principais</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:36%"><col style="width:64%"></colgroup>
+          <thead><tr><th>Característica</th><th>Especificação Oficial (DJI Pocket 2)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Peso</th><td><strong>117 g</strong> (unidade principal)</td></tr>
+            <tr><th scope="row">Fotografia e Vídeo</th><td>Foto até <strong>64 MP</strong> · Vídeo até <strong>4K @ 60 fps</strong> · Câmara lenta até 8× (1080p) · Timelapse / Motionlapse / Panorama</td></tr>
+            <tr><th scope="row">Estabilização</th><td>Gimbal mecânico motorizado de <strong>3 eixos</strong> (modos Follow, Tilt Locked, FPV e Bloqueio)</td></tr>
+            <tr><th scope="row">Bateria e carga</th><td>Li-ion <strong>875 mAh (6,738 Wh)</strong> · Até <strong>140 min</strong> (1080p/24fps) · Carga completa em <strong>~73 min</strong> (5 V / 2 A USB-C)</td></tr>
+            <tr><th scope="row">Cartão de memória</th><td>microSD SDHC/SDXC até <strong>256 GB</strong> · Velocidade <strong>UHS-I U1 ou U3</strong> (U3 recomendado para 4K)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras de proteção física, ética e RGPD</h2>
+      <aside class="note danger"><strong>Regra N.º 1 — Nunca force a cabeça do gimbal:</strong> Os 3 motores miniatura do estabilizador são muito precisos e sensíveis. Ao ligar ou desligar, mantenha dedos, mangas e objetos afastados da cabeça rotativa e use sempre o Botão Função para reposicionar a câmara.</aside>
+      <ol>
+        <li><strong>Capa rígida sempre no transporte:</strong> Desligue a câmara, aguarde que o gimbal recolha automaticamente para a posição de arrumação e só depois encaixe na capa protetora.</li>
+        <li><strong>Fita de pulso obrigatória:</strong> Passe sempre a fita de pulso pela mão quando filmar sem tripé para evitar quedas acidentais.</li>
+        <li><strong>Não é resistente à água:</strong> A DJI Pocket 2 <strong>não é estanque</strong> — não utilize à chuva, junto a líquidos laboratoriais abertos nem em ambientes com pó fino/areia.</li>
+        <li><strong>Ética escolar e RGPD:</strong> Só filme ou fotografe colegas, docentes ou visitantes com <strong>consentimento prévio</strong> e enquadramento pedagógico autorizado.</li>
+        <li><strong>Cópia e limpeza de ficheiros:</strong> No fim da aula, transfira os vídeos do grupo para o computador/nuvem e apague ficheiros temporários apenas após confirmar que a cópia está íntegra (mantendo o cartão microSD dentro do kit!).</li>
+      </ol>
+    </section>
+
+    <section id="s4">
+      <h2>4. Botões, ecrã tátil e LEDs</h2>
+
+      <h3 id="s4-1">4.1 Botão de Energia e Botão Função</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+          <thead><tr><th>Botão / Ação</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Botão Energia (lado dir.) — ~1 s</th><td>Liga ou desliga a DJI Pocket 2 (o gimbal recolhe sozinho ao desligar).</td></tr>
+            <tr><th scope="row">Botão Gravar (ponto vermelho)</th><td>Inicia / para gravação de vídeo ou tira fotografia.</td></tr>
+            <tr><th scope="row">Botão Função — 1 clique</th><td>Alterna entre <strong>Vídeo</strong> e <strong>Fotografia</strong> (nos menus, serve para <em>Voltar atrás</em>).</td></tr>
+            <tr><th scope="row">Botão Função — 2 cliques</th><td><strong>Recentra</strong> imediatamente o gimbal para a frente.</td></tr>
+            <tr><th scope="row">Botão Função — 3 cliques</th><td>Roda a câmara 180° para <strong>Modo Selfie</strong> (e ativa seguimento de rosto).</td></tr>
+            <tr><th scope="row">Botão Função — Manter premido</th><td><strong>Bloqueia o gimbal</strong> numa direção fixa enquanto o botão estiver premido.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s4-2">4.2 Gestos no ecrã tátil e Mini-Joystick</h3>
+      <ul>
+        <li><strong>Deslizar para cima:</strong> configurações rápidas do gimbal (recentrar, virar, modos Follow/Tilt Locked/FPV).</li>
+        <li><strong>Deslizar para baixo:</strong> definições gerais (brilho, calibração automática, áudio, cartão microSD).</li>
+        <li><strong>Deslizar para a esquerda:</strong> escolher modo de captura (Foto, Vídeo, Câmara Lenta, Timelapse/Motionlapse, Panorama).</li>
+        <li><strong>Deslizar para a direita:</strong> reproduzir os vídeos e fotos já gravados.</li>
+        <li><strong>Mini-Joystick encaixado:</strong> permite rodar o gimbal com precisão cinematográfica e fazer zoom digital com um toque no botão lateral do joystick.</li>
+      </ul>
+
+      <h3 id="s4-3">4.3 Significado dos LEDs (Câmara e Microfone Sem Fios)</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:32%"><col style="width:40%"></colgroup>
+          <thead><tr><th>LED</th><th>Significado</th><th>O que fazer</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Verde fixo</strong> (câmara)</td><td>Normal · microSD presente</td><td>Pronta a gravar ou fotografar.</td></tr>
+            <tr><td><strong>Vermelho lento</strong> (câmara)</td><td>A gravar vídeo</td><td>Prima Gravar para terminar antes de desligar.</td></tr>
+            <tr><td><strong>Vermelho 3× rápido</strong> (câmara)</td><td>Bateria crítica</td><td>Parar gravação e ligar ao carregador USB-C 5 V / 2 A.</td></tr>
+            <tr><td><strong>Vermelho fixo</strong> (câmara)</td><td>Sobreaquecimento</td><td>Desligar 10 min à sombra; evitar longos períodos em 4K/60fps.</td></tr>
+            <tr><td><strong>Amarelo fixo/piscar</strong> (câmara)</td><td>Não ativada / erro sistema</td><td>Entregar ao responsável do CTE.</td></tr>
+            <tr><td><strong>Mic: Verde fixo</strong></td><td>Ligado ao Do-It-All Handle</td><td>Som sem fios ativo — confirmar barra de áudio no ecrã.</td></tr>
+            <tr><td><strong>Mic: Verde rápido / lento</strong></td><td>A emparelhar / Sem ligação</td><td>Confirmar punho Do-It-All encaixado e distância &lt; 50 m.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Modos de gimbal e ActiveTrack</h2>
+      <ul>
+        <li><strong>Follow (predefinido — ideal para reportagens):</strong> acompanha suavemente para os lados e cima/baixo mantendo sempre o horizonte direito.</li>
+        <li><strong>Tilt Locked (ideal para entrevistas em movimento ou planos horizontais):</strong> acompanha para esquerda/direita, mantendo a inclinação vertical e o horizonte bloqueados.</li>
+        <li><strong>FPV (primeira pessoa):</strong> os 3 eixos seguem o movimento da mão — efeito dinâmico (usar com moderação para não causar tontura no espectador).</li>
+        <li><strong>ActiveTrack (seguimento automático de pessoas ou objetos):</strong> dê <strong>duplo toque no ecrã tátil</strong> sobre o rosto ou objeto pretendido (ou rode para Modo Selfie com 3 cliques no Botão Função para ativar <em>FaceTrack</em>).</li>
+      </ul>
+      <aside class="note warn"><strong>Limitações oficiais do ActiveTrack:</strong> O seguimento automático não está disponível em <strong>modo FPV</strong>, em gravação <strong>4K a 60 fps</strong> (ou 4K 48/50/60 fps com DJI Mimo por Wi-Fi) nem em <strong>câmara lenta 8×</strong>. Para usar ActiveTrack em sala de aula, selecione <strong>1080p ou 4K a 30 fps</strong> em modo <strong>Follow</strong>.</aside>
+    </section>
+
+    <section id="s6">
+      <h2>6. Microfone sem fios, Do-It-All Handle e áudio limpo</h2>
+      <ol>
+        <li>Com a câmara desligada, deslize para fora a base pequena inferior da Pocket 2 e encaixe o punho <strong>Do-It-All Handle</strong> até ouvir o clique.</li>
+        <li>Ligue a DJI Pocket 2 e ligue o <strong>transmissor do microfone sem fios</strong> no botão lateral.</li>
+        <li>Verifique o <strong>LED verde fixo</strong> no topo do microfone e o ícone de microfone externo + barra verde de volume no ecrã da câmara.</li>
+        <li>Prenda o microfone na gola do entrevistado/professor a cerca de <strong>15 a 20 cm da boca</strong> (evite roçar em colares, fechos ou cabelos).</li>
+        <li>Em gravações no exterior (ou perto de vento/ventoinhas), encaixe sempre o <strong>para-vento cinzento (<em>windscreen</em>)</strong> no topo do microfone.</li>
+        <li>No final, <strong>desligue também o microfone sem fios</strong> para não descarregar a bateria interna dele dentro da caixa!</li>
+      </ol>
+    </section>
+
+    <section id="s7">
+      <h2>7. Usar com DJI Mimo e transferir vídeos para o PC</h2>
+
+      <h3 id="s7-1">7.1 Ligar ao telemóvel (aplicação DJI Mimo)</h3>
+      <p>A aplicação oficial <strong>DJI Mimo</strong> oferece um ecrã maior para enquadrar, modo Pro (ISO/exposição manual), <em>Story Mode</em> e panoramas 180°/3×3:</p>
+      <ul>
+        <li><strong>Sem fios (recomendado com o kit Creator Combo):</strong> encaixe o punho <strong>Do-It-All Handle</strong>, ligue Wi-Fi e Bluetooth no telemóvel, abra a DJI Mimo e ligue-se à Pocket 2.</li>
+        <li><strong>Ligação direta:</strong> retire a tampa frontal da ranhura e encaixe o adaptador USB-C ou Lightning diretamente no telemóvel (pode exigir retirar capas grossas).</li>
+      </ul>
+
+      <h3 id="s7-2">7.2 Copiar os vídeos para o computador</h3>
+      <ol>
+        <li><strong>Via cabo USB-C (mais simples):</strong> <strong>ligue a DJI Pocket 2</strong> e ligue-a ao computador usando o cabo USB-C. A câmara aparece como disco removível — os vídeos e fotos estão em <code>DCIM\100MEDIA</code>. <em>(Se a câmara estiver desligada, o cabo serve apenas para carregar!)</em></li>
+        <li><strong>Via leitor de cartões microSD (mais rápido em 4K):</strong> desligue a câmara, prima ligeiramente o cartão microSD na lateral esquerda para o ejetar, copie os ficheiros no PC e <strong>volte sempre a inserir o cartão na câmara</strong> antes da devolução.</li>
+      </ol>
+    </section>
+
+    <section id="s8">
+      <h2>8. 5 Projetos audiovisuais progressivos para sala de aula</h2>
+      <p>Sugestão de atividades práticas para dominar estabilização, som e narrativa vídeo:</p>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 1 — "Entrevista com Áudio Profissional"</h4><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span></div></div>
+        <p><strong>Montagem:</strong> Pocket 2 + <em>Do-It-All Handle</em> + Mini-tripé + Microfone sem fios na gola (com <em>windscreen</em> se no exterior). Gravar 60 s em 1080p/30fps comparando som com e sem microfone sem fios.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Dominar enquadramento (regra dos terços), posicionamento de microfone e verificação da barra de áudio.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 2 — "Reportagem em Plano-Sequência Estabilizado"</h4><div class="proj-badges"><span class="lvl">Iniciante · 30 min</span></div></div>
+        <p><strong>Técnica:</strong> Modo <strong>Follow</strong> + lente grande angular magnética + caminhada suave com joelhos ligeiramente fletidos ("passo ninja") para apresentar uma oficina ou projeto do CTE num único plano sem cortes.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Tirar partido da estabilização de 3 eixos e da lente grande angular em espaços interiores.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 3 — "Tutorial de Laboratório com ActiveTrack"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 35 min</span></div></div>
+        <p><strong>Montagem:</strong> Câmara no mini-tripé em <strong>1080p/30fps</strong> (modo Follow) + duplo toque no ecrã para seguir o aluno apresentador enquanto explica um circuito, experiência científica ou demonstração no quadro.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Gravar apresentações autónomas com enquadramento dinâmico sem precisar de operador de câmara.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h4>Projeto 4 — "Motionlapse de Evento ou Experiência"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span></div></div>
+        <p><strong>Técnica:</strong> Câmara fixa no mini-tripé em modo <strong>Motionlapse</strong>, definindo um ponto inicial A e final B (panorâmica lenta automática durante 10–15 min) para resumir uma montagem de robótica ou reação química em 10 segundos.</p>
+        <p style="margin:0"><strong>Objetivo:</strong> Explorar compressão temporal e movimento programado do gimbal.</p>
+      </div>
+
+      <div class="proj-card" id="s8-roteiro">
+        <div class="proj-head"><h4>Projeto 5 — "Mini-Documentário CTE (90 segundos)"</h4><div class="proj-badges"><span class="lvl adv">Avançado · 60 min</span></div></div>
+        <p>Antes de ligar a câmara, planeie os 4 blocos do mini-documentário usando este modelo de folha de planos (copie para um documento da turma):</p>
+        <div class="code-wrap">
+          <button class="copy-btn" type="button" data-copy>Copiar modelo</button>
+<pre><code>FOLHA DE PLANOS — MINI-DOCUMENTÁRIO CTE (90 s)
+Equipa / Turma: ____________________  Kit INV-152 N.º: ___
+Resolução: 1080p 30 fps (ou 4K 30 fps) | Áudio: Mic Sem Fios (LED Verde)
+
+1. ABERTURA (0:00–0:15) — Plano Geral em movimento (Modo Follow + Lente Grande Angular)
+   O que se vê: entrada na oficina/sala e apresentação do tema.
+
+2. EXPLICAÇÃO (0:15–0:45) — Plano Médio no Mini-Tripé (ActiveTrack + Mic na gola)
+   Entrevistado(a) responde: O que estamos a construir e porquê?
+
+3. PLANOS DE PORMENOR / B-ROLL (0:45–1:15) — Modo Tilt Locked (3 clips de 10 s)
+   Mãos a trabalhar, detalhe do equipamento, ecrã do computador.
+
+4. FECHO (1:15–1:30) — Resultado final + frase de conclusão + créditos.</code></pre>
+        </div>
+      </div>
+
+      <h3 id="s8-inter">Ideias interdisciplinares para professores</h3>
+      <ul>
+        <li><strong>Português e Jornalismo Escolar:</strong> reportagens, entrevistas, <em>booktrailers</em> e podcasts em vídeo com áudio limpo sem fios.</li>
+        <li><strong>Ciências, Física e Química:</strong> registo estabilizado de experiências laboratoriais, <em>timelapses</em> de crescimento/reações e câmara lenta.</li>
+        <li><strong>Educação Física:</strong> gravação em câmara lenta (4× / 8× a 1080p) para análise biomecânica de gestos técnicos.</li>
+        <li><strong>Línguas Estrangeiras:</strong> <em>vlogs</em> temáticos, visitas guiadas à escola e simulações de apresentações orais.</li>
+        <li><strong>Artes, Multimédia e Eventos:</strong> cobertura de Dias Abertos, exposições, palestras e projetos de cinema escolar.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Desligar, devolver e registar</h2>
+      <ol>
+        <li>Transfira os vídeos do grupo para o PC/nuvem (com a câmara ligada por USB-C) e confirme que o <strong>cartão microSD permanece na câmara</strong>.</li>
+        <li>Desligue o <strong>microfone sem fios</strong> e desligue a <strong>DJI Pocket 2</strong> (botão lateral ~1 s), aguardando o gimbal recolher por completo.</li>
+        <li>Encaixe a lente grande angular no seu compartimento próprio na tampa da capa rígida e guarde a Pocket 2 dentro da capa protetora.</li>
+        <li>Confira todos os acessórios do kit Creator Combo (<code>INV-152</code>) e limpe a lente/ecrã apenas com pano de microfibra seco se houver dedadas.</li>
+        <li>Entregue no <strong>Armário branco com tabuleiros (janela) — Estúdio 4C</strong>, indicando o n.º do kit (<code>1</code> a <code>4</code>) e avisando se a bateria ficou fraca ou se falta alguma peça.</li>
+      </ol>
+
+      <h3 id="s9-1">9.1 Checklist interativa de entrega e devolução</h3>
+      <ul class="check">
+        <li><label><input type="checkbox" id="dp2-u1"><span><strong>Entrega:</strong> Peças da Creator Combo conferidas (câmara, capa, Do-It-All, mic + windscreen, lente, joystick, tripé, adaptadores, cabo e SD).</span></label></li>
+        <li><label><input type="checkbox" id="dp2-u2"><span><strong>Aula:</strong> Fita de pulso usada, zero força no gimbal, proteção contra chuva e consentimento de imagem.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-u3"><span><strong>Devolução:</strong> Vídeos da turma copiados para o PC/nuvem e cartão microSD confirmado na câmara.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-u4"><span><strong>Devolução:</strong> Câmara e microfone sem fios desligados; gimbal recolhido e câmara na capa rígida.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-u5"><span><strong>Devolução:</strong> Todos os acessórios pequenos conferidos e lente limpa a seco.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-u6"><span><strong>CTE:</strong> Reportado n.º do kit (1–4), bateria fraca ou qualquer anomalia/peça em falta.</span></label></li>
+      </ul>
+      <button class="reset" type="button" id="resetChecklist">Limpar lista</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir manual / ficha</button>
+
+      <h3 id="s9-2">9.2 Registo de utilizações / requisições (<code>INV-152</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Kit N.º (1–4)</th><th>Professor / Turma</th><th>Peças OK?</th><th>SD Copiado?</th><th>Estado / Ocorrências</th><th>Rubrica</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Imprima esta secção para manter uma folha de registo junto ao armário branco (janela) do Estúdio 4C.</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador DJI Pocket 2 Creator Combo (<code>INV-152</code>) · Em caso de dúvida técnica, consulte o <a href="DJI_Pocket_2_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "dp2-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar modelo"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

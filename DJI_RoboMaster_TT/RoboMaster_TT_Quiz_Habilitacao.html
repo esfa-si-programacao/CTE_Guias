@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Piloto — DJI RoboMaster TT (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas de segurança e programação do drone DJI RoboMaster TT (INV-144), com cartão imprimível e código de verificação.">
+<meta property="og:title" content="Carta de Piloto e Programador — DJI RoboMaster TT (CTE)">
+<meta property="og:description" content="Valide em 2 minutos as regras de segurança e voo do drone DJI RoboMaster TT (INV-144) antes de voar em sala de aula.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='18' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='18' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='46' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='46' r='8' fill='none' stroke='%234CE0F5' stroke-width='2.6'/%3E%3Cline x1='24' y1='24' x2='40' y2='40' stroke='%23fff' stroke-width='3'/%3E%3Cline x1='40' y1='24' x2='24' y2='40' stroke='%23fff' stroke-width='3'/%3E%3Crect x='24' y='24' width='16' height='16' rx='4' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc);
+}
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI RoboMaster TT</a> &rsaquo; Carta de Piloto</nav>
+      <h1>Carta de Piloto — DJI RoboMaster TT</h1>
+      <p>Valide em 2 minutos as regras de segurança e programação antes de voar um drone (<code>INV-144</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página RoboMaster TT</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Segurança</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º GPSI">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="RoboMaster_TT_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-144</div>
+      <h2>Cartão de Habilitação — DJI RoboMaster TT</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação do drone DJI RoboMaster TT (Tello Talent).</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Piloto — DJI RoboMaster TT (<code>INV-144</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Protetores de hélices",
+      critica: true,
+      q: "Antes de fazer o RoboMaster TT descolar na sala, que verificação física é obrigatória?",
+      opts: [
+        "Retirar os protetores das hélices para ganhar mais tempo de voo.",
+        "Confirmar os 4 protetores montados e as 4 hélices intactas.",
+        "Desligar a matriz LED 8×8 para poupar energia na descolagem.",
+        "Colocar fita adesiva sobre os sensores inferiores para proteger."
+      ],
+      ans: 1,
+      exp: "No CTE, o voo em sala exige sempre os 4 protetores de hélices firmemente encaixados e hélices sem fissuras, dobras ou cabelos presos."
+    },
+    {
+      cat: "Hélices em rotação",
+      critica: true,
+      q: "O drone está a aproximar-se de uma secretária com as hélices a rodar. O que deve fazer?",
+      opts: [
+        "Agarrá-lo rapidamente por cima com as duas mãos para o travar.",
+        "Enviar o comando de aterragem (land) ou paragem de emergência.",
+        "Soprar na direção do drone para o empurrar para o centro.",
+        "Desligar o Wi-Fi do computador para o drone parar no ar."
+      ],
+      ans: 1,
+      exp: "Nunca coloque mãos, rosto ou cabelos perto de hélices em rotação. Envie sempre o comando de aterragem (land) ou corte de emergência (emergency) e espere que parem."
+    },
+    {
+      cat: "Ambiente de voo",
+      critica: true,
+      q: "Que condições de espaço são obrigatórias para voar o RoboMaster TT no CTE?",
+      opts: [
+        "No pátio exterior da escola, onde há mais vento natural para arrefecer.",
+        "Num corredor estreito com pouca luz para destacar o brilho dos LEDs.",
+        "Interior bem iluminado, 3 × 3 m livres e sem vento.",
+        "Em cima de uma mesa cheia de portáteis e cabos ligados à corrente."
+      ],
+      ans: 2,
+      exp: "O RoboMaster TT pesa 87 g e depende de sensores óticos inferiores: voe sempre em interiores (mín. 3 × 3 m), com boa iluminação, piso com textura e sem ventoinhas ou janelas abertas."
+    },
+    {
+      cat: "Temperatura e bateria",
+      critica: true,
+      q: "Vai demorar 10 minutos a corrigir o código no PC depois de um voo. Que cuidado deve ter?",
+      opts: [
+        "Deixar o drone ligado em cima da mesa para não perder o sinal Wi-Fi.",
+        "Desligar o drone para arrefecer e poupar bateria.",
+        "Ligar o carregador logo à bateria ainda quente para ganhar tempo na aula.",
+        "Deixar o drone a pairar parado no ar enquanto edita o código no portátil."
+      ],
+      ans: 1,
+      exp: "O RoboMaster TT depende do fluxo das hélices para arrefecer. Deixá-lo ligado parado sobreaquece a eletrónica e a bateria; desligue-o entre testes e nunca carregue uma bateria quente."
+    },
+    {
+      cat: "Vira ao descolar",
+      critica: true,
+      q: "Ao dar ordem de descolagem, o drone vira-se imediatamente de lado. O que deve fazer?",
+      opts: [
+        "Tentar descolar mais três vezes seguidas com velocidade mais elevada.",
+        "Parar, desligar e confirmar as hélices A/B.",
+        "Aumentar o brilho da matriz LED 8×8 no módulo e voltar a tentar logo.",
+        "Lançar o drone com a mão no ar para ajudar os motores a estabilizar."
+      ],
+      ans: 1,
+      exp: "Virar ao descolar indica quase sempre hélice montada no braço errado (pares marcados vs. sem marca trocados) ou hélice partida. Pare, desligue e peça verificação ao professor."
+    },
+    {
+      cat: "LED frontal",
+      critica: false,
+      q: "O LED frontal pisca lentamente a amarelo antes de descolar. O que indica?",
+      opts: [
+        "A bateria acabou de atingir 100% de carga máxima no carregador.",
+        "O modo SDK 3.0 recebeu um comando Python com sucesso pela rede.",
+        "Sem posicionamento ótico (pouca luz ou piso liso).",
+        "O módulo ESP32 está a atualizar automaticamente o firmware interno."
+      ],
+      ans: 2,
+      exp: "Amarelo lento significa modo ATTI (sem posicionamento ótico). Melhore a iluminação da sala e coloque o drone sobre um piso com textura ou Mission Pads antes de voar."
+    },
+    {
+      cat: "LED de bateria",
+      critica: false,
+      q: "Durante o voo, o LED frontal começa a piscar rapidamente a vermelho. Como reagir?",
+      opts: [
+        "Continuar o voo porque ainda restam mais dez minutos.",
+        "Aterrar imediatamente: a bateria está em nível crítico.",
+        "Subir mais alto para melhorar o sinal da antena Wi-Fi.",
+        "Enviar o comando de pirueta (flip) para testar os motores."
+      ],
+      ans: 1,
+      exp: "Vermelho a piscar indica bateria baixa (lento) ou crítica (rápido). Aterre de imediato, desligue e deixe arrefecer antes de recarregar."
+    },
+    {
+      cat: "Protocolo SDK 3.0",
+      critica: false,
+      q: "Ao programar o RoboMaster TT via UDP (porta 8889), qual deve ser o primeiro comando enviado?",
+      opts: [
+        "O comando 'takeoff' logo após ligar o botão de energia.",
+        "O comando 'command' para ativar o modo SDK no drone.",
+        "O comando 'emergency' para calibrar as quatro hélices.",
+        "O comando 'flip f' para testar a ligação de rádio."
+      ],
+      ans: 1,
+      exp: "Antes de qualquer ordem de voo ou LED, é obrigatório enviar o comando 'command' para o IP 192.168.10.1 (porta UDP 8889) — no djitellopy isso é feito por tello.connect()."
+    },
+    {
+      cat: "Modo AP vs Station",
+      critica: false,
+      q: "A rede Wi-Fi RMTT-xxxxxx não aparece no portátil. Que detalhe no módulo ESP32 deve verificar?",
+      opts: [
+        "Se a matriz LED 8×8 está virada exatamente para a frente do drone.",
+        "Se o interruptor ESP32 está em AP (não em Station).",
+        "Se o sensor infravermelho ToF está apontado para o teto da sala.",
+        "Se o drone tem um cartão microSD inserido na ranhura lateral."
+      ],
+      ans: 1,
+      exp: "No uso individual ligado diretamente ao PC, o interruptor do módulo ESP32 tem de estar em modo AP (Access Point). O modo Station é usado apenas em enxames com router."
+    },
+    {
+      cat: "Autonomia real",
+      critica: false,
+      q: "Qual é a autonomia aproximada de voo do RoboMaster TT com o módulo ESP32 montado?",
+      opts: [
+        "Cerca de 8 minutos com o módulo montado.",
+        "Cerca de 45 minutos contínuos a gravar vídeo em 4K.",
+        "Cerca de 2 horas seguidas quando ligado em Wi-Fi 5,8 GHz.",
+        "Apenas 90 segundos quando os 4 protetores estão encaixados."
+      ],
+      ans: 0,
+      exp: "Com o módulo ESP32 e matriz LED 8×8 instalados, a autonomia típica é de cerca de 8 minutos (até 13 min sem módulos em condições ideais). Planeie testes curtos."
+    },
+    {
+      cat: "Módulo ESP32 e LED 8×8",
+      critica: false,
+      q: "Que comando SDK 3.0 altera a cor do LED RGB no topo do módulo ESP32?",
+      opts: [
+        "EXT led r g b (valores de 0 a 255).",
+        "RGB color on (seguido do nome completo da cor em português).",
+        "LED matrix 100 (através da porta USB direta do computador).",
+        "set_eye_color (usando o programa Choregraphe 2.8 no portátil)."
+      ],
+      ans: 0,
+      exp: "No SDK 3.0, os comandos do módulo de expansão começam por 'EXT ': 'EXT led r g b' controla o LED RGB do topo e 'EXT mled ...' controla a matriz LED 8×8."
+    },
+    {
+      cat: "Sensor ToF",
+      critica: false,
+      q: "Qual é o alcance aproximado do sensor infravermelho ToF integrado no módulo de expansão?",
+      opts: [
+        "Até 30 metros ao ar livre sob luz solar intensa.",
+        "Até 1,2 metros em interiores para medição de distância.",
+        "Até 100 metros através de paredes de betão na escola.",
+        "Apenas 2 centímetros quando o drone está desligado."
+      ],
+      ans: 1,
+      exp: "O sensor Time-of-Flight (ToF) integrado no módulo de expansão mede distâncias até cerca de 1,2 m em interiores (alvo claro), ideal para experiências de desvio de obstáculos."
+    },
+    {
+      cat: "Mission Pads",
+      critica: false,
+      q: "O drone não reconhece os tapetes numerados (Mission Pads) no chão. O que falta no programa?",
+      opts: [
+        "Ativar a deteção com o comando 'mon' antes de navegar.",
+        "Retirar os protetores das hélices para reduzir a sombra.",
+        "Colocar o drone a voar a mais de 5 metros de altura.",
+        "Desligar todas as luzes da sala para aumentar o contraste."
+      ],
+      ans: 0,
+      exp: "Para usar Mission Pads (IDs 1–12), é necessário ativar a deteção no código com 'mon' (e 'mdirection 0' para o sensor inferior), mantendo boa luz e altitude entre 0,4 e 1,0 m."
+    },
+    {
+      cat: "Boas práticas Python",
+      critica: false,
+      q: "Ao programar voos em Python com djitellopy, porque se usa um bloco try / finally com land()?",
+      opts: [
+        "Para obrigar o drone a aterrar mesmo se o script der erro.",
+        "Para duplicar a velocidade máxima dos motores em sala.",
+        "Para guardar o vídeo automaticamente na nuvem da escola.",
+        "Para impedir o computador de entrar em modo de poupança."
+      ],
+      ans: 0,
+      exp: "Colocar tello.land() dentro de um bloco finally garante que, mesmo que ocorra um erro ou interrupção (Ctrl+C), o script tenta aterrar o drone em segurança."
+    },
+    {
+      cat: "Segurança de voo",
+      critica: false,
+      q: "Que tipo de piso deve evitar debaixo do RoboMaster TT durante um voo programado?",
+      opts: [
+        "Chão bem iluminado com padrão, mosaico ou Mission Pads.",
+        "Superfície muito escura, espelhada ou totalmente uniforme.",
+        "Pavimento plano de sala de aula com luz artificial acesa.",
+        "Tapetes numerados Mission Pads colocados no chão plano."
+      ],
+      ans: 1,
+      exp: "O sistema de posicionamento ótico inferior precisa de contraste e luz para medir deslocamentos. Pisos escuros, reflexivos/espelhados ou lisos sem padrão causam deriva."
+    },
+    {
+      cat: "Devolução no CTE",
+      critica: false,
+      q: "Antes de devolver o kit INV-144 ao armário D1.4C-MF-A04, o que deve verificar e comunicar?",
+      opts: [
+        "Apenas fechar a caixa sem verificar hélices nem bateria.",
+        "Deixar o módulo em modo Station para o grupo seguinte.",
+        "Drone desligado/frio, hélices intactas, modo AP e n.º do kit.",
+        "Retirar os 4 protetores e guardá-los fora da caixa do kit."
+      ],
+      ans: 2,
+      exp: "Entregue sempre o drone desligado e frio, com os 4 protetores e hélices intactas, interruptor em modo AP, e comunique ao CTE o n.º do kit (1–10) e qualquer bateria gasta ou colisão."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [];
+  var idx = 0, score = 0, answered = false;
+  var failedCriticals = [];
+  var certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|RMTT-INV144").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de segurança e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra de segurança «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de voar o drone.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

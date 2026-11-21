@@ -3,21 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meta Quest 3 — Infográfico de Início Rápido (CTE)</title>
+<title>Meta Quest 3 VR — Guia de Início Rápido (CTE · INV-081 / INV-082)</title>
+<meta name="description" content="Folha visual A4 dos óculos Meta Quest 3 VR pronta a imprimir: 6 passos, anatomia, comandos Touch Plus, LEDs, 5 regras de ouro e checklist de devolução.">
+<meta property="og:title" content="Meta Quest 3 VR — Guia de Início Rápido (Infográfico A4)">
+<meta property="og:description" content="Folha visual A4 dos óculos Meta Quest 3 pronta a imprimir e plastificar: 6 passos, anatomia, comandos Touch Plus, LEDs, 5 regras de ouro e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='11' y='21' width='42' height='22' rx='8' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Crect x='19' y='27' width='5' height='10' rx='2.5' fill='%234CE0F5'/%3E%3Crect x='29.5' y='27' width='5' height='10' rx='2.5' fill='%23E8711C'/%3E%3Crect x='40' y='27' width='5' height='10' rx='2.5' fill='%234CE0F5'/%3E%3C/svg%3E">
 <style>
 :root {
   --dark: #1F2A36;
   --dark2: #2C3B4B;
   --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
   --acc-soft: #FDF0E6;
   --teal: #1E7E8C;
+  --teal-text: #166874;
   --teal-soft: #E6F4F6;
   --blue: #1D63B8;
   --blue-soft: #EBF3FC;
   --red: #C0392B;
+  --red-text: #A93226;
   --red-soft: #FBE9E7;
   --green: #1E8449;
+  --green-text: #17693A;
   --green-soft: #E8F6EF;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
   --light: #F3F6F9;
   --line: #D5DCE3;
   --grey: #5B6672;
@@ -32,15 +45,36 @@ html, body {
   font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
-  line-height: 1.4;
+  line-height: 1.38;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
+body { padding-bottom: 96px; }
 
-/* Barra superior de ferramentas (ecrã) */
+/* Barra superior comum (apenas ecrã) */
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.86rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.topbar-in {
+  max-width: 1020px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+/* Barra de ações (apenas ecrã) */
 .toolbar {
-  max-width: 1060px;
-  margin: 16px auto 0;
+  max-width: 1020px;
+  margin: 14px auto 0;
   padding: 0 12px;
   display: flex;
   justify-content: space-between;
@@ -53,19 +87,18 @@ html, body {
   color: var(--grey);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-.toolbar-actions {
-  display: flex;
-  gap: 8px;
-}
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn {
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 600;
   border-radius: 6px;
-  padding: 7px 14px;
+  padding: 7px 13px;
   cursor: pointer;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -74,24 +107,14 @@ html, body {
   color: var(--dark);
   transition: all 0.15s ease;
 }
-.btn:hover {
-  border-color: var(--acc);
-  color: var(--acc);
-}
-.btn-primary {
-  background: var(--acc);
-  color: #fff;
-  border-color: var(--acc);
-}
-.btn-primary:hover {
-  background: #d15f0e;
-  color: #fff;
-}
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); color: #fff; border-color: var(--acc-btn); }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
 
-/* Folha A4 do Infográfico */
+/* Folha A4 */
 .sheet {
-  max-width: 1060px;
-  margin: 12px auto 32px;
+  max-width: 1020px;
+  margin: 12px auto 28px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(31, 42, 54, 0.12);
@@ -103,10 +126,10 @@ html, body {
 header.hero {
   background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
   color: #fff;
-  padding: 20px 28px 16px;
+  padding: 18px 24px 14px;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 20px;
+  gap: 18px;
   align-items: center;
   border-bottom: 4px solid var(--acc);
 }
@@ -117,916 +140,663 @@ header.hero {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: #FFD2B3;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   padding: 3px 10px;
-  border-radius: 99px;
+  border-radius: 999px;
   margin-bottom: 6px;
 }
 .hero h1 {
   margin: 0;
-  font-size: 1.95rem;
-  line-height: 1.1;
+  font-size: 1.75rem;
+  line-height: 1.12;
   letter-spacing: -0.01em;
 }
-.hero h1 span {
-  color: var(--acc);
+.hero p.sub {
+  margin: 4px 0 0;
+  color: #C7D6E5;
+  font-size: 0.88rem;
 }
-.hero-sub {
-  margin: 4px 0 10px;
-  color: #C5D3E0;
-  font-size: 0.96rem;
-}
-.hero-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.pill {
-  background: rgba(255, 255, 255, 0.09);
-  border-left: 3px solid var(--acc);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.78rem;
-  color: #EBF1F6;
-}
-.pill strong {
-  color: #fff;
-}
-.hero-art {
-  width: 175px;
-  flex-shrink: 0;
-}
-
-/* Faixa de Indicadores Rápidos */
-.kpi-strip {
+.kpi-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: var(--light);
-  border-bottom: 1px solid var(--line);
+  grid-template-columns: repeat(4, minmax(105px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
 }
 .kpi {
-  padding: 10px 16px;
-  border-right: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.kpi:last-child { border-right: none; }
-.kpi-icon {
-  width: 34px;
-  height: 34px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
-  background: #fff;
-  border: 1px solid var(--line);
+  padding: 6px 8px;
+  text-align: center;
+}
+.kpi strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #FFB37B;
+  line-height: 1.15;
+}
+.kpi span {
+  font-size: 0.68rem;
+  color: #D2DFEC;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.hero-art {
+  width: 112px;
+  height: 98px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--acc);
-  font-weight: 800;
-  font-size: 0.95rem;
-  flex-shrink: 0;
-}
-.kpi-val {
-  font-weight: 800;
-  font-size: 0.9rem;
-  color: var(--dark);
-  line-height: 1.15;
-}
-.kpi-lbl {
-  font-size: 0.75rem;
-  color: var(--grey);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 10px;
+  padding: 6px;
 }
 
-/* Corpo do Infográfico */
+/* Conteúdo Principal */
 .content {
-  padding: 18px 24px;
+  padding: 16px 22px 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 13px;
 }
 
-.sec-title {
+.section-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 0 10px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--dark);
-}
-.sec-title h2 {
-  margin: 0;
-  font-size: 1.05rem;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--dark);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--light);
 }
-.sec-num {
-  background: var(--acc);
+.section-title .tag {
+  background: var(--dark);
   color: #fff;
-  width: 22px;
-  height: 22px;
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 4px;
 }
-.sec-hint {
-  font-size: 0.76rem;
-  color: var(--grey);
-  font-weight: 500;
-}
+.section-title.red .tag { background: var(--red-text); }
+.section-title.teal .tag { background: var(--teal-text); }
+.section-title.acc .tag { background: var(--acc-btn); }
+.section-title.green .tag { background: var(--green-text); }
 
-/* Secção 1: 5 Passos de Iniciação Rápida */
+/* 6 Passos */
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
 }
 .step-card {
   background: var(--light);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--teal);
+  border-top: 3px solid var(--teal);
   border-radius: 8px;
-  padding: 10px 11px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  position: relative;
-}
-.step-card.highlight {
-  border-top-color: var(--acc);
-  background: var(--acc-soft);
+  padding: 8px 10px;
 }
 .step-head {
   display: flex;
   align-items: center;
   gap: 7px;
+  margin-bottom: 4px;
 }
-.step-badge {
-  width: 24px;
-  height: 24px;
+.step-num {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--teal);
   color: #fff;
   font-weight: 800;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.step-card.highlight .step-badge {
-  background: var(--acc);
-}
-.step-title {
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: var(--dark);
-  line-height: 1.15;
-}
-.step-body {
-  font-size: 0.79rem;
-  color: #2E3B48;
+.step-card h3 {
   margin: 0;
-}
-.step-tip {
-  margin-top: auto;
-  padding-top: 5px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.12);
-  font-size: 0.73rem;
-  color: var(--grey);
-}
-.step-tip strong {
+  font-size: 0.85rem;
   color: var(--dark);
+}
+.step-card p {
+  margin: 0;
+  font-size: 0.77rem;
+  color: #364554;
 }
 
-/* Secção 2: Conhecer os Óculos e os Comandos (2 colunas) */
-.equip-grid {
+/* Grelha Intermédia: Anatomia + Controlos/LEDs */
+.mid-grid {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 16px;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 14px;
+  align-items: stretch;
 }
 .panel {
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 9px;
+  padding: 10px 12px;
   background: #fff;
+}
+
+/* Anatomia Visual */
+.anatomy-wrap {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.anatomy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
+  font-size: 0.75rem;
 }
-.panel-header {
+.anatomy-list li {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
-}
-.panel-header h3 {
-  margin: 0;
-  font-size: 0.94rem;
-  color: var(--dark);
-}
-.panel-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 99px;
-  background: var(--teal-soft);
-  color: var(--teal);
-}
-
-.diagram-box {
-  background: var(--light);
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #E2E8F0;
-}
-.diagram-box svg {
-  width: 100%;
-  max-height: 135px;
-  height: auto;
-}
-
-.callout-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 6px;
-  font-size: 0.79rem;
-}
-.callout-list li {
-  display: flex;
   align-items: flex-start;
-  gap: 8px;
 }
-.c-num {
-  width: 19px;
-  height: 19px;
+.pin {
+  min-width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: var(--dark);
+  background: var(--acc);
   color: #fff;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   margin-top: 1px;
 }
-.c-num.acc { background: var(--acc); }
-.c-num.teal { background: var(--teal); }
+.pin.blue { background: var(--blue); }
+.pin.teal { background: var(--teal); }
+.pin.dark { background: var(--dark); }
 
-/* Tabela compacta de botões dos comandos */
-.ctrl-table {
+/* Tabelas compactas */
+table.mini {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
+  margin-bottom: 8px;
 }
-.ctrl-table th, .ctrl-table td {
+table.mini th, table.mini td {
   border: 1px solid var(--line);
-  padding: 5px 8px;
+  padding: 4px 7px;
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
 }
-.ctrl-table thead th {
+table.mini thead th {
   background: var(--dark);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.71rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
-.ctrl-table tbody tr:nth-child(odd) {
-  background: var(--light);
-}
-.key-chip {
+table.mini tbody tr:nth-child(even) { background: var(--light); }
+
+.led-dot {
   display: inline-block;
-  background: #fff;
-  border: 1px solid #B8C4D0;
-  border-bottom-width: 2px;
-  border-radius: 4px;
-  padding: 1px 6px;
-  font-weight: 700;
-  font-size: 0.74rem;
-  color: var(--dark);
-  white-space: nowrap;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.22);
 }
-.key-chip.acc {
-  background: var(--acc-soft);
-  border-color: var(--acc);
-  color: #9C4206;
-}
+.led-white { background: #fff; box-shadow: 0 0 4px #9fb6cc; }
+.led-green { background: #27AE60; }
+.led-amber { background: #F39C12; }
+.led-red { background: #E74C3C; }
+.led-teal { background: #1E7E8C; }
 
-/* Secção 3: Dicas Rápidas, Segurança e Problemas Comuns */
-.bottom-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 16px;
+/* Regras de Ouro */
+.rules-box {
+  background: var(--red-soft);
+  border: 1.5px solid #E5B4AE;
+  border-left: 5px solid var(--red);
+  border-radius: 9px;
+  padding: 10px 13px;
 }
-
 .rules-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
 }
-.rule-box {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 0.78rem;
+.rule-item {
   background: #fff;
+  border: 1px solid #F0CFCB;
+  border-radius: 7px;
+  padding: 7px 8px;
+  font-size: 0.74rem;
 }
-.rule-box.danger {
-  background: var(--red-soft);
-  border-color: #E6B0AA;
-}
-.rule-box.warn {
-  background: var(--acc-soft);
-  border-color: #F5CBA7;
-}
-.rule-box.info {
-  background: var(--teal-soft);
-  border-color: #A3D9E0;
-}
-.rule-box.good {
-  background: var(--green-soft);
-  border-color: #A9DFBF;
-}
-.rule-title {
-  font-weight: 800;
-  font-size: 0.81rem;
-  margin-bottom: 3px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.rule-box.danger .rule-title { color: var(--red); }
-.rule-box.warn .rule-title { color: #A04000; }
-.rule-box.info .rule-title { color: var(--teal); }
-.rule-box.good .rule-title { color: var(--green); }
-.rule-box p {
-  margin: 0;
-  color: #2C3E50;
+.rule-item > strong:first-child {
+  display: block;
+  color: var(--red-text);
+  font-size: 0.77rem;
+  margin-bottom: 2px;
 }
 
-/* Lista de Verificação na Devolução */
-.checklist-card {
-  border: 2px solid var(--dark);
-  border-radius: 10px;
-  padding: 10px 14px;
-  background: #fff;
+/* Rodapé: Checklist + Atalhos + QR */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr 145px;
+  gap: 12px;
+  align-items: stretch;
+}
+.check-box {
+  background: var(--green-soft);
+  border: 1px solid #B7DEC8;
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  padding: 9px 11px;
+}
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 4px;
+  font-size: 0.75rem;
 }
-.check-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 5px;
-}
-.check-grid label {
+.check-list label {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  background: var(--light);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 6px 9px;
-  font-size: 0.78rem;
+  gap: 6px;
   cursor: pointer;
-  transition: background 0.15s;
 }
-.check-grid label:hover {
-  border-color: var(--teal);
+.check-list input { margin-top: 2px; accent-color: var(--green); }
+.check-list input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+.net-box {
+  background: var(--blue-soft);
+  border: 1px solid #BBD4F0;
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 0.75rem;
 }
-.check-grid input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  accent-color: var(--teal);
-  flex-shrink: 0;
-}
-.check-grid input[type="checkbox"]:checked + span {
-  text-decoration: line-through;
+.net-box ul { margin: 0; padding-left: 16px; }
+.net-box li { margin: 3px 0; }
+
+.qr-box {
+  border: 1.5px dashed var(--grey);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--light);
+  font-size: 0.68rem;
   color: var(--grey);
 }
+.qr-placeholder {
+  width: 78px;
+  height: 78px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.qr-box strong { color: var(--dark); font-size: 0.72rem; display: block; }
 
-/* Talão de Requisição / Rodapé */
-.loan-bar {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--line);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  font-size: 0.74rem;
-  color: var(--grey);
-}
-.loan-field {
-  border-bottom: 1px solid #B8C4D0;
-  padding-bottom: 3px;
-}
-.loan-field strong {
-  color: var(--dark);
-}
-
-footer.sheet-footer {
+.sheet-footer {
   background: var(--dark);
-  color: #B0C0D0;
-  padding: 8px 24px;
-  font-size: 0.74rem;
+  color: #C7D6E5;
+  font-size: 0.72rem;
+  padding: 7px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
 }
-footer.sheet-footer strong {
+.sheet-footer strong { color: #fff; }
+
+@media (max-width: 860px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .mid-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Botão flutuante Ajuda (apenas ecrã) */
+.fab-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
   color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
 }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
-/* Responsividade em ecrãs pequenos */
-@media (max-width: 900px) {
-  .steps-grid { grid-template-columns: 1fr 1fr; }
-  .equip-grid, .bottom-grid { grid-template-columns: 1fr; }
-  .kpi-strip { grid-template-columns: 1fr 1fr; }
-  .loan-bar { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  header.hero { grid-template-columns: 1fr; }
-  .hero-art { display: none; }
-  .steps-grid, .rules-grid, .kpi-strip { grid-template-columns: 1fr; }
-}
-
-/* Formatação estrita para Impressão em 1 Página A4 */
 @page {
   size: A4 portrait;
-  margin: 6mm;
+  margin: 5mm;
 }
 @media print {
-  html, body {
-    background: #fff;
-    font-size: 11.5px;
-  }
-  .toolbar, .no-print {
-    display: none !important;
-  }
+  html, body { background: #fff; padding-bottom: 0; line-height: 1.24; font-size: 12.2px; }
+  .topbar, .toolbar, .fab-help { display: none !important; }
   .sheet {
+    max-width: none;
     margin: 0;
-    max-width: 100%;
-    border: 1px solid var(--line);
-    border-radius: 6px;
+    border: none;
+    border-radius: 0;
     box-shadow: none;
   }
-  header.hero {
-    padding: 12px 18px 10px;
-  }
-  .hero h1 { font-size: 1.55rem; }
-  .hero-sub { font-size: 0.84rem; margin: 2px 0 6px; }
-  .hero-art { width: 135px; }
-  .kpi { padding: 6px 10px; }
-  .kpi-icon { width: 26px; height: 26px; font-size: 0.8rem; }
-  .content { padding: 10px 16px; gap: 10px; }
-  .sec-title { margin-bottom: 6px; padding-bottom: 3px; }
-  .sec-title h2 { font-size: 0.92rem; }
-  .steps-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
-  .step-card { padding: 7px 8px; gap: 3px; }
-  .equip-grid { grid-template-columns: 1fr 1.15fr; gap: 10px; }
-  .panel { padding: 8px 10px; gap: 6px; }
-  .diagram-box { padding: 4px; }
-  .diagram-box svg { max-height: 102px; }
-  .bottom-grid { grid-template-columns: 1.05fr 1fr; gap: 10px; }
-  .rule-box { padding: 6px 8px; }
-  .checklist-card { padding: 8px 10px; }
-  .check-grid label { padding: 4px 7px; }
-  footer.sheet-footer { padding: 6px 16px; }
+  header.hero { padding: 9px 14px 8px; gap: 12px; }
+  .hero-badge { margin-bottom: 3px; font-size: 0.68rem; padding: 2px 8px; }
+  .hero h1 { font-size: 1.48rem; }
+  .hero p.sub { font-size: 0.84rem; margin-top: 2px; }
+  .hero-art { width: 84px; height: 74px; padding: 4px; }
+  .hero-art svg { width: 74px; height: 54px; }
+  .kpi-row { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+  .kpi { padding: 4px 6px; }
+  .kpi strong { font-size: 0.92rem; }
+  .kpi span { font-size: 0.64rem; }
+  .content { padding: 8px 12px 8px; gap: 7px; }
+  .section-title { font-size: 0.86rem; margin-bottom: 5px; padding-bottom: 3px; }
+  .steps-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .step-card { padding: 5px 7px; }
+  .step-head { margin-bottom: 2px; }
+  .step-num { width: 18px; height: 18px; font-size: 0.72rem; }
+  .step-card h3 { font-size: 0.84rem; }
+  .mid-grid { grid-template-columns: 1.02fr 1fr; gap: 8px; }
+  .panel { padding: 7px 9px; }
+  .anatomy-wrap { grid-template-columns: 100px 1fr; gap: 7px; }
+  .anatomy-wrap svg { width: 98px; height: auto; }
+  .anatomy-list { gap: 3px; }
+  .pin { min-width: 15px; height: 15px; font-size: 0.64rem; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.76rem; }
+  table.mini { font-size: 0.73rem; margin-bottom: 5px; }
+  table.mini th, table.mini td { padding: 2.5px 5px; }
+  .rules-box { padding: 7px 10px; }
+  .rules-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .rule-item { padding: 5px 6px; }
+  .rule-item > strong:first-child { font-size: 0.78rem; }
+  .bottom-grid { grid-template-columns: 1.25fr 0.95fr 116px; gap: 7px; }
+  .check-box, .net-box { padding: 6px 8px; }
+  .check-list { gap: 3px; }
+  .net-box li { margin: 2px 0; }
+  .qr-box { padding: 5px; font-size: 0.66rem; }
+  .qr-placeholder { width: 62px; height: 62px; margin-bottom: 3px; }
+  .qr-placeholder svg { width: 52px; height: 52px; }
+  .sheet-footer { padding: 4px 12px; font-size: 0.72rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Barra de ações (visível apenas no ecrã) -->
-<div class="toolbar no-print">
-  <div class="toolbar-info">
-    <span><strong>CTE Informático</strong> · Infográfico A4 de Iniciação Rápida (Meta Quest 3 VR)</span>
-  </div>
-  <div class="toolbar-actions">
-    <button type="button" class="btn" id="btn-reset">Limpar verificações</button>
-    <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF (A4)</button>
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Meta Quest 3 VR</a> &rsaquo; Guia de Início Rápido</nav>
+    <div>Equipamento <strong>INV-081 / INV-082</strong> · Armário D1.4C-MF-A01</div>
   </div>
 </div>
 
-<!-- Folha A4 do Infográfico -->
-<article class="sheet">
+<div class="toolbar">
+  <div class="toolbar-info">
+    <strong>Guia de Início Rápido A4 · Meta Quest 3 VR (INV-081 / INV-082)</strong>
+    <span>Desenhado para consulta rápida online e impressão plastificada para cada mala.</span>
+  </div>
+  <div class="toolbar-actions">
+    <a class="btn" href="index.html">&larr; Página Meta Quest 3</a>
+    <a class="btn" href="Meta_Quest_3_Manual_Utilizador.html">Manual Completo</a>
+    <button class="btn" type="button" id="resetChecks">Limpar Checklist</button>
+    <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar PDF (A4)</button>
+  </div>
+</div>
 
-  <!-- Cabeçalho -->
+<article class="sheet">
   <header class="hero">
     <div>
-      <div class="hero-badge">CTE Informático · Guia de Requisição e Início Rápido</div>
-      <h1>Meta Quest 3 <span>VR</span></h1>
-      <p class="hero-sub">Óculos de Realidade Virtual e Mista + Controladores Meta Quest Touch Plus</p>
-      <div class="hero-pills">
-        <span class="pill"><strong>Inventário:</strong> INV-081 (Óculos) · INV-082 (Mala)</span>
-        <span class="pill"><strong>Arrumação:</strong> Armário D1.4C-MF-A01</span>
-        <span class="pill"><strong>Estado na entrega:</strong> Bateria carregada e conta CTE pronta</span>
+      <div class="hero-badge">CTE Informático · INV-081 / INV-082 · Armário D1.4C-MF-A01 (10 Kits)</div>
+      <h1>Meta Quest 3 VR — Guia de Início Rápido</h1>
+      <p class="sub">Óculos autónomos de Realidade Virtual e Mista · Comandos Touch Plus · Entregues carregados e pré-configurados</p>
+      <div class="kpi-row">
+        <div class="kpi"><strong>2 × 2 m</strong><span>Espaço Livre Mín.</span></div>
+        <div class="kpi"><strong>2 Toques</strong><span>Ver Sala (Passthrough)</span></div>
+        <div class="kpi"><strong>Meta (2 s)</strong><span>Recentrar Ecrã</span></div>
+        <div class="kpi"><strong>~2 h · 515 g</strong><span>Autonomia · Peso</span></div>
       </div>
     </div>
-
-    <!-- Ilustração SVG Meta Quest 3 -->
-    <svg class="hero-art" viewBox="0 0 240 120" aria-hidden="true">
-      <!-- Fita superior e lateral -->
-      <path d="M55 48 C55 14, 185 14, 185 48" fill="none" stroke="#8FA3B5" stroke-width="6" stroke-linecap="round"/>
-      <path d="M32 62 L52 58 M208 62 L188 58" stroke="#AFC0CF" stroke-width="8" stroke-linecap="round"/>
-      <!-- Visor principal -->
-      <rect x="46" y="38" width="148" height="58" rx="26" fill="#F3F6F9" stroke="#E8711C" stroke-width="4"/>
-      <rect x="54" y="45" width="132" height="44" rx="20" fill="#1F2A36"/>
-      <!-- 3 Pílulas frontais características do Meta Quest 3 -->
-      <rect x="74" y="54" width="12" height="26" rx="6" fill="#3A4756" stroke="#E8711C" stroke-width="2"/>
-      <circle cx="80" cy="60" r="3" fill="#E8711C"/>
-      <circle cx="80" cy="73" r="3" fill="#8FA3B5"/>
-      <rect x="114" y="54" width="12" height="26" rx="6" fill="#3A4756" stroke="#AFC0CF" stroke-width="2"/>
-      <rect x="154" y="54" width="12" height="26" rx="6" fill="#3A4756" stroke="#E8711C" stroke-width="2"/>
-      <circle cx="160" cy="60" r="3" fill="#E8711C"/>
-      <circle cx="160" cy="73" r="3" fill="#8FA3B5"/>
-      <!-- Curva nasal -->
-      <path d="M104 96 Q120 82 136 96" fill="#2C3B4B"/>
-    </svg>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 140 100" width="98" height="72" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 40 C22 18, 118 18, 118 40" stroke="#C7D6E5" stroke-width="2.5"/>
+        <rect x="22" y="30" width="96" height="42" rx="15" fill="rgba(255,255,255,0.1)"/>
+        <rect x="40" y="40" width="9" height="22" rx="4.5" fill="#4CE0F5" stroke="none"/>
+        <rect x="65.5" y="40" width="9" height="22" rx="4.5" fill="#E8711C" stroke="none"/>
+        <rect x="91" y="40" width="9" height="22" rx="4.5" fill="#4CE0F5" stroke="none"/>
+        <path d="M55 72 Q70 64 85 72" stroke="#FFB37B" stroke-width="2.5"/>
+        <circle cx="32" cy="88" r="8" fill="rgba(255,255,255,0.08)" stroke="#C7D6E5" stroke-width="2"/>
+        <circle cx="108" cy="88" r="8" fill="rgba(255,255,255,0.08)" stroke="#C7D6E5" stroke-width="2"/>
+      </svg>
+    </div>
   </header>
 
-  <!-- 4 Indicadores chave -->
-  <div class="kpi-strip">
-    <div class="kpi">
-      <div class="kpi-icon">100%</div>
-      <div>
-        <div class="kpi-val">Pronto a Usar</div>
-        <div class="kpi-lbl">Entregue carregado e configurado</div>
-      </div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-icon">2×2m</div>
-      <div>
-        <div class="kpi-val">Espaço Livre</div>
-        <div class="kpi-lbl">Sem cadeiras, cabos ou colegas perto</div>
-      </div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-icon">2×</div>
-      <div>
-        <div class="kpi-val">Vista Real (Passthrough)</div>
-        <div class="kpi-lbl">2 toques na lateral dos óculos</div>
-      </div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-icon">∞</div>
-      <div>
-        <div class="kpi-val">Recentrar Imagem</div>
-        <div class="kpi-lbl">Premir botão Meta (2 s) no comando</div>
-      </div>
-    </div>
-  </div>
-
   <div class="content">
-
-    <!-- SECÇÃO 1: COMEÇAR A USAR EM 5 PASSOS -->
+    <!-- BLOCO 1: 6 PASSOS -->
     <section>
-      <div class="sec-title">
-        <h2><span class="sec-num">1</span> Começar a usar em 5 passos</h2>
-        <span class="sec-hint">Siga esta ordem sempre que requisitar os óculos</span>
-      </div>
-
+      <h2 class="section-title teal"><span class="tag">1</span> Da Mala à Devolução em 6 Passos</h2>
       <div class="steps-grid">
         <div class="step-card">
-          <div class="step-head">
-            <span class="step-badge">1</span>
-            <div class="step-title">Abrir a mala e pôr as fitas</div>
-          </div>
-          <p class="step-body">Retire os óculos e os 2 comandos da mala <strong>INV-082</strong>. Passe as <strong>fitas de segurança</strong> pelos pulsos antes de segurar nos comandos.</p>
-          <div class="step-tip"><strong>Importante:</strong> Nunca use os comandos sem as fitas nos pulsos.</div>
+          <div class="step-head"><span class="step-num">1</span><h3>Preparar Espaço e Fitas</h3></div>
+          <p>Liberte <strong>2 × 2 m</strong> em interiores (longe de janelas/sol). Abra a mala <code>INV-082</code>, retire o protetor de lentes e ponha as <strong>fitas nos pulsos</strong>.</p>
         </div>
-
         <div class="step-card">
-          <div class="step-head">
-            <span class="step-badge">2</span>
-            <div class="step-title">Colocar e focar os óculos</div>
-          </div>
-          <p class="step-body">Encoste o visor ao rosto, puxe a fita para a nuca e ajuste o velcro superior. Rode a <strong>roda IPD</strong> (em baixo à esq.) até a imagem ficar nítida.</p>
-          <div class="step-tip"><strong>Usa óculos?</strong> Ajuste antes o espaçador interno para a frente.</div>
+          <div class="step-head"><span class="step-num">2</span><h3>Ajustar Visor e Lentes</h3></div>
+          <p>Segure pelas laterais (sem tocar nas lentes nem câmaras). Aperte a fita e rode a <strong>roda IPD</strong> (em baixo à esq.) até a imagem ficar nítida.</p>
         </div>
-
-        <div class="step-card highlight">
-          <div class="step-head">
-            <span class="step-badge">3</span>
-            <div class="step-title">Ligar e centrar o menu</div>
-          </div>
-          <p class="step-body">Os óculos acordam ao colocar no rosto (ou prima o <strong>botão de energia 3 s</strong>). Olhe em frente e mantenha premido o botão <strong>Meta (&infin;)</strong> por 2 s.</p>
-          <div class="step-tip"><strong>Dica:</strong> O menu fica centrado exatamente para onde está a olhar.</div>
-        </div>
-
         <div class="step-card">
-          <div class="step-head">
-            <span class="step-badge">4</span>
-            <div class="step-title">Confirmar área segura</div>
-          </div>
-          <p class="step-body">Defina o <strong>Limite (Boundary)</strong>: escolha <em>Estacionário</em> (sentado/em pé no lugar) ou <em>Escala de Divisão</em> (desenhe a zona livre no chão com o gatilho).</p>
-          <div class="step-tip"><strong>Segurança:</strong> Uma grelha surge se sair da área segura.</div>
+          <div class="step-head"><span class="step-num">3</span><h3>Ligar e Recentrar</h3></div>
+          <p>Se estiver desligado, prima o <strong>botão de energia 3 s</strong> (lado esq.). Olhe em frente e mantenha o <strong>botão Meta (∞) 2 s</strong> para recentrar.</p>
         </div>
-
         <div class="step-card">
-          <div class="step-head">
-            <span class="step-badge">5</span>
-            <div class="step-title">Abrir a aplicação</div>
-          </div>
-          <p class="step-body">Na barra inferior, aponte o laser do comando para a <strong>Biblioteca de Aplicações</strong> (ícone de 9 pontos à direita) e clique com o <strong>Gatilho</strong>.</p>
-          <div class="step-tip"><strong>Pausa:</strong> Clique 1 vez no botão <strong>Meta (&infin;)</strong> para voltar ao menu.</div>
+          <div class="step-head"><span class="step-num">4</span><h3>Confirmar o Limite</h3></div>
+          <p>Escolha <strong>Estacionário</strong> (iniciantes ou sentado) ou desenhe a zona <strong>Escala de Divisão</strong> com margem extra de 30–60 cm.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">5</span><h3>Explorar com Pausas</h3></div>
+          <p>Abra a Biblioteca (9 pontos) com o <strong>gatilho</strong>. Dê <strong>2 toques na lateral</strong> para ver a sala real. Máx. <strong>30 min</strong> seguidos + <strong>15 min</strong> de pausa.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">6</span><h3>Desligar, Limpar e Guardar</h3></div>
+          <p>Saia da app, prima energia <strong>3 s → Desligar</strong>, limpe lentes só com <strong>microfibra seca</strong>, coloque o <strong>protetor opaco</strong> e arrume na mala.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECÇÃO 2: CONHECER OS ÓCULOS E OS CONTROLADORES -->
-    <section>
-      <div class="sec-title">
-        <h2><span class="sec-num">2</span> Botões e ajustes do equipamento</h2>
-        <span class="sec-hint">Identificação rápida nos óculos e nos controladores Touch Plus</span>
-      </div>
-
-      <div class="equip-grid">
-
-        <!-- Painel Esquerdo: Óculos Meta Quest 3 -->
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Óculos Meta Quest 3</h3>
-            <span class="panel-tag">Vista frontal e inferior</span>
-          </div>
-
-          <div class="diagram-box">
-            <svg viewBox="0 0 380 140" aria-label="Diagrama dos óculos Meta Quest 3">
-              <!-- Contorno do visor -->
-              <rect x="75" y="22" width="230" height="84" rx="38" fill="#fff" stroke="#1F2A36" stroke-width="3"/>
-              <!-- Sensores frontais -->
-              <rect x="120" y="42" width="16" height="42" rx="8" fill="#EEF2F5" stroke="#1F2A36" stroke-width="2"/>
-              <circle cx="128" cy="52" r="4" fill="#E8711C"/>
-              <circle cx="128" cy="74" r="4" fill="#1F2A36"/>
-              <rect x="182" y="42" width="16" height="42" rx="8" fill="#EEF2F5" stroke="#1F2A36" stroke-width="2"/>
-              <rect x="244" y="42" width="16" height="42" rx="8" fill="#EEF2F5" stroke="#1F2A36" stroke-width="2"/>
-              <circle cx="252" cy="52" r="4" fill="#E8711C"/>
-              <circle cx="252" cy="74" r="4" fill="#1F2A36"/>
-              <!-- Curva do nariz -->
-              <path d="M165 106 Q190 88 215 106" fill="none" stroke="#1F2A36" stroke-width="3"/>
-              <!-- Hastes laterais -->
-              <path d="M40 62 L75 56" stroke="#3A4756" stroke-width="10" stroke-linecap="round"/>
-              <path d="M305 56 L340 62" stroke="#3A4756" stroke-width="10" stroke-linecap="round"/>
-
-              <!-- 1: Botão Energia (Esq) -->
-              <circle cx="62" cy="60" r="5" fill="#E8711C"/>
-              <line x1="62" y1="60" x2="26" y2="30" stroke="#E8711C" stroke-width="1.8"/>
-              <circle cx="22" cy="26" r="11" fill="#E8711C"/>
-              <text x="22" y="30" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">1</text>
-
-              <!-- 2: Roda IPD (Inf Esq) -->
-              <rect x="112" y="102" width="22" height="7" rx="3" fill="#1E7E8C"/>
-              <line x1="123" y1="109" x2="95" y2="126" stroke="#1E7E8C" stroke-width="1.8"/>
-              <circle cx="84" cy="126" r="11" fill="#1E7E8C"/>
-              <text x="84" y="130" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">2</text>
-
-              <!-- 3: Volume (Inf Dir) -->
-              <rect x="242" y="102" width="28" height="7" rx="3" fill="#1F2A36"/>
-              <line x1="256" y1="109" x2="285" y2="126" stroke="#1F2A36" stroke-width="1.8"/>
-              <circle cx="296" cy="126" r="11" fill="#1F2A36"/>
-              <text x="296" y="130" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">3</text>
-
-              <!-- 4: Toque duplo lateral (Dir) -->
-              <circle cx="318" cy="60" r="5" fill="#1E7E8C"/>
-              <line x1="318" y1="60" x2="352" y2="30" stroke="#1E7E8C" stroke-width="1.8"/>
-              <circle cx="358" cy="26" r="11" fill="#1E7E8C"/>
-              <text x="358" y="30" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">4</text>
-
-              <!-- 5: Câmaras frontais -->
-              <line x1="190" y1="42" x2="190" y2="15" stroke="#1F2A36" stroke-width="1.8"/>
-              <circle cx="190" cy="12" r="10" fill="#1F2A36"/>
-              <text x="190" y="16" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">5</text>
-            </svg>
-          </div>
-
-          <ul class="callout-list">
-            <li><span class="c-num acc">1</span> <div><strong>Botão de Energia (lado esquerdo):</strong> Premir 3 s para ligar ou desligar. Um toque curto suspende ou acorda o ecrã.</div></li>
-            <li><span class="c-num teal">2</span> <div><strong>Roda de Focagem / IPD (em baixo à esq.):</strong> Deslize a roda para ajustar a distância entre as lentes (58–70 mm) aos seus olhos.</div></li>
-            <li><span class="c-num">3</span> <div><strong>Botões de Volume (− / +) e ficha áudio:</strong> Ajustam o som das colunas integradas nas hastes.</div></li>
-            <li><span class="c-num teal">4</span> <div><strong>Vista Real (2 toques na lateral):</strong> Toque duas vezes com os dedos no lado dos óculos para ver a sala real a cores (<em>Passthrough</em>).</div></li>
-            <li><span class="c-num">5</span> <div><strong>Câmaras e sensores frontais:</strong> Rastreiam a sala, as mãos e os comandos — <strong>não os tape</strong> com os dedos ao segurar os óculos.</div></li>
+    <!-- BLOCO 2: ANATOMIA + COMANDOS/LEDS -->
+    <div class="mid-grid">
+      <section class="panel">
+        <h2 class="section-title acc"><span class="tag">2</span> Anatomia dos Óculos Meta Quest 3</h2>
+        <div class="anatomy-wrap">
+          <svg viewBox="0 0 156 172" width="130" height="146" aria-label="Esquema dos óculos Meta Quest 3">
+            <!-- Fita superior -->
+            <path d="M36 52 C36 22, 120 22, 120 52" fill="none" stroke="#5B6672" stroke-width="5" stroke-linecap="round"/>
+            <path d="M22 68 L12 68 M134 68 L144 68" stroke="#5B6672" stroke-width="5" stroke-linecap="round"/>
+            <!-- Corpo do visor (vista frontal) -->
+            <rect x="22" y="42" width="112" height="58" rx="20" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2.5"/>
+            <!-- 3 cápsulas frontais -->
+            <rect x="42" y="57" width="11" height="27" rx="5.5" fill="#1F2A36"/>
+            <rect x="72.5" y="57" width="11" height="27" rx="5.5" fill="#1F2A36"/>
+            <rect x="103" y="57" width="11" height="27" rx="5.5" fill="#1F2A36"/>
+            <circle cx="47.5" cy="65" r="2.2" fill="#4CE0F5"/>
+            <circle cx="78" cy="70.5" r="2.2" fill="#E8711C"/>
+            <circle cx="108.5" cy="65" r="2.2" fill="#4CE0F5"/>
+            <!-- Contorno nasal -->
+            <path d="M62 100 Q78 90 94 100" fill="none" stroke="#1F2A36" stroke-width="2"/>
+            <!-- Comandos Touch Plus simplificados em baixo -->
+            <ellipse cx="48" cy="144" rx="18" ry="12" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2"/>
+            <circle cx="44" cy="141" r="3" fill="#1F2A36"/><text x="48" y="164" text-anchor="middle" fill="#5B6672" font-size="8.5" font-weight="bold">Esq. (≡)</text>
+            <ellipse cx="108" cy="144" rx="18" ry="12" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2"/>
+            <circle cx="112" cy="141" r="3" fill="#E8711C"/><text x="108" y="164" text-anchor="middle" fill="#5B6672" font-size="8.5" font-weight="bold">Dir. (∞)</text>
+            <!-- Pins numerados -->
+            <circle cx="18" cy="54" r="8.5" fill="#E8711C"/><text x="18" y="57.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1</text>
+            <circle cx="38" cy="108" r="8.5" fill="#1E7E8C"/><text x="38" y="111.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">2</text>
+            <circle cx="118" cy="108" r="8.5" fill="#1D63B8"/><text x="118" y="111.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">3</text>
+            <circle cx="138" cy="54" r="8.5" fill="#E8711C"/><text x="138" y="57.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">4</text>
+            <circle cx="78" cy="36" r="8.5" fill="#1F2A36"/><text x="78" y="39.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">5</text>
+          </svg>
+          <ul class="anatomy-list">
+            <li><span class="pin">1</span><div><strong>Botão de Energia + LED + USB-C (Esq.):</strong> <strong>3 s</strong> ligar/desligar; <strong>1 clique</strong> suspender/acordar; <strong>10–15 s</strong> reiniciar se bloqueado.</div></li>
+            <li><span class="pin teal">2</span><div><strong>Roda de Focagem IPD (Base Esq.):</strong> Ajusta a distância entre lentes (58–70 mm) até o texto ficar nítido.</div></li>
+            <li><span class="pin blue">3</span><div><strong>Botões de Volume − / + (Base Dir.):</strong> Regulam o som das colunas integradas nas hastes.</div></li>
+            <li><span class="pin">4</span><div><strong>Laterais (Toque Duplo):</strong> <strong>2 toques suaves</strong> alternam entre VR e <strong>Vista Real a cores (<em>Passthrough</em>)</strong>.</div></li>
+            <li><span class="pin dark">5</span><div><strong>3 Cápsulas Frontais:</strong> Câmaras de rastreio e profundidade. <em>Não tapar com as mãos!</em> (Óculos graduados: usar espaçador interno).</div></li>
           </ul>
         </div>
+      </section>
 
-        <!-- Painel Direito: Controladores Touch Plus -->
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Controladores Touch Plus (Esquerdo e Direito)</h3>
-            <span class="panel-tag">Como navegar e interagir</span>
-          </div>
+      <section class="panel">
+        <h2 class="section-title"><span class="tag">3</span> Comandos Touch Plus &amp; LEDs</h2>
+        <table class="mini">
+          <thead><tr><th>Controlo</th><th>Função na Aula</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gatilho (indicador)</strong></td><td><strong>Clicar / Selecionar</strong> (como o rato).</td></tr>
+            <tr><td><strong>Botão Pega / <em>Grip</em> (lateral)</strong></td><td><strong>Agarrar e segurar</strong> objetos 3D.</td></tr>
+            <tr><td><strong>Botão Meta (∞) [Dir.]</strong></td><td><strong>1 clique:</strong> Menu universal · <strong>Premir 2 s:</strong> Recentrar.</td></tr>
+            <tr><td><strong>Botão Menu (≡) [Esq.]</strong></td><td>Menu de opções da aplicação atual.</td></tr>
+            <tr><td><strong>Joystick + A/B · X/Y</strong></td><td>Mover/rodar · Confirmar ou voltar atrás (B/Y).</td></tr>
+            <tr><td><strong>Sem comandos (Mãos)</strong></td><td>Pouse os comandos → junte polegar + indicador para clicar.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini" style="margin-bottom:0">
+          <thead><tr><th>LED (Óculos / Comandos)</th><th>Significado &amp; Ação</th></tr></thead>
+          <tbody>
+            <tr><td><span class="led-dot led-white"></span><strong>Branco fixo</strong></td><td>Ligado e pronto a usar.</td></tr>
+            <tr><td><span class="led-dot led-green"></span><strong>Verde fixo</strong></td><td>Bateria carregada a 100% (desligar USB-C).</td></tr>
+            <tr><td><span class="led-dot led-amber"></span><strong>Laranja fixo</strong></td><td>A carregar (carga total ~2 h 30 min com 18 W).</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Vermelho / a piscar</strong></td><td><strong>Bateria crítica (&lt; 10%)</strong> ou erro de carga.</td></tr>
+            <tr><td><span class="led-dot led-teal"></span><strong>Comandos a piscar</strong></td><td>3× acordou · SOS → retirar/trocar pilhas AA.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
 
-          <div class="diagram-box">
-            <svg viewBox="0 0 420 135" aria-label="Diagrama dos controladores Meta Quest Touch Plus">
-              <!-- Comando Esquerdo -->
-              <g transform="translate(20, 8)">
-                <text x="75" y="14" text-anchor="middle" font-size="11" font-weight="bold" fill="#5B6672">MÃO ESQUERDA (L)</text>
-                <!-- Corpo e punho -->
-                <ellipse cx="75" cy="52" rx="42" ry="28" fill="#1F2A36" stroke="#3A4756" stroke-width="2"/>
-                <path d="M52 72 L42 114 Q56 122 70 112 L86 78" fill="#EEF2F5" stroke="#1F2A36" stroke-width="2"/>
-                <!-- Analógico Esq -->
-                <circle cx="58" cy="48" r="11" fill="#3A4756" stroke="#AFC0CF" stroke-width="1.5"/>
-                <!-- Botões X e Y -->
-                <circle cx="92" cy="54" r="6.5" fill="#E8711C"/>
-                <text x="92" y="57.5" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">X</text>
-                <circle cx="84" cy="39" r="6.5" fill="#E8711C"/>
-                <text x="84" y="42.5" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">Y</text>
-                <!-- Botão Menu -->
-                <circle cx="72" cy="64" r="5" fill="#5B6672"/>
-                <text x="72" y="67" text-anchor="middle" font-size="8" fill="#fff">&equiv;</text>
-                <!-- Gatilho Lateral (Grip) -->
-                <rect x="75" y="86" width="8" height="20" rx="3" fill="#1E7E8C"/>
-                <text x="115" y="99" font-size="10" font-weight="bold" fill="#1E7E8C">&larr; Grip (Agarrar)</text>
-              </g>
-
-              <!-- Divisor central -->
-              <line x1="210" y1="15" x2="210" y2="120" stroke="#D5DCE3" stroke-dasharray="4 3"/>
-
-              <!-- Comando Direito -->
-              <g transform="translate(230, 8)">
-                <text x="85" y="14" text-anchor="middle" font-size="11" font-weight="bold" fill="#5B6672">MÃO DIREITA (R)</text>
-                <!-- Corpo e punho -->
-                <ellipse cx="85" cy="52" rx="42" ry="28" fill="#1F2A36" stroke="#3A4756" stroke-width="2"/>
-                <path d="M108 72 L118 114 Q104 122 90 112 L74 78" fill="#EEF2F5" stroke="#1F2A36" stroke-width="2"/>
-                <!-- Analógico Dir -->
-                <circle cx="102" cy="48" r="11" fill="#3A4756" stroke="#AFC0CF" stroke-width="1.5"/>
-                <!-- Botões A e B -->
-                <circle cx="68" cy="54" r="6.5" fill="#E8711C"/>
-                <text x="68" y="57.5" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">A</text>
-                <circle cx="76" cy="39" r="6.5" fill="#E8711C"/>
-                <text x="76" y="42.5" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">B</text>
-                <!-- Botão Meta -->
-                <circle cx="88" cy="64" r="6" fill="#1E7E8C" stroke="#fff" stroke-width="1"/>
-                <text x="88" y="67.5" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">&infin;</text>
-                <!-- Gatilho Frontal -->
-                <path d="M62 24 Q85 16 108 24" fill="none" stroke="#E8711C" stroke-width="4" stroke-linecap="round"/>
-                <text x="85" y="118" text-anchor="middle" font-size="10" font-weight="bold" fill="#E8711C">Gatilho frontal = Clicar</text>
-              </g>
-            </svg>
-          </div>
-
-          <table class="ctrl-table">
-            <thead>
-              <tr>
-                <th style="width:36%">Botão / Controlo</th>
-                <th>Para que serve</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="key-chip acc">Gatilho (Indicador)</span></td>
-                <td><strong>Selecionar e clicar</strong> nos menus e objetos (funciona como o clique do rato).</td>
-              </tr>
-              <tr>
-                <td><span class="key-chip">Grip (Dedo médio)</span></td>
-                <td>Botão lateral no punho para <strong>agarrar e segurar</strong> objetos virtuais.</td>
-              </tr>
-              <tr>
-                <td><span class="key-chip acc">Botão Meta (&infin;)</span> <em>(dir.)</em></td>
-                <td><strong>1 clique:</strong> abre/fecha o Menu Universal · <strong>Premir 2 s:</strong> recentra a imagem à sua frente.</td>
-              </tr>
-              <tr>
-                <td><span class="key-chip">Botões A / B</span> e <span class="key-chip">X / Y</span></td>
-                <td>Ações principais dentro das aplicações, confirmar (<span class="key-chip">A</span>/<span class="key-chip">X</span>) ou voltar atrás (<span class="key-chip">B</span>/<span class="key-chip">Y</span>).</td>
-              </tr>
-              <tr>
-                <td><span class="key-chip">Analógicos</span> / <span class="key-chip">Mãos</span></td>
-                <td>Deslocar/rodar nas apps. Se pousar os comandos, pode <strong>usar as mãos</strong> (junte polegar + indicador para clicar).</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
+    <!-- BLOCO 3: 5 REGRAS DE OURO -->
+    <section class="rules-box">
+      <h2 class="section-title red" style="border-bottom-color:#F0CFCB;margin-bottom:7px"><span class="tag">!</span> 5 Regras de Ouro de Segurança Obrigatórias (Kits INV-081 / INV-082)</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>1. Zero Sol nas Lentes</strong>A luz solar direta funciona como lupa e queima os ecrãs internos. Nunca virar as lentes para janelas.</div>
+        <div class="rule-item"><strong>2. Espaço e Fitas</strong>Usar só em interiores, área livre 2 × 2 m (+30–60 cm) e <strong>fitas de pulso sempre apertadas</strong>.</div>
+        <div class="rule-item"><strong>3. Pausas e Enjoo</strong>Máx. 30 min seguidos + 15 min de pausa. Ao menor sinal de tontura ou enjoo, pare e sente-se.</div>
+        <div class="rule-item"><strong>4. Supervisão e Saúde</strong>Alunos usam com docente e colega por perto. Idade ≥ 10 anos; atenção a historial de convulsões.</div>
+        <div class="rule-item"><strong>5. Limpeza a Seco</strong>Lentes só com microfibra seca (zero álcool/líquidos). Desinfetar apoio facial com toalhete sem álcool.</div>
       </div>
     </section>
 
-    <!-- SECÇÃO 3: SEGURANÇA, PROBLEMAS COMUNS E DEVOLUÇÃO AO CTE -->
-    <section>
-      <div class="sec-title">
-        <h2><span class="sec-num">3</span> Regras de ouro, dúvidas rápidas e devolução</h2>
-        <span class="sec-hint">Cuidados obrigatórios durante a requisição no CTE</span>
-      </div>
+    <!-- BLOCO 4: CHECKLIST + ATALHOS/CASTING + QR CODE -->
+    <div class="bottom-grid">
+      <section class="check-box">
+        <h2 class="section-title green" style="border-bottom-color:#C5E5D2;margin-bottom:6px"><span class="tag">✓</span> Checklist de Devolução (Mala INV-082)</h2>
+        <ul class="check-list">
+          <li><label><input type="checkbox" id="mq3-iq-1"><span><strong>Desligados totalmente</strong> (botão energia 3 s → <em>Desligar</em>, não suspensão).</span></label></li>
+          <li><label><input type="checkbox" id="mq3-iq-2"><span><strong>Lentes limpas a seco</strong> (microfibra) + <strong>protetor opaco colocado</strong> + interface higienizada.</span></label></li>
+          <li><label><input type="checkbox" id="mq3-iq-3"><span><strong>Mala completa:</strong> visor + 2 comandos Touch Plus (L/R) com fitas + pano + protetor.</span></label></li>
+          <li><label><input type="checkbox" id="mq3-iq-4"><span><strong>Reportado ao CTE</strong> n.º do kit (1–10), bateria &lt; 20%, pilha AA fraca ou anomalia.</span></label></li>
+        </ul>
+      </section>
 
-      <div class="bottom-grid">
+      <section class="net-box">
+        <h2 class="section-title" style="border-bottom-color:#C5DBF2;margin-bottom:6px"><span class="tag" style="background:var(--blue)">TV</span> Atalhos Rápidos &amp; Projetar na Sala</h2>
+        <ul>
+          <li><strong>Falar com o professor:</strong> <strong>2 toques na lateral</strong> dos óculos → Vista Real sem os tirar.</li>
+          <li><strong>Menu torto / sumiu:</strong> olhar em frente + manter <strong>botão Meta (∞) 2 s</strong>.</li>
+          <li><strong>Projetar (Casting):</strong> PC e óculos na <strong>mesma rede Wi-Fi</strong> e conta Meta em <code>horizon.meta.com/casting</code> → nos óculos: <em>Barra de estado → Transmitir → Computador</em>.</li>
+        </ul>
+      </section>
 
-        <!-- Coluna Esquerda: Alertas de Segurança e Resolução Rápida -->
-        <div class="rules-grid">
-          <div class="rule-box danger">
-            <div class="rule-title">&#9888; Sol e Janelas = Perigo!</div>
-            <p><strong>Nunca exponha as lentes internas ao sol</strong> (nem perto de janelas). As lentes funcionam como lupa e queimam o ecrã em segundos.</p>
-          </div>
-
-          <div class="rule-box warn">
-            <div class="rule-title">&#9888; Conforto e Tonturas</div>
-            <p>Se sentir tonturas ou fadiga visual, <strong>retire os óculos de imediato</strong>. Como iniciante, prefira experiências sentado ou paradas no lugar.</p>
-          </div>
-
-          <div class="rule-box info">
-            <div class="rule-title">&#128269; Imagem desfocada ou torta?</div>
-            <p><strong>Desfocada:</strong> suba/desça ligeiramente os óculos no rosto e rode a roda <strong>IPD (2)</strong>. <strong>Torta/longe:</strong> mantenha premido o botão <strong>Meta (&infin;)</strong> por 2 s.</p>
-          </div>
-
-          <div class="rule-box good">
-            <div class="rule-title">&#129306; Quer falar com o professor?</div>
-            <p>Não precisa de tirar os óculos: dê <strong>2 toques na lateral dos óculos</strong> para ver a sala real (<em>Passthrough</em>). Dê outros 2 toques para voltar ao VR.</p>
-          </div>
+      <aside class="qr-box" aria-label="Espaço para QR Code do portal online">
+        <div class="qr-placeholder">
+          <svg viewBox="0 0 60 60" width="66" height="66" fill="#1F2A36" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <rect x="40" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="45" y="9" width="6" height="6"/>
+            <rect x="4" y="40" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="9" y="45" width="6" height="6"/>
+            <rect x="25" y="6" width="4" height="4"/><rect x="31" y="10" width="4" height="8"/>
+            <rect x="25" y="24" width="10" height="10" fill="#E8711C"/>
+            <rect x="6" y="26" width="12" height="4"/><rect x="40" y="26" width="14" height="4"/>
+            <rect x="26" y="40" width="6" height="6"/><rect x="36" y="38" width="8" height="4"/>
+            <rect x="48" y="40" width="8" height="8"/><rect x="36" y="48" width="8" height="8"/>
+          </svg>
         </div>
-
-        <!-- Coluna Direita: Checklist Interativa de Devolução -->
-        <div class="checklist-card">
-          <div>
-            <div class="panel-header" style="margin-bottom:6px">
-              <h3>Lista de verificação antes de devolver ao CTE</h3>
-              <span class="panel-tag">Armário D1.4C-MF-A01</span>
-            </div>
-            <ul class="check-grid">
-              <li>
-                <label>
-                  <input type="checkbox" id="mq-c1">
-                  <span><strong>Fechar a app e desligar os óculos:</strong> manter o botão de energia (1) premido 3 s e escolher <em>Desligar</em>.</span>
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input type="checkbox" id="mq-c2">
-                  <span><strong>Limpar apenas com pano de microfibra seco:</strong> nunca usar álcool, toalhetes húmidos ou papel nas lentes.</span>
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input type="checkbox" id="mq-c3">
-                  <span><strong>Guardar na mala INV-082:</strong> óculos com proteção nas lentes (longe da luz) + os <strong>2 comandos Touch Plus</strong>.</span>
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input type="checkbox" id="mq-c4">
-                  <span><strong>Entregar ao responsável:</strong> avisar se a bateria ficou abaixo de 20% ou se ocorreu alguma anomalia.</span>
-                </label>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Linha de registo rápido para quando impresso -->
-          <div class="loan-bar">
-            <div class="loan-field"><strong>Óculos n.º:</strong> ____ / 10</div>
-            <div class="loan-field"><strong>Data:</strong> ___/___/202_</div>
-            <div class="loan-field"><strong>Utilizador:</strong> ________________</div>
-            <div class="loan-field"><strong>Visto Prof.:</strong> _______________</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
+        <strong>Algo não funciona?</strong>
+        <span>Leia este código para abrir o Diagnóstico Rápido</span>
+        <!-- FASE 3 (P3): substituir o SVG de exemplo pelo QR code final de https://aem-cte-ajuda.netlify.app/Meta_Quest_3_VR/#diagnostico -->
+      </aside>
+    </div>
   </div>
 
   <footer class="sheet-footer">
-    <span><strong>CTE Informático</strong> · Guia de Iniciação Rápida — Meta Quest 3 VR (Artigos <code>INV-081</code> e <code>INV-082</code>)</span>
-    <span>Utilização escolar supervisionada · Mantenha este guia junto da mala de transporte</span>
+    <span><strong>CTE Informático</strong> · Meta Quest 3 VR · Inventário <strong>INV-081 / INV-082</strong> · Armário D1.4C-MF-A01</span>
+    <span>Em caso de queda, lente riscada, mancha no ecrã ou mal-estar: <strong>PARE e contacte o responsável do CTE</strong>.</span>
   </footer>
-
 </article>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
 
 <script>
 (function() {
-  var KEY = "cte-meta-quest-3-quickstart-check";
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('.check-grid input[type="checkbox"]'));
+  var KEY = "mq3-infografico-check";
+  var TTL_MS = 4 * 60 * 60 * 1000; // 4 horas
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-list input"));
   var saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
-
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) {
+      saved = raw.itens;
+    } else if (raw) {
+      localStorage.removeItem(KEY);
+    }
+  } catch (e) {}
   boxes.forEach(function(b) {
     b.checked = !!saved[b.id];
     b.addEventListener("change", function() {
       saved[b.id] = b.checked;
-      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
     });
   });
-
-  var resetBtn = document.getElementById("btn-reset");
+  var resetBtn = document.getElementById("resetChecks");
   if (resetBtn) {
     resetBtn.addEventListener("click", function() {
       boxes.forEach(function(b) { b.checked = false; });

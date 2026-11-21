@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI Pocket 2 Creator Combo — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para filmar e fotografar com a câmara estabilizada DJI Pocket 2 Creator Combo do CTE: gimbal 3 eixos, microfone sem fios, ActiveTrack, DJI Mimo, diagnóstico e devolução.">
+<meta property="og:title" content="DJI Pocket 2 Creator Combo — Filmar com estabilizador na aula (CTE)">
+<meta property="og:description" content="Ajuda rápida para usar a DJI Pocket 2 Creator Combo (INV-152) do CTE: proteção do gimbal, microfone sem fios, modos de filmagem, diagnóstico e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='22' y='10' width='20' height='15' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='17.5' r='4.2' fill='%231F2A36' stroke='%23E8711C' stroke-width='2.4'/%3E%3Crect x='24' y='28' width='16' height='26' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='27.5' y='32' width='9' height='8' rx='1.5' fill='%234CE0F5'/%3E%3Ccircle cx='30' cy='46' r='2.2' fill='%23E8711C'/%3E%3Ccircle cx='35' cy='46' r='2.2' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-text: #5B2C6F;
+  --purple-soft: #F4ECF7;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.88rem; padding: 8px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.topbar-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 24px 20px 28px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.hero-media { width: 132px; height: 116px; border-radius: 14px; background: #fff; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 6px; }
+.hero-media.svg-fallback { background: rgba(255,255,255,0.07); }
+.hero-media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 { margin: 0; font-size: clamp(1.55rem, 3.6vw, 2.35rem); line-height: 1.14; }
+.hero .sub { color: #D4E1EE; font-size: 1.02rem; margin: 8px 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn-hero-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: var(--acc-btn); border: 2px solid var(--acc-btn); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 20px; border-radius: 9px; transition: background 0.15s ease, transform 0.15s ease; }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+
+main.container { max-width: 1120px; width: 100%; margin: 18px auto 28px; padding: 0 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.card-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(31,42,54,0.05); }
+.sec-head { background: var(--light); border-bottom: 1px solid var(--line); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
+
+.percurso-grid { display: grid; grid-template-columns: 265px 1fr; gap: 14px; align-items: stretch; }
+.steps-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.step-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 11px; padding: 12px 14px; background: #FAFBFD; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.step-card.step-lead { border-top-color: var(--acc); background: #fff; }
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-lead .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 7px; border-top: 1px solid var(--line); }
+.action-link { font-size: 0.88rem; font-weight: 700; color: var(--acc-text); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
+
+.quick-visual { background: var(--light); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; display: flex; flex-direction: column; gap: 6px; }
+.qv-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; font-size: 0.82rem; line-height: 1.3; }
+.qv-key { min-width: 72px; text-align: center; font-weight: 800; font-size: 0.74rem; padding: 3px 6px; border-radius: 5px; background: var(--dark); color: #fff; flex-shrink: 0; }
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
+
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.shortcut-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; box-shadow: 0 3px 10px rgba(31,42,54,0.04); }
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note { margin-top: 4px !important; font-size: 0.84rem !important; color: var(--dark) !important; font-weight: 600; }
+.soon-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; background: var(--purple-soft); border: 1px solid #D7BDE2; color: var(--purple-text); font-size: 0.82rem; font-weight: 700; }
+.shortcut-alt { display: block; margin-top: 5px; font-size: 0.875rem; font-weight: 600; color: var(--teal-text); text-decoration: none; }
+.shortcut-alt:hover { text-decoration: underline; }
+
+.diag-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
+.led-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 10px; }
+.led-btn { font: inherit; font-size: 0.86rem; font-weight: 600; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--light); color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px; text-align: left; transition: all 0.14s ease; }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
+.led-orb { width: 15px; height: 15px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.22); }
+.orb-green { background: #27AE60; }
+.orb-red-rec { background: #E74C3C; animation: pulse 1.2s infinite; }
+.orb-red-fast { background: #E74C3C; animation: pulse 0.5s infinite; }
+.orb-red { background: #C0392B; }
+.orb-amber { background: #F39C12; }
+.orb-mic { background: #27AE60; box-shadow: 0 0 6px #1E7E8C; animation: pulse 1.1s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.28; } }
+
+.diag-panel { border: 1.5px solid var(--line); border-left: 5px solid var(--teal); border-radius: 10px; padding: 13px 15px; background: var(--teal-soft); }
+.diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
+.diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
+.diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
+.diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(31,42,54,0.22); font-size: 0.88rem; color: var(--dark); }
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
+
+.sym-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.sym-btn { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; transition: all 0.14s ease; }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+.docs-list { list-style: none; margin: 0; padding: 0; }
+.doc-row { display: flex; justify-content: space-between; align-items: center; gap: 8px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fmt-link { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--light); color: var(--dark); white-space: nowrap; transition: border-color 0.14s ease, background 0.14s ease; }
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; list-style: none; padding: 0; margin: 0; }
+.check-grid label { display: flex; gap: 9px; align-items: flex-start; background: var(--light); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.88rem; }
+.check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
+.check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready { margin-top: 14px; padding: 12px 15px; border-radius: 9px; background: var(--green-soft); border: 1.5px solid var(--green); color: #124C2A; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 700; font-size: 0.94rem; }
+
+.btn { font: inherit; font-size: 0.88rem; font-weight: 700; border: 1.5px solid var(--line); background: #fff; color: var(--dark); padding: 7px 14px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
+
+.details-stack { display: flex; flex-direction: column; gap: 10px; }
+details.fold-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,42,54,0.04); }
+details.fold-box summary { list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: var(--dark); background: var(--light); display: flex; align-items: center; gap: 10px; }
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before { content: "▸"; display: inline-block; color: var(--acc-text); font-size: 1.05rem; transition: transform 0.15s ease; }
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.specs-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
+
+.ext-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; }
+.ext-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.ext-list a { font-size: 0.9rem; font-weight: 700; color: var(--teal-text); text-decoration: none; }
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+footer { text-align: center; padding: 16px 20px 96px; font-size: 0.88rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 960px) {
+  .percurso-grid { grid-template-columns: 1fr; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 88px; height: 78px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.38rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary { width: 100%; padding: 9px 16px; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; DJI Pocket 2 Creator Combo</nav>
+    <span>CTE Informático</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): pode substituir dji_pocket_2.jpg por fotografia real de um kit do CTE -->
+      <img src="dji_pocket_2.jpg" alt="Câmara estabilizada DJI Pocket 2 Creator Combo do CTE" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 110 130" width="84" height="100" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="34" y="14" width="42" height="28" rx="9" fill="rgba(255,255,255,0.1)"/>
+        <circle cx="55" cy="28" r="9" stroke="#E8711C" stroke-width="3"/>
+        <circle cx="55" cy="28" r="3.5" fill="#4CE0F5" stroke="none"/>
+        <path d="M55 42 L55 50"/>
+        <rect x="37" y="50" width="36" height="66" rx="10" fill="rgba(255,255,255,0.08)"/>
+        <rect x="44" y="58" width="22" height="18" rx="3" fill="#4CE0F5" opacity="0.85" stroke="none"/>
+        <circle cx="49" cy="88" r="4" fill="#E8711C" stroke="none"/>
+        <circle cx="62" cy="88" r="4" fill="#fff" stroke="none"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1>Filmar com a DJI Pocket 2 na aula</h1>
+      <p class="sub">Da preparação do kit Creator Combo à cópia dos vídeos e devolução, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
+      <div>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem antes de requisitar e filmar com a DJI Pocket 2 Creator Combo em aulas ou eventos.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <article class="step-card step-lead">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o essencial (1 min)</h3></div>
+            <p>4 regras e atalhos vitais para proteger o gimbal e gravar som limpo.</p>
+          </div>
+          <!-- FASE 3 (Vídeo): quando gravar o vídeo curto (60-90 s), pode substituir .quick-visual por:
+          <div class="video-box">
+            <video controls preload="metadata" src="Como_Usar_a_DJI_Pocket_2.mp4#t=0.5">
+              <track kind="captions" src="Como_Usar_a_DJI_Pocket_2.vtt" srclang="pt" label="Português" default>
+            </video>
+          </div>
+          -->
+          <div class="quick-visual" aria-label="4 regras e atalhos vitais">
+            <div class="qv-item"><span class="qv-key red">ZERO FORÇA</span><span class="qv-desc">Nunca agarrar nem rodar o gimbal à mão</span></div>
+            <div class="qv-item"><span class="qv-key acc">2× / 3× BOTÃO</span><span class="qv-desc">2× recentra · 3× vira modo Selfie</span></div>
+            <div class="qv-item"><span class="qv-key teal">MIC SEM FIOS</span><span class="qv-desc">Exige punho Do-It-All + LED verde fixo</span></div>
+            <div class="qv-item"><span class="qv-key">COPIAR SD</span><span class="qv-desc">Transferir vídeos e conferir acessórios</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="DJI_Pocket_2_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+          </div>
+        </article>
+
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Operador</h3></div>
+              <p>8 perguntas de segurança e operação, com cartão para imprimir.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="DJI_Pocket_2_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Montar kit e som sem fios</h3></div>
+              <p>Confirmar microSD, montar punho <em>Do-It-All</em>, microfone e mini-tripé.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="DJI_Pocket_2_Manual_Utilizador.html#s6">Microfone sem fios &rarr;</a>
+              <a class="action-link teal" href="DJI_Pocket_2_Manual_Utilizador.html#s2-1">Peças do kit &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Filmar e transferir</h3></div>
+              <p>Requisitar kit, escolher modo de gimbal / ActiveTrack e copiar os ficheiros.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Requisitar &#8599;</a>
+              <a class="action-link teal" href="DJI_Pocket_2_Manual_Utilizador.html#s5">Gimbal e ActiveTrack &rarr;</a>
+              <a class="action-link teal" href="DJI_Pocket_2_Manual_Utilizador.html#s7">DJI Mimo e PC &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Conferir peças e devolver</h3></div>
+              <p>6 verificações antes de entregar o kit completo no CTE.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pelo LED da câmara/microfone ou sintoma.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Ideias de projetos vídeo</h3>
+          <p>5 propostas audiovisuais (entrevista, reportagem, ActiveTrack, Motionlapse e guião).</p>
+        </div>
+        <a class="action-link teal" href="DJI_Pocket_2_Manual_Utilizador.html#s8">Ver projetos vídeo &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais da DJI Pocket 2 do CTE.</p>
+          <p class="shortcut-note" id="aiSoonText"><span class="soon-pill">Será disponibilizado brevemente</span></p>
+          <p class="shortcut-note" id="aiAccountNote" hidden>Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" id="aiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Entretanto, use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
+  <section class="card-section" id="diagnostico">
+    <div class="sec-head">
+      <div>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione o estado do LED (câmara ou microfone sem fios) ou o problema observado durante a filmagem.</p>
+      </div>
+      <a class="btn" href="DJI_Pocket_2_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias de apoio no diagnóstico:
+           dp2_botoes_led.jpg (ecrã tátil, botão gravar, botão função e LED de estado)
+           dp2_mic_handle.jpg (punho Do-It-All montado e microfone sem fios com LED verde)
+           dp2_capa_pecas.jpg (capa rígida com encaixe da lente grande angular e adaptadores) -->
+      <div class="diag-grid">
+        <div>
+          <h3 class="diag-sub">1. LED de estado (câmara ou microfone)</h3>
+          <div class="led-buttons" id="ledButtons">
+            <button type="button" class="led-btn active" data-led="green" aria-pressed="true"><span class="led-orb orb-green"></span>Verde fixo (câmara)</button>
+            <button type="button" class="led-btn" data-led="red_rec" aria-pressed="false"><span class="led-orb orb-red-rec"></span>Vermelho lento</button>
+            <button type="button" class="led-btn" data-led="red_3x" aria-pressed="false"><span class="led-orb orb-red-fast"></span>Vermelho 3× rápido</button>
+            <button type="button" class="led-btn" data-led="red_solid" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho fixo</button>
+            <button type="button" class="led-btn" data-led="amber" aria-pressed="false"><span class="led-orb orb-amber"></span>Amarelo (câmara)</button>
+            <button type="button" class="led-btn" data-led="mic_led" aria-pressed="false"><span class="led-orb orb-mic"></span>LED do Microfone</button>
+          </div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <h3 class="diag-sub">2. Problema na filmagem</h3>
+          <div class="sym-pills" id="symButtons">
+            <button type="button" class="sym-btn active" data-sym="nomic" aria-pressed="true">Microfone sem som</button>
+            <button type="button" class="sym-btn" data-sym="gimbal" aria-pressed="false">Gimbal torto / bloqueado</button>
+            <button type="button" class="sym-btn" data-sym="nosd" aria-pressed="false">Sem cartão / SD lento</button>
+            <button type="button" class="sym-btn" data-sym="notrack" aria-pressed="false">ActiveTrack indisponível</button>
+            <button type="button" class="sym-btn" data-sym="nomimo" aria-pressed="false">Não liga à DJI Mimo</button>
+            <button type="button" class="sym-btn" data-sym="wind" aria-pressed="false">Ruído de vento no áudio</button>
+            <button type="button" class="sym-btn" data-sym="blur" aria-pressed="false">Lente / imagem embaciada</button>
+            <button type="button" class="sym-btn" data-sym="transfer" aria-pressed="false">PC não lê os vídeos</button>
+          </div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCUMENTOS (LINHAS COMPACTAS) -->
+  <section class="card-section" id="documentos">
+    <div class="sec-head">
+      <div>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e guia A4 pronto a imprimir e plastificar.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="DJI_Pocket_2_Infografico_Inicio_Rapido.html">Ver online (A4)</a>
+            <a class="fmt-link" href="DJI_Pocket_2_Guia_Inicio_Rapido.pdf">PDF · 182 KB</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador e Produção Vídeo</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="DJI_Pocket_2_Manual_Utilizador.html">Ver online</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Operador de Câmara</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="DJI_Pocket_2_Quiz_Habilitacao.html">Fazer o quiz</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CHECKLIST DE DEVOLUÇÃO -->
+  <section class="card-section" id="devolucao">
+    <div class="sec-head">
+      <div>
+        <h2>Checklist de devolução</h2>
+        <p>Confirme os 6 pontos antes de entregar no armário branco (janela) do Estúdio 4C (limpa-se ao fim de 4 h).</p>
+      </div>
+      <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia real do kit Creator Combo completo
+      <figure style="margin:0 0 14px">
+        <img src="dp2_kit_completo.jpg" alt="Kit completo DJI Pocket 2 Creator Combo INV-152 com todos os acessórios conferidos" loading="lazy" style="width:100%;max-width:680px;border-radius:10px;border:1px solid var(--line)">
+      </figure>
+      -->
+      <ul class="check-grid">
+        <li><label><input type="checkbox" id="dp2-c1"><span><strong>1. Vídeos copiados e SD limpo:</strong> Ficheiros da turma transferidos para o PC/nuvem e cartão microSD verificado no kit.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-c2"><span><strong>2. Desligar e recolher gimbal:</strong> Câmara e microfone desligados (esperar o gimbal recolher) e colocada na <strong>capa protetora</strong>.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-c3"><span><strong>3. Áudio sem fios conferido:</strong> Punho <em>Do-It-All Handle</em>, <strong>microfone sem fios</strong> e <strong>para-vento (<em>windscreen</em>)</strong> presentes.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-c4"><span><strong>4. Acessórios pequenos (Creator):</strong> Lente grande angular, mini-joystick, mini-tripé, adaptadores USB-C/Lightning, fita de pulso e cabo duplo USB-C.</span></label></li>
+        <li><label><input type="checkbox" id="dp2-c5"><span><strong>5. Lente e ecrã limpos:</strong> Sem dedadas nem riscos (limpar apenas com pano de microfibra seco, sem forçar o gimbal).</span></label></li>
+        <li><label><input type="checkbox" id="dp2-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar o n.º do kit (1–4), bateria fraca ou qualquer peça em falta/anomalia.</span></label></li>
+      </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Tudo pronto para devolver.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar devolução &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECÇÕES RECOLHIDAS -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico, Acessórios e Manutenção</strong> (cartões microSD, emparelhamento mic sem fios, calibração gimbal, baterias e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="DJI_Pocket_2_Manual_Tecnico.html">Ver online</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento pronta a carregar)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="DJI_Pocket_2_Base_Conhecimento_NotebookLM.md">Markdown</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Jornalismo Escolar, Ciências, Educação Física, Cinema e Eventos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="DJI_Pocket_2_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-152 · 4 kits · Estúdio 4C · Armário branco com tabuleiros (janela)</li>
+          <li><strong>Câmara e estabilização:</strong> Gimbal motorizado 3 eixos · 64 MP foto · vídeo 4K até 60 fps · 117 g</li>
+          <li><strong>Bateria e carga:</strong> Li-ion 875 mAh · até 140 min (1080p/24fps) · carga ~73 min (5 V / 2 A USB-C)</li>
+          <li><strong>Armazenamento:</strong> Cartão microSD SDHC/SDXC até 256 GB (UHS-I U1 ou U3 recomendado para 4K)</li>
+          <li><strong>Creator Combo:</strong> Do-It-All Handle, microfone sem fios + windscreen, lente grande angular, mini-tripé, mini-joystick, adaptadores e cabo duplo</li>
+          <li><strong>App de apoio:</strong> DJI Mimo (iOS / Android — ligação por adaptador ou Wi-Fi com Do-It-All Handle)</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="ext-list">
+        <li>
+          <a href="https://www.dji.com/pocket-2" target="_blank" rel="noopener noreferrer">Página Oficial DJI Pocket 2 &#8599;</a>
+          <p>Características principais, modos inteligentes e Creator Combo.</p>
+        </li>
+        <li>
+          <a href="https://www.dji.com/support/product/pocket-2" target="_blank" rel="noopener noreferrer">Centro de Suporte Oficial DJI Pocket 2 &#8599;</a>
+          <p>Tutoriais em vídeo oficiais, perguntas frequentes e apoio.</p>
+        </li>
+        <li>
+          <a href="https://www.dji.com/downloads/products/pocket-2" target="_blank" rel="noopener noreferrer">Transferências Oficiais (Manuais PDF e Firmware) &#8599;</a>
+          <p>Manual oficial do utilizador, guia rápido e lista de microSD.</p>
+        </li>
+        <li>
+          <a href="https://www.dji.com/downloads/djiapp/dji-mimo" target="_blank" rel="noopener noreferrer">Aplicação DJI Mimo (Oficial) &#8599;</a>
+          <p>Monitorização no telemóvel, modo Pro, Story Mode e edição rápida.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online DJI Pocket 2 Creator Combo · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
+    urlRequisicao: "",          // formulário de requisição da DJI Pocket 2
+    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+    urlNotebookLM: "",          // colar aqui o link do NotebookLM quando estiver criado
+    checklistValidadeHoras: 4
+  };
+
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var aiSoonText = document.getElementById("aiSoonText");
+  var aiAccountNote = document.getElementById("aiAccountNote");
+  if (aiLink && CONFIG.urlNotebookLM) {
+    aiLink.href = CONFIG.urlNotebookLM;
+    aiLink.hidden = false;
+    if (aiSoonText) aiSoonText.hidden = true;
+    if (aiAccountNote) aiAccountNote.hidden = false;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  var LED_INFO = {
+    green: {
+      cls: "ok",
+      title: "Verde fixo (LED de estado da câmara)",
+      meaning: "A DJI Pocket 2 está ligada, a funcionar normalmente e com cartão microSD detetado.",
+      action: "Pronta a gravar ou fotografar. Prima o botão vermelho (Obturador) para iniciar a gravação."
+    },
+    red_rec: {
+      cls: "ok",
+      title: "Vermelho a piscar lentamente (câmara)",
+      meaning: "A câmara está a gravar vídeo neste momento.",
+      action: "Prima novamente o botão de gravação para terminar e guardar o ficheiro no cartão microSD antes de desligar."
+    },
+    red_3x: {
+      cls: "danger",
+      title: "Vermelho a piscar 3 vezes rapidamente (câmara)",
+      meaning: "Bateria muito baixa — a câmara está prestes a desligar-se automaticamente.",
+      action: "Termine a gravação imediatamente, desligue a câmara e ligue o cabo USB-C a um carregador 5 V / 2 A (~73 min carga total)."
+    },
+    red_solid: {
+      cls: "danger",
+      title: "Vermelho fixo (câmara)",
+      meaning: "Temperatura excessiva (aviso de sobreaquecimento, comum em gravação contínua a 4K/60fps).",
+      action: "Pare a gravação, desligue a câmara durante 10 minutos à sombra para arrefecer e prefira 1080p ou 4K/30fps em gravações longas."
+    },
+    amber: {
+      cls: "warn",
+      title: "Amarelo fixo ou a piscar (câmara)",
+      meaning: "Amarelo fixo: equipamento não ativado (requer app DJI Mimo). A piscar: erro de número de série/sistema.",
+      action: "Não tente forçar nada; entregue o kit ao docente responsável do CTE para ativação ou verificação técnica."
+    },
+    mic_led: {
+      cls: "ok",
+      title: "LED do Microfone Sem Fios (topo do transmissor)",
+      meaning: "Verde fixo = ligado ao punho Do-It-All Handle · Verde rápido = a emparelhar · Verde lento = sem ligação ou fora de alcance.",
+      action: "Confirme que o punho Do-It-All Handle está encaixado na Pocket 2 e que o microfone está ligado; verifique no ecrã o ícone de microfone externo."
+    }
+  };
+
+  var SYM_INFO = {
+    nomic: {
+      cls: "warn",
+      title: "O microfone sem fios não grava som ou não liga",
+      cause: "Punho Do-It-All Handle não encaixado (é ele que tem o recetor sem fios!), microfone desligado/sem bateria ou não emparelhado.",
+      action: "1) Substitua a base simples pelo punho Do-It-All Handle. 2) Ligue o microfone (interruptor lateral) e confirme LED verde fixo. 3) Teste batendo levemente no microfone e observe a barra de nível de áudio no ecrã."
+    },
+    gimbal: {
+      cls: "danger",
+      title: "Gimbal torto, a vibrar ou mensagem de proteção/bloqueio",
+      cause: "Cabeça obstruída ao ligar, dedos a encostar no braço motorizado ou necessidade de recentragem/calibração.",
+      action: "1) NUNCA force o gimbal à mão! Dê 2 cliques rápidos no Botão Função para recentrar. 2) Se persistir, desligue, pouse a câmara nivelada no mini-tripé, ligue e execute Definições → Calibração Automática."
+    },
+    nosd: {
+      cls: "warn",
+      title: "Aviso «Sem cartão SD» ou gravação 4K interrompida",
+      cause: "Cartão microSD ausente, mal encaixado, cheio ou demasiado lento (abaixo de UHS-I U1/U3).",
+      action: "1) Desligue a câmara e confirme que o cartão microSD (até 256 GB, UHS-I U3 para 4K) encaixou até ao clique. 2) Se estiver cheio, copie os vídeos para o PC e formate nas definições da câmara (com autorização do professor)."
+    },
+    notrack: {
+      cls: "",
+      title: "ActiveTrack (seguimento automático) não ativa ao tocar 2×",
+      cause: "O ActiveTrack fica desativado por limitação técnica em modo FPV, vídeo 4K a 60 fps ou câmara lenta 8×.",
+      action: "Mude a resolução para 1080p ou 4K a 24/30 fps, selecione o modo Follow (não FPV) e dê duplo toque no rosto/objeto no ecrã tátil (ou mude para modo Selfie com 3 cliques no Botão Função)."
+    },
+    nomimo: {
+      cls: "warn",
+      title: "O telemóvel não liga à app DJI Mimo",
+      cause: "Falta o punho Do-It-All Handle (necessário para Wi-Fi/Bluetooth) ou adaptador USB-C/Lightning mal encaixado por causa da capa do telemóvel.",
+      action: "1) Para ligação sem fios, encaixe primeiro o Do-It-All Handle e ative Wi-Fi e Bluetooth no telemóvel. 2) Para ligação direta, retire temporariamente a capa grossa do telemóvel."
+    },
+    wind: {
+      cls: "",
+      title: "O áudio exterior tem muito ruído de vento",
+      cause: "Gravação no exterior sem o para-vento (windscreen) peludo colocado no microfone sem fios.",
+      action: "Encaixe firmemente o para-vento cinzento (windscreen) no topo do microfone sem fios e prenda o microfone na gola (15–20 cm da boca), virado de costas para o vento forte."
+    },
+    blur: {
+      cls: "",
+      title: "Imagem embaciada ou lente grande angular descentrada",
+      cause: "Dedadas na lente (muito comum ao manusear a cabeça) ou lente grande angular magnética mal encaixada.",
+      action: "Desligue a câmara, retire a lente magnética se estiver posta e limpe suavemente ambas as óticas APENAS com pano de microfibra seco, sem forçar os braços do gimbal."
+    },
+    transfer: {
+      cls: "",
+      title: "O computador não mostra os vídeos ao ligar o cabo USB-C",
+      cause: "A DJI Pocket 2 tem de estar LIGADA quando liga o cabo USB-C ao PC (desligada apenas carrega a bateria!).",
+      action: "1) Ligue a Pocket 2 e ligue o cabo USB-C ao PC: abre como disco externo (pasta DCIM/100MEDIA). 2) Em alternativa, retire o cartão microSD com a câmara desligada e use um leitor de cartões."
+    }
+  };
+
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="DJI_Pocket_2_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) { html += ' · Contacte o CTE: ' + contactShort; }
+    html += '</div>';
+    return html;
+  }
+
+  var ledRes = document.getElementById("ledResult");
+  var symRes = document.getElementById("symResult");
+
+  function renderLed(key) {
+    var d = LED_INFO[key];
+    ledRes.className = "diag-panel " + d.cls;
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+  function renderSym(key) {
+    var d = SYM_INFO[key];
+    symRes.className = "diag-panel " + d.cls;
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+
+  var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
+  ledBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      ledBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderLed(b.getAttribute("data-led"));
+    });
+  });
+
+  var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
+  symBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      symBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderSym(b.getAttribute("data-sym"));
+    });
+  });
+
+  renderLed("green");
+  renderSym("nomic");
+
+  var KEY = "dp2-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
+  var saved = {};
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
+    });
+  });
+  syncReturnState();
+
+  document.getElementById("hubResetCheck").addEventListener("click", function() {
+    boxes.forEach(function(b) { b.checked = false; });
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
+  });
+})();
+</script>
+</body>
+</html>

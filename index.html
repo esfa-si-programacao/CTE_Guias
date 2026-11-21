@@ -6,7 +6,7 @@
 <title>CTE — Portal de Guias e Manuais de Equipamentos</title>
 <meta name="description" content="Portal de ajuda online do Centro Tecnológico Especializado (CTE) Informático: manuais, guias de início rápido, vídeos e ferramentas para os equipamentos requisitáveis.">
 <meta property="og:title" content="CTE — Portal de Guias e Manuais de Equipamentos">
-<meta property="og:description" content="Acesso rápido aos centros de ajuda online dos equipamentos do CTE Informático (Robô NAO V6, Drone DJI Avata 2, Meta Quest 3 VR).">
+<meta property="og:description" content="Acesso rápido aos centros de ajuda online dos equipamentos do CTE Informático (Robô NAO V6, DJI Avata 2, Meta Quest 3 VR, DJI RoboMaster TT, DJI Pocket 2 Creator Combo).">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='800' fill='%23E8711C'%3ECTE%3C/text%3E%3C/svg%3E">
 <style>
@@ -220,6 +220,8 @@ main.container {
 .equip-card.teal:hover { border-color: var(--teal); }
 .equip-card.purple { border-top-color: var(--purple); }
 .equip-card.purple:hover { border-color: var(--purple); }
+.equip-card.blue { border-top-color: var(--blue); }
+.equip-card.blue:hover { border-color: var(--blue); }
 
 /* Área da imagem do equipamento */
 .equip-media {
@@ -274,6 +276,7 @@ main.container {
 }
 .equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal-text); }
 .equip-card.purple .cat-badge { background: var(--purple-soft); color: var(--purple); }
+.equip-card.blue .cat-badge { background: var(--blue-soft); color: var(--blue); }
 
 .inv-badge {
   font-size: 0.74rem;
@@ -330,6 +333,7 @@ main.container {
 }
 .equip-card.teal .open-cta { color: var(--teal-text); }
 .equip-card.purple .open-cta { color: var(--purple); }
+.equip-card.blue .open-cta { color: var(--blue); }
 
 .empty-state {
   display: none;
@@ -366,7 +370,7 @@ footer {
     </div>
     <div class="hero-stats">
       <div class="stat-card">
-        <span class="stat-num">3</span>
+        <span class="stat-num">5</span>
         <span class="stat-label">Equipamentos</span>
       </div>
     </div>
@@ -377,13 +381,14 @@ footer {
   <div class="controls-bar">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
+      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-144) ou área..." aria-label="Pesquisar equipamentos">
     </div>
     <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por área">
-      <button type="button" class="pill active" data-cat="all">Todos (3)</button>
+      <button type="button" class="pill active" data-cat="all">Todos (5)</button>
       <button type="button" class="pill" data-cat="robotica">Robótica</button>
       <button type="button" class="pill" data-cat="drones">Drones</button>
       <button type="button" class="pill" data-cat="vr">Realidade Virtual</button>
+      <button type="button" class="pill" data-cat="audiovisual">Audiovisual</button>
     </div>
   </div>
 </div>
@@ -448,22 +453,77 @@ footer {
     <!-- 3. Meta Quest 3 VR -->
     <a class="equip-card purple" href="Meta_Quest_3_VR/index.html" data-cat="vr">
       <div class="equip-media">
-        <img src="Meta_Quest_3_VR/meta_quest_3.jpg" alt="Óculos de Realidade Virtual Meta Quest 3">
+        <img src="Meta_Quest_3_VR/meta_quest_3.jpg" alt="Óculos de Realidade Virtual Meta Quest 3 e controladores Touch Plus">
       </div>
       <div class="equip-body">
         <div>
           <div class="equip-meta-top">
             <span class="cat-badge">Realidade Virtual</span>
-            <span class="inv-badge">INV-081 / INV-082</span>
+            <span class="inv-badge">INV-081 / INV-082 · 10 kits</span>
           </div>
           <h2>Meta Quest 3 VR — Realidade Virtual e Mista</h2>
-          <p>Recursos visuais e multimédia para utilização imediata dos óculos Meta Quest 3 e controladores Touch Plus, da abertura da mala à devolução.</p>
+          <p>Centro de ajuda completo para professores e alunos: arranque seguro, controlos Touch Plus, projeção (Casting), atividades VR/WebXR, diagnóstico interativo e devolução.</p>
           <div class="tags-row">
-            <span class="mini-tag">Infográfico A4</span>
-            <span class="mini-tag">Vídeo 5 Passos</span>
-            <span class="mini-tag">Guia PDF</span>
-            <span class="mini-tag">Poster PNG</span>
-            <span class="mini-tag">NotebookLM</span>
+            <span class="mini-tag">Guia de Início Rápido</span>
+            <span class="mini-tag">Manuais Web</span>
+            <span class="mini-tag">Carta de Condução</span>
+            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag">Slides PPTX</span>
+            <span class="mini-tag">Word DOCX</span>
+          </div>
+        </div>
+        <div class="equip-footer">
+          <span class="open-cta">Abrir ajuda &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 4. DJI RoboMaster TT (Tello Talent) -->
+    <a class="equip-card teal" href="DJI_RoboMaster_TT/index.html" data-cat="drones">
+      <div class="equip-media">
+        <img src="DJI_RoboMaster_TT/dji_robomaster_tt.jpg" alt="Drone educativo DJI RoboMaster TT (Tello Talent) com matriz LED 8×8">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
+            <span class="cat-badge">Drones Programáveis</span>
+            <span class="inv-badge">INV-144 · 10 kits</span>
+          </div>
+          <h2>DJI RoboMaster TT (Tello Talent)</h2>
+          <p>Centro de ajuda completo para programar e voar em sala de aula: módulo ESP32, matriz LED 8×8, Mind+ e Python (SDK 3.0), diagnóstico de LEDs e devolução.</p>
+          <div class="tags-row">
+            <span class="mini-tag">Guia Rápido A4 / PDF</span>
+            <span class="mini-tag">Manuais Web</span>
+            <span class="mini-tag">Carta de Piloto</span>
+            <span class="mini-tag">Mind+ &amp; Python</span>
+            <span class="mini-tag">Diagnóstico LED</span>
+          </div>
+        </div>
+        <div class="equip-footer">
+          <span class="open-cta">Abrir ajuda &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 5. DJI Pocket 2 Creator Combo -->
+    <a class="equip-card blue" href="DJI_Pocket_2_Creator/index.html" data-cat="audiovisual">
+      <div class="equip-media">
+        <img src="DJI_Pocket_2_Creator/dji_pocket_2.jpg" alt="Câmara estabilizada DJI Pocket 2 Creator Combo com microfone sem fios e acessórios">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
+            <span class="cat-badge">Audiovisual · Vídeo</span>
+            <span class="inv-badge">INV-152 · 4 kits</span>
+          </div>
+          <h2>DJI Pocket 2 Creator Combo</h2>
+          <p>Centro de ajuda completo para produção vídeo escolar: proteção do gimbal 3 eixos, microfone sem fios, ActiveTrack, DJI Mimo, diagnóstico e conferência de peças.</p>
+          <div class="tags-row">
+            <span class="mini-tag">Guia Rápido A4 / PDF</span>
+            <span class="mini-tag">Manuais Web</span>
+            <span class="mini-tag">Carta de Operador</span>
+            <span class="mini-tag">Mic Sem Fios</span>
+            <span class="mini-tag">Diagnóstico LED</span>
           </div>
         </div>
         <div class="equip-footer">

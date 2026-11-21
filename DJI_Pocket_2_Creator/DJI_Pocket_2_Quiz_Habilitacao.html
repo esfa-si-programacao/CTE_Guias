@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Operador — DJI Pocket 2 Creator Combo (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas de segurança e operação da câmara DJI Pocket 2 Creator Combo (INV-152), com cartão imprimível e código de verificação.">
+<meta property="og:title" content="Carta de Operador de Câmara — DJI Pocket 2 Creator Combo (CTE)">
+<meta property="og:description" content="Valide em 2 minutos os cuidados com o gimbal, microfone sem fios, cartão microSD e acessórios da DJI Pocket 2 Creator Combo (INV-152).">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='22' y='10' width='20' height='15' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='17.5' r='4.2' fill='%231F2A36' stroke='%23E8711C' stroke-width='2.4'/%3E%3Crect x='24' y='28' width='16' height='26' rx='5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='27.5' y='32' width='9' height='8' rx='1.5' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI Pocket 2 Creator Combo</a> &rsaquo; Carta de Operador</nav>
+      <h1>Carta de Operador — DJI Pocket 2</h1>
+      <p>Valide em 2 minutos os cuidados com o gimbal, som sem fios e acessórios antes de requisitar um kit (<code>INV-152</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página DJI Pocket 2</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Segurança</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º Multimédia">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="DJI_Pocket_2_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-152</div>
+      <h2>Cartão de Habilitação — DJI Pocket 2 Creator</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação da câmara DJI Pocket 2 Creator Combo.</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Operador — DJI Pocket 2 Creator Combo (<code>INV-152</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Proteção do gimbal",
+      critica: true,
+      q: "Durante a filmagem, a cabeça da DJI Pocket 2 ficou apontada para o lado. Como a deve endireitar?",
+      opts: [
+        "Rodar a cabeça suavemente com dois dedos até ficar direita.",
+        "Dar 2 cliques rápidos no Botão Função para recentrar.",
+        "Abanar o punho com força até os motores reiniciarem.",
+        "Retirar o cartão microSD com a câmara ainda a gravar."
+      ],
+      ans: 1,
+      exp: "Nunca force nem segure a cabeça motorizada do gimbal à mão — danifica os motores! Dê sempre 2 cliques rápidos no Botão Função para recentrar."
+    },
+    {
+      cat: "Capa protetora",
+      critica: true,
+      q: "Terminou de filmar e vai guardar a câmara na capa rígida. Qual é o procedimento seguro?",
+      opts: [
+        "Empurrar a câmara ainda ligada para dentro da capa rígida.",
+        "Desligar a câmara, esperar o gimbal recolher e pôr na capa.",
+        "Transportá-la solta no bolso das calças sem a capa rígida.",
+        "Rodar a lente à mão para dentro antes de desligar a energia."
+      ],
+      ans: 1,
+      exp: "Desligue sempre a Pocket 2 e aguarde que o gimbal recolha automaticamente para a posição de descanso antes de a encaixar na capa protetora."
+    },
+    {
+      cat: "Chuva e fita de pulso",
+      critica: true,
+      q: "Está a gravar um evento escolar no exterior e começa a chuviscar. Que decisão deve tomar?",
+      opts: [
+        "Continuar a filmar porque o gimbal é totalmente à prova de água.",
+        "Parar e abrigar a câmara: a Pocket 2 não é resistente à água.",
+        "Limpar a água das juntas do gimbal com um toalhete de álcool.",
+        "Ligar o modo FPV para o motor expulsar as gotas de chuva."
+      ],
+      ans: 1,
+      exp: "A DJI Pocket 2 não é estanque nem resistente à chuva! Abrigue o equipamento de imediato, mantenha sempre a fita de pulso colocada e evite humidade."
+    },
+    {
+      cat: "Peças da Creator Combo",
+      critica: true,
+      q: "Antes de devolver o kit INV-152 ao CTE, que verificação é indispensável?",
+      opts: [
+        "Devolver apenas a câmara e guardar os acessórios para a aula seguinte.",
+        "Conferir todas as peças pequenas (mic, windscreen, lente, tripé, joystick).",
+        "Deixar o microfone sem fios ligado para não perder o emparelhamento.",
+        "Retirar a fita de pulso e o punho Do-It-All antes de cada utilização."
+      ],
+      ans: 1,
+      exp: "A Creator Combo inclui peças pequenas fáceis de extraviar (microfone, para-vento, lente grande angular, mini-joystick, adaptadores, tripé e cabo duplo). Conte tudo antes de entregar."
+    },
+    {
+      cat: "Ficheiros e privacidade",
+      critica: true,
+      q: "Acabou de gravar entrevistas na escola. Que procedimento deve seguir antes de devolver o kit?",
+      opts: [
+        "Levar o cartão microSD da escola para casa durante a semana.",
+        "Deixar vídeos privados da turma no cartão para o grupo seguinte.",
+        "Copiar os vídeos para o PC/nuvem e deixar o microSD no kit.",
+        "Publicar logo os vídeos sem autorização de imagem dos colegas."
+      ],
+      ans: 2,
+      exp: "Respeite o RGPD e o consentimento de imagem. No final da aula, transfira os ficheiros da turma para o PC/nuvem e confirme que o cartão microSD regressa no kit."
+    },
+    {
+      cat: "Microfone sem fios",
+      critica: false,
+      q: "Ligou o microfone sem fios da Creator Combo, mas a Pocket 2 não o deteta. Que acessório é obrigatório?",
+      opts: [
+        "A lente grande angular magnética encaixada na câmara.",
+        "O punho Do-It-All Handle encaixado na base da Pocket 2.",
+        "O cabo USB-C ligado diretamente a um portátil Windows.",
+        "O mini-tripé aberto em cima de uma mesa metálica."
+      ],
+      ans: 1,
+      exp: "O recetor sem fios do microfone (assim como o módulo Wi-Fi/Bluetooth para a app DJI Mimo) está integrado no punho Do-It-All Handle."
+    },
+    {
+      cat: "Atalhos Botão Função",
+      critica: false,
+      q: "O que acontece quando dá 3 cliques rápidos no Botão Função da DJI Pocket 2?",
+      opts: [
+        "Formata imediatamente todos os ficheiros do cartão microSD.",
+        "Vira a câmara 180° para Modo Selfie e ativa o FaceTrack.",
+        "Desliga a câmara e bloqueia o botão de gravação vermelho.",
+        "Muda automaticamente a resolução de vídeo para 4K a 60 fps."
+      ],
+      ans: 1,
+      exp: "No Botão Função: 1 clique muda Foto/Vídeo, 2 cliques recentra o gimbal, 3 cliques vira 180° para Modo Selfie (FaceTrack) e manter premido bloqueia o gimbal."
+    },
+    {
+      cat: "LED do Microfone",
+      critica: false,
+      q: "No topo do transmissor do microfone sem fios, o que indica o LED verde fixo?",
+      opts: [
+        "O microfone está ligado com sucesso ao Do-It-All Handle.",
+        "A bateria do microfone acabou e vai desligar em segundos.",
+        "O microfone está fora de alcance e sem ligação de som.",
+        "O para-vento (windscreen) foi removido durante a gravação."
+      ],
+      ans: 0,
+      exp: "No microfone sem fios: verde fixo = ligado ao Do-It-All Handle; verde rápido = a emparelhar; verde lento = sem ligação ou fora de alcance."
+    },
+    {
+      cat: "Áudio no exterior",
+      critica: false,
+      q: "Vai gravar uma entrevista no recreio com alguma brisa. Como evita ruído de vento no som?",
+      opts: [
+        "Falar muito mais baixo e afastar o microfone para 2 metros.",
+        "Encaixar o para-vento cinzento (windscreen) no microfone.",
+        "Desligar o microfone sem fios e gravar em câmara lenta 8×.",
+        "Tapar a grelha do microfone com fita adesiva transparente."
+      ],
+      ans: 1,
+      exp: "Encaixe o para-vento peludo cinzento (windscreen) no topo do microfone sem fios e prenda o transmissor na gola a cerca de 15–20 cm da boca."
+    },
+    {
+      cat: "ActiveTrack",
+      critica: false,
+      q: "Tentou ativar o ActiveTrack com duplo toque no ecrã, mas não funcionou. Qual é uma causa frequente?",
+      opts: [
+        "A câmara está configurada em 4K a 60 fps ou em modo FPV.",
+        "A bateria da câmara está carregada acima de 80%.",
+        "O punho Do-It-All Handle está montado no mini-tripé.",
+        "O cartão microSD tem mais de 32 GB de espaço livre."
+      ],
+      ans: 0,
+      exp: "O ActiveTrack fica indisponível em 4K/60fps, modo FPV ou câmara lenta 8×. Mude para 1080p ou 4K/30fps em modo Follow e dê duplo toque no ecrã."
+    },
+    {
+      cat: "Modos do Gimbal",
+      critica: false,
+      q: "Qual modo do gimbal mantém a inclinação vertical e o horizonte fixos, acompanhando só para os lados?",
+      opts: [
+        "Modo FPV (acompanha livremente todos os três eixos).",
+        "Modo Tilt Locked (bloqueio de inclinação vertical).",
+        "Modo Selfie (rotação contínua de 180 graus).",
+        "Modo Story (edição automática de clips curtos)."
+      ],
+      ans: 1,
+      exp: "Follow acompanha pan+tilt (horizonte nivelado); Tilt Locked bloqueia inclinação e horizonte (só acompanha lateralmente); FPV segue os 3 eixos."
+    },
+    {
+      cat: "Transferência USB-C",
+      critica: false,
+      q: "Ligou a Pocket 2 ao computador com o cabo USB-C, mas a pasta de vídeos não aparece. O que falta?",
+      opts: [
+        "Ligar a câmara: desligada ela apenas carrega a bateria.",
+        "Retirar a lente grande angular antes de ligar o cabo USB.",
+        "Ativar o modo avião no computador da sala de aula.",
+        "Premir o botão vermelho de gravação durante 10 segundos."
+      ],
+      ans: 0,
+      exp: "Para o PC reconhecer a DJI Pocket 2 como disco externo (pasta DCIM/100MEDIA), a câmara tem de estar ligada; desligada serve apenas para carregar."
+    },
+    {
+      cat: "LED de Sobreaquecimento",
+      critica: false,
+      q: "O LED de estado da câmara fica vermelho fixo durante uma gravação longa em 4K. O que significa?",
+      opts: [
+        "A gravação foi concluída e guardada com sucesso no cartão.",
+        "Temperatura elevada: pare e deixe a câmara arrefecer.",
+        "O microfone sem fios entrou em modo de emparelhamento.",
+        "A ligação Wi-Fi com a aplicação DJI Mimo está ativa."
+      ],
+      ans: 1,
+      exp: "Vermelho fixo na câmara indica sobreaquecimento. Pare a gravação, desligue a Pocket 2 durante ~10 min à sombra e prefira 1080p ou 4K/30fps em vídeos longos."
+    },
+    {
+      cat: "Cartões microSD",
+      critica: false,
+      q: "Que tipo de cartão microSD suporta a DJI Pocket 2 para gravação fiável em 4K?",
+      opts: [
+        "Qualquer cartão antigo Classe 4 até 1 TB de capacidade.",
+        "microSD UHS-I U1 ou U3 (recomendado U3) até 256 GB.",
+        "Apenas memória interna de 512 GB sem necessidade de cartão.",
+        "Cartão SD grande de máquina fotográfica DSLR."
+      ],
+      ans: 1,
+      exp: "A DJI Pocket 2 não tem memória interna para vídeo e suporta cartões microSD SDHC/SDXC até 256 GB de classe UHS-I U1/U3 (U3 recomendado para 4K)."
+    },
+    {
+      cat: "Limpeza da lente",
+      critica: false,
+      q: "A lente da câmara tem uma marca de dedo. Como deve limpá-la em segurança?",
+      opts: [
+        "Segurar a cabeça do gimbal com força e esfregar com papel.",
+        "Desligar a câmara e limpar com pano de microfibra seco.",
+        "Passar álcool desinfetante diretamente sobre o vidro da lente.",
+        "Usar a manga da camisola com a câmara ligada a gravar."
+      ],
+      ans: 1,
+      exp: "Desligue primeiro a câmara (para não forçar os motores) e limpe a lente suavemente apenas com um pano de microfibra seco."
+    },
+    {
+      cat: "Carregamento",
+      critica: false,
+      q: "Qual é a autonomia máxima aproximada e o tempo de carregamento completo da DJI Pocket 2?",
+      opts: [
+        "Até ~140 min (1080p/24fps) e carga em ~73 min (5 V / 2 A).",
+        "Apenas 15 minutos de vídeo e 6 horas de carregamento.",
+        "Até 10 horas seguidas em 4K/60fps com carga em 5 minutos.",
+        "Funciona apenas ligada permanentemente à tomada de parede."
+      ],
+      ans: 0,
+      exp: "A bateria interna de 875 mAh oferece até ~140 minutos em 1080p/24fps (menos em 4K/60fps e Wi-Fi) e carrega em ~1 h 13 min com adaptador 5 V / 2 A."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [];
+  var idx = 0, score = 0, answered = false;
+  var failedCriticals = [];
+  var certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|DP2-INV152").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de segurança e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra de segurança «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de requisitar a câmara.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

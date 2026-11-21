@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Manual Técnico e Administração (CTE · INV-006 / INV-223)</title>
+<meta name="description" content="Administração técnica da Estação de Trabalho AI Tuxedo Atlas XL (INV-006), servidor NAS QNAP TVS-h874 (INV-223) e UPS APC (INV-224) do CTE: contas Linux/CUDA, pools ZFS QuTS hero, snapshots, Virtualization Station, rede 2,5 GbE, UPS e 10 casos de troubleshooting.">
+<meta property="og:title" content="Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Gestão técnica da infraestrutura IA &amp; NAS do Estúdio 4C (INV-006 / INV-223 / INV-224): Linux/CUDA, QuTS hero ZFS, VMs, UPS APC e 10 casos.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='12' width='18' height='40' rx='3' fill='%232C3B4B' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='15' y1='16' x2='15' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='19' y1='16' x2='19' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='23' y1='16' x2='23' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Crect x='33' y='20' width='22' height='32' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='38' y1='26' x2='38' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='43' y1='26' x2='43' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='48' y1='26' x2='48' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, #16222E 0%, #1F3A4D 100%); color: #fff; padding: 38px 24px 34px; border-bottom: 4px solid var(--teal); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.badge-tech { display: inline-block; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(30, 126, 140, 0.35); border: 1px solid rgba(114, 217, 232, 0.4); color: #9EEAF5; padding: 4px 11px; border-radius: 999px; margin-bottom: 10px; }
+.hero h1 { margin: 0; font-size: clamp(1.85rem, 4vw, 2.75rem); line-height: 1.12; }
+.hero .sub { color: #9EEAF5; font-size: 1.15rem; margin: 6px 0 10px; font-weight: 600; }
+.hero .meta { color: #B8CAD9; font-size: 0.92rem; margin: 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 265px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
+
+main { min-width: 0; max-width: 850px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.55rem; margin: 0 0 12px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.filter-input { width: 100%; font: inherit; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; margin-bottom: 12px; background: var(--light); }
+.filter-input:focus { outline: none; border-color: var(--teal); background: #fff; }
+
+.btn { font: inherit; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--line); background: #fff; color: var(--dark); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
+
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+}
+@media print {
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--teal-text); }
+  .hero .meta { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 10px 0 0; }
+  main { max-width: none; }
+  tr, .note { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Tuxedo Atlas XL &amp; NAS QNAP</a> &rsaquo; Manual Técnico</nav>
+    <div class="topbar-links">
+      <a href="Tuxedo_NAS_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Tuxedo_NAS_Manual_Utilizador.html">Manual de Utilizador</a>
+      <a href="Tuxedo_NAS_Quiz_Habilitacao.html">Carta de Utilizador</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
+      <h1>Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Manual Técnico</h1>
+      <p class="sub">Administração Linux/CUDA, Armazenamento ZFS (QuTS hero), Virtualization Station, Rede 2,5 GbE e UPS APC</p>
+      <p class="meta">Inventário <strong>INV-006</strong> (Tuxedo) + <strong>INV-223</strong> (QNAP TVS-h874) + <strong>INV-224</strong> (UPS APC) · Estúdio 4C · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice técnico">
+    <h2>Índice Técnico</h2>
+    <ul>
+      <li><a href="#t1">1. Âmbito, segurança e RGPD</a></li>
+      <li><a href="#t2">2. Arquitetura Hardware &amp; Rede</a></li>
+      <li><a href="#t3">3. Administração Linux, ZFS e VMs</a>
+        <ul>
+          <li><a href="#t3-1">3.1 Contas, quotas e CUDA (Tuxedo)</a></li>
+          <li><a href="#t3-2">3.2 Pools ZFS, Snapshots e VMs (QNAP)</a></li>
+          <li><a href="#t3-3">3.3 Rede 2,5 GbE e UPS APC (INV-224)</a></li>
+        </ul>
+      </li>
+      <li><a href="#t4">4. Manutenção preventiva</a>
+        <ul>
+          <li><a href="#t4-1">4.1 Refrigeração AiO e filtros (Tuxedo)</a></li>
+          <li><a href="#t4-2">4.2 ZFS Scrubbing, SMART e chaves baías</a></li>
+          <li><a href="#t4-3">4.3 Bateria e autoteste da UPS APC</a></li>
+        </ul>
+      </li>
+      <li><a href="#t5">5. Troubleshooting (10 casos)</a></li>
+      <li><a href="#t6">6. Emergência, disco degradado e energia</a></li>
+      <li><a href="#t7">7. Ficha técnica de inspeção</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="t1">
+      <h2>1. Âmbito, segurança de credenciais e RGPD</h2>
+      <p>Este manual destina-se aos <strong>docentes administradores</strong> e à <strong>equipa técnica do CTE Informático</strong> responsáveis pela gestão da <strong>Estação de Trabalho AI TUXEDO Atlas XL (<code>INV-006</code>)</strong>, do servidor <strong>NAS QNAP TVS-h874-i7-32G (<code>INV-223</code>)</strong> e da <strong>UPS APC Smart-UPS SMT LCD RM SmartConnect (<code>INV-224</code>)</strong> instalados no <strong>Estúdio 4C</strong>.</p>
+      <div class="note danger">
+        <strong>Segurança de credenciais e endereços internos:</strong> Nunca publique neste site palavras-passe de administração (<code>root</code> / <code>admin</code>), chaves SSH privadas, tokens do JupyterLab ou credenciais de nuvem (myQNAPcloud / APC SmartConnect). Os alunos devem utilizar exclusivamente contas não privilegiadas (sem <code>sudo</code> na Tuxedo e sem perfil de administrador no QuTS hero).
+      </div>
+      <ul>
+        <li><strong>Desativar a conta predefinida <code>admin</code> no QNAP:</strong> Por boas práticas de cibersegurança QNAP, crie uma conta nominativa de administrador para o CTE com autenticação multifator (2FA) e mantenha a conta <code>admin</code> original desativada.</li>
+        <li><strong>Conformidade RGPD:</strong> Separe as pastas partilhadas por curso/turma com permissões de leitura/escrita restritas ao respetivo grupo, evitando que trabalhos ou dados de uma turma fiquem acessíveis a todas as restantes.</li>
+      </ul>
+    </section>
+
+    <section id="t2">
+      <h2>2. Arquitetura Hardware &amp; Infraestrutura do Estúdio 4C</h2>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Sistema / Código</th><th>Especificações Técnicas Verificadas</th></tr></thead>
+          <tbody>
+            <tr><td><strong>TUXEDO Atlas XL — Gen1 Intel (<code>INV-006</code>)</strong></td><td>Chassis ATX <strong>Fractal Design North XL</strong> (447 × 215 × 469 mm · frente em ripas de madeira natural e malha de alto fluxo) · Motherboard Intel Z790 · Processador Intel Core 13.ª/14.ª Geração · Refrigeração líquida AiO (240/280 mm) · Memória DDR5 (até 192 GB / 4 DIMMs) · Armazenamento M.2 NVMe PCIe 4.0 · Fonte 80+ Gold · Placa gráfica dedicada para IA/ML/Vídeo · <strong>TUXEDO OS / Ubuntu Linux</strong> com TUXEDO Control Center. <!-- CONFIRMAR: registar no dossiê interno do CTE o modelo exato de CPU, GPU(s), capacidade RAM DDR5 e SSDs instalados na INV-006 --></td></tr>
+            <tr><td><strong>QNAP TVS-h874-i7-32G (<code>INV-223</code>)</strong></td><td>Processador <strong>Intel Core i7-12700E</strong> (12 núcleos: 8P + 4E, 20 threads, até 4,8 GHz) · Intel UHD Graphics 770 · <strong>32 GB DDR4 SODIMM</strong> (2× 16 GB, máx. 64 GB) · <strong>8× baías 3,5"/2,5" SATA 6 Gb/s hot-swap</strong> + <strong>2× ranhuras M.2 2280 PCIe Gen4 x4 NVMe</strong> · <strong>2× portas 2,5 GbE RJ45</strong> · 2× PCIe Gen4 (x16 + x4) · 1× HDMI 1.4b · Portas USB 3.2 Gen2 (10 Gbps) · Sistema operativo <strong>QuTS hero (ZFS)</strong>. <!-- CONFIRMAR: registar a capacidade e nível RAID/ZFS configurados nas 8 baías SATA e 2 ranhuras M.2 NVMe do INV-223 --></td></tr>
+            <tr><td><strong>APC Smart-UPS SMT LCD RM SmartConnect (<code>INV-224</code>)</strong></td><td>Unidade de alimentação ininterrupta (onda sinusoidal pura) com visor LCD alfanumérico de estado, monitorização de carga/autonomia e porta de comunicação USB/rede para encerramento automático seguro do servidor NAS.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t3">
+      <h2>3. Administração Linux/CUDA, QuTS hero (ZFS) e Virtualização</h2>
+
+      <h3 id="t3-1">3.1 Gestão de contas, quotas, drivers CUDA e Ollama na Tuxedo Atlas XL</h3>
+      <ul>
+        <li><strong>Isolamento de contas de alunos/turmas:</strong> Crie contas de utilizador por turma ou grupo sem permissões <code>sudo</code> (ex.: <code>adduser turma_ia1</code>). Assim, nenhum aluno pode alterar drivers NVIDIA globais, pacotes do sistema ou ficheiros de outras turmas.</li>
+        <li><strong>Drivers NVIDIA e TUXEDO Control Center:</strong> Utilize apenas os repositórios oficiais do <strong>TUXEDO OS</strong> (ou <code>ubuntu-drivers</code>) para atualizar o driver NVIDIA e o CUDA Toolkit entre períodos letivos. Nunca atualize o kernel ou driver gráfico durante uma semana de avaliações de projetos.</li>
+        <li><strong>Serviço Ollama partilhado:</strong> O serviço <code>ollama.service</code> (systemd) armazena os modelos transferidos em <code>/usr/share/ollama/.ollama/models</code>. Pré-instale os modelos pedagógicos recomendados (ex.: modelos 3B, 7B ou 8B quantizados que caibam folgadamente na VRAM) para evitar que cada grupo transfira dezenas de gigabytes repetidos.</li>
+        <li><strong>Limpeza de processos órfãos na GPU:</strong> Se um aluno deixar um processo preso a ocupar toda a VRAM após a aula, identifique o PID com <code>nvidia-smi</code>, verifique o dono com <code>ps -ef | grep &lt;PID&gt;</code> e termine-o limpo com <code>sudo kill -15 &lt;PID&gt;</code>.</li>
+      </ul>
+
+      <h3 id="t3-2">3.2 Administração QuTS hero (ZFS), Snapshots e Virtualization Station no QNAP</h3>
+      <ul>
+        <li><strong>Saúde e capacidade dos Pools ZFS (regra dos 80%):</strong> No sistema de ficheiros ZFS (QuTS hero), o desempenho de escrita degrada-se se o <em>Storage Pool</em> ultrapassar 80%–85% de ocupação. Configure alertas de limiar em <em>Armazenamento e Snapshots</em> aos <strong>75%</strong> e <strong>85%</strong>.</li>
+        <li><strong>Política de Snapshots e <code>@Recycle</code>:</strong>
+          <ul>
+            <li>Ative os <strong>Snapshots agendados</strong> nas pastas partilhadas das turmas (ex.: 1 snapshot diário com retenção inteligente de 7 a 14 dias) e ative a <strong>Reciclagem de Rede (<code>@Recycle</code>)</strong> com limpeza automática aos 14 dias.</li>
+            <li>Para restaurar um ficheiro apagado por um aluno: abra <em>Armazenamento e Snapshots &rarr; Instantâneos (Snapshots) &rarr; Gestor de Instantâneos</em>, selecione a data anterior ao incidente e restaure apenas a pasta/ficheiro afetado.</li>
+          </ul>
+        </li>
+        <li><strong>Gestão da <em>Virtualization Station</em> (32 GB RAM):</strong>
+          <ul>
+            <li>Reserve pelo menos <strong>8 a 10 GB de RAM</strong> exclusivamente para o sistema QuTS hero e para a cache ZFS (ARC).</li>
+            <li>Não atribua mais do que <strong>20 a 22 GB de RAM</strong> somados entre todas as máquinas virtuais ligadas em simultâneo.</li>
+            <li>Crie uma <strong>VM Modelo (Golden Image)</strong> de Linux/Windows e utilize <strong>Clones Rápidos (Thin Clones)</strong> ou snapshots para cada grupo de alunos — permite repor o laboratório limpo em 10 segundos no início do período seguinte.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 id="t3-3">3.3 Rede 2,5 GbE e integração com a UPS APC (<code>INV-224</code>)</h3>
+      <ul>
+        <li><strong>Ligação 2,5 GbE e Port Trunking:</strong> Ligue as duas portas <strong>2,5 GbE RJ45</strong> do QNAP TVS-h874 ao switch principal do Estúdio 4C. Se o switch suportar LACP (802.3ad), configure <em>Port Trunking</em> para agregar largura de banda e garantir redundância (<em>failover</em>) caso um cabo seja desligado.</li>
+        <li><strong>Montagem NFS/SMB na Tuxedo Atlas XL:</strong> Configure uma pasta partilhada dedicada a datasets (ex.: <code>/mnt/nas_datasets</code>) montada via NFSv4 ou SMB3 na Tuxedo Atlas XL com opção <code>_netdev,nofail</code> no <code>/etc/fstab</code> (assim a Tuxedo arranca sempre mesmo que o NAS esteja a reiniciar).</li>
+        <li><strong>Proteção automática por UPS USB/SNMP:</strong>
+          <ul>
+            <li>Mantenha o cabo USB (ou sinalização de rede) ligado entre a <strong>UPS APC Smart-UPS (<code>INV-224</code>)</strong> e o <strong>QNAP TVS-h874 (<code>INV-223</code>)</strong>.</li>
+            <li>Em <em>Painel de Controlo &rarr; Dispositivos Externos &rarr; UPS</em> no QuTS hero, confirme que a UPS aparece detetada e configure o <strong>Modo de Auto-Proteção (ou Encerramento após 5 minutos de falha elétrica)</strong>. Isto garante que o ZFS faz <em>flush</em> de todas as transações antes da bateria esgotar.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="t4">
+      <h2>4. Manutenção preventiva</h2>
+
+      <h3 id="t4-1">4.1 Refrigeração líquida AiO e limpeza de filtros na Tuxedo Atlas XL</h3>
+      <ul>
+        <li><strong>Trimestralmente:</strong> Com a estação desligada da corrente, remova o painel frontal com ripas de madeira (encaixe de pressão do chassis Fractal Design North XL) e o filtro inferior da fonte de alimentação, aspirando ou soprando o pó acumulado nas malhas de entrada de ar.</li>
+        <li><strong>Monitorização térmica:</strong> Verifique no <strong>TUXEDO Control Center</strong> e com <code>nvidia-smi</code> se as temperaturas em repouso (35–48 °C) e sob carga total (CPU &lt; 88 °C, GPU &lt; 83 °C) se mantêm normais e se a bomba do radiador AiO funciona sem ruído de bolhas de ar.</li>
+      </ul>
+
+      <h3 id="t4-2">4.2 ZFS Scrubbing, testes SMART e tranca das 8 baías no QNAP TVS-h874</h3>
+      <ul>
+        <li><strong>Trancar fisicamente as 8 baías SATA:</strong> Utilize a chave tubular fornecida com o QNAP TVS-h874 para manter as <strong>8 gavetas de disco trancadas</strong> durante o período letivo (guarde a chave no armário técnico do CTE). Isto impede que qualquer aluno puxe acidentalmente um disco em funcionamento.</li>
+        <li><strong>ZFS Scrubbing e SMART agendados:</strong> No QuTS hero, agende um teste rápido SMART semanal, um teste completo SMART mensal e uma limpeza de integridade <strong>ZFS Scrubbing</strong> mensal (fora do horário de aulas, ex.: domingo às 02:00) para detetar e corrigir blocos silenciosos.</li>
+      </ul>
+
+      <h3 id="t4-3">4.3 Verificação e autoteste da UPS APC Smart-UPS (<code>INV-224</code>)</h3>
+      <ul>
+        <li>Verifique mensalmente o visor LCD frontal da UPS APC: confirme que indica <em>On Line</em>, carga (<em>Load</em>) abaixo de 70% e ausência de ícone/aviso <em>Replace Battery</em>.</li>
+        <li>A UPS executa um autoteste periódico automático; a vida útil típica da bateria selada de chumbo-ácido é de 3 a 5 anos.</li>
+      </ul>
+    </section>
+
+    <section id="t5">
+      <h2>5. Matriz de Troubleshooting (10 casos)</h2>
+      <p>Use o campo abaixo para filtrar rapidamente por sintoma, comando, LED, ZFS, GPU ou UPS:</p>
+      <input type="search" id="tsFilter" class="filter-input" placeholder="Filtrar problemas (ex.: CUDA, VRAM, venv, ZFS, disco vermelho, VM, SMB, UPS, temperatura)..." aria-label="Filtrar tabela de troubleshooting">
+      <div class="tw">
+        <table id="tsTable">
+          <thead><tr><th>#</th><th>Sintoma / Alerta</th><th>Causa Provável</th><th>Resolução Técnica</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Erro <code>CUDA out of memory</code> ao iniciar treino / LLM na Tuxedo</strong></td>
+              <td>Kernels Jupyter antigos ainda ativos na VRAM ou modelo/<code>batch_size</code> superior à memória da GPU.</td>
+              <td>Correr <code>nvidia-smi</code>, encerrar kernels Jupyter inativos (ou terminar PIDs órfãos com <code>kill -15</code>), reduzir <code>batch_size</code> ou usar quantização 4-bit/8-bit.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Comando <code>nvidia-smi</code> falha (<em>Failed to initialize NVML</em>)</strong></td>
+              <td>Atualização automática do kernel Linux sem recarregamento do módulo kernel NVIDIA.</td>
+              <td>Verificar que não há treinos ativos e reiniciar ordenadamente a Tuxedo Atlas XL (<code>sudo reboot</code>). Se persistir, validar o driver no TUXEDO Control Center.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Erro <code>externally-managed-environment</code> ao correr <code>pip install</code></strong></td>
+              <td>Proteção PEP 668 do Ubuntu/TUXEDO OS contra instalação global de pacotes Python fora de um <code>venv</code>.</td>
+              <td>Nunca usar <code>--break-system-packages</code> nem <code>sudo pip</code>. Criar ambiente virtual: <code>python3 -m venv .venv &amp;&amp; source .venv/bin/activate</code>.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>LED Status do QNAP a piscar Verde e Vermelho alternadamente</strong></td>
+              <td>Reconstrução de pool RAID/ZFS (<em>resilvering</em>), inicialização de discos ou atualização de firmware QuTS hero.</td>
+              <td><strong>Não desligar o NAS nem tocar nos discos!</strong> Aceder à consola web QuTS hero &rarr; <em>Armazenamento e Snapshots</em> e aguardar conclusão.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>LED de uma baía HDD 1–8 ou M.2 aceso a Vermelho fixo</strong></td>
+              <td>Falha de leitura/escrita ou erro crítico SMART nessa unidade de armazenamento.</td>
+              <td>Identificar o número exato da baía em <em>Armazenamento e Snapshots &rarr; Discos/VJBOD</em>. Substituir em <em>hot-swap</em> por disco compatível da mesma capacidade para iniciar o <em>resilvering</em> ZFS.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Escrita lenta no NAS ou alerta de Pool ZFS &gt; 85%</strong></td>
+              <td>Excesso de snapshots antigos, reciclagem <code>@Recycle</code> cheia ou imagens ISO/VMs abandonadas.</td>
+              <td>Esvaziar a reciclagem <code>@Recycle</code>, eliminar snapshots antigos ou VMs de anos/módulos concluídos até baixar a ocupação do pool para &lt; 75%.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><strong>Máquina Virtual na <em>Virtualization Station</em> não arranca ou bloqueia</strong></td>
+              <td>Memória RAM de 32 GB do QNAP esgotada por demasiadas VMs ativas em simultâneo.</td>
+              <td>Encerrar VMs inativas na <em>Virtualization Station</em> e ajustar a RAM atribuída a cada VM de aluno (ex.: 2 a 4 GB por VM Linux).</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><strong>Alunos não conseguem abrir partilha SMB nem SSH</strong></td>
+              <td>Portáteis ligados a VLAN/Wi-Fi isolada de convidados ou firewall QuFirewall bloqueou IPs após tentativas falhadas.</td>
+              <td>Confirmar ligação à rede local do Estúdio 4C e verificar no QNAP (<em>QuFirewall / Segurança</em>) ou na Tuxedo (<code>fail2ban</code>) se o IP do portátil foi temporariamente bloqueado.</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><strong>Ventoinhas a 100% / estrangulamento térmico (<em>Thermal Throttling</em>)</strong></td>
+              <td>Frente em madeira/mesh da Tuxedo ou grelha traseira do NAS obstruídas por objetos/pó.</td>
+              <td>Desobstruir imediatamente a frente e topo da Tuxedo e a traseira do NAS; limpar filtros frontais de pó (#t4-1).</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td><strong>UPS APC (<code>INV-224</code>) a apitar continuamente</strong></td>
+              <td>Corte de energia na rede elétrica (bateria em uso), sobrecarga ou aviso <em>Replace Battery</em> no LCD.</td>
+              <td>Ler a mensagem no visor LCD da UPS APC. Se for falha elétrica, parar treinos de GPU na Tuxedo e deixar o NAS entrar em modo de auto-proteção se o corte durar &gt; 5 min.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t6">
+      <h2>6. Protocolo de emergência: corte elétrico, falha de disco ZFS e bloqueio de GPU</h2>
+      <ul>
+        <li><strong>Corte geral de energia no Estúdio 4C:</strong>
+          <ol>
+            <li>Interrompa imediatamente treinos de GPU na Tuxedo Atlas XL e encerre a estação Linux ordenadamente (<code>sudo poweroff</code>) para não esgotar a bateria da UPS.</li>
+            <li>Deixe o NAS QNAP TVS-h874 ligado à UPS APC: o servidor fechará as VMs e entrará automaticamente em modo de auto-proteção/encerramento seguro ao fim do tempo configurado (#t3-3).</li>
+          </ol>
+        </li>
+        <li><strong>Disco em falha (LED vermelho numa baía 1–8):</strong> Nunca retire mais do que um disco nem troque discos de baía com o servidor ligado. Registe o número de série e a baía no painel QuTS hero antes de destrancar a gaveta com a chave técnica.</li>
+        <li><strong>Bloqueio total da sessão gráfica na Tuxedo Atlas XL:</strong> Antes de forçar o botão Power físico, aceda por SSH a partir de outro computador da sala (<code>ssh admin@&lt;IP-Tuxedo&gt;</code>), termine o processo bloqueado na GPU e execute um reinício limpo (<code>sudo reboot</code>).</li>
+      </ul>
+    </section>
+
+    <section id="t7">
+      <h2>7. Ficha técnica de inspeção periódica (<code>INV-006 / INV-223 / INV-224</code>)</h2>
+      <p>Recomenda-se uma inspeção mensal à infraestrutura de IA e armazenamento do Estúdio 4C:</p>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Responsável CTE</th><th>Tuxedo (Filtros / Temp. GPU / NVMe)</th><th>QNAP (ZFS &lt; 80% / SMART / Scrub)</th><th>VMs &amp; Snapshots Limpos</th><th>UPS APC (LCD / Bateria / Cabo USB)</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual Técnico Estação AI Tuxedo Atlas XL (<code>INV-006</code>), NAS QNAP TVS-h874 (<code>INV-223</code>) e UPS APC (<code>INV-224</code>) · Uso interno para docentes responsáveis e apoio técnico.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var inp = document.getElementById("tsFilter");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#tsTable tbody tr"));
+  if (inp) {
+    inp.addEventListener("input", function() {
+      var q = (inp.value || "").trim().toLowerCase();
+      rows.forEach(function(r) {
+        r.style.display = (!q || r.textContent.toLowerCase().indexOf(q) !== -1) ? "" : "none";
+      });
+    });
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

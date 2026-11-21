@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scanner 3D Einstar — Guia de Início Rápido (CTE · INV-228)</title>
+<meta name="description" content="Folha visual A4 do Scanner 3D Einstar pronta a imprimir: 6 passos, anatomia, LEDs de distância, 5 regras de ouro, formatos STL/OBJ/PLY e devolução.">
+<meta property="og:title" content="Scanner 3D Einstar — Guia de Início Rápido (Infográfico A4)">
+<meta property="og:description" content="Folha visual A4 do Scanner 3D Einstar (INV-228 · Estúdio SC - LMAS): 6 passos, controlos, LEDs, placa por n.º de série e checklist.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='14' y='12' width='36' height='14' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2.4'/%3E%3Ccircle cx='22' cy='19' r='3' fill='%234CE0F5'/%3E%3Ccircle cx='32' cy='19' r='3.5' fill='%23E8711C'/%3E%3Ccircle cx='42' cy='19' r='3' fill='%234CE0F5'/%3E%3Crect x='25' y='26' width='14' height='26' rx='6' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='38' r='3.2' fill='%2327AE60'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #E4E9EF;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.38;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+body { padding-bottom: 96px; }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.86rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1020px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+.toolbar { max-width: 1020px; margin: 14px auto 0; padding: 0 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.toolbar-info { font-size: 0.85rem; color: var(--grey); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 0.88rem; font-weight: 600; border-radius: 6px; padding: 7px 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: #fff; color: var(--dark); transition: all 0.15s ease; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); color: #fff; border-color: var(--acc-btn); }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+
+.sheet { max-width: 1020px; margin: 12px auto 28px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(31, 42, 54, 0.12); overflow: hidden; border: 1px solid var(--line); }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 18px 24px 14px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; border-bottom: 4px solid var(--acc); }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); color: #FFD2B3; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px; }
+.hero h1 { margin: 0; font-size: 1.75rem; line-height: 1.12; }
+.hero p.sub { margin: 4px 0 0; color: #C7D6E5; font-size: 0.88rem; }
+.kpi-row { display: grid; grid-template-columns: repeat(4, minmax(105px, 1fr)); gap: 8px; margin-top: 10px; }
+.kpi { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.16); border-radius: 8px; padding: 6px 8px; text-align: center; }
+.kpi strong { display: block; font-size: 0.94rem; color: #FFB37B; line-height: 1.15; }
+.kpi span { font-size: 0.68rem; color: #D2DFEC; text-transform: uppercase; letter-spacing: 0.03em; }
+.hero-art { width: 102px; height: 96px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 6px; }
+
+.content { padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 13px; }
+.section-title { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dark); margin: 0 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--light); }
+.section-title .tag { background: var(--dark); color: #fff; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; }
+.section-title.red .tag { background: var(--red-text); }
+.section-title.teal .tag { background: var(--teal-text); }
+.section-title.acc .tag { background: var(--acc-btn); }
+.section-title.green .tag { background: var(--green-text); }
+
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+.step-card { background: var(--light); border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 8px; padding: 8px 10px; }
+.step-head { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: 0.78rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-card h3 { margin: 0; font-size: 0.85rem; color: var(--dark); }
+.step-card p { margin: 0; font-size: 0.77rem; color: #364554; }
+
+.mid-grid { display: grid; grid-template-columns: 1.04fr 1fr; gap: 14px; align-items: stretch; }
+.panel { border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; background: #fff; }
+
+.anatomy-wrap { display: grid; grid-template-columns: 124px 1fr; gap: 10px; align-items: center; }
+.anatomy-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; font-size: 0.75rem; }
+.anatomy-list li { display: flex; gap: 6px; align-items: flex-start; }
+.pin { min-width: 18px; height: 18px; border-radius: 50%; background: var(--acc); color: #fff; font-size: 0.68rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+.pin.blue { background: var(--blue); }
+.pin.teal { background: var(--teal); }
+.pin.dark { background: var(--dark); }
+
+table.mini { width: 100%; border-collapse: collapse; font-size: 0.74rem; margin-bottom: 8px; }
+table.mini th, table.mini td { border: 1px solid var(--line); padding: 4px 7px; text-align: left; vertical-align: middle; }
+table.mini thead th { background: var(--dark); color: #fff; font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.03em; }
+table.mini tbody tr:nth-child(even) { background: var(--light); }
+
+.led-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; border: 1px solid rgba(0,0,0,0.22); }
+.led-green { background: #27AE60; }
+.led-blue { background: #2980B9; }
+.led-amber { background: #F39C12; }
+.led-red { background: #E74C3C; }
+
+.rules-box { background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 9px; padding: 10px 13px; }
+.rules-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.rule-item { background: #fff; border: 1px solid #F0CFCB; border-radius: 7px; padding: 7px 8px; font-size: 0.74rem; }
+.rule-item > strong:first-child { display: block; color: var(--red-text); font-size: 0.77rem; margin-bottom: 2px; }
+
+.bottom-grid { display: grid; grid-template-columns: 1.2fr 1fr 145px; gap: 12px; align-items: stretch; }
+.check-box { background: var(--green-soft); border: 1px solid #B7DEC8; border-left: 4px solid var(--green); border-radius: 8px; padding: 9px 11px; }
+.check-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; }
+.check-list label { display: flex; align-items: flex-start; gap: 6px; cursor: pointer; }
+.check-list input { margin-top: 2px; accent-color: var(--green); }
+.check-list input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+.net-box { background: var(--blue-soft); border: 1px solid #BBD4F0; border-left: 4px solid var(--blue); border-radius: 8px; padding: 9px 11px; font-size: 0.75rem; }
+.net-box ul { margin: 0; padding-left: 16px; }
+.net-box li { margin: 3px 0; }
+
+.qr-box { border: 1.5px dashed var(--grey); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--light); font-size: 0.68rem; color: var(--grey); }
+.qr-placeholder { width: 78px; height: 78px; border: 1px solid var(--line); background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; padding: 5px; }
+.qr-box strong { color: var(--dark); font-size: 0.72rem; display: block; }
+
+.sheet-footer { background: var(--dark); color: #C7D6E5; font-size: 0.72rem; padding: 7px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.sheet-footer strong { color: #fff; }
+
+@media (max-width: 860px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .mid-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.fab-help {
+  position: fixed; left: 18px; bottom: 18px; z-index: 90;
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px;
+  border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none;
+  font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@page { size: A4 portrait; margin: 5mm; }
+@media print {
+  html, body { background: #fff; padding-bottom: 0; line-height: 1.24; font-size: 12.2px; }
+  .topbar, .toolbar, .fab-help { display: none !important; }
+  .sheet { max-width: none; margin: 0; border: none; border-radius: 0; box-shadow: none; }
+  header.hero { padding: 9px 14px 8px; gap: 12px; }
+  .hero-badge { margin-bottom: 3px; font-size: 0.68rem; padding: 2px 8px; }
+  .hero h1 { font-size: 1.48rem; }
+  .hero p.sub { font-size: 0.84rem; margin-top: 2px; }
+  .hero-art { width: 82px; height: 74px; padding: 4px; }
+  .hero-art svg { width: 68px; height: 58px; }
+  .kpi-row { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+  .kpi { padding: 4px 6px; }
+  .kpi strong { font-size: 0.88rem; }
+  .kpi span { font-size: 0.64rem; }
+  .content { padding: 8px 12px 8px; gap: 7px; }
+  .section-title { font-size: 0.86rem; margin-bottom: 5px; padding-bottom: 3px; }
+  .steps-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .step-card { padding: 5px 7px; }
+  .step-head { margin-bottom: 2px; }
+  .step-num { width: 18px; height: 18px; font-size: 0.72rem; }
+  .step-card h3 { font-size: 0.84rem; }
+  .mid-grid { grid-template-columns: 1.02fr 1fr; gap: 8px; }
+  .panel { padding: 7px 9px; }
+  .anatomy-wrap { grid-template-columns: 98px 1fr; gap: 7px; }
+  .anatomy-wrap svg { width: 92px; height: auto; }
+  .anatomy-list { gap: 3px; }
+  .pin { min-width: 15px; height: 15px; font-size: 0.64rem; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.76rem; }
+  table.mini { font-size: 0.73rem; margin-bottom: 5px; }
+  table.mini th, table.mini td { padding: 2.5px 5px; }
+  .rules-box { padding: 7px 10px; }
+  .rules-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .rule-item { padding: 5px 6px; }
+  .rule-item > strong:first-child { font-size: 0.78rem; }
+  .bottom-grid { grid-template-columns: 1.2fr 1fr 116px; gap: 7px; }
+  .check-box, .net-box { padding: 6px 8px; }
+  .check-list { gap: 3px; }
+  .net-box li { margin: 2px 0; }
+  .qr-box { padding: 5px; font-size: 0.66rem; }
+  .qr-placeholder { width: 62px; height: 62px; margin-bottom: 3px; }
+  .qr-placeholder svg { width: 52px; height: 52px; }
+  .sheet-footer { padding: 4px 12px; font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Scanner 3D Einstar</a> &rsaquo; Guia de Início Rápido</nav>
+    <div>Equipamento <strong>INV-228</strong> · 2 unidades · Estúdio SC - LMAS</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-info">
+    <strong>Guia de Início Rápido A4 · Scanner 3D Einstar (INV-228)</strong>
+    <span>Desenhado para consulta rápida online e impressão plastificada junto ao posto de scan 3D.</span>
+  </div>
+  <div class="toolbar-actions">
+    <a class="btn" href="index.html">&larr; Página Einstar</a>
+    <a class="btn" href="Einstar_Manual_Utilizador.html">Manual Completo</a>
+    <button class="btn" type="button" id="resetChecks">Limpar Checklist</button>
+    <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar PDF (A4)</button>
+  </div>
+</div>
+
+<article class="sheet">
+  <header class="hero">
+    <div>
+      <div class="hero-badge">CTE Informático · Inventário INV-228 · 2 Unidades · Estúdio SC - LMAS</div>
+      <h1>Scanner 3D Einstar — Guia de Início Rápido</h1>
+      <p class="sub">Luz Estruturada IR VCSEL (Classe 1) · Software EXStar · 500 g · Distância Ótima ~400 mm</p>
+      <div class="kpi-row">
+        <div class="kpi"><strong>GPU Dedicada</strong><span>NVIDIA CUDA / M1 Pro+</span></div>
+        <div class="kpi"><strong>12 V / 5 A + USB</strong><span>Energia Obrigatória</span></div>
+        <div class="kpi"><strong>LED Verde ~40 cm</strong><span>160–1400 mm · 14 fps</span></div>
+        <div class="kpi"><strong>STL · OBJ · PLY</strong><span>0,1–3 mm · Cor 3D</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 110 118" width="84" height="84" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="24" y="8" width="62" height="28" rx="12" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <circle cx="39" cy="22" r="5" fill="#1F2A36" stroke="#4CE0F5" stroke-width="2.2"/>
+        <circle cx="55" cy="22" r="6.5" fill="#1F2A36" stroke="#E8711C" stroke-width="2.2"/>
+        <circle cx="71" cy="22" r="5" fill="#1F2A36" stroke="#4CE0F5" stroke-width="2.2"/>
+        <rect x="42" y="36" width="26" height="58" rx="10" fill="rgba(255,255,255,0.08)" stroke="#fff"/>
+        <circle cx="55" cy="56" r="5.5" fill="#27AE60" stroke="#fff" stroke-width="1.8"/>
+        <path d="M55 94 L55 110" stroke="#C7D6E5"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- BLOCO 1: 6 PASSOS -->
+    <section>
+      <h2 class="section-title teal"><span class="tag">1</span> Da Ligação à Exportação 3D em 6 Passos</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">1</span><h3>Confirmar PC (GPU) &amp; 12 V</h3></div>
+          <p>Usar estação com <strong>NVIDIA CUDA</strong> (≥ 4 GB VRAM) ou Mac M1 Pro+, ligada à corrente. Ligar cabo Y ao scanner, <strong>fonte 12 V/5 A</strong> e <strong>USB 3.0</strong>.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">2</span><h3>Abrir EXStar &amp; Calibrar</h3></div>
+          <p>Confirmar <strong>LED Azul</strong>. Calibrar no 1.º uso, após transporte ou &gt; 14 dias usando <strong>só a placa do mesmo n.º de série</strong> à sombra.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">3</span><h3>Criar Projeto &amp; Modo</h3></div>
+          <p>Escolher <strong>Objeto</strong> ou <strong>Retrato</strong>, <em>Point Distance</em> (0,2–1,5 mm) e alinhamento (<em>Feature</em>, <em>Hybrid</em>, <em>Texture</em> ou <em>Global Markers</em>).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">4</span><h3>Pré-ver &amp; Ajustar Brilho</h3></div>
+          <p>1× botão central → pré-visualização. Ajustar brilho com <code>+</code>/<code>−</code> (2× centro alterna Zoom/Brilho) sem manchas vermelhas.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">5</span><h3>Digitalizar a ~400 mm</h3></div>
+          <p>Manter o <strong>LED Verde</strong> e mover devagar mantendo zona já capturada no ecrã. Se perder rastreio, apontar p/ área já lida.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">6</span><h3>Limpar, Malha &amp; Exportar</h3></div>
+          <p>Apagar a mesa com o laço, clicar <strong>Generate Mesh</strong> (<em>Watertight</em> p/ imprimir) e exportar em <code>.stl</code>, <code>.obj</code>, <code>.ply</code> ou <code>.3mf</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO 2: ANATOMIA + CONTROLOS/LEDS -->
+    <div class="mid-grid">
+      <section class="panel">
+        <h2 class="section-title acc"><span class="tag">2</span> Anatomia do Scanner Einstar</h2>
+        <div class="anatomy-wrap">
+          <svg viewBox="0 0 144 165" width="118" height="138" aria-label="Esquema frontal e traseiro do Scanner 3D Einstar">
+            <!-- Vista frontal (esquerda) -->
+            <rect x="16" y="14" width="46" height="22" rx="9" fill="#2C3B4B" stroke="#1F2A36" stroke-width="2"/>
+            <circle cx="28" cy="25" r="4" fill="#1F2A36" stroke="#4CE0F5" stroke-width="1.6"/>
+            <circle cx="39" cy="25" r="4.8" fill="#1F2A36" stroke="#E8711C" stroke-width="1.8"/>
+            <circle cx="50" cy="25" r="4" fill="#1F2A36" stroke="#4CE0F5" stroke-width="1.6"/>
+            <rect x="28" y="36" width="22" height="70" rx="8" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2"/>
+            <text x="39" y="122" text-anchor="middle" fill="#5B6672" font-size="8" font-weight="bold">Frente</text>
+            <!-- Vista traseira (direita) -->
+            <rect x="82" y="14" width="44" height="22" rx="9" fill="#2C3B4B" stroke="#1F2A36" stroke-width="2"/>
+            <rect x="93" y="36" width="22" height="70" rx="8" fill="#2C3B4B" stroke="#1F2A36" stroke-width="2"/>
+            <circle cx="104" cy="50" r="3.8" fill="#EEF2F6"/>
+            <circle cx="104" cy="64" r="6.5" fill="none" stroke="#27AE60" stroke-width="2.4"/>
+            <circle cx="104" cy="64" r="3.5" fill="#fff"/>
+            <circle cx="104" cy="78" r="3.8" fill="#EEF2F6"/>
+            <path d="M104 106 L104 128" stroke="#1F2A36" stroke-width="3.2"/>
+            <text x="104" y="142" text-anchor="middle" fill="#5B6672" font-size="8" font-weight="bold">Traseira / Base</text>
+            <!-- Pins -->
+            <circle cx="11" cy="13" r="8" fill="#E8711C"/><text x="11" y="16.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">1</text>
+            <circle cx="127" cy="62" r="8" fill="#1E7E8C"/><text x="127" y="65.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">2</text>
+            <circle cx="80" cy="48" r="8" fill="#1D63B8"/><text x="80" y="51.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">3</text>
+            <circle cx="127" cy="80" r="8" fill="#1F2A36"/><text x="127" y="83.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">4</text>
+            <circle cx="80" cy="112" r="8" fill="#E8711C"/><text x="80" y="115.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">5</text>
+          </svg>
+          <ul class="anatomy-list">
+            <li><span class="pin">1</span><div><strong>Ótica Frontal:</strong> 2 câmaras IR estéreo + projetor IR Classe 1 + câmara cor RGB. <em>Zero dedos nas lentes!</em></div></li>
+            <li><span class="pin teal">2</span><div><strong>Botão Central (Traseira):</strong> 1× pré-ver/gravar/pausar · <strong>2× alterna teclas <code>+</code>/<code>−</code></strong> entre Zoom e Brilho.</div></li>
+            <li><span class="pin blue">3</span><div><strong>Botões <code>+</code> / <code>−</code>:</strong> Ajustam zoom ou brilho/exposição da câmara em tempo real.</div></li>
+            <li><span class="pin dark">4</span><div><strong>LED Distância &amp; Estado:</strong> Feedback imediato da distância ótima (~40 cm) e da energia 12 V / USB.</div></li>
+            <li><span class="pin">5</span><div><strong>Base do Punho:</strong> Ficha do cabo Y (dados USB + 12 V/5 A) e rosca padrão <strong>1/4"-20</strong> p/ tripé.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title"><span class="tag">3</span> Indicadores LED &amp; Modos Rápidos</h2>
+        <table class="mini">
+          <thead><tr><th>LED Distância / Estado</th><th>Significado &amp; Ação Imediata</th></tr></thead>
+          <tbody>
+            <tr><td><span class="led-dot led-green"></span><strong>Distância: Verde</strong></td><td><strong>Ideal (~400 mm)</strong> — manter nesta zona durante todo o scan!</td></tr>
+            <tr><td><span class="led-dot led-blue"></span><strong>Distância: Azul</strong></td><td>Demasiado longe (&gt; 40 cm) — aproximar suavemente da peça.</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Distância: Vermelho</strong></td><td>Demasiado perto (&lt; 30 cm) — afastar ligeiramente.</td></tr>
+            <tr><td><span class="led-dot led-blue"></span><strong>Estado: Azul fixo</strong></td><td>Energia 12 V e ligação USB OK — pronto a digitalizar.</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Estado: Vermelho</strong></td><td>Falta 12 V na tomada, conector frouxo ou erro na porta USB 3.0.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini" style="margin-bottom:0">
+          <thead><tr><th>Tipo de Objeto</th><th>Alinhamento &amp; Dica EXStar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Objeto c/ relevo</strong></td><td>Modo <em>Object</em> + <em>Feature</em> (ou <em>Hybrid</em> se tiver cor/padrão).</td></tr>
+            <tr><td><strong>Liso / Simétrico</strong></td><td><em>Global Markers</em> + ≥ 4 marcadores colados <strong>aleatoriamente</strong>.</td></tr>
+            <tr><td><strong>Rosto / Busto</strong></td><td>Modo <em>Portrait</em> (+ <em>Hair Mode</em>) · consentimento RGPD obrigatório.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- BLOCO 3: 5 REGRAS DE OURO -->
+    <section class="rules-box">
+      <h2 class="section-title red" style="border-bottom-color:#F0CFCB;margin-bottom:7px"><span class="tag">!</span> 5 Regras de Ouro do Scanner 3D Einstar (CTE · INV-228)</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>1. Placa Única por S/N</strong>NUNCA trocar a placa de calibração entre os 2 kits INV-228! Zero álcool/solventes.</div>
+        <div class="rule-item"><strong>2. GPU + 12 V Obrigatório</strong>Não funciona só por USB nem sem gráfica NVIDIA CUDA / Mac M1 Pro+ ligado à corrente.</div>
+        <div class="rule-item"><strong>3. Zero Dedos nas Lentes</strong>Não tocar nas câmaras frontais nem dobrar o cabo Y junto à base; desligar pela ficha rígida.</div>
+        <div class="rule-item"><strong>4. Preto / Brilho / Vidro</strong>Usar marcadores em padrão aleatório (nunca em fila!) ou spray fosco só c/ docente e ventilação.</div>
+        <div class="rule-item"><strong>5. IR Classe 1 &amp; RGPD</strong>Seguro p/ olhos (não olhar de perto ao projetor). Pedir autorização antes de guardar/partilhar retratos.</div>
+      </div>
+    </section>
+
+    <!-- BLOCO 4: CHECKLIST + EXPORTAÇÃO + QR CODE -->
+    <div class="bottom-grid">
+      <section class="check-box">
+        <h2 class="section-title green" style="border-bottom-color:#C5E5D2;margin-bottom:6px"><span class="tag">✓</span> Checklist de Devolução (INV-228)</h2>
+        <ul class="check-list">
+          <li><label><input type="checkbox" id="ein-iq-1"><span><strong>Ficheiros exportados</strong> (<code>.stl</code>/<code>.obj</code>) e desligado sem puxar o cabo.</span></label></li>
+          <li><label><input type="checkbox" id="ein-iq-2"><span><strong>Placa de calibração certa</strong> (mesmo S/N) limpa e na bolsa.</span></label></li>
+          <li><label><input type="checkbox" id="ein-iq-3"><span><strong>Kit completo:</strong> Scanner + cabo Y + fonte 12 V/5 A + marcadores.</span></label></li>
+          <li><label><input type="checkbox" id="ein-iq-4"><span><strong>Reportado ao CTE</strong> n.º unidade (1–2), marcadores ou anomalia.</span></label></li>
+        </ul>
+      </section>
+
+      <section class="net-box">
+        <h2 class="section-title" style="border-bottom-color:#C5DBF2;margin-bottom:6px"><span class="tag" style="background:var(--blue)">3D</span> Exportação &amp; Pós-produção</h2>
+        <ul>
+          <li><strong><code>.stl</code> / <code>.3mf</code> (Watertight):</strong> Impressão 3D (Snapmaker 2.0 / Elegoo Neptune 4) em <code>mm</code>.</li>
+          <li><strong><code>.obj</code> (+<code>.mtl</code>+<code>.jpg</code>) ou <code>.ply</code>:</strong> Modelos a cores p/ Blender, WebXR e Meta Quest 3.</li>
+          <li><strong><code>.asc</code>:</strong> Nuvem de pontos para análise métrica.</li>
+        </ul>
+      </section>
+
+      <aside class="qr-box" aria-label="Espaço para QR Code do portal online">
+        <div class="qr-placeholder">
+          <svg viewBox="0 0 60 60" width="66" height="66" fill="#1F2A36" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <rect x="40" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="45" y="9" width="6" height="6"/>
+            <rect x="4" y="40" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
+            <rect x="9" y="45" width="6" height="6"/>
+            <rect x="25" y="6" width="4" height="4"/><rect x="31" y="10" width="4" height="8"/>
+            <rect x="25" y="24" width="10" height="10" fill="#E8711C"/>
+            <rect x="6" y="26" width="12" height="4"/><rect x="40" y="26" width="14" height="4"/>
+            <rect x="26" y="40" width="6" height="6"/><rect x="36" y="38" width="8" height="4"/>
+            <rect x="48" y="40" width="8" height="8"/><rect x="36" y="48" width="8" height="8"/>
+          </svg>
+        </div>
+        <strong>Algo não funciona?</strong>
+        <span>Leia este código para abrir o Diagnóstico Rápido</span>
+        <!-- FASE 3 (P3): substituir pelo QR code final de https://aem-cte-ajuda.netlify.app/Scanner_3D_Einstar/#diagnostico -->
+      </aside>
+    </div>
+  </div>
+
+  <footer class="sheet-footer">
+    <span><strong>CTE Informático</strong> · Scanner 3D Shining 3D Einstar · Inventário <strong>INV-228</strong> · Estúdio SC - LMAS</span>
+    <span>Em caso de queda, erro de calibração persistente ou LED vermelho: <strong>PARE e contacte o responsável do CTE</strong>.</span>
+  </footer>
+</article>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "einstar-infografico-check";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-list input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecks");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>

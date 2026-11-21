@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Utilizador IA &amp; Virtualização — Tuxedo Atlas XL &amp; QNAP TVS-h874 (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas sobre utilização segura e partilhada da Estação AI Tuxedo Atlas XL (INV-006), servidor NAS QNAP TVS-h874 (INV-223) e UPS APC (INV-224), com cartão imprimível.">
+<meta property="og:title" content="Carta de Utilizador IA &amp; Virtualização — Tuxedo Atlas XL &amp; NAS QNAP (CTE)">
+<meta property="og:description" content="Valide em 2 minutos as regras de partilha de GPU/VRAM, ambientes Python venv, proteção ZFS/baías hot-swap e operação 24/7 do NAS e UPS.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='12' width='18' height='40' rx='3' fill='%232C3B4B' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='15' y1='16' x2='15' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='19' y1='16' x2='19' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='23' y1='16' x2='23' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Crect x='33' y='20' width='22' height='32' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='38' y1='26' x2='38' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='43' y1='26' x2='43' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='48' y1='26' x2='48' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.45rem, 3.3vw, 2.05rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9em; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.48rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Tuxedo Atlas XL &amp; NAS QNAP</a> &rsaquo; Carta de Utilizador</nav>
+      <h1>Carta de Utilizador — Estação AI &amp; NAS QNAP</h1>
+      <p>Valide em 2 minutos as regras de partilha de GPU/VRAM, ambientes Python, VMs e proteção ZFS/UPS (<code>INV-006 / INV-223 / INV-224</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página Tuxedo &amp; QNAP</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Infraestrutura IA &amp; NAS</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras críticas de infraestrutura a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 12.º Informática">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Utilizador IA &amp; NAS</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="Tuxedo_NAS_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · INV-006 · INV-223 · INV-224</div>
+      <h2>Cartão de Habilitação — Estação AI Tuxedo &amp; NAS QNAP</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e boas práticas de utilização partilhada da Estação AI Tuxedo Atlas XL e do servidor NAS QNAP TVS-h874.</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Utilizador — Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 (<code>INV-006 / INV-223</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Servidor NAS 24/7 & UPS",
+      critica: true,
+      q: "Terminou o seu trabalho no Estúdio 4C e é o último aluno a sair. Como deve proceder com o servidor NAS QNAP TVS-h874 e a UPS APC?",
+      opts: [
+        "Desligar o botão frontal do NAS e o interruptor geral da UPS.",
+        "Fazer apenas Logout da sua sessão; nunca desligar NAS nem UPS.",
+        "Retirar os dois cabos de rede 2,5 GbE para poupar energia à noite.",
+        "Premir o botão de cópia USB durante dez segundos até o NAS apitar."
+      ],
+      ans: 1,
+      exp: "O servidor NAS QNAP TVS-h874 e a UPS APC operam 24/7 para servir máquinas virtuais e partilhas de rede do CTE. Nunca os desligue nem retire cabos!"
+    },
+    {
+      cat: "Baías de disco ZFS",
+      critica: true,
+      q: "Reparou que os LEDs verdes das 8 baías de disco frontais do NAS QNAP TVS-h874 estão a piscar rapidamente. O que deve fazer?",
+      opts: [
+        "Puxar uma gaveta de disco para fora para ver a marca e capacidade.",
+        "Nada: é atividade normal ZFS; nunca abrir nem retirar gavetas.",
+        "Desligar imediatamente o servidor na tomada elétrica traseira.",
+        "Carregar em todos os fechos das oito baías ao mesmo tempo."
+      ],
+      ans: 1,
+      exp: "LEDs verdes a piscar nas baías indicam leitura/escrita normal nos discos. Nunca destranque nem puxe gavetas de disco — degradaria o pool ZFS!"
+    },
+    {
+      cat: "Partilha de GPU / VRAM",
+      critica: true,
+      q: "Antes de iniciar um treino PyTorch ou carregar um modelo LLM na Tuxedo Atlas XL, que verificação é obrigatória?",
+      opts: [
+        "Executar nvidia-smi para ver se a GPU/VRAM está livre.",
+        "Reiniciar imediatamente o computador Linux para limpar a memória.",
+        "Apagar todas as pastas de outros grupos para libertar o disco SSD.",
+        "Desativar o arrefecimento líquido no TUXEDO Control Center."
+      ],
+      ans: 0,
+      exp: "Como a GPU da Tuxedo Atlas XL é um recurso partilhado, verifique sempre com nvidia-smi se existe VRAM disponível e se outro grupo não está a correr um treino."
+    },
+    {
+      cat: "Ambientes Python (venv)",
+      critica: true,
+      q: "Precisa de instalar uma biblioteca Python para o projeto do seu grupo na estação Tuxedo Atlas XL. Qual é a regra obrigatória?",
+      opts: [
+        "Executar sudo pip install --break-system-packages na raiz do Linux.",
+        "Criar e ativar um ambiente virtual (venv) na pasta do grupo.",
+        "Substituir os drivers NVIDIA CUDA globais por uma versão antiga.",
+        "Instalar os pacotes diretamente na pasta de sistema /usr/bin."
+      ],
+      ans: 1,
+      exp: "Nunca instale pacotes Python globalmente com sudo pip! Use sempre python3 -m venv .venv na pasta do grupo para não quebrar dependências de outras turmas."
+    },
+    {
+      cat: "Alarme na UPS APC",
+      critica: true,
+      q: "Durante a aula, a energia da sala falha e a UPS APC (INV-224) começa a apitar em modo bateria. Como deve agir de imediato?",
+      opts: [
+        "Lançar rapidamente um novo treino pesado de IA na placa gráfica.",
+        "Guardar o trabalho, parar treinos pesados GPU e avisar o docente.",
+        "Desligar o cabo de comunicação USB entre a UPS APC e o servidor.",
+        "Continuar a usar normalmente durante horas sem avisar ninguém."
+      ],
+      ans: 1,
+      exp: "Em caso de falha elétrica (UPS a apitar), guarde imediatamente o trabalho, interrompa cargas pesadas de GPU/VMs para poupar bateria e avise o docente/CTE."
+    },
+    {
+      cat: "Libertar VRAM no Jupyter",
+      critica: false,
+      q: "Terminou de executar um notebook Jupyter com PyTorch na Tuxedo Atlas XL, mas o comando nvidia-smi mostra que a VRAM continua ocupada. Porquê?",
+      opts: [
+        "Porque o kernel do Jupyter reserva a VRAM até ser encerrado.",
+        "Porque a memória VRAM de uma placa gráfica nunca pode ser limpa.",
+        "Porque o cabo HDMI do monitor curvo OMEN ficou mal encaixado.",
+        "Porque é obrigatório formatar o disco NVMe após cada exercício."
+      ],
+      ans: 0,
+      exp: "O PyTorch dentro de um notebook Jupyter mantém a VRAM alocada enquanto o kernel estiver ativo. Faça sempre Shut Down Kernel no final da aula!"
+    },
+    {
+      cat: "Erro CUDA Out of Memory",
+      critica: false,
+      q: "Ao iniciar um treino na Tuxedo Atlas XL, recebe o erro «CUDA out of memory». Qual destas ações resolve o problema sem prejudicar colegas?",
+      opts: [
+        "Reduzir o batch_size ou usar um modelo quantizado mais leve.",
+        "Matar à força processos de outros utilizadores sem perguntar.",
+        "Desligar as ventoinhas do chassis Fractal Design North XL.",
+        "Aumentar a resolução do monitor para forçar mais memória gráfica."
+      ],
+      ans: 0,
+      exp: "Feche primeiro os seus próprios kernels inativos e reduza o batch_size (ou escolha um modelo quantizado 4-bit/8-bit que caiba na VRAM disponível)."
+    },
+    {
+      cat: "LEDs do NAS QNAP",
+      critica: false,
+      q: "O LED Status do NAS QNAP TVS-h874 está a piscar alternadamente a verde e vermelho. O que indica este estado?",
+      opts: [
+        "Inicialização, reconstrução RAID/ZFS ou atualização — não desligar.",
+        "O servidor está em modo de espera e pode ser desligado na tomada.",
+        "As duas portas de rede 2,5 GbE estão prontas para serem desligadas.",
+        "Um utilizador está a ouvir música através da saída HDMI traseira."
+      ],
+      ans: 0,
+      exp: "Verde e vermelho alternados no LED Status significa reconstrução de pool RAID/ZFS (resilvering), formatação ou atualização de firmware — nunca desligue a energia!"
+    },
+    {
+      cat: "Modelos LLM (Ollama)",
+      critica: false,
+      q: "Que comando permite listar os modelos de linguagem (LLMs) já transferidos localmente no serviço Ollama da Tuxedo Atlas XL?",
+      opts: [
+        "Executar o comando ollama list no terminal Linux.",
+        "Executar o comando sudo rm -rf /var/lib/ollama no terminal.",
+        "Abrir a calculadora gráfica e carregar três vezes em Enter.",
+        "Reiniciar o servidor NAS QNAP através do botão frontal Power."
+      ],
+      ans: 0,
+      exp: "Use ollama list antes de descarregar novos modelos gigantes para reutilizar LLMs já instalados na estação AI e poupar espaço em disco."
+    },
+    {
+      cat: "Máquinas Virtuais (QNAP)",
+      critica: false,
+      q: "Como devem os alunos aceder e gerir uma Máquina Virtual (VM) de laboratório alojada na Virtualization Station do QNAP?",
+      opts: [
+        "Aceder pelo browser e no fim encerrar a VM temporária da aula.",
+        "Ligar um monitor diretamente à UPS APC e desligar o servidor NAS.",
+        "Deixar dez máquinas virtuais de teste a correr em ciclo infinito.",
+        "Apagar as imagens ISO base partilhadas por todas as outras turmas."
+      ],
+      ans: 0,
+      exp: "As VMs são acedidas via browser na Virtualization Station. Quando terminar o laboratório, encerre a VM temporária da aula para libertar os 32 GB de RAM do QNAP."
+    },
+    {
+      cat: "Recuperação ZFS / Snapshots",
+      critica: false,
+      q: "Apagou ou sobrescreveu por engano um ficheiro importante do projeto numa pasta partilhada do NAS QNAP TVS-h874. O que deve fazer?",
+      opts: [
+        "Formatar toda a pasta partilhada da turma para limpar o erro.",
+        "Pedir ao docente para recuperar via @Recycle ou Snapshot ZFS.",
+        "Retirar os discos SATA das baías 1 e 2 e trocá-los de posição.",
+        "Reinstalar o sistema operativo QuTS hero a partir de uma pen USB."
+      ],
+      ans: 1,
+      exp: "O sistema QuTS hero (ZFS) do QNAP mantém Reciclagem de Rede (@Recycle) e Snapshots ZFS que permitem ao docente restaurar versões anteriores rapidamente."
+    },
+    {
+      cat: "Partilhas de rede 2,5 GbE",
+      critica: false,
+      q: "Quer abrir a pasta partilhada de datasets do NAS QNAP a partir de um PC Windows ou MacBook Pro do Estúdio 4C. Que endereço utiliza?",
+      opts: [
+        "Usar \\\\<IP-do-NAS>\\<partilha> (Windows) ou smb://<IP-do-NAS> (Mac).",
+        "Ligar um cabo USB-A macho-macho entre o portátil e o servidor NAS.",
+        "Aceder apenas retirando os discos M.2 NVMe do interior do QNAP.",
+        "Digitar http://localhost:9999/bios no navegador sem estar na rede."
+      ],
+      ans: 0,
+      exp: "As partilhas do QNAP TVS-h874 são acedidas pela rede local 2,5 GbE via protocolo SMB (\\\\IP\\partilha no Windows ou smb://IP/partilha no macOS/Linux)."
+    },
+    {
+      cat: "Arrefecimento e fluxo de ar",
+      critica: false,
+      q: "Porque é proibido pousar cadernos, casacos ou mochilas sobre o topo ou encostados à frente em madeira da Tuxedo Atlas XL?",
+      opts: [
+        "Porque bloqueia o fluxo de ar do radiador AiO e da GPU sob carga.",
+        "Porque as ripas de madeira frontal desligam o Wi-Fi da sala toda.",
+        "Porque o peso de um caderno apaga automaticamente os discos NVMe.",
+        "Porque o sensor ótico frontal bloqueia o rato e o teclado sem fios."
+      ],
+      ans: 0,
+      exp: "Durante o treino de IA, o CPU e a GPU dissipam centenas de watts através da frente em madeira/mesh e do radiador superior AiO — mantenha-os sempre livres!"
+    },
+    {
+      cat: "Armazenamento e backups",
+      critica: false,
+      q: "Onde deve o grupo guardar os datasets finais, pesos de modelos validados e cópias de segurança do projeto no final da sessão?",
+      opts: [
+        "Apenas na pasta /tmp da estação Linux, que é limpa no arranque.",
+        "Na pasta partilhada da turma no NAS QNAP (protegida por ZFS).",
+        "No ambiente de trabalho da conta de outro grupo sem avisar.",
+        "Na memória VRAM da placa gráfica desligando o monitor a seguir."
+      ],
+      ans: 1,
+      exp: "A pasta /tmp na estação Linux é temporária. Guarde sempre os datasets finais, checkpoints validados e código na partilha da turma no NAS QNAP (protegida por ZFS)."
+    },
+    {
+      cat: "Segurança e RGPD",
+      critica: false,
+      q: "Qual destas práticas respeita as regras de segurança e RGPD ao treinar modelos ou usar notebooks Jupyter na infraestrutura do CTE?",
+      opts: [
+        "Guardar chaves de API secretas e dados pessoais em pastas públicas.",
+        "Não usar dados pessoais reais nem expor passwords no código.",
+        "Partilhar a palavra-passe de administrador root nas redes sociais.",
+        "Desativar a firewall do servidor NAS para aceder sem autenticação."
+      ],
+      ans: 1,
+      exp: "Numa infraestrutura partilhada, nunca coloque dados pessoais identificáveis (RGPD) nem chaves/passwords em texto limpo dentro de scripts ou notebooks partilhados."
+    },
+    {
+      cat: "Fim de sessão partilhada",
+      critica: false,
+      q: "Vai terminar a sua aula na Tuxedo Atlas XL, mas outro grupo tem um treino ou sessão SSH ativa em segundo plano. O que deve fazer?",
+      opts: [
+        "Forçar o desligamento no botão físico mantendo-o premido 5 s.",
+        "Fazer apenas Logout da sua conta sem desligar a estação AI.",
+        "Executar sudo reboot no terminal para reiniciar o sistema todo.",
+        "Desligar o cabo de alimentação traseiro da fonte 80+ Gold."
+      ],
+      ans: 1,
+      exp: "Feche os seus processos de GPU e faça apenas Logout da sua sessão gráfica/SSH para não interromper treinos nem acessos remotos autorizados de outras turmas."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [], idx = 0, score = 0, answered = false, failedCriticals = [], certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildAttempt() {
+    var crits = QUESTIONS.filter(function(q) { return q.critica; });
+    var normals = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crits.concat(normals));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|TUXNAS-INV006").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de infraestrutura partilhada e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de utilizador.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra crítica «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de iniciar sessão.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

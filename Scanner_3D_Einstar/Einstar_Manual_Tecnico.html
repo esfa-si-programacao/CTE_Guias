@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scanner 3D Einstar — Manual Técnico, Requisitos GPU e Manutenção (CTE · INV-228)</title>
+<meta name="description" content="Administração técnica das 2 unidades Scanner 3D Einstar (INV-228) do CTE: gestão das placas de calibração por n.º de série, requisitos GPU/EXStar, consumíveis, limpeza ótica e 10 casos de troubleshooting.">
+<meta property="og:title" content="Scanner 3D Einstar — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Gestão técnica das 2 unidades Scanner 3D Einstar (INV-228 · Estúdio SC - LMAS): placas de calibração, GPU NVIDIA CUDA / Apple Silicon, EXStar e 10 casos.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='14' y='12' width='36' height='14' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2.4'/%3E%3Ccircle cx='22' cy='19' r='3' fill='%234CE0F5'/%3E%3Ccircle cx='32' cy='19' r='3.5' fill='%23E8711C'/%3E%3Ccircle cx='42' cy='19' r='3' fill='%234CE0F5'/%3E%3Crect x='25' y='26' width='14' height='26' rx='6' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='38' r='3.2' fill='%2327AE60'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, #16222E 0%, #1F3A4D 100%); color: #fff; padding: 38px 24px 34px; border-bottom: 4px solid var(--teal); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.badge-tech { display: inline-block; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(30, 126, 140, 0.35); border: 1px solid rgba(114, 217, 232, 0.4); color: #9EEAF5; padding: 4px 11px; border-radius: 999px; margin-bottom: 10px; }
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); line-height: 1.12; }
+.hero .sub { color: #9EEAF5; font-size: 1.15rem; margin: 6px 0 10px; font-weight: 600; }
+.hero .meta { color: #B8CAD9; font-size: 0.92rem; margin: 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 265px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
+
+main { min-width: 0; max-width: 850px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.55rem; margin: 0 0 12px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.filter-input { width: 100%; font: inherit; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; margin-bottom: 12px; background: var(--light); }
+.filter-input:focus { outline: none; border-color: var(--teal); background: #fff; }
+
+.btn { font: inherit; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--line); background: #fff; color: var(--dark); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
+
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+}
+@media print {
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--teal-text); }
+  .hero .meta { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 10px 0 0; }
+  main { max-width: none; }
+  tr, .note { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Scanner 3D Einstar</a> &rsaquo; Manual Técnico</nav>
+    <div class="topbar-links">
+      <a href="Einstar_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Einstar_Manual_Utilizador.html">Manual de Utilizador</a>
+      <a href="Einstar_Quiz_Habilitacao.html">Carta de Operador 3D</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
+      <h1>Scanner 3D Einstar — Manual Técnico</h1>
+      <p class="sub">Gestão das 2 Unidades (INV-228), Requisitos GPU/EXStar, Calibração e Manutenção</p>
+      <p class="meta">Inventário <strong>INV-228</strong> (2 unidades) · Estúdio SC - LMAS · Software <strong>EXStar</strong> · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice técnico">
+    <h2>Índice Técnico</h2>
+    <ul>
+      <li><a href="#t1">1. Âmbito, segurança e RGPD</a></li>
+      <li><a href="#t2">2. Hardware &amp; Estações GPU</a></li>
+      <li><a href="#t3">3. Gestão, Calibração &amp; EXStar</a>
+        <ul>
+          <li><a href="#t3-1">3.1 Identificação dos 2 kits</a></li>
+          <li><a href="#t3-2">3.2 Placas de calibração únicas</a></li>
+          <li><a href="#t3-3">3.3 Instalação e drivers EXStar</a></li>
+        </ul>
+      </li>
+      <li><a href="#t4">4. Manutenção preventiva</a>
+        <ul>
+          <li><a href="#t4-1">4.1 Cabos, ótica e transporte</a></li>
+          <li><a href="#t4-2">4.2 Consumíveis: marcadores e spray</a></li>
+          <li><a href="#t4-3">4.3 Gestão de projetos e disco</a></li>
+        </ul>
+      </li>
+      <li><a href="#t5">5. Troubleshooting (10 casos)</a></li>
+      <li><a href="#t6">6. Avarias e retirada de serviço</a></li>
+      <li><a href="#t7">7. Ficha técnica de inspeção</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="t1">
+      <h2>1. Âmbito, segurança ótica e privacidade (RGPD)</h2>
+      <p>Este manual destina-se aos <strong>docentes responsáveis</strong> e à <strong>equipa técnica do CTE Informático</strong> que gerem as <strong>2 unidades do Scanner 3D Shining 3D Einstar</strong> (<code>INV-228</code>) atribuídas ao <strong>Estúdio SC - LMAS</strong>.</p>
+      <ul>
+        <li><strong>Segurança ótica (Laser Classe 1):</strong> O Einstar utiliza luz estruturada infravermelha (<strong>IR VCSEL</strong>) certificada como <strong>Laser Classe 1 (<em>Eye-safe</em>)</strong>, sendo segura para digitalização de rostos e pessoas em modo <em>Portrait</em> sem encandeamento. Ainda assim, evite que os alunos olhem fixamente para o projetor a menos de 15 cm ou durante períodos prolongados.</li>
+        <li><strong>Segurança elétrica e térmica:</strong> O scanner exige fonte externa dedicada de <strong>12 V / 5 A</strong> ligada à tomada. Nunca utilize transformadores improvisados de outra voltagem ou amperagem inferior.</li>
+        <li><strong>Privacidade (RGPD):</strong> Em atividades com digitalização de bustos/rostos (<em>Portrait Mode</em>), os ficheiros de projeto (malhas 3D e texturas `.jpg`) identificam diretamente os alunos. Garanta consentimento prévio para trabalhos académicos e apague projetos temporários dos computadores partilhados no fim do período letivo.</li>
+        <li><strong>Credenciais de software:</strong> Caso a conta Shining 3D / Einstar seja necessária para transferir o instalador ou ativar o EXStar, mantenha as credenciais exclusivamente no dossiê interno do CTE (nunca publicar no portal).</li>
+      </ul>
+    </section>
+
+    <section id="t2">
+      <h2>2. Arquitetura Hardware &amp; Estações de Trabalho Compatíveis</h2>
+      <p>Ao contrário de periféricos USB simples, o software <strong>EXStar</strong> realiza alinhamento e reconstrução de nuvem de pontos em tempo real na GPU. A seleção correta do computador na escola é o fator n.º 1 para evitar bloqueios em aula.</p>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+          <thead><tr><th>Componente / Sistema</th><th>Especificação Oficial &amp; Enquadramento no CTE</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Scanner (2× <code>INV-228</code>)</th><td>Shining 3D Einstar · 500 g · 220 × 46 × 55 mm · IR VCSEL (Classe 1) · Distância 160–1400 mm (ótima ~400 mm) · FOV máx. 434 × 379 mm · Velocidade até 14 fps (~980 000 pts/s) · Precisão de fotograma até 0,1 mm · Rosca tripé 1/4"-20 UNC.</td></tr>
+            <tr><th scope="row">Windows (Recomendado)</th><td>Windows 10/11 (64-bit) · <strong>GPU NVIDIA dedicada com CUDA 10.2+</strong> e ≥ <strong>6 GB VRAM</strong> (ex.: GTX 1060 / RTX) · CPU Intel Core i7-11800H+ (ou AMD equivalente) · <strong>32 GB+ RAM</strong> · USB 3.0.</td></tr>
+            <tr><th scope="row">Windows (Mínimo EXStar v1.2+)</th><td>Windows 10/11 (64-bit) · GPU NVIDIA GTX 1050 (<strong>4 GB VRAM</strong>) · Intel Core i5-1240P+ · <strong>16 GB RAM</strong> · USB 2.0/3.0. <em>(Gráficas integradas Intel UHD/Iris não são suportadas!)</em></td></tr>
+            <tr><th scope="row">macOS (Suportado)</th><td>macOS 13 (Ventura) ou superior · Apple Silicon <strong>M1 Pro</strong> ou superior (GPU ≥ 8-core) · <strong>32 GB RAM recomendados</strong> (16 GB mínimo).</td></tr>
+            <tr><th scope="row">Estações no CTE (Inventário)</th><td>O <strong>Estúdio SC - LMAS</strong> dispõe do MacBook Pro 16" M3 Pro com 36 GB RAM (<code>INV-068</code>). O CTE dispõe ainda de portáteis <code>INV-026</code> (BOLTX505, Estúdio 4C/Oficinas) e <code>INV-184</code> (HP ZBook Power G10, STEM/TEC).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- CONFIRMAR: validar e listar aqui o código exato da(s) estação(ões) de trabalho do Estúdio SC - LMAS / Oficinas onde o software EXStar está instalado e com GPU compatível testada (ex.: MacBook Pro INV-068 ou PC Windows com NVIDIA RTX) -->
+      <div class="note warn">
+        <strong>Nota de instalação no Estúdio SC - LMAS:</strong> Antes de requisitar para uma turma inteira, confirme com o responsável do CTE qual o computador da sala que tem o <strong>EXStar</strong> instalado e atualizado, bem como o cabo de alimentação 12 V / 5 A disponível na bancada.
+      </div>
+    </section>
+
+    <section id="t3">
+      <h2>3. Gestão das 2 unidades, placas de calibração e software EXStar</h2>
+
+      <h3 id="t3-1">3.1 Identificação rigorosa das 2 unidades (Kit 1 e Kit 2)</h3>
+      <p>Como existem <strong>2 scanners Einstar</strong> (<code>INV-228</code>) no Estúdio SC - LMAS, é obrigatório manter cada scanner acoplado à sua própria mala e à sua placa de calibração original.</p>
+      <ul>
+        <li>Etiquete exteriormente cada estojo, o corpo do scanner (sem tapar grelhas de ventilação nem lentes) e a respetiva <strong>placa de calibração</strong> com identificadores claros (ex.: <code>EIN-1</code> e <code>EIN-2</code>) e o código <code>INV-228</code>.</li>
+        <li>Registe no dossiê técnico do CTE os dois números de série (<em>S/N</em>) gravados no scanner e na placa correspondente.</li>
+      </ul>
+
+      <h3 id="t3-2">3.2 Placas de calibração emparelhadas por número de série</h3>
+      <div class="note danger">
+        <strong>REGRA CRÍTICA DE CALIBRAÇÃO:</strong> Cada placa de calibração de vidro/marcadores foi calibrada em fábrica para um <strong>número de série único</strong> de scanner Einstar. <strong>NUNCA troque placas entre as 2 malas <code>INV-228</code></strong> — uma placa trocada provoca falha imediata da calibração ou erros graves de geometria!
+      </div>
+      <ul>
+        <li><strong>Quando calibrar obrigatoriamente:</strong>
+          <ul>
+            <li>Na primeira instalação num computador novo;</li>
+            <li>Após transporte em veículo, vibração forte ou qualquer impacto ligeiro;</li>
+            <li>Quando o EXStar emitir o aviso automático (intervalo superior a <strong>14 dias</strong> sem calibração);</li>
+            <li>Se notar perda de precisão, dificuldade em reconhecer marcadores ou falhas de alinhamento anómalas.</li>
+          </ul>
+        </li>
+        <li><strong>Procedimento técnico de calibração:</strong> Colocar a placa horizontalmente com a face branca de marcadores para cima numa mesa firme, longe de luz solar direta ou reflexos intensos. Iniciar o assistente no EXStar, posicionar o scanner verticalmente e mover nas 5 direções/alturas pedidas seguindo a caixa verde de distância no ecrã até concluir.</li>
+      </ul>
+
+      <h3 id="t3-3">3.3 Instalação, drivers NVIDIA e atualizações do EXStar</h3>
+      <ul>
+        <li>Descarregue o instalador oficial exclusivamente a partir do centro de suporte oficial (<a href="https://support.einstar.com/support/solutions/articles/60000632292-einstar-software-download" target="_blank" rel="noopener noreferrer">support.einstar.com &#8599;</a>).</li>
+        <li>Em computadores Windows com GPU híbrida (Intel integrada + NVIDIA dedicada), confirme no <em>Painel de Controlo NVIDIA</em> que o executável <code>EXStar.exe</code> está forçado a usar o <strong>Processador NVIDIA de alto desempenho</strong> e mantenha o driver gráfico atualizado (CUDA 10.2+).</li>
+        <li>Em portáteis, ligue sempre o <strong>carregador do portátil à tomada</strong> em modo de <em>Alto Desempenho</em> — em bateria, muitas placas gráficas limitam a frequência e o EXStar perde fotogramas.</li>
+        <li>Ligue o cabo USB do Einstar diretamente a uma <strong>porta USB 3.0 nativa</strong> do computador (evite extensões longas ou hubs USB não alimentados).</li>
+      </ul>
+    </section>
+
+    <section id="t4">
+      <h2>4. Manutenção preventiva, ótica e consumíveis</h2>
+
+      <h3 id="t4-1">4.1 Cabo principal de bloqueio, lentes e armazenamento</h3>
+      <ul>
+        <li><strong>Conector principal na base do scanner:</strong> O cabo único liga na base do punho com encaixe direcional. Nunca force a ficha ao contrário nem puxe pelo cabo — segure sempre pelo corpo rígido da ficha ao desligar e deixe folga suficiente para o aluno rodar à volta da peça sem esticar a ligação.</li>
+        <li><strong>Lentes e projetor frontal:</strong> Nunca toque com os dedos nas câmaras nem na janela do projetor IR. Se existir poeira, use primeiro uma pera de ar; se houver dedadas, limpe suavemente com pano de microfibra ótico seco.</li>
+        <li><strong>Placa de calibração:</strong> Nunca utilize álcool, acetona ou limpa-vidros na face com marcadores! Se sujar, passe apenas um pano macio ligeiramente humedecido com água, seque sem riscar e recoloque na bolsa protetora.</li>
+      </ul>
+
+      <h3 id="t4-2">4.2 Consumíveis: marcadores autocolantes e spray de digitalização</h3>
+      <ul>
+        <li><strong>Marcadores autocolantes de rastreio:</strong> Os marcadores de 6 mm são consumíveis. Mantenha um bloco de reserva no Estúdio SC - LMAS e instrua os alunos a descolá-los das peças do CTE no final da aula (e a recolher os restos para o lixo, nunca colando em mobiliário permanente).</li>
+        <li><strong>Spray fosco removível (<em>3D Scanning Spray</em>, ex.: AESUB):</strong> Opcional para peças pretas, metálicas ou transparentes. A utilização de aerossóis deve ser feita <strong>apenas pelo docente ou sob supervisão direta em local ventilado/exterior</strong> (nunca pulverizar junto a computadores, projetores ou dentro da mala do scanner!).</li>
+      </ul>
+
+      <h3 id="t4-3">4.3 Gestão de projetos pesados em disco</h3>
+      <ul>
+        <li>Os ficheiros brutos de nuvem de pontos do EXStar ocupam várias centenas de megabytes a alguns gigabytes por projeto.</li>
+        <li>Garanta pelo menos <strong>30–50 GB livres</strong> em SSD no computador de captura e instrua os grupos a exportar os modelos finais (<code>.stl</code>, <code>.obj</code>, <code>.ply</code>) para a sua pasta de nuvem/pen USB, arquivando ou limpando projetos brutos antigos mensalmente.</li>
+      </ul>
+    </section>
+
+    <section id="t5">
+      <h2>5. Matriz de resolução de problemas (Troubleshooting — 10 casos)</h2>
+      <p>Filtre rapidamente pelo sintoma observado em aula:</p>
+      <input type="search" class="filter-input" id="tsFilter" placeholder="Pesquisar sintoma (ex.: LED vermelho, GPU, calibração, preto, tracking, USB, STL, lento)...">
+      <div class="tw">
+        <table id="tsTable">
+          <colgroup><col style="width:5%"><col style="width:24%"><col style="width:28%"><col style="width:43%"></colgroup>
+          <thead><tr><th>#</th><th>Sintoma</th><th>Causas Prováveis</th><th>Solução Passo a Passo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td><strong>LED de estado vermelho ou scanner não detetado</strong></td><td>Falta alimentação 12 V / 5 A, conector da base frouxo ou porta USB insuficiente.</td><td>Confirmar tomada e adaptador 12 V/5 A ligados, reencaixar o conector bloqueado na base do scanner, ligar diretamente a uma porta USB 3.0 do PC (sem hub) e reiniciar o EXStar.</td></tr>
+            <tr><td><strong>2</strong></td><td><strong>EXStar não abre, fecha sozinho ou avisa falta de GPU</strong></td><td>PC sem GPU NVIDIA CUDA dedicada, portátil em modo poupança ou driver desatualizado.</td><td>Mudar para estação com NVIDIA GTX 1050/1060+ (4–6 GB+ VRAM) ou Mac M1 Pro+, ligar o portátil à corrente, forçar GPU NVIDIA nas definições e atualizar drivers.</td></tr>
+            <tr><td><strong>3</strong></td><td><strong>Calibração falha ou dá erro de precisão</strong></td><td>Placa trocada entre os 2 kits <code>INV-228</code>, luz solar direta ou placa suja/inclinada.</td><td>Confirmar correspondência do n.º de série entre scanner e placa, colocar a placa plana à sombra, limpar suavemente sem álcool e repetir os 5 passos seguindo o indicador verde.</td></tr>
+            <tr><td><strong>4</strong></td><td><strong>LED de distância sempre azul ou sempre vermelho</strong></td><td>Scanner fora da janela de trabalho (160–1400 mm; ótima ~400 mm).</td><td>Se azul: aproximar lentamente até ~40 cm. Se vermelho/amarelo: afastar até o LED passar a <strong>verde</strong> e o objeto ficar nítido na pré-visualização.</td></tr>
+            <tr><td><strong>5</strong></td><td><strong>Superfície preta, metálica ou vidro não aparece</strong></td><td>O IR é absorvido pelo preto e refletido de forma especular por espelhos/vidro.</td><td>Aumentar brilho com o botão <code>+</code> no punho; se não bastar, aplicar marcadores autocolantes à volta/sobre a peça ou usar spray fosco removível em local ventilado.</td></tr>
+            <tr><td><strong>6</strong></td><td><strong>Perde o rastreio (<em>Tracking Lost</em>) constantemente</strong></td><td>Movimento brusco, peça simétrica/lisa ou falta de referências no enquadramento.</td><td>Apontar para uma zona já digitalizada até alinhar; baixar a velocidade da mão; ativar alinhamento Híbrido/Marcadores e colar ≥ 4 marcadores aleatórios (nunca em linha reta!).</td></tr>
+            <tr><td><strong>7</strong></td><td><strong>Software extremamente lento ou bloqueia a meio do scan</strong></td><td>Resolução (<em>Point Distance</em>) demasiado fina (0,1 mm) para objeto grande ou pouca RAM.</td><td>Criar projeto com <em>Point Distance</em> maior (0,5–1,5 mm para objetos médios/grandes), fechar browser/outras apps e ligar carregador ao portátil.</td></tr>
+            <tr><td><strong>8</strong></td><td><strong>Fundo da mesa ou mão aparece colado à peça</strong></td><td>Objeto pousado diretamente numa superfície clara sem separação nem corte.</td><td>Elevar a peça sobre um pequeno calço ou base giratória, usar a ferramenta de laço (Shift + arrastar) para apagar a mesa antes de clicar em <em>Generate Mesh</em>.</td></tr>
+            <tr><td><strong>9</strong></td><td><strong>Modelo exportado em <code>.stl</code> perdeu as cores</strong></td><td>O formato STL guarda apenas geometria triangular (sem textura nem cor).</td><td>Exportar o mesmo modelo em <strong><code>.obj</code></strong> (guarda <code>.obj</code> + <code>.mtl</code> + <code>.jpg</code> na mesma pasta) ou <strong><code>.ply</code></strong> (cor por vértice).</td></tr>
+            <tr><td><strong>10</strong></td><td><strong>Peça não imprime bem na Snapmaker / Elegoo</strong></td><td>Malha aberta (<em>Unwatertight</em>) com buracos ou unidade mal interpretada.</td><td>Ao gerar a malha no EXStar, escolher <strong>Watertight (estanque)</strong> e preencher pequenos furos; no fatiador (Luban / OrcaSlicer), confirmar escala em milímetros (<code>mm</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t6">
+      <h2>6. Emergência e protocolo de retirada de serviço</h2>
+      <aside class="note danger"><strong>Critérios de Retirada Imediata de Serviço:</strong> Retire o kit de utilização, etiquete como «Em verificação CTE» e reporte à coordenação se detetar:
+        <ul style="margin:6px 0 0">
+          <li>Queda do scanner ao chão ou impacto visível na cabeça ótica;</li>
+          <li>Cabo principal com isolamento cortado, pinos tortos ou contacto intermitente na base;</li>
+          <li>Fonte de alimentação 12 V / 5 A com aquecimento anormal, ruído elétrico ou cabo danificado;</li>
+          <li>Placa de calibração partida, riscada na zona dos marcadores ou extraviada;</li>
+          <li>LED de estado permanentemente vermelho mesmo após teste noutra estação compatível.</li>
+        </ul>
+      </aside>
+      <p><strong>Nunca tente abrir a carcaça do scanner nem desmontar as lentes IR.</strong> Registe sempre a unidade (<code>EIN-1</code> ou <code>EIN-2</code>), data, computador usado e sintoma.</p>
+    </section>
+
+    <section id="t7">
+      <h2>7. Ficha técnica de inspeção e calibração (<code>INV-228</code>)</h2>
+      <p>Recomenda-se uma conferência periódica às 2 unidades no <strong>Estúdio SC - LMAS</strong> (incluindo confirmação da placa de calibração por n.º de série):</p>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Responsável</th><th>Unidade (1 / 2)</th><th>Placa Calib. Correta + Limpa</th><th>Cabo / Fonte 12 V / Lentes</th><th>Última Calibração / Marcadores</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual Técnico Scanner 3D Einstar (<code>INV-228</code>) · Uso interno para docentes responsáveis e apoio técnico.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var inp = document.getElementById("tsFilter");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#tsTable tbody tr"));
+  if (inp) {
+    inp.addEventListener("input", function() {
+      var q = (inp.value || "").trim().toLowerCase();
+      rows.forEach(function(r) {
+        r.style.display = (!q || r.textContent.toLowerCase().indexOf(q) !== -1) ? "" : "none";
+      });
+    });
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

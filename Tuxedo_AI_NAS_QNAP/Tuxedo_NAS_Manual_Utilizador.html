@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Manual de Utilizador (CTE · INV-006 / INV-223)</title>
+<meta name="description" content="Manual completo de utilização da Estação de Trabalho AI Tuxedo Atlas XL (INV-006), servidor NAS QNAP TVS-h874 (INV-223) e UPS APC (INV-224) do CTE: acesso SSH/Web, gestão de GPU/VRAM, ambientes Python venv, Ollama/PyTorch, Virtualization Station, partilhas ZFS e 5 projetos práticos.">
+<meta property="og:title" content="Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Manual de Utilizador (CTE)">
+<meta property="og:description" content="Manual completo de IA Local (Tuxedo Atlas XL) e Virtualização/Armazenamento ZFS (QNAP TVS-h874) no Estúdio 4C.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='12' width='18' height='40' rx='3' fill='%232C3B4B' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='15' y1='16' x2='15' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='19' y1='16' x2='19' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='23' y1='16' x2='23' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Crect x='33' y='20' width='22' height='32' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='38' y1='26' x2='38' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='43' y1='26' x2='43' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='48' y1='26' x2='48' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.85rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.25rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 118px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 88px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Tuxedo Atlas XL &amp; NAS QNAP</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="Tuxedo_NAS_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Tuxedo_NAS_Quiz_Habilitacao.html">Carta de Utilizador</a>
+      <a href="Tuxedo_NAS_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874</h1>
+      <p class="sub">Manual de Utilizador — IA Local (Linux/CUDA), Máquinas Virtuais e Armazenamento ZFS</p>
+      <p class="kit">Tuxedo Atlas XL (<code>INV-006</code>) + QNAP TVS-h874 i7 32 GB (<code>INV-223</code>) + UPS APC Smart-UPS (<code>INV-224</code>) · Estúdio 4C</p>
+      <p class="ver">Versão 1.0 · novembro de 2026 · Destinatários: Professores e Alunos do CTE</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 150 110" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="16" y="12" width="46" height="86" rx="6" fill="rgba(44,59,75,0.7)" stroke="#fff"/>
+      <line x1="27" y1="20" x2="27" y2="90" stroke="#E8711C" stroke-width="3"/>
+      <line x1="36" y1="20" x2="36" y2="90" stroke="#E8711C" stroke-width="3"/>
+      <line x1="45" y1="20" x2="45" y2="90" stroke="#E8711C" stroke-width="3"/>
+      <rect x="76" y="30" width="58" height="68" rx="6" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+      <line x1="88" y1="44" x2="88" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+      <line x1="98" y1="44" x2="98" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+      <line x1="108" y1="44" x2="108" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+      <line x1="118" y1="44" x2="118" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice do manual">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer a infraestrutura</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Tuxedo Atlas XL (INV-006)</a></li>
+          <li><a href="#s2-2">2.2 NAS QNAP TVS-h874 (INV-223)</a></li>
+          <li><a href="#s2-3">2.3 UPS APC Smart-UPS (INV-224)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras de ouro e partilha</a></li>
+      <li><a href="#s4">4. Acesso local, SSH, Web e SMB</a></li>
+      <li><a href="#s5">5. GPU, Python venv e LLMs</a></li>
+      <li><a href="#s6">6. Máquinas Virtuais e Containers</a></li>
+      <li><a href="#s7">7. Armazenamento ZFS, Snapshots e RGPD</a></li>
+      <li><a href="#s8">8. 5 projetos práticos de IA e VMs</a>
+        <ul>
+          <li><a href="#s8-script">8.1 Script de diagnóstico GPU</a></li>
+          <li><a href="#s8-inter">8.2 Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Fim de sessão e registo</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist de fim de sessão</a></li>
+          <li><a href="#s9-2">9.2 Folha de registo de sessões</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>O <strong>Estúdio 4C</strong> do <strong>CTE Informático</strong> dispõe de uma infraestrutura dedicada à computação de alto desempenho, inteligência artificial local, virtualização e armazenamento resiliente, composta por três sistemas integrados:</p>
+      <ul>
+        <li><strong>Estação de Trabalho AI — TUXEDO Atlas XL (Gen1 Intel)</strong> (<code>INV-006</code>): computador de secretária Linux otimizado para treino e inferência de modelos de Inteligência Artificial, <em>Machine Learning</em>, Processamento de Linguagem Natural (LLMs locais), Visão Computacional e conversão/renderização de vídeo.</li>
+        <li><strong>Servidor NAS — QNAP TVS-h874 (Core i7 · 32 GB RAM)</strong> (<code>INV-223</code>, instalado junto ao servidor): servidor de armazenamento de 8 baías SATA + 2× M.2 NVMe com sistema operativo <strong>QuTS hero (ZFS)</strong>, <strong>Virtualization Station</strong> (máquinas virtuais acedidas pelos computadores e MacBooks do CTE) e <strong>Container Station</strong>.</li>
+        <li><strong>Proteção Elétrica — UPS APC Smart-UPS SMT LCD RM SmartConnect</strong> (<code>INV-224</code>, junto ao servidor): unidade de alimentação ininterrupta que protege o NAS e o bastidor contra falhas de energia e picos de tensão.</li>
+      </ul>
+      <div class="note info">
+        <strong>Antes de iniciar a primeira sessão:</strong> Complete a <a href="Tuxedo_NAS_Quiz_Habilitacao.html">Carta de Utilizador IA &amp; Virtualização</a>. Para administração de contas, pools ZFS, snapshots e manutenção preventiva, consulte o <a href="Tuxedo_NAS_Manual_Tecnico.html">Manual Técnico e Manutenção</a>.
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer a infraestrutura do Estúdio 4C</h2>
+
+      <h3 id="s2-1">2.1 Estação de Trabalho AI — TUXEDO Atlas XL (<code>INV-006</code>)</h3>
+      <p>Construída num chassis de alto fluxo de ar estilo <strong>Fractal Design North XL</strong> (com ripas frontais em madeira natural certificada e painéis ventilados em malha <em>mesh</em>), a Tuxedo Atlas XL foi desenhada para manter temperaturas e ruído controlados mesmo durante cargas prolongadas de CPU e GPU.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Componente</th><th>Especificação e Função no CTE</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Chassis e Formato</strong></td><td>Torre ATX <strong>North XL</strong> (447 × 215 × 469 mm) · Painel frontal com ripas de madeira natural e topo em malha com botão Power e portas USB-A / USB-C</td></tr>
+            <tr><td><strong>Plataforma e CPU</strong></td><td>Motherboard Intel Z790 · Processador Intel Core (13.ª/14.ª Geração) refrigerado a líquido (radiador AiO 240/280 mm) · Memória DDR5 dual-channel</td></tr>
+            <tr><td><strong>Aceleração GPU (IA / Vídeo)</strong></td><td>Placa gráfica dedicada de alto desempenho (suporte NVIDIA CUDA / Tensor Cores para PyTorch, TensorFlow, Ollama, Whisper e codificação NVENC) <!-- CONFIRMAR: anotar modelo exato de GPU e quantidade de VRAM/RAM instalados na unidade INV-006 --></td></tr>
+            <tr><td><strong>Armazenamento e Rede</strong></td><td>Unidades SSD <strong>M.2 NVMe PCIe 4.0</strong> de alta velocidade + ligação Ethernet rápida à rede local e ao NAS QNAP</td></tr>
+            <tr><td><strong>Sistema Operativo</strong></td><td><strong>TUXEDO OS / Ubuntu Linux</strong> pré-configurado com drivers NVIDIA, <strong>TUXEDO Control Center</strong>, Python 3, Git, Docker, Ollama e JupyterLab</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-2">2.2 Servidor NAS — QNAP TVS-h874-i7-32G (<code>INV-223</code>)</h3>
+      <p>O QNAP TVS-h874 funciona simultaneamente como <strong>servidor central de ficheiros/datasets</strong> e <strong>hipervisor de máquinas virtuais</strong> para as aulas de Informática, Redes e Multimédia (incluindo o acesso a máquinas virtuais pelos portáteis Apple MacBook Pro 16" <code>INV-068</code> e Classmate BOLTX505 <code>INV-026</code>).</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Componente</th><th>Especificação Oficial (QNAP TVS-h874-i7-32G)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Processador e Memória</strong></td><td><strong>Intel Core i7-12700E</strong> (12 núcleos: 8P + 4E · 20 threads · até 4,8 GHz) · Gráficos Intel UHD 770 · <strong>32 GB DDR4 RAM</strong> (expansível até 64 GB)</td></tr>
+            <tr><td><strong>Baías de Armazenamento</strong></td><td><strong>8× baías 3,5"/2,5" SATA 6 Gb/s</strong> (<em>hot-swap</em>) + <strong>2× ranhuras internas M.2 2280 PCIe Gen4 x4 NVMe</strong> (cache ou pool SSD rápido)</td></tr>
+            <tr><td><strong>Rede e Expansão</strong></td><td><strong>2× portas 2,5 GbE RJ45</strong> (agregação/failover até 5 Gbps) · 2× ranhuras PCIe Gen4 (x16 + x4) · 1× saída HDMI 1.4b (4K 30Hz) · Portas USB 3.2 Gen2 (10 Gbps)</td></tr>
+            <tr><td><strong>Sistema Operativo (ZFS)</strong></td><td><strong>QuTS hero</strong> (baseado em <strong>ZFS de 128 bits</strong>): verificação e reparação automática de corrupção silenciosa (<em>self-healing</em>), compressão/deduplicação <em>inline</em> e <strong>Snapshots instantâneos</strong></td></tr>
+            <tr><td><strong>Virtualização Integrada</strong></td><td><strong>Virtualization Station</strong> (VMs Windows, Linux, UNIX) e <strong>Container Station</strong> (contentores Docker / LXD)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-3">2.3 UPS APC Smart-UPS SMT LCD RM SmartConnect (<code>INV-224</code>)</h3>
+      <p>Instalada junto ao servidor no Estúdio 4C, a <strong>UPS APC Smart-UPS</strong> alimenta e protege o NAS QNAP TVS-h874 contra cortes súbitos de eletricidade. Um corte abrupto de corrente num servidor com escrita ativa ou máquinas virtuais a correr pode degradar volumes; a UPS mantém o servidor ligado a bateria e ordena o encerramento limpo caso a falha elétrica se prolongue.</p>
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras de ouro de utilização partilhada e segurança física</h2>
+
+      <div class="note danger">
+        <strong>PROIBIDO DESLIGAR O SERVIDOR NAS OU MEXER NAS GAVETAS DE DISCO:</strong> O servidor <strong>QNAP TVS-h874 (<code>INV-223</code>)</strong> e a <strong>UPS APC (<code>INV-224</code>)</strong> operam <strong>24 horas por dia</strong> para várias turmas e docentes. Nunca prima o botão Power do NAS, nunca desligue cabos de rede/energia e <strong>nunca destranque nem puxe nenhuma das 8 gavetas frontais de disco</strong>!
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Regra de Ouro</th><th>Porque é crítica</th><th>Como proceder na aula</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. NAS e UPS sempre ligados (24/7)</strong></td><td>Outras turmas, MacBooks ou serviços remotos podem estar a usar máquinas virtuais ou partilhas SMB/NFS.</td><td>No final da aula, feche apenas a sua janela do navegador / sessão SSH (<em>Logout</em>).</td></tr>
+            <tr><td><strong>2. Baías SATA 1–8 intocáveis</strong></td><td>Retirar uma gaveta com o sistema ligado degrada imediatamente o <em>pool</em> RAID/ZFS e exige reconstrução longa (<em>resilvering</em>).</td><td>Se vir um LED de disco vermelho, <strong>não toque na gaveta</strong> e avise imediatamente a equipa do CTE.</td></tr>
+            <tr><td><strong>3. Verificar GPU antes de usar (<code>nvidia-smi</code>)</strong></td><td>A memória VRAM da placa gráfica da Tuxedo Atlas XL é finita; dois treinos pesados em simultâneo causam erro <em>Out of Memory</em>.</td><td>Corra <code>nvidia-smi</code> antes de lançar um treino e feche os seus <em>kernels</em> Jupyter assim que terminar.</td></tr>
+            <tr><td><strong>4. Zero <code>sudo pip</code> no Linux</strong></td><td>Alterar pacotes Python globais do sistema pode quebrar drivers CUDA, PyTorch ou ferramentas de outras turmas.</td><td>Crie sempre um ambiente virtual (<code>python3 -m venv .venv</code>) dentro da pasta de trabalho do seu grupo.</td></tr>
+            <tr><td><strong>5. Fluxo de ar desobstruído</strong></td><td>Em treino de IA, a Tuxedo Atlas XL dissipa calor intenso pela frente em madeira/malha e pelo topo (radiador AiO).</td><td>Nunca pouse cadernos, estojos, casacos ou mochilas em cima da torre Tuxedo nem à frente do NAS QNAP.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2>4. Acesso local, SSH, JupyterLab, Consola QNAP e Partilhas SMB</h2>
+      <p>Consoante a atividade definida pelo professor, pode trabalhar diretamente no monitor da <strong>Tuxedo Atlas XL</strong> no Estúdio 4C ou aceder remotamente a partir dos portáteis da sala através da rede local.</p>
+      <!-- CONFIRMAR: substituir nos exemplos abaixo os hostnames/IPs exemplificativos pelos IPs fixos reais atribuídos à Tuxedo Atlas XL e ao QNAP TVS-h874 na rede do Estúdio 4C -->
+      <div class="tw">
+        <table>
+          <thead><tr><th>Serviço / Destino</th><th>Como aceder na rede do Estúdio 4C</th><th>Notas de utilização</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sessão Local (Tuxedo Atlas XL)</strong></td><td>Iniciar sessão diretamente no ecrã do Estúdio 4C com a conta da turma/grupo.</td><td>No final da aula, clicar em <strong>Terminar Sessão (Log Out)</strong> em vez de desligar, caso haja sessões remotas ativas.</td></tr>
+            <tr><td><strong>Terminal Remoto SSH (Tuxedo)</strong></td><td><code>ssh utilizador@&lt;IP-Tuxedo&gt;</code> (no Terminal do Windows PowerShell, macOS ou Linux).</td><td>Permite correr scripts Python, monitorizar a GPU com <code>nvidia-smi</code> e usar túnel SSH para JupyterLab.</td></tr>
+            <tr><td><strong>JupyterLab / Web UI de IA</strong></td><td>Abrir no navegador o endereço local indicado pelo docente (ex.: <code>http://&lt;IP-Tuxedo&gt;:8888</code>).</td><td>Guardar sempre os notebooks na pasta do grupo e fazer <em>Shut Down Kernel</em> antes de sair.</td></tr>
+            <tr><td><strong>Consola Web QNAP QuTS hero &amp; Virtualization Station</strong></td><td>Abrir no navegador <code>https://&lt;IP-do-NAS&gt;:8080</code> (ou porta HTTPS configurada pelo CTE).</td><td>Entrar com a conta de aluno/turma atribuída pelo professor para abrir a Máquina Virtual da aula.</td></tr>
+            <tr><td><strong>Pastas Partilhadas do NAS (SMB 2,5 GbE)</strong></td><td><strong>Windows:</strong> <code>\\&lt;IP-do-NAS&gt;\&lt;partilha&gt;</code> no Explorador de Ficheiros.<br><strong>macOS (MacBook Pro) / Linux:</strong> <code>smb://&lt;IP-do-NAS&gt;/&lt;partilha&gt;</code> (<em>Ir &rarr; Ligar ao servidor</em>).</td><td>Ideal para guardar datasets pesados, vídeos renderizados, checkpoints de modelos e backups de grupo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Gestão de GPU/VRAM, ambientes Python (<code>venv</code>) e LLMs locais</h2>
+      <p>Na estação <strong>TUXEDO Atlas XL</strong>, siga sempre o fluxo de trabalho abaixo para garantir que o seu projeto corre à velocidade máxima da placa gráfica sem interferir com outras turmas:</p>
+      <ol>
+        <li><strong>Verificar o estado da GPU e VRAM:</strong>
+          <p>Abra um terminal e execute <code>nvidia-smi</code>. Verifique a linha de utilização de memória (ex.: <code>MiB / MiB</code>) e a lista de processos na parte inferior da tabela. Para acompanhar em tempo real durante um treino, use <code>watch -n 2 nvidia-smi</code> (prima <code>Ctrl+C</code> para sair).</p>
+        </li>
+        <li><strong>Criar e ativar um ambiente virtual isolado (<code>.venv</code>):</strong>
+          <pre><code>mkdir -p ~/projetos_turma/grupo1 &amp;&amp; cd ~/projetos_turma/grupo1
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip</code></pre>
+          <p>Enquanto vir o prefixo <code>(.venv)</code> no terminal, qualquer comando <code>pip install</code> instala pacotes apenas na pasta do seu grupo.</p>
+        </li>
+        <li><strong>Executar modelos de linguagem locais (Ollama):</strong>
+          <ul>
+            <li>Antes de transferir um modelo novo, veja quais já estão instalados na estação com <code>ollama list</code>.</li>
+            <li>Para conversar ou testar um modelo local no terminal: <code>ollama run llama3.2</code> (ou o modelo indicado pelo professor); escreva <code>/bye</code> para sair.</li>
+            <li>Para usar via API local em Python (porta <code>11434</code>), aponte o seu script para <code>http://localhost:11434/api/generate</code>.</li>
+          </ul>
+        </li>
+        <li><strong>Libertar a VRAM ao terminar:</strong>
+          <ul>
+            <li>Em <strong>JupyterLab / Jupyter Notebook</strong>: feche as células e clique em <strong>Kernel &rarr; Shut Down Kernel</strong> (ou no separador lateral <em>Running Terminals and Kernels &rarr; Shut Down All</em>).</li>
+            <li>Em scripts de terminal: aguarde que o processo termine ou interrompa com <code>Ctrl+C</code> e confirme com <code>nvidia-smi</code> que o seu PID desapareceu da lista da GPU.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section id="s6">
+      <h2>6. Máquinas Virtuais, Containers e LEDs do NAS QNAP TVS-h874</h2>
+      <p>Graças ao processador <strong>Intel Core i7-12700E (12 núcleos / 20 threads)</strong> e aos <strong>32 GB de RAM</strong>, o servidor <strong>QNAP TVS-h874</strong> permite executar sistemas operativos completos (Linux Ubuntu/Debian, Windows Server/11, appliances de cibersegurança ou redes) diretamente no navegador.</p>
+      <ul>
+        <li><strong>Usar uma Máquina Virtual na aula (<em>Virtualization Station</em>):</strong>
+          <ol>
+            <li>Aceda ao painel web do QNAP e abra a aplicação <strong>Virtualization Station</strong>.</li>
+            <li>Localize apenas a Máquina Virtual atribuída ao seu grupo (ex.: <code>VM-TurmaA-Grupo1</code>). <strong>Nunca desligue nem reinicie VMs de outros grupos!</strong></li>
+            <li>Clique em <strong>Iniciar (Start)</strong> e depois em <strong>Consola (Console)</strong> para abrir o ecrã da VM numa nova janela do navegador.</li>
+            <li>No final da aula, caso se trate de uma VM de laboratório temporário, encerre-a de forma limpa a partir do menu do próprio sistema convidado (<em>Shut Down</em>) para libertar RAM e CPU do servidor.</li>
+          </ol>
+        </li>
+        <li><strong>Contentores leves (<em>Container Station</em>):</strong> Para serviços web, bases de dados (PostgreSQL/MariaDB) ou microserviços Docker, prefira contentores LXD/Docker na <em>Container Station</em>, que consomem muito menos memória RAM do que uma máquina virtual completa.</li>
+      </ul>
+
+      <h3>Significado dos LEDs do painel frontal do QNAP TVS-h874</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Indicador LED (QNAP)</th><th>Estado / Cor</th><th>Significado e Ação</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Status</strong></td><td><strong>Verde fixo</strong></td><td>Sistema QuTS hero e pools ZFS saudáveis. Operação normal.</td></tr>
+            <tr><td><strong>Status</strong></td><td><strong>Verde a piscar (0,5 s)</strong></td><td>O NAS está a arrancar ou os discos estão em modo de espera. Aguardar.</td></tr>
+            <tr><td><strong>Status</strong></td><td><strong>Verde e Vermelho alternados</strong></td><td>Reconstrução RAID/ZFS (<em>resilvering</em>), inicialização ou atualização de firmware — <strong>proibido desligar!</strong></td></tr>
+            <tr><td><strong>Status</strong></td><td><strong>Vermelho fixo ou a piscar</strong></td><td>Anomalia de hardware, ventoinha, temperatura ou pool ZFS cheio/degradado. <strong>Avisar o CTE imediatamente.</strong></td></tr>
+            <tr><td><strong>HDD 1–8 / M.2</strong></td><td><strong>Verde fixo / a piscar</strong></td><td>Disco pronto / acesso de leitura e escrita normal. <strong>Nunca puxar a gaveta!</strong></td></tr>
+            <tr><td><strong>HDD 1–8 / M.2</strong></td><td><strong>Vermelho</strong></td><td>Falha de leitura/escrita ou erro SMART no disco. Não retirar a gaveta; comunicar à equipa técnica.</td></tr>
+            <tr><td><strong>LAN / USB</strong></td><td><strong>Laranja a piscar / Azul</strong></td><td>Tráfego ativo na rede 2,5 GbE / dispositivo USB ligado na porta frontal.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2>7. Proteção de dados ZFS, Snapshots e privacidade (RGPD)</h2>
+      <ul>
+        <li><strong>Onde guardar cada tipo de ficheiro:</strong>
+          <ul>
+            <li>Durante o treino na Tuxedo Atlas XL, copie o dataset de leitura ativa para o <strong>SSD NVMe local</strong> (muito mais rápido por segundo para centenas de milhares de imagens pequenas), mas guarde sempre o <strong>código-fonte, resultados finais e checkpoints validados</strong> na pasta da turma no <strong>NAS QNAP</strong>.</li>
+            <li>Nunca deixe os únicos exemplares do seu trabalho em <code>/tmp</code> ou na pasta de transferências local da estação.</li>
+          </ul>
+        </li>
+        <li><strong>Recuperação de ficheiros com Snapshots ZFS:</strong> O sistema de ficheiros ZFS do QNAP cria fotografias instantâneas (<em>Snapshots</em>) regulares das pastas partilhadas. Se apagar ou corromper um ficheiro acidentalmente, avise logo o professor — é possível restaurar o ficheiro exato de horas ou dias antes sem afetar o resto da pasta.</li>
+        <li><strong>Privacidade e RGPD em projetos de IA:</strong> Não carregue fotografias, gravações de voz ou dados pessoais identificáveis de colegas/terceiros sem consentimento expresso, e nunca escreva palavras-passe ou chaves de API privadas diretamente no código de notebooks partilhados (use variáveis de ambiente locais não partilhadas).</li>
+      </ul>
+    </section>
+
+    <section id="s8">
+      <h2>8. 5 projetos práticos de IA, LLMs e Virtualização</h2>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 1 — Explorar e Testar um LLM Local na Tuxedo Atlas XL (Ollama)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">20 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Compreender a diferença entre IA na nuvem e inferência LLM 100% local acelerada por GPU.</p>
+        <p><strong>Tarefas:</strong> Verificar a VRAM livre com <code>nvidia-smi</code>; listar modelos com <code>ollama list</code>; executar um modelo local e medir a velocidade de geração (tokens/segundo) e a subida de VRAM ocupada num segundo terminal com <code>watch -n 1 nvidia-smi</code>.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 2 — Ambiente Python Isolado e Script de Benchmark CPU vs. GPU (PyTorch)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">25 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Criar um ambiente virtual <code>.venv</code> limpo e medir a aceleração da placa gráfica na multiplicação de matrizes tensoriais.</p>
+        <p><strong>Tarefas:</strong> Criar o ambiente <code>.venv</code>, executar o script de diagnóstico da secção 8.1 abaixo, comparar o tempo de cálculo de uma matriz <code>8192×8192</code> no CPU vs. GPU CUDA e registar os resultados.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 3 — Classificação / Visão Computacional com Dataset Partilhado no NAS</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">40 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Treinar ou afinar (<em>fine-tuning</em>) uma rede neuronal de visão lendo o dataset preparado na partilha 2,5 GbE do QNAP TVS-h874.</p>
+        <p><strong>Tarefas:</strong> Copiar o dataset da partilha SMB/NFS do NAS para a pasta de trabalho local, treinar um modelo leve (ex.: ResNet18 / YOLOv8n) durante 10 épocas em JupyterLab, exportar as métricas e guardar os pesos finais (<code>best.pt</code>) na pasta do grupo no NAS QNAP. Fazer <em>Shut Down Kernel</em> no fim.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 4 — Laboratório de Servidor Linux em Máquina Virtual (QNAP Virtualization Station)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">45 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Operar uma Máquina Virtual Linux no QNAP TVS-h874 a partir de um portátil da sala (BOLTX505 ou MacBook Pro).</p>
+        <p><strong>Tarefas:</strong> Aceder à <em>Virtualization Station</em> pelo navegador, iniciar a VM atribuída ao grupo, configurar um servidor web ou base de dados de teste, criar um <em>Snapshot</em> da VM antes de alterar configurações críticas e encerrar a VM ordenadamente no final da aula.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 5 — Microserviço RAG / API de IA Local com Docker e Armazenamento ZFS</h4>
+          <div class="proj-badges"><span class="lvl adv">Avançado</span><span class="lvl">60 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Integrar a capacidade de inferência GPU da Tuxedo Atlas XL com documentos técnicos guardados no NAS QNAP.</p>
+        <p><strong>Tarefas:</strong> Criar um pequeno script Python que indexa documentos Markdown técnicos numa base vetorial local, responde a perguntas usando a API local do Ollama (<code>localhost:11434</code>) e guarda o histórico de avaliação numa partilha ZFS protegida por snapshots.</p>
+      </div>
+
+      <h3 id="s8-script">8.1 Script Python copiável — Diagnóstico de GPU/VRAM e Benchmark PyTorch</h3>
+      <p>Guarde o código abaixo como <code>teste_gpu_cte.py</code> dentro do seu ambiente virtual (<code>.venv</code>) na Tuxedo Atlas XL e execute <code>python3 teste_gpu_cte.py</code>:</p>
+      <div class="code-wrap">
+        <button class="copy-btn" type="button" data-copy>Copiar script</button>
+        <pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Diagnóstico rápido de GPU/VRAM e benchmark CPU vs CUDA — CTE (Tuxedo Atlas XL INV-006)"""
+
+import platform
+import time
+
+print("=== DIAGNÓSTICO DE AMBIENTE IA — CTE ESTÚDIO 4C ===")
+print(f"Sistema: {platform.system()} {platform.release()} | Python: {platform.python_version()}")
+
+try:
+    import torch
+except ImportError:
+    print("PyTorch não está instalado neste ambiente virtual (.venv).")
+    raise SystemExit(0)
+
+print(f"Versão PyTorch: {torch.__version__} | CUDA disponível: {torch.cuda.is_available()}")
+
+if torch.cuda.is_available():
+    dev_name = torch.cuda.get_device_name(0)
+    free_b, total_b = torch.cuda.mem_get_info(0)
+    print(f"GPU detetada : {dev_name}")
+    print(f"VRAM livre   : {free_b / (1024**3):.2f} GB livres de {total_b / (1024**3):.2f} GB totais")
+
+    # Benchmark rápido de multiplicação de matrizes 4096x4096
+    n = 4096
+    a_cpu = torch.randn(n, n)
+    b_cpu = torch.randn(n, n)
+    t0 = time.perf_counter()
+    _ = a_cpu @ b_cpu
+    t_cpu = time.perf_counter() - t0
+
+    a_gpu = a_cpu.to("cuda")
+    b_gpu = b_cpu.to("cuda")
+    torch.cuda.synchronize()
+    t1 = time.perf_counter()
+    _ = a_gpu @ b_gpu
+    torch.cuda.synchronize()
+    t_gpu = time.perf_counter() - t1
+
+    print(f"Multiplicação {n}x{n} -> CPU: {t_cpu:.3f} s | GPU CUDA: {t_gpu:.4f} s (Aceleração: {t_cpu/max(t_gpu,1e-6):.1f}x)")
+    del a_gpu, b_gpu
+    torch.cuda.empty_cache()
+    print("VRAM temporária do teste libertada com sucesso.")
+else:
+    print("Aviso: CUDA não detetado. Verifique drivers ou ambiente virtual.")</code></pre>
+      </div>
+
+      <h3 id="s8-inter">8.2 Ideias interdisciplinares no CTE</h3>
+      <ul>
+        <li><strong>Informática, Sistemas e Cibersegurança:</strong> Administração de laboratórios isolados de redes e segurança em máquinas virtuais na <em>Virtualization Station</em> do QNAP TVS-h874 com restauro instantâneo por snapshot.</li>
+        <li><strong>Audiovisual e Multimédia:</strong> Transcodificação acelerada por GPU, transcrição automática de entrevistas (Whisper local) gravadas com a <a href="../DJI_Pocket_2_Creator/index.html">DJI Pocket 2 Creator Combo</a> e arquivo centralizado de vídeo 4K do <a href="../DJI_Avata_Drone/index.html">DJI Avata 2</a> nas partilhas 2,5 GbE do NAS.</li>
+        <li><strong>Robótica e Visão Computacional:</strong> Treino de modelos de deteção de objetos na Tuxedo Atlas XL para posterior utilização em projetos com o <a href="../Robot_NAO_V6/index.html">Robô NAO V6</a>, <a href="../DJI_RoboMaster_TT/index.html">DJI RoboMaster TT</a> ou robôs ROS 2.</li>
+        <li><strong>Matemática, Física e Ciências (STEM):</strong> Análise estatística e visualização em JupyterLab de grandes séries de dados recolhidos pelos sensores laboratoriais.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Fim de sessão e registo de utilização</h2>
+
+      <h3 id="s9-1">9.1 Checklist interativa de fim de sessão (4 h de validade)</h3>
+      <p class="hint">Confirme os 6 pontos abaixo antes de sair do Estúdio 4C. As marcações limpam-se automaticamente ao fim de 4 horas.</p>
+      <button class="reset" type="button" id="resetChecklist">Limpar marcações</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir folha de registo</button>
+      <ul class="check">
+        <li><label><input type="checkbox" id="u-tx-1"><span><strong>1. VRAM / GPU libertada:</strong> Todos os kernels Jupyter e processos de teste parados e confirmados com <code>nvidia-smi</code>.</span></label></li>
+        <li><label><input type="checkbox" id="u-tx-2"><span><strong>2. Dados guardados no NAS:</strong> Código, resultados e modelos validados copiados para a pasta da turma no QNAP e <code>/tmp</code> limpo.</span></label></li>
+        <li><label><input type="checkbox" id="u-tx-3"><span><strong>3. VMs temporárias encerradas:</strong> Máquinas virtuais de aula desligadas ordenadamente na <em>Virtualization Station</em>.</span></label></li>
+        <li><label><input type="checkbox" id="u-tx-4"><span><strong>4. Logout seguro (NAS 24/7):</strong> Sessões locais/SSH/Web fechadas, mantendo o NAS QNAP TVS-h874 e a UPS APC ligados!</span></label></li>
+        <li><label><input type="checkbox" id="u-tx-5"><span><strong>5. Ventilação e bancada limpas:</strong> Topo e frente da torre Tuxedo Atlas XL e grelhas do NAS totalmente desobstruídos.</span></label></li>
+        <li><label><input type="checkbox" id="u-tx-6"><span><strong>6. Registo e aviso ao CTE:</strong> Comunicar qualquer alerta vermelho no NAS, apito na UPS APC ou erro de disco/GPU.</span></label></li>
+      </ul>
+
+      <h3 id="s9-2">9.2 Folha imprimível de registo de utilização (<code>INV-006</code> &amp; <code>INV-223</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data / Hora</th><th>Turma / Grupo + Docente</th><th>Sistema (Tuxedo / VM QNAP)</th><th>Tarefa (Treino IA / LLM / VM)</th><th>VRAM &amp; VMs Libertadas?</th><th>Observações / Anomalias</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador Estação AI Tuxedo Atlas XL (<code>INV-006</code>) &amp; NAS QNAP TVS-h874 (<code>INV-223</code>) · Em caso de dúvida técnica, consulte o <a href="Tuxedo_NAS_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "tuxnas-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar script"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

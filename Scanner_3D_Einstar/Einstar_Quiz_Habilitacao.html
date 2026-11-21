@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Operador 3D — Scanner 3D Einstar (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas sobre hardware, calibração, LEDs de distância, superfícies e exportação do Scanner 3D Einstar (INV-228), com cartão imprimível.">
+<meta property="og:title" content="Carta de Operador 3D — Scanner 3D Einstar (CTE)">
+<meta property="og:description" content="Valide em 2 minutos os requisitos GPU/12 V, proteção da placa de calibração, distância verde e exportação 3D do Scanner Einstar (INV-228).">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='14' y='12' width='36' height='14' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2.4'/%3E%3Ccircle cx='22' cy='19' r='3' fill='%234CE0F5'/%3E%3Ccircle cx='32' cy='19' r='3.5' fill='%23E8711C'/%3E%3Ccircle cx='42' cy='19' r='3' fill='%234CE0F5'/%3E%3Crect x='25' y='26' width='14' height='26' rx='6' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='38' r='3.2' fill='%2327AE60'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; padding: 1px 6px; border-radius: 4px; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Scanner 3D Einstar</a> &rsaquo; Carta de Operador 3D</nav>
+      <h1>Carta de Operador 3D — Scanner Einstar</h1>
+      <p>Valide em 2 minutos os requisitos de PC, calibração, ótica e boas práticas antes de usar uma unidade (<code>INV-228</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página Einstar</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Hardware</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Beatriz Almeida" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º Informática">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="Einstar_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-228</div>
+      <h2>Cartão de Habilitação — Scanner 3D Einstar</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança, hardware e operação do Scanner 3D Einstar (EXStar).</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Operador 3D — Scanner 3D Einstar (<code>INV-228</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Hardware e energia",
+      critica: true,
+      q: "O que precisa obrigatoriamente de ligar para o Scanner 3D Einstar funcionar com o EXStar?",
+      opts: [
+        "Basta ligar o cabo USB a qualquer portátil escolar simples.",
+        "PC com GPU dedicada (NVIDIA/Mac Pro) e fonte de 12 V ligada.",
+        "Um carregador de telemóvel USB-C de 5 V ligado à tomada.",
+        "Ligação Wi-Fi à rede da escola para processar na nuvem."
+      ],
+      ans: 1,
+      exp: "O Einstar não funciona só por USB nem em portáteis sem gráfica dedicada: exige PC com GPU NVIDIA CUDA (ou Mac M1 Pro+) e a fonte 12 V / 5 A ligada à tomada."
+    },
+    {
+      cat: "Placa de calibração",
+      critica: true,
+      q: "O CTE tem 2 kits Einstar (INV-228). Qual é a regra obrigatória sobre a placa de calibração?",
+      opts: [
+        "Qualquer placa serve nos dois scanners, porque têm a mesma grelha.",
+        "Usar sempre a placa emparelhada ao n.º de série do scanner.",
+        "Limpar os pontos da placa com álcool etílico antes de cada aula.",
+        "Calibrar sempre ao ar livre sob luz solar direta e intensa."
+      ],
+      ans: 1,
+      exp: "Cada placa é calibrada em fábrica para um número de série único — nunca troque placas entre os 2 kits! Nunca use álcool e calibre longe de sol direto."
+    },
+    {
+      cat: "Cabos e ótica",
+      critica: true,
+      q: "Que cuidado protege o cabo principal e as lentes do Einstar durante e após o scan?",
+      opts: [
+        "Dobrar o cabo bem apertado na base para não atrapalhar a mão.",
+        "Limpar as lentes com lenço de papel seco a cada 5 minutos.",
+        "Manter folga no cabo e nunca tocar com os dedos nas lentes.",
+        "Desligar puxando pelo cabo enquanto o EXStar ainda grava."
+      ],
+      ans: 2,
+      exp: "Segure sempre pela ficha rígida (nunca puxe nem dobre o cabo na base do punho) e não toque com os dedos nas lentes frontais nem no projetor IR."
+    },
+    {
+      cat: "Superfícies difíceis",
+      critica: true,
+      q: "Quer digitalizar um objeto preto brilhante ou transparente. Qual é o procedimento seguro no CTE?",
+      opts: [
+        "Apontar uma lanterna LED potente diretamente contra o vidro.",
+        "Aplicar marcadores aleatórios ou usar spray só com autorização.",
+        "Pulverizar tinta acrílica permanente ou spray perto dos PCs.",
+        "Encostar a cabeça do scanner a 2 cm da peça até ficar nítida."
+      ],
+      ans: 1,
+      exp: "Peças pretas absorvem o IR e vidro/metal polido refletem-no. Use marcadores autocolantes aleatórios ou peça ao docente o spray fosco removível em local ventilado."
+    },
+    {
+      cat: "Segurança em Retrato",
+      critica: true,
+      q: "Vai digitalizar o busto de um colega em modo Retrato (Portrait). Que regra deve respeitar?",
+      opts: [
+        "O IR Classe 1 é seguro nos olhos, mas evite olhar de perto ao projetor.",
+        "O colega tem de usar óculos de soldador escuros por causa do laser.",
+        "Não se podem digitalizar pessoas porque o scanner usa raios X.",
+        "Pode publicar a malha e textura do colega sem lhe pedir autorização."
+      ],
+      ans: 0,
+      exp: "A luz estruturada IR do Einstar é Laser Classe 1 (Eye-safe), segura para digitalizar rostos. Ainda assim, não olhe fixamente de perto e respeite o consentimento/RGPD."
+    },
+    {
+      cat: "LED de distância",
+      critica: false,
+      q: "Durante o scan, o LED indicador de distância mudou de Verde para Azul. O que deve fazer?",
+      opts: [
+        "Afastar o scanner porque está demasiado perto da peça.",
+        "Aproximar suavemente o scanner até voltar a ficar Verde (~40 cm).",
+        "Desligar imediatamente da tomada porque a placa aqueceu.",
+        "Reiniciar o computador e reinstalar as drivers da gráfica."
+      ],
+      ans: 1,
+      exp: "No Einstar: Verde = distância ideal (~400 mm); Azul = demasiado longe (aproximar); Vermelho/Amarelo = demasiado perto (afastar)."
+    },
+    {
+      cat: "LED de estado",
+      critica: false,
+      q: "Ligou o scanner e o LED de estado acendeu a Vermelho em vez de Azul fixo. Qual é a causa provável?",
+      opts: [
+        "O objeto escolhido é demasiado pequeno para o campo de visão.",
+        "Falta alimentação de 12 V ou falha de ligação na porta USB.",
+        "O ficheiro final foi exportado em formato PLY em vez de STL.",
+        "O modo Cabelo (Hair Mode) ficou ativado no projeto anterior."
+      ],
+      ans: 1,
+      exp: "LED de estado Azul fixo indica pronto. Vermelho significa que a fonte 12 V/5 A não está ligada à corrente ou o cabo USB não comunicou bem (preferir porta USB 3.0 direta)."
+    },
+    {
+      cat: "Controlos no punho",
+      critica: false,
+      q: "Como alterna as teclas + / − do punho entre controlar o Zoom e controlar o Brilho da câmara?",
+      opts: [
+        "Mantendo premidas as três teclas juntas durante 10 segundos.",
+        "Dando um duplo clique no botão central (Play / Scan).",
+        "Rodando o conector do cabo na base do scanner para a direita.",
+        "Desligando e voltando a ligar o cabo de alimentação 12 V."
+      ],
+      ans: 1,
+      exp: "Um clique no botão central inicia/pausa o scan; um duplo clique alterna os botões superior (+) e inferior (−) entre Zoom e Brilho/Exposição."
+    },
+    {
+      cat: "Periodicidade",
+      critica: false,
+      q: "Quando é recomendado calibrar o Einstar com a placa no software EXStar?",
+      opts: [
+        "Apenas uma vez na vida útil, logo após a compra em fábrica.",
+        "No 1.º uso, após transporte/choque, em falhas ou > 14 dias.",
+        "No meio de cada peça, antes de exportar a malha para STL.",
+        "Sempre que mudar a cor de visualização no ecrã do EXStar."
+      ],
+      ans: 1,
+      exp: "Calibre na primeira utilização, após transporte/choque, se notar erros de alinhamento/precisão ou quando o EXStar avisar que passaram mais de 14 dias."
+    },
+    {
+      cat: "Marcadores",
+      critica: false,
+      q: "Como deve colar os marcadores autocolantes numa peça lisa para não perder o rastreio?",
+      opts: [
+        "Em filas perfeitamente alinhadas e com espaçamento igual.",
+        "De forma aleatória (irregular), mantendo ≥ 4 sempre visíveis.",
+        "Apenas um marcador solitário exatamente no centro da peça.",
+        "Por baixo da mesa, escondidos da linha de visão da câmara."
+      ],
+      ans: 1,
+      exp: "Os marcadores têm de formar triângulos únicos — cole-os de forma aleatória (nunca em linha reta ou grelha regular) para o EXStar reconhecer a orientação 3D."
+    },
+    {
+      cat: "Recuperar rastreio",
+      critica: false,
+      q: "Moveu a mão rápido demais e surgiu «Tracking Lost» no EXStar. Como recupera a digitalização?",
+      opts: [
+        "Apontar com calma para uma zona já digitalizada com detalhe.",
+        "Apagar todo o trabalho e desligar o computador para arrefecer.",
+        "Agitar o scanner rapidamente da esquerda para a direita.",
+        "Trocar a placa de calibração pela do outro kit da sala."
+      ],
+      ans: 0,
+      exp: "Sem entrar em pânico, volte lentamente a apontar o scanner para uma parte do objeto já capturada e rica em geometria — o EXStar retoma o alinhamento."
+    },
+    {
+      cat: "Modos de captura",
+      critica: false,
+      q: "Qual é a principal vantagem de escolher o modo Retrato (Portrait) ao digitalizar uma pessoa?",
+      opts: [
+        "Aumenta a tensão elétrica do cabo para 24 V automaticamente.",
+        "Otimiza o alinhamento para pequenos movimentos e inclui Modo Cabelo.",
+        "Transforma automaticamente o rosto num modelo mecânico plano.",
+        "Dispensa a ligação ao computador com placa gráfica dedicada."
+      ],
+      ans: 1,
+      exp: "O modo Retrato compensa micro-movimentos humanos e disponibiliza o Hair Mode para captar cabelo com muito melhor qualidade."
+    },
+    {
+      cat: "Desempenho do PC",
+      critica: false,
+      q: "Está a digitalizar um objeto grande e o computador ficou muito lento ou sem memória. O que ajustar?",
+      opts: [
+        "Reduzir o Point Distance para 0,1 mm para captar mais pontos.",
+        "Aumentar o Point Distance (ex.: 0,5 a 1,5 mm) no novo projeto.",
+        "Desligar a fonte 12 V da tomada para poupar energia do PC.",
+        "Abrir vários jogos 3D ao mesmo tempo em segundo plano."
+      ],
+      ans: 1,
+      exp: "Valores de Point Distance maiores (0,5–1,5 mm) geram nuvens de pontos muito mais leves em objetos médios/grandes, poupando RAM e VRAM."
+    },
+    {
+      cat: "Edição de fundo",
+      critica: false,
+      q: "A mesa de trabalho apareceu capturada por baixo da peça antes de gerar a malha. O que faz?",
+      opts: [
+        "Exporta logo assim e pede à impressora 3D para ignorar a mesa.",
+        "Seleciona e apaga a mesa com o laço antes de gerar a malha.",
+        "Raspa a mesa da sala com uma lixa antes de repetir o scan.",
+        "Muda o formato de exportação para ASC para esconder a mesa."
+      ],
+      ans: 1,
+      exp: "No EXStar, selecione a nuvem indesejada da mesa com a ferramenta de seleção/laço e apague-a antes de clicar em Generate Mesh."
+    },
+    {
+      cat: "Exportação",
+      critica: false,
+      q: "Quer imprimir o objeto digitalizado numa impressora 3D (Snapmaker / Elegoo) ou mantê-lo a cores em 3D. Que formatos escolhe?",
+      opts: [
+        "STL (ou 3MF) em malha estanque para imprimir; OBJ/PLY para cor.",
+        "Apenas STL para cor realista e MP3 para impressão 3D.",
+        "ASC para imprimir diretamente sem passar por nenhum fatiador.",
+        "P3 para visualizar o modelo colorido em programas de apresentação."
+      ],
+      ans: 0,
+      exp: "STL (Watertight / estanque) ou 3MF é o padrão para impressão 3D; OBJ (.obj + .mtl + .jpg) ou PLY preservam cor e textura."
+    },
+    {
+      cat: "Devolução",
+      critica: false,
+      q: "Ao devolver um kit Einstar (INV-228) no Estúdio SC - LMAS, o que deve confirmar obrigatoriamente?",
+      opts: [
+        "Deixar o scanner ligado na tomada para estar quente na aula seguinte.",
+        "Conferir scanner, cabo/fonte 12 V, placa do mesmo S/N e avisar CTE.",
+        "Guardar apenas o scanner na mala e deixar a placa em cima da mesa.",
+        "Apagar os projetos de todas as outras turmas sem avisar ninguém."
+      ],
+      ans: 1,
+      exp: "Confirme sempre todos os itens do kit — especialmente que a placa de calibração corresponde ao n.º de série do scanner — e avise o CTE se faltarem marcadores ou houver anomalia."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [], idx = 0, score = 0, answered = false, failedCriticals = [], certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|EIN-INV228").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra crítica «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de requisitar o scanner.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

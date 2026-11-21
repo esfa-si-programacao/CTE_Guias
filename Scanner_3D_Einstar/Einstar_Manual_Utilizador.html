@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scanner 3D Einstar — Manual de Utilizador e Software EXStar (CTE · INV-228)</title>
+<meta name="description" content="Manual completo do Scanner 3D Shining 3D Einstar do CTE: requisitos GPU/EXStar, calibração com placa por n.º de série, LEDs de distância, modos Objeto/Retrato, marcadores, exportação STL/OBJ/PLY e 5 projetos pedagógicos.">
+<meta property="og:title" content="Scanner 3D Einstar — Manual de Utilizador e Digitalização 3D (CTE)">
+<meta property="og:description" content="Manual completo do Scanner 3D Einstar (INV-228): calibração, distância verde ~400 mm, superfícies difíceis, exportação STL/OBJ/PLY e 5 projetos.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='14' y='12' width='36' height='14' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2.4'/%3E%3Ccircle cx='22' cy='19' r='3' fill='%234CE0F5'/%3E%3Ccircle cx='32' cy='19' r='3.5' fill='%23E8711C'/%3E%3Ccircle cx='42' cy='19' r='3' fill='%234CE0F5'/%3E%3Crect x='25' y='26' width='14' height='26' rx='6' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='38' r='3.2' fill='%2327AE60'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.3rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 108px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.dist-diagram { border: 1px solid var(--line); border-radius: 10px; background: #FAFBFD; padding: 14px 16px; margin: 14px 0 18px; }
+.dist-diagram h4 { margin: 0 0 8px; color: var(--dark); }
+.dist-bar { display: grid; grid-template-columns: 1fr 1.2fr 1.1fr; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); font-size: 0.86rem; text-align: center; }
+.dist-zone { padding: 10px 8px; }
+.dist-zone strong { display: block; font-size: 0.92rem; }
+.dz-red { background: var(--red-soft); color: var(--red-text); }
+.dz-green { background: var(--green-soft); color: var(--green-text); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.dz-blue { background: var(--blue-soft); color: var(--blue-text); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 88px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .hero-art { display: none; }
+  .dist-bar { grid-template-columns: 1fr; }
+  .dz-green { border-left: 0; border-right: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+}
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card, .dist-diagram { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Scanner 3D Einstar</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="Einstar_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Einstar_Quiz_Habilitacao.html">Carta de Operador 3D</a>
+      <a href="Einstar_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>Scanner 3D Einstar</h1>
+      <p class="sub">Manual de Utilizador, Digitalização 3D e Software EXStar</p>
+      <p class="kit">Shining 3D Einstar · 2 unidades (<code>INV-228</code>) · Estúdio SC - LMAS · Software <strong>EXStar</strong></p>
+      <p class="ver">Versão 1.0 · novembro de 2026 · Destinatários: Professores e Alunos do CTE</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 120 130" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="24" y="10" width="72" height="32" rx="14" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+      <circle cx="42" cy="26" r="6" fill="#1F2A36" stroke="#4CE0F5" stroke-width="2.4"/>
+      <circle cx="60" cy="26" r="7.5" fill="#1F2A36" stroke="#E8711C" stroke-width="2.4"/>
+      <circle cx="78" cy="26" r="6" fill="#1F2A36" stroke="#4CE0F5" stroke-width="2.4"/>
+      <rect x="46" y="42" width="28" height="62" rx="11" fill="rgba(255,255,255,0.08)" stroke="#fff"/>
+      <circle cx="60" cy="64" r="6" fill="#27AE60" stroke="#fff" stroke-width="2"/>
+      <path d="M60 104 L60 120" stroke="#C7D6E5"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice do manual">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer o Einstar e o PC</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Anatomia e botões físicos</a></li>
+          <li><a href="#s2-2">2.2 Conteúdo do estojo (INV-228)</a></li>
+          <li><a href="#s2-3">2.3 Requisitos de computador (GPU)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras de ouro e segurança</a></li>
+      <li><a href="#s4">4. Ligar, calibrar e LEDs</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Ligar cabos e energia 12 V</a></li>
+          <li><a href="#s4-2">4.2 Calibração passo a passo</a></li>
+          <li><a href="#s4-3">4.3 LEDs de distância e estado</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Modos e preparação</a>
+        <ul>
+          <li><a href="#s5-1">5.1 Objeto vs. Retrato</a></li>
+          <li><a href="#s5-2">5.2 Alinhamento e marcadores</a></li>
+          <li><a href="#s5-3">5.3 Superfícies pretas / vidro</a></li>
+        </ul>
+      </li>
+      <li><a href="#s6">6. Passo a passo do scan 3D</a></li>
+      <li><a href="#s7">7. Malha e exportação 3D</a>
+        <ul>
+          <li><a href="#s7-1">7.1 Limpar fundo e gerar malha</a></li>
+          <li><a href="#s7-2">7.2 STL, OBJ, PLY, 3MF e ASC</a></li>
+        </ul>
+      </li>
+      <li><a href="#s8">8. 5 projetos pedagógicos</a>
+        <ul>
+          <li><a href="#s8-plano">8.1 Ficha de planeamento 3D</a></li>
+          <li><a href="#s8-inter">8.2 Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Desligar, devolver e registo</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist de devolução</a></li>
+          <li><a href="#s9-2">9.2 Folha de registo (Unid. 1–2)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>O <strong>CTE Informático</strong> dispõe de <strong>2 unidades do Scanner 3D Portátil Shining 3D Einstar</strong> (<code>INV-228</code>), atribuídas ao <strong>Estúdio SC - LMAS</strong>. Com peso de apenas 500 g e projeção infravermelha segura para os olhos, permite transformar objetos reais, peças mecânicas, artefactos culturais e bustos humanos em modelos tridimensionais prontos para impressão 3D, animação ou realidade virtual.</p>
+      <p>Antes de ligar um kit pela primeira vez, conclua a <a href="Einstar_Quiz_Habilitacao.html">Carta de Operador 3D</a> e garanta que vai trabalhar num <strong>computador compatível com GPU dedicada</strong>.</p>
+      <div class="note info">
+        <strong>Para docentes responsáveis e equipa técnica:</strong> Consulte o <a href="Einstar_Manual_Tecnico.html">Manual Técnico e Manutenção</a> (emparelhamento das placas de calibração por n.º de série, configuração de GPU NVIDIA, gestão de consumíveis e matriz de 10 casos).
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer o Einstar e os requisitos do computador</h2>
+
+      <h3 id="s2-1">2.1 Anatomia e botões físicos do scanner</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Zona / Elemento</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bloco ótico frontal</strong></td><td>Integra 2 câmaras de profundidade IR estéreo, 1 projetor central infravermelho (VCSEL) e 1 câmara RGB para captar textura/cor. <em>Nunca tocar com os dedos nas lentes!</em></td></tr>
+            <tr><td><strong>Botão Central (traseira do punho)</strong></td><td><strong>1 clique:</strong> alterna entre pré-visualização, iniciar digitalização e pausa. <strong>Duplo clique:</strong> alterna as teclas <code>+</code> / <code>−</code> entre <em>Zoom</em> e <em>Brilho</em>.</td></tr>
+            <tr><td><strong>Botões Superior (<code>+</code>) e Inferior (<code>−</code>)</strong></td><td>Ajustam o zoom da vista 3D ou o brilho/exposição da câmara em tempo real sem largar o scanner.</td></tr>
+            <tr><td><strong>Indicadores LED</strong></td><td><strong>LED de Distância:</strong> mostra se está à distância certa (Verde = ideal ~400 mm; Azul = longe; Vermelho = perto). <strong>LED de Estado:</strong> Azul fixo = ligado e pronto; Vermelho = erro USB/12 V.</td></tr>
+            <tr><td><strong>Base do punho</strong></td><td>Ligação do cabo principal com conector bloqueado + rosca padrão <strong>1/4"-20 UNC</strong> para montagem em tripé.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-2">2.2 Conteúdo de cada kit (<code>INV-228</code>)</h3>
+      <ul>
+        <li><strong>Scanner 3D Einstar</strong> (500 g · 220 × 46 × 55 mm)</li>
+        <li><strong>Cabo principal Y</strong> (ficha única para a base do scanner que se divide em ficha USB de dados + ficha de alimentação DC)</li>
+        <li><strong>Fonte de alimentação 12 V / 5 A</strong> + cabo de corrente elétrica</li>
+        <li><strong>Placa de calibração dedicada</strong> (em bolsa protetora — <strong>única por número de série!</strong>)</li>
+        <li><strong>Folhas de marcadores autocolantes</strong> (pontos de referência)</li>
+        <li><strong>Estojo rígido de transporte</strong> com correia</li>
+      </ul>
+
+      <h3 id="s2-3">2.3 Requisitos de computador (software EXStar)</h3>
+      <p>O software <strong>EXStar</strong> processa centenas de milhares de pontos 3D por segundo usando aceleração gráfica. <strong>Portáteis escolares básicos sem gráfica dedicada não suportam o EXStar.</strong></p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Plataforma</th><th>Mínimo Oficial (EXStar v1.2+)</th><th>Recomendado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Windows (64-bit)</strong></td><td>Win 10/11 · GPU <strong>NVIDIA GTX 1050 (4 GB VRAM)</strong> · Intel i5-1240P+ · <strong>16 GB RAM</strong> · USB 2.0+</td><td>Win 10/11 · GPU <strong>NVIDIA GTX 1060 / RTX (6 GB+ VRAM)</strong> CUDA 10.2+ · Intel i7-11800H+ · <strong>32 GB+ RAM</strong> · USB 3.0</td></tr>
+            <tr><td><strong>macOS</strong></td><td>macOS 13 (Ventura)+ · Apple Silicon <strong>M1 Pro+</strong> (GPU 8-core+) · 16 GB RAM</td><td>macOS 13+ · Apple Silicon M1 Pro / M2 / M3 Pro+ · <strong>32 GB+ RAM</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- CONFIRMAR: indicar aos alunos qual o computador específico do Estúdio SC - LMAS (ex.: MacBook Pro 16" M3 Pro 36 GB INV-068 ou PC Windows com NVIDIA RTX) onde o EXStar está instalado e pronto -->
+      <div class="note warn">
+        <strong>Antes de requisitar:</strong> Confirme com o docente ou equipa CTE qual a estação de trabalho do <strong>Estúdio SC - LMAS</strong> que tem o <strong>EXStar</strong> instalado e placa gráfica compatível (por exemplo, o MacBook Pro M3 Pro 36 GB <code>INV-068</code> ou PC com GPU NVIDIA dedicada). Ligue sempre o portátil à corrente!
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras de ouro, segurança e cuidados críticos</h2>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Regra</th><th>Porquê e o que fazer</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Energia 12 V obrigatória</strong></td><td>O Einstar <strong>não funciona só ligado por USB</strong>. Ligue sempre a fonte de alimentação 12 V / 5 A à tomada elétrica para o LED de estado ficar azul.</td></tr>
+            <tr><td><strong>2. Placa de calibração única por S/N</strong></td><td>O CTE tem 2 scanners <code>INV-228</code>. <strong>NUNCA troque placas de calibração entre malas</strong> — cada placa pertence apenas ao número de série do seu scanner.</td></tr>
+            <tr><td><strong>3. Zero álcool na placa · Zero dedos nas lentes</strong></td><td>Limpe as lentes apenas com microfibra seca. Nunca use álcool ou solventes na placa de calibração; guarde-a sempre na bolsa sem riscos.</td></tr>
+            <tr><td><strong>4. Proteger o cabo principal</strong></td><td>Encaixe a ficha na base do scanner alinhada, nunca dobre o cabo em ângulo fechado e segure pelo corpo da ficha ao desligar.</td></tr>
+            <tr><td><strong>5. Laser Classe 1 (pessoas &amp; RGPD)</strong></td><td>A luz IR é segura para os olhos (Classe 1), mas peça ao colega retratado para não olhar fixamente de perto para o projetor e obtenha consentimento antes de guardar/partilhar o modelo.</td></tr>
+            <tr><td><strong>6. Superfícies pretas, vidro e sol forte</strong></td><td>Não digitalize sob luz solar direta intensa. Peças pretas, espelhadas ou transparentes precisam de marcadores aleatórios ou spray fosco (apenas com docente em zona ventilada).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2>4. Ligar hardware, calibração e tabela de LEDs</h2>
+
+      <h3 id="s4-1">4.1 Sequência correta de ligação</h3>
+      <ol>
+        <li>Coloque o computador compatível ligado à tomada elétrica (em modo de alto desempenho).</li>
+        <li>Ligue o conector único do cabo principal na base do punho do Einstar até sentir o encaixe firme.</li>
+        <li>Ligue a ficha de alimentação ao transformador <strong>12 V / 5 A</strong> (ligado à tomada) e a ficha <strong>USB</strong> diretamente a uma porta USB 3.0 do computador.</li>
+        <li>Confirme que o <strong>LED de estado acende a Azul fixo</strong> e só depois abra o software <strong>EXStar</strong>.</li>
+      </ol>
+
+      <h3 id="s4-2">4.2 Quando e como calibrar no EXStar</h3>
+      <p>Calibre na primeira utilização num PC, após transporte/choque, se notar erros de precisão/alinhamento ou quando o EXStar alertar (<strong>mais de 14 dias</strong> desde a última calibração).</p>
+      <ol>
+        <li>Confirme que a placa de calibração tem o <strong>mesmo número/etiqueta</strong> que o seu scanner <code>INV-228</code>.</li>
+        <li>Pouse a placa horizontalmente com a face branca de pontos virada para cima numa mesa estável, <strong>longe de sol direto ou candeeiros muito fortes</strong>.</li>
+        <li>No EXStar, inicie <strong>Calibrate</strong>, alinhe o scanner na posição pedida no ecrã e prima o botão central do punho.</li>
+        <li>Mova lentamente o scanner para cima e para baixo / nas 5 direções pedidas pelo assistente até a barra de altura passar pelo verde e concluir todas as etapas.</li>
+      </ol>
+
+      <h3 id="s4-3">4.3 LEDs indicadores de distância e estado</h3>
+      <div class="dist-diagram">
+        <h4>Janela de trabalho do Einstar (160 mm a 1400 mm)</h4>
+        <div class="dist-bar">
+          <div class="dist-zone dz-red"><strong>VERMELHO / AMARELO</strong>Demasiado perto (&lt; 30 cm)<br><em>Afastar suavemente</em></div>
+          <div class="dist-zone dz-green"><strong>VERDE — ZONA IDEAL</strong>Cerca de 400 mm (40 cm)<br><em>Manter aqui durante todo o scan!</em></div>
+          <div class="dist-zone dz-blue"><strong>AZUL</strong>Demasiado longe (&gt; 55 cm)<br><em>Aproximar suavemente</em></div>
+        </div>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Indicador LED</th><th>Cor / Padrão</th><th>Significado e Ação</th></tr></thead>
+          <tbody>
+            <tr><td><strong>LED de Distância</strong></td><td><strong>Verde</strong></td><td>Distância ótima (~400 mm) — captura de máxima qualidade.</td></tr>
+            <tr><td><strong>LED de Distância</strong></td><td><strong>Azul</strong></td><td>Scanner demasiado longe do objeto — aproxime até o indicador passar a verde.</td></tr>
+            <tr><td><strong>LED de Distância</strong></td><td><strong>Vermelho / Amarelo</strong></td><td>Scanner demasiado perto (&lt; 160–300 mm) — afaste ligeiramente.</td></tr>
+            <tr><td><strong>LED de Estado</strong></td><td><strong>Azul fixo</strong></td><td>Alimentação 12 V e USB corretas — pronto a digitalizar no EXStar.</td></tr>
+            <tr><td><strong>LED de Estado</strong></td><td><strong>Vermelho (fixo / a piscar)</strong></td><td>Falta ligação 12 V na tomada, conector frouxo na base ou erro na porta USB.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Modos de digitalização e preparação de objetos</h2>
+
+      <h3 id="s5-1">5.1 Modo Objeto (<em>Object</em>) vs. Modo Retrato (<em>Portrait</em>)</h3>
+      <ul>
+        <li><strong>Modo Objeto (<em>Object</em>):</strong> Para estatuetas, peças mecânicas, artefactos, calçado, embalagens ou peças escolares. Permite selecionar o tamanho do objeto (pequeno ou médio/grande) e otimiza a densidade de pontos.</li>
+        <li><strong>Modo Retrato (<em>Portrait</em>):</strong> Desenhado para rostos, cabeças e bustos humanos. Compensa pequenos movimentos da pessoa e inclui a opção <strong><em>Hair Mode</em> (Modo Cabelo)</strong> para captar melhor fios finos de cabelo.</li>
+      </ul>
+
+      <h3 id="s5-2">5.2 Modos de alinhamento (<em>Feature · Hybrid · Texture · Markers</em>)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Modo de Alinhamento</th><th>Quando escolher</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Características (<em>Feature</em>)</strong></td><td>Padrão recomendado para objetos com relevo variado e formas assimétricas (estátuas, rochas, peças orgânicas, sapatilhas).</td></tr>
+            <tr><td><strong>Híbrido (<em>Hybrid</em>)</strong></td><td>Combina geometria e textura/cor — ideal para objetos com pouca profundidade geométrica mas padrões coloridos, e muito útil em retratos.</td></tr>
+            <tr><td><strong>Textura (<em>Texture</em>)</strong></td><td>Para objetos geometricamente simples (ex.: cilindros ou caixas) com rótulos, desenhos ou cores muito distintas.</td></tr>
+            <tr><td><strong>Marcadores Globais (<em>Global Markers</em>)</strong></td><td>Indispensável para superfícies lisas, grandes, simétricas ou difíceis. Usa pontos autocolantes colados <strong>aleatoriamente</strong> (nunca em linha reta!) na peça ou na base à sua volta (suporta ficheiros <code>.p3</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s5-3">5.3 Preparar superfícies pretas, brilhantes ou transparentes</h3>
+      <p>O Einstar projeta luz infravermelha invisível. Superfícies <strong>pretas mate</strong> absorvem a luz, <strong>metais polidos/espelhos</strong> desviam-na e <strong>vidros/acrílicos</strong> deixam-na passar.</p>
+      <ul>
+        <li><strong>Primeiro passo (sem químicos):</strong> Suba ligeiramente o brilho com o botão <code>+</code> no punho na pré-visualização, ajuste o ângulo de incidência e coloque marcadores à volta ou sobre a base.</li>
+        <li><strong>Se continuar invisível:</strong> Com autorização e supervisão do docente num espaço ventilado, pode aplicar uma camada fina de spray fosco removível para scan 3D (ou fita de pintor/talco apenas em peças robustas autorizadas que não pertençam a terceiros).</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2>6. Passo a passo da digitalização 3D no EXStar</h2>
+      <ol>
+        <li><strong>Criar projeto no EXStar:</strong> Escolha uma pasta de trabalho com espaço livre, selecione <strong>Objeto</strong> ou <strong>Retrato</strong>, escolha o modo de alinhamento e defina a distância entre pontos (<em>Point Distance</em>): <strong>0,2–0,4 mm</strong> para peças pequenas de detalhe; <strong>0,5–1,5 mm</strong> para peças grandes ou bustos (poupa RAM e tempo).</li>
+        <li><strong>Pré-visualização e ajuste de brilho:</strong> Prima o botão central do scanner <strong>1 vez</strong>. Aponte à peça a ~40 cm (LED verde) e ajuste o brilho com <code>+</code>/<code>−</code> (duplo clique no centro alterna Zoom/Brilho) até a peça aparecer sólida e sem manchas vermelhas de sobre-exposição.</li>
+        <li><strong>Capturar em voltas contínuas:</strong> Prima o botão central para iniciar a gravação 3D. Mova o scanner lentamente num arco contínuo à volta do objeto, mantendo <strong>sempre parte da zona já pintada a verde dentro do ecrã</strong> e o LED na cor <strong>Verde (~400 mm)</strong>.</li>
+        <li><strong>Se surgir «Tracking Lost» (Perda de alinhamento):</strong> Pare de avançar, aponte calmamente para uma zona do objeto que já tinha sido bem capturada e rica em detalhe até o EXStar recuperar o alinhamento e voltar a acrescentar pontos.</li>
+        <li><strong>Pausar ou virar a peça:</strong> Prima o botão central para pausar sempre que precisar de contornar a mesa ou ajustar a posição.</li>
+      </ol>
+    </section>
+
+    <section id="s7">
+      <h2>7. Edição, geração de malha (<em>Mesh</em>) e exportação</h2>
+
+      <h3 id="s7-1">7.1 Limpar o fundo e gerar a malha</h3>
+      <ul>
+        <li>Antes de gerar a malha final, use a ferramenta de seleção / laço (no EXStar) para selecionar e <strong>apagar a superfície da mesa</strong> ou ruído solto à volta do objeto.</li>
+        <li>Clique em <strong>Generate Mesh</strong> e escolha entre:
+          <ul>
+            <li><strong>Watertight (Estanque / Fechada):</strong> Fecha automaticamente a base e pequenos buracos — <strong>obrigatório se quiser imprimir em 3D!</strong></li>
+            <li><strong>Unwatertight (Aberta):</strong> Mantém os contornos exatos apenas do que foi capturado, sem inventar tampas nas áreas não visíveis.</li>
+          </ul>
+        </li>
+        <li>Pode aplicar um nível ligeiro de suavização ou simplificação (redução de triângulos) se o ficheiro ficar demasiado pesado para abrir no fatiador ou no Blender.</li>
+      </ul>
+
+      <h3 id="s7-2">7.2 Escolher o formato de exportação</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Formato</th><th>Inclui Cor / Textura?</th><th>Para que serve no CTE</th></tr></thead>
+          <tbody>
+            <tr><td><strong><code>.stl</code></strong></td><td>Não (só geometria)</td><td><strong>Impressão 3D</strong> (Snapmaker 2.0 A350T, Elegoo Neptune 4) e engenharia inversa em CAD (Fusion, Tinkercad, FreeCAD).</td></tr>
+            <tr><td><strong><code>.obj</code></strong></td><td>Sim (<code>.obj</code> + <code>.mtl</code> + <code>.jpg</code>)</td><td>Modelos texturizados realistas para Blender, Unity, WebXR, Meta Quest 3 ou portefólios digitais (copiar os 3 ficheiros juntos!).</td></tr>
+            <tr><td><strong><code>.ply</code></strong></td><td>Sim (cor por vértice)</td><td>Ficheiro único com cor integrada para visualização científica, edição de malha e impressão a cores.</td></tr>
+            <tr><td><strong><code>.3mf</code></strong></td><td>Sim (geometria + metadados)</td><td>Formato moderno para fatiadores 3D recentes (OrcaSlicer, Cura, Bambu/Prusa).</td></tr>
+            <tr><td><strong><code>.asc</code></strong></td><td>Nuvem de pontos</td><td>Inspeção dimensional, metrologia ou pós-processamento avançado em software científico.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2>8. 5 projetos pedagógicos progressivos</h2>
+      <p>Sugestão de percurso prático em sala de aula, do primeiro objeto simples à ligação com impressão 3D e realidade virtual:</p>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 1 — O Primeiro Objeto Mate (Alinhamento por Características)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">20 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Dominar a distância verde (~400 mm), os botões do punho e o movimento suave sem perder rastreio.</p>
+        <p><strong>Tarefas:</strong> Escolher um objeto opaco com relevo claro (ex.: estatueta, peça de madeira esculpida ou sapatilha). Criar projeto <em>Object</em> (0,5 mm), manter LED verde, limpar a mesa com o laço, gerar malha <em>Watertight</em> e exportar em <code>.stl</code>.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 2 — Objeto Liso ou Simétrico com Marcadores Aleatórios</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">25 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Aprender a usar o modo <em>Global Markers</em> quando a geometria não basta.</p>
+        <p><strong>Tarefas:</strong> Digitalizar uma garrafa opaca, capacete liso ou caixa simples colocando 8–12 marcadores autocolantes em padrão <strong>irregular</strong> na peça/base (nunca em fila reta). Verificar na pré-visualização se ≥ 4 marcadores aparecem sempre a vermelho/verde e gerar a malha.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 3 — Retrato 3D em Dupla (<em>Portrait Mode</em> + Textura)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">25 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Capturar um busto realista a cores respeitando conforto e consentimento (RGPD).</p>
+        <p><strong>Tarefas:</strong> Um colega senta-se imóvel num banco giratório (ou o operador roda calmamente à sua volta) sem olhar fixamente para o projetor. Usar modo <em>Portrait</em> + <em>Hybrid</em> (+ <em>Hair Mode</em> se necessário) e exportar em <code>.obj</code> (com <code>.mtl</code> e <code>.jpg</code>) para visualizar a cores.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 4 — Engenharia Inversa: Do Objeto Real à Impressão 3D</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">40 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Digitalizar uma peça escolar (ex.: suporte, dobradiça ou peça partida) para replicação ou adaptação em CAD.</p>
+        <p><strong>Tarefas:</strong> Digitalizar a 0,2–0,3 mm de <em>Point Distance</em>, gerar malha <em>Watertight</em>, exportar em <code>.stl</code>, abrir no fatiador (OrcaSlicer ou Luban) em milímetros para preparar uma impressão de teste na Elegoo Neptune 4 ou Snapmaker 2.0 A350T.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 5 — Museu Digital da Escola (Scan → Blender / Realidade Virtual)</h4>
+          <div class="proj-badges"><span class="lvl adv">Projeto</span><span class="lvl">50 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Criar um acervo 3D colorido de artefactos locais, fósseis, instrumentos antigos ou maquetes dos alunos.</p>
+        <p><strong>Tarefas:</strong> Digitalizar com foco na textura de cor, otimizar triângulos no Blender mantendo o mapa UV em <code>.obj</code> / <code>.glb</code>, e integrar numa exposição interativa WebXR ou apresentação para os óculos <a href="../Meta_Quest_3_VR/index.html">Meta Quest 3 VR</a>.</p>
+      </div>
+
+      <h3 id="s8-plano">8.1 Modelo copiável de Ficha de Planeamento de Scan 3D</h3>
+      <div class="code-wrap">
+        <button class="copy-btn" type="button" data-copy>Copiar modelo</button>
+        <pre><code>FICHA DE PLANEAMENTO — DIGITALIZAÇÃO 3D EINSTAR (CTE · INV-228)
+==================================================================
+Data / Turma:   ____/____/202__   |   Unidade Einstar (1 ou 2): ____
+Grupo / Alunos: __________________________________________________
+Estação GPU:    __________________________________________________
+
+1. VERIFICAÇÃO DE EQUIPAMENTO &amp; CALIBRAÇÃO
+   [ ] PC compatível ligado à corrente (GPU NVIDIA CUDA ou Mac M1 Pro+)
+   [ ] Fonte 12 V / 5 A ligada à tomada + USB 3.0 direto + LED Estado Azul
+   [ ] Placa de calibração confirmada com o MESMO n.º de série do scanner
+   [ ] Calibração verificada (obrigatória se &gt; 14 dias ou após transporte)
+
+2. CONFIGURAÇÃO DO PROJETO NO EXSTAR
+   Objeto / Tema:   ______________________________________________
+   Modo:            [ ] Object   [ ] Portrait (Consentimento RGPD: [ ])
+   Alinhamento:     [ ] Feature  [ ] Hybrid  [ ] Texture  [ ] Global Markers
+   Point Distance:  ______ mm  (0,2–0,4 pequeno | 0,5–1,5 médio/grande)
+   Superfície:      [ ] Normal   [ ] Escura/Brilhante (marcadores / spray doc.)
+
+3. PÓS-PROCESSAMENTO &amp; EXPORTAÇÃO
+   [ ] Ruído da mesa apagado com laço antes de gerar malha
+   [ ] Malha: [ ] Watertight (Impressão 3D)  [ ] Unwatertight
+   [ ] Exportado para pasta do grupo: [ ] STL  [ ] OBJ (+MTL+JPG)  [ ] PLY  [ ] 3MF</code></pre>
+      </div>
+
+      <h3 id="s8-inter">8.2 Ideias interdisciplinares</h3>
+      <ul>
+        <li><strong>Educação Visual, Design &amp; Oficinas:</strong> Escultura em barro/esferovite digitalizada para escala ou acabamento digital e fabrico na Snapmaker 2.0 A350T ou Elegoo Neptune 4.</li>
+        <li><strong>História &amp; Património Local:</strong> Preservação digital a cores (<code>.obj</code>) de artefactos museológicos ou elementos arquitetónicos de Mangualde.</li>
+        <li><strong>Biologia, Geologia &amp; Ciências Naturais:</strong> Catálogo 3D de minerais, fósseis, conchas ou modelos anatómicos do laboratório para estudo em WebXR / <a href="../Meta_Quest_3_VR/index.html">Meta Quest 3 VR</a>.</li>
+        <li><strong>Mecânica, Robótica &amp; PAPs:</strong> Digitalização de chassis ou peças reais para desenhar suportes à medida que encaixam exatamente nos robôs ou drones do CTE.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Desligar, devolver e registo de utilização</h2>
+
+      <h3 id="s9-1">9.1 Checklist interativa de devolução (4 h de validade)</h3>
+      <p class="hint">Marque os 6 pontos antes de entregar o kit completo no <strong>Estúdio SC - LMAS</strong>. As marcações limpam-se automaticamente ao fim de 4 horas.</p>
+      <button class="reset" type="button" id="resetChecklist">Limpar marcações</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir folha de registo</button>
+      <ul class="check">
+        <li><label><input type="checkbox" id="u-ein-1"><span><strong>1. Modelos exportados e cópia feita:</strong> Ficheiros <code>.stl</code> / <code>.obj</code> / <code>.ply</code> guardados na pasta da turma (e projetos pesados temporários limpos se indicado).</span></label></li>
+        <li><label><input type="checkbox" id="u-ein-2"><span><strong>2. Desligar sem puxar pelo cabo:</strong> EXStar fechado, fonte 12 V desligada da tomada e fichas retiradas segurando pelo corpo rígido.</span></label></li>
+        <li><label><input type="checkbox" id="u-ein-3"><span><strong>3. Lentes frontais limpas:</strong> Sem dedadas nas câmaras nem na janela IR (se necessário, limpar só com microfibra seca).</span></label></li>
+        <li><label><input type="checkbox" id="u-ein-4"><span><strong>4. Placa de calibração certa na bolsa:</strong> Confirmar que a placa corresponde ao <strong>mesmo n.º de série</strong> do scanner e está intacta na bolsa protetora.</span></label></li>
+        <li><label><input type="checkbox" id="u-ein-5"><span><strong>5. Kit <code>INV-228</code> completo no estojo:</strong> Scanner Einstar, cabo Y principal, adaptador 12 V/5 A, cabo de corrente, placa de calibração e folhas de marcadores.</span></label></li>
+        <li><label><input type="checkbox" id="u-ein-6"><span><strong>6. Marcadores retirados e aviso ao CTE:</strong> Remover autocolantes usados de objetos da sala e avisar qual a unidade (1 ou 2) usada ou qualquer anomalia.</span></label></li>
+      </ul>
+
+      <h3 id="s9-2">9.2 Folha imprimível de registo de utilizações (Unidades 1 e 2 · <code>INV-228</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Turma / Grupo</th><th>Unidade (1 / 2)</th><th>PC / Estação GPU</th><th>Calibração OK?</th><th>Estado na Devolução / Observações</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador Scanner 3D Einstar (<code>INV-228</code>) · Em caso de dúvida técnica, consulte o <a href="Einstar_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "einstar-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar modelo"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

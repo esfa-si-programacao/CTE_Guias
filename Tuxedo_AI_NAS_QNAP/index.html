@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para utilizar a Estação de Trabalho AI Tuxedo Atlas XL (INV-006), o servidor NAS QNAP TVS-h874 (INV-223) e a UPS APC (INV-224) do CTE: acesso SSH/Web, gestão de GPU/VRAM, máquinas virtuais, diagnóstico LED e fim de sessão.">
+<meta property="og:title" content="Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Computação IA e Virtualização (CTE)">
+<meta property="og:description" content="Guia rápido da infraestrutura de IA e Virtualização do Estúdio 4C (INV-006 / INV-223 / INV-224): Linux/CUDA, LLMs locais, máquinas virtuais QuTS hero/ZFS e boas práticas de utilização partilhada.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='12' width='18' height='40' rx='3' fill='%232C3B4B' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='15' y1='16' x2='15' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='19' y1='16' x2='19' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='23' y1='16' x2='23' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Crect x='33' y='20' width='22' height='32' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='38' y1='26' x2='38' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='43' y1='26' x2='43' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='48' y1='26' x2='48' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-text: #5B2C6F;
+  --purple-soft: #F4ECF7;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.88rem; padding: 8px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.topbar-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 24px 20px 28px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.hero-media { width: 132px; height: 116px; border-radius: 14px; background: #fff; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 6px; }
+.hero-media.svg-fallback { background: rgba(255,255,255,0.07); }
+.hero-media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.4vw, 2.25rem); line-height: 1.14; }
+.hero .sub { color: #D4E1EE; font-size: 1.02rem; margin: 8px 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn-hero-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: var(--acc-btn); border: 2px solid var(--acc-btn); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 20px; border-radius: 9px; transition: background 0.15s ease, transform 0.15s ease; }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+
+main.container { max-width: 1120px; width: 100%; margin: 18px auto 28px; padding: 0 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.card-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(31,42,54,0.05); }
+.sec-head { background: var(--light); border-bottom: 1px solid var(--line); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
+
+.percurso-grid { display: grid; grid-template-columns: 265px 1fr; gap: 14px; align-items: stretch; }
+.steps-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.step-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 11px; padding: 12px 14px; background: #FAFBFD; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.step-card.step-lead { border-top-color: var(--acc); background: #fff; }
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-lead .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 7px; border-top: 1px solid var(--line); }
+.action-link { font-size: 0.88rem; font-weight: 700; color: var(--acc-text); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
+
+.quick-visual { background: var(--light); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; display: flex; flex-direction: column; gap: 6px; }
+.qv-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; font-size: 0.82rem; line-height: 1.3; }
+.qv-key { min-width: 74px; text-align: center; font-weight: 800; font-size: 0.73rem; padding: 3px 6px; border-radius: 5px; background: var(--dark); color: #fff; flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
+
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.shortcut-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; box-shadow: 0 3px 10px rgba(31,42,54,0.04); }
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note { margin-top: 4px !important; font-size: 0.84rem !important; color: var(--dark) !important; font-weight: 600; }
+.soon-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; background: var(--purple-soft); border: 1px solid #D7BDE2; color: var(--purple-text); font-size: 0.82rem; font-weight: 700; }
+.shortcut-alt { display: block; margin-top: 5px; font-size: 0.875rem; font-weight: 600; color: var(--teal-text); text-decoration: none; }
+.shortcut-alt:hover { text-decoration: underline; }
+
+.diag-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
+.led-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 10px; }
+.led-btn { font: inherit; font-size: 0.86rem; font-weight: 600; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--light); color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px; text-align: left; transition: all 0.14s ease; }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
+.led-orb { width: 15px; height: 15px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.22); }
+.orb-green { background: #27AE60; }
+.orb-green-blink { background: #27AE60; animation: pulse 1.1s infinite; }
+.orb-amber { background: #F39C12; animation: pulse 1.2s infinite; }
+.orb-red-blink { background: #E74C3C; animation: pulse 0.7s infinite; }
+.orb-red { background: #C0392B; }
+.orb-blue { background: #2980B9; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+.diag-panel { border: 1.5px solid var(--line); border-left: 5px solid var(--teal); border-radius: 10px; padding: 13px 15px; background: var(--teal-soft); }
+.diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
+.diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
+.diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
+.diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(31,42,54,0.22); font-size: 0.88rem; color: var(--dark); }
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
+
+.sym-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.sym-btn { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; transition: all 0.14s ease; }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+.docs-list { list-style: none; margin: 0; padding: 0; }
+.doc-row { display: flex; justify-content: space-between; align-items: center; gap: 8px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fmt-link { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--light); color: var(--dark); white-space: nowrap; transition: border-color 0.14s ease, background 0.14s ease; }
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; list-style: none; padding: 0; margin: 0; }
+.check-grid label { display: flex; gap: 9px; align-items: flex-start; background: var(--light); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.88rem; }
+.check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
+.check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready { margin-top: 14px; padding: 12px 15px; border-radius: 9px; background: var(--green-soft); border: 1.5px solid var(--green); color: #124C2A; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 700; font-size: 0.94rem; }
+
+.btn { font: inherit; font-size: 0.88rem; font-weight: 700; border: 1.5px solid var(--line); background: #fff; color: var(--dark); padding: 7px 14px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
+
+.details-stack { display: flex; flex-direction: column; gap: 10px; }
+details.fold-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,42,54,0.04); }
+details.fold-box summary { list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: var(--dark); background: var(--light); display: flex; align-items: center; gap: 10px; }
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before { content: "▸"; display: inline-block; color: var(--acc-text); font-size: 1.05rem; transition: transform 0.15s ease; }
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.specs-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
+
+.ext-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; }
+.ext-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.ext-list a { font-size: 0.9rem; font-weight: 700; color: var(--teal-text); text-decoration: none; }
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+footer { text-align: center; padding: 16px 20px 96px; font-size: 0.88rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 960px) {
+  .percurso-grid { grid-template-columns: 1fr; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 88px; height: 78px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.35rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary { width: 100%; padding: 9px 16px; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874</nav>
+    <span>CTE Informático</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): pode substituir tuxedo_nas_qnap.jpg por fotografia real do Tuxedo Atlas XL e NAS QNAP no Estúdio 4C -->
+      <img src="tuxedo_nas_qnap.jpg" alt="Estação de Trabalho AI Tuxedo Atlas XL e Servidor NAS QNAP TVS-h874" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 150 110" width="108" height="80" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="16" y="12" width="46" height="86" rx="6" fill="rgba(44,59,75,0.7)" stroke="#fff"/>
+        <line x1="27" y1="20" x2="27" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <line x1="36" y1="20" x2="36" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <line x1="45" y1="20" x2="45" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <rect x="76" y="30" width="58" height="68" rx="6" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <line x1="88" y1="44" x2="88" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="98" y1="44" x2="98" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="108" y1="44" x2="108" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="118" y1="44" x2="118" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1>Usar a Estação AI Tuxedo &amp; NAS QNAP na aula</h1>
+      <p class="sub">Treino de modelos IA/LLMs locais, GPU partilhada, máquinas virtuais e armazenamento ZFS no Estúdio 4C, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
+      <div>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem antes de iniciar sessões de IA na Tuxedo Atlas XL (<code>INV-006</code>) ou máquinas virtuais no NAS QNAP (<code>INV-223</code>).</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <article class="step-card step-lead">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o essencial (1 min)</h3></div>
+            <p>4 comandos e regras vitais de infraestrutura partilhada.</p>
+          </div>
+          <!-- FASE 3 (Vídeo): quando gravar o vídeo curto (60-90 s), pode substituir .quick-visual -->
+          <div class="quick-visual" aria-label="4 regras e comandos vitais">
+            <div class="qv-item"><span class="qv-key teal">nvidia-smi</span><span class="qv-desc">Ver VRAM livre antes de lançar IA</span></div>
+            <div class="qv-item"><span class="qv-key acc">python venv</span><span class="qv-desc">Isolar pacotes (nunca sudo pip!)</span></div>
+            <div class="qv-item"><span class="qv-key">NAS 24/7</span><span class="qv-desc">Nunca desligar o QNAP nem a UPS</span></div>
+            <div class="qv-item"><span class="qv-key red">LIBERTAR</span><span class="qv-desc">Fechar kernels/VMs no fim da aula</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="Tuxedo_NAS_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+          </div>
+        </article>
+
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Utilizador IA &amp; NAS</h3></div>
+              <p>8 perguntas sobre utilização partilhada de GPU, VMs, ZFS e proteção elétrica.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="Tuxedo_NAS_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Aceder à Estação AI ou ao NAS</h3></div>
+              <p>Sessão local/SSH/Jupyter na Tuxedo Atlas XL ou consola QuTS hero / VMs no QNAP.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="Tuxedo_NAS_Manual_Utilizador.html#s3">Regras de partilha &rarr;</a>
+              <a class="action-link teal" href="Tuxedo_NAS_Manual_Utilizador.html#s4">Acesso SSH, Web &amp; SMB &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Executar IA / LLMs ou Máquinas Virtuais</h3></div>
+              <p>Ambientes Python/CUDA, Ollama/PyTorch na Tuxedo e Virtualization Station no QNAP.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Reservar sessão &#8599;</a>
+              <a class="action-link teal" href="Tuxedo_NAS_Manual_Utilizador.html#s5">GPU, Python &amp; LLMs &rarr;</a>
+              <a class="action-link teal" href="Tuxedo_NAS_Manual_Utilizador.html#s6">VMs &amp; Containers QNAP &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Guardar no NAS e libertar recursos</h3></div>
+              <p>6 verificações para libertar VRAM/VMs e deixar o servidor intacto.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pelo LED do NAS/UPS ou erro de GPU/rede.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Projetos de IA, LLMs e Virtualização</h3>
+          <p>5 laboratórios progressivos (Ollama, PyTorch/Visão, VM Linux, Docker e script GPU).</p>
+        </div>
+        <a class="action-link teal" href="Tuxedo_NAS_Manual_Utilizador.html#s8">Ver projetos e script &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais da Tuxedo Atlas XL e QNAP TVS-h874 do CTE.</p>
+          <p class="shortcut-note" id="aiSoonText"><span class="soon-pill">Será disponibilizado brevemente</span></p>
+          <p class="shortcut-note" id="aiAccountNote" hidden>Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" id="aiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Entretanto, use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
+  <section class="card-section" id="diagnostico">
+    <div class="sec-head">
+      <div>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione o indicador LED / visor (NAS QNAP, Tuxedo ou UPS APC) ou o problema encontrado durante a sessão.</p>
+      </div>
+      <a class="btn" href="Tuxedo_NAS_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias de apoio no diagnóstico:
+           tuxedo_painel_frontal.jpg (torre Tuxedo Atlas XL North com botão superior e fluxo de ar)
+           qnap_leds_baias.jpg (painel frontal do QNAP TVS-h874 com LEDs Status, LAN, M.2 e HDD 1-8)
+           apc_ups_lcd.jpg (visor LCD da UPS APC Smart-UPS SMT junto ao servidor) -->
+      <div class="diag-grid">
+        <div>
+          <h3 class="diag-sub">1. LEDs e indicadores (QNAP / Tuxedo / UPS)</h3>
+          <div class="led-buttons" id="ledButtons">
+            <button type="button" class="led-btn active" data-led="status_green" aria-pressed="true"><span class="led-orb orb-green"></span>Status Verde fixo (NAS)</button>
+            <button type="button" class="led-btn" data-led="green_red" aria-pressed="false"><span class="led-orb orb-green-blink"></span>Verde / Vermelho (NAS)</button>
+            <button type="button" class="led-btn" data-led="red_blink" aria-pressed="false"><span class="led-orb orb-red-blink"></span>Vermelho a piscar (NAS)</button>
+            <button type="button" class="led-btn" data-led="hdd_red" aria-pressed="false"><span class="led-orb orb-red"></span>LED HDD 1–8 Vermelho</button>
+            <button type="button" class="led-btn" data-led="lan_amber" aria-pressed="false"><span class="led-orb orb-amber"></span>LAN 2,5GbE Laranja</button>
+            <button type="button" class="led-btn" data-led="ups_beep" aria-pressed="false"><span class="led-orb orb-blue"></span>UPS APC a apitar / LCD</button>
+          </div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <h3 class="diag-sub">2. Problema na sessão de IA ou Virtualização</h3>
+          <div class="sym-pills" id="symButtons">
+            <button type="button" class="sym-btn active" data-sym="oom" aria-pressed="true">CUDA Out of Memory (VRAM)</button>
+            <button type="button" class="sym-btn" data-sym="pip" aria-pressed="false">Erro ao instalar pacote Python</button>
+            <button type="button" class="sym-btn" data-sym="ssh" aria-pressed="false">Sem acesso SSH / Jupyter / NAS</button>
+            <button type="button" class="sym-btn" data-sym="vmslow" aria-pressed="false">Máquina Virtual (VM) lenta</button>
+            <button type="button" class="sym-btn" data-sym="smb" aria-pressed="false">Pasta partilhada SMB não abre</button>
+            <button type="button" class="sym-btn" data-sym="deleted" aria-pressed="false">Ficheiro apagado por engano</button>
+            <button type="button" class="sym-btn" data-sym="thermal" aria-pressed="false">Ventoinhas altas / Aquecimento</button>
+            <button type="button" class="sym-btn" data-sym="power" aria-pressed="false">Como encerrar sem perder dados</button>
+          </div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCUMENTOS (LINHAS COMPACTAS) -->
+  <section class="card-section" id="documentos">
+    <div class="sec-head">
+      <div>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e guia A4 pronto a imprimir e afixar junto à estação/bastidor do Estúdio 4C.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="Tuxedo_NAS_Infografico_Inicio_Rapido.html">Ver online (A4)</a>
+            <a class="fmt-link" href="Tuxedo_NAS_Guia_Inicio_Rapido.pdf">PDF · 194 KB</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador — IA Local (Tuxedo) e Virtualização/ZFS (QNAP)</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="Tuxedo_NAS_Manual_Utilizador.html">Ver online</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Utilizador IA &amp; Virtualização</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="Tuxedo_NAS_Quiz_Habilitacao.html">Fazer o quiz</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CHECKLIST DE FIM DE SESSÃO -->
+  <section class="card-section" id="devolucao">
+    <div class="sec-head">
+      <div>
+        <h2>Checklist de fim de sessão</h2>
+        <p>Confirme os 6 pontos antes de terminar a aula no Estúdio 4C (limpa-se automaticamente ao fim de 4 h).</p>
+      </div>
+      <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
+    </div>
+    <div class="sec-body">
+      <ul class="check-grid">
+        <li><label><input type="checkbox" id="tx-c1"><span><strong>1. Libertar VRAM / GPU:</strong> Kernels Jupyter, processos PyTorch/Ollama de teste parados e confirmados com <code>nvidia-smi</code>.</span></label></li>
+        <li><label><input type="checkbox" id="tx-c2"><span><strong>2. Guardar dados no NAS:</strong> Datasets, pesos e código final guardados na pasta da turma no QNAP (e ficheiros temporários <code>/tmp</code> limpos).</span></label></li>
+        <li><label><input type="checkbox" id="tx-c3"><span><strong>3. Suspender VMs de aula:</strong> Máquinas virtuais ou contentores temporários criados para o exercício desligados na <em>Virtualization Station</em>.</span></label></li>
+        <li><label><input type="checkbox" id="tx-c4"><span><strong>4. Fechar sessões (Logout):</strong> Sessão local, SSH e consola web QuTS hero terminadas sem desligar o servidor NAS nem a UPS!</span></label></li>
+        <li><label><input type="checkbox" id="tx-c5"><span><strong>5. Estado da Tuxedo Atlas XL:</strong> Deixar ligada se houver treino/acesso remoto agendado pelo docente, ou encerrar ordenadamente se instruído.</span></label></li>
+        <li><label><input type="checkbox" id="tx-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar imediatamente qualquer alerta vermelho no NAS, alarme na UPS APC ou erro de disco/GPU.</span></label></li>
+      </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Sessão concluída com segurança e recursos libertados.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar utilização &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECÇÕES RECOLHIDAS -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico, Administração Linux/ZFS e Manutenção</strong> (quotas, snapshots ZFS, Virtualization Station, rede 2,5 GbE, UPS APC e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="Tuxedo_NAS_Manual_Tecnico.html">Ver online</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento pronta a carregar)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="Tuxedo_NAS_Base_Conhecimento_NotebookLM.md">Markdown</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Informática/IA, Multimédia/Renderização, Ciências de Dados, Cibersegurança e Redes)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="Tuxedo_NAS_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-006 (Tuxedo Atlas XL) + INV-223 (NAS QNAP TVS-h874) + INV-224 (UPS APC) · Estúdio 4C</li>
+          <li><strong>Estação AI (INV-006):</strong> TUXEDO Atlas XL Gen1 Intel · Chassis Fractal Design North XL (madeira/mesh) · Plataforma Intel Z790 · DDR5 · NVMe · GPU dedicada para IA/ML</li>
+          <li><strong>Software Estação AI:</strong> TUXEDO OS / Ubuntu Linux · TUXEDO Control Center · CUDA / PyTorch / Ollama / JupyterLab / Docker</li>
+          <li><strong>Servidor NAS (INV-223):</strong> QNAP TVS-h874-i7-32G · Intel Core i7-12700E (12 núcleos / 20 threads) · 32 GB DDR4 · 8 baías SATA + 2× M.2 PCIe Gen4 NVMe · 2× 2,5 GbE</li>
+          <li><strong>Sistema NAS:</strong> QuTS hero (sistema de ficheiros ZFS com deduplicação, <em>self-healing</em> e <em>snapshots</em>) · Virtualization Station &amp; Container Station</li>
+          <li><strong>Proteção Elétrica (INV-224):</strong> UPS APC Smart-UPS SMT LCD RM SmartConnect (junto ao servidor)</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="ext-list">
+        <li>
+          <a href="https://www.tuxedocomputers.com/en/TUXEDO-Atlas-XL-Gen1-Intel.tuxedo" target="_blank" rel="noopener noreferrer">Página Oficial TUXEDO Atlas XL (Gen1 Intel) &#8599;</a>
+          <p>Arquitetura da estação de trabalho, chassis North XL e suporte Linux.</p>
+        </li>
+        <li>
+          <a href="https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo" target="_blank" rel="noopener noreferrer">TUXEDO Control Center &amp; Suporte Linux &#8599;</a>
+          <p>Gestão térmica, perfis de energia e monitorização de hardware no TUXEDO OS.</p>
+        </li>
+        <li>
+          <a href="https://www.qnap.com/en/product/tvs-h874" target="_blank" rel="noopener noreferrer">Página Oficial QNAP TVS-h874 (i7 32 GB) &#8599;</a>
+          <p>Especificações das 8 baías SATA, M.2 Gen4, 2,5 GbE e virtualização.</p>
+        </li>
+        <li>
+          <a href="https://docs.qnap.com/operating-system/quts-hero/5.1.x/en-us/" target="_blank" rel="noopener noreferrer">Documentação Oficial QNAP QuTS hero (ZFS) &#8599;</a>
+          <p>Guia de armazenamento ZFS, pools, snapshots, SMB/NFS e segurança.</p>
+        </li>
+        <li>
+          <a href="https://www.qnap.com/en/software/virtualization-station" target="_blank" rel="noopener noreferrer">QNAP Virtualization Station — Máquinas Virtuais &#8599;</a>
+          <p>Como criar, gerir e aceder a máquinas virtuais no navegador.</p>
+        </li>
+        <li>
+          <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama — Execução Local de Modelos LLM &#8599;</a>
+          <p>Ferramenta para correr modelos de linguagem localmente na GPU da estação AI.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
+    urlRequisicao: "",          // formulário de reserva de sessão GPU / VM
+    urlRegistoDevolucao: "",    // formulário de registo de utilização
+    urlNotebookLM: "",          // colar aqui o link do NotebookLM quando estiver criado
+    checklistValidadeHoras: 4
+  };
+
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var aiSoonText = document.getElementById("aiSoonText");
+  var aiAccountNote = document.getElementById("aiAccountNote");
+  if (aiLink && CONFIG.urlNotebookLM) {
+    aiLink.href = CONFIG.urlNotebookLM;
+    aiLink.hidden = false;
+    if (aiSoonText) aiSoonText.hidden = true;
+    if (aiAccountNote) aiAccountNote.hidden = false;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  var LED_INFO = {
+    status_green: {
+      cls: "ok",
+      title: "LED Status Verde fixo (NAS QNAP TVS-h874)",
+      meaning: "O servidor NAS está operacional, os pools ZFS estão saudáveis e os serviços de rede/virtualização estão prontos.",
+      action: "Pode aceder às partilhas SMB/NFS, à Virtualization Station ou à estação AI Tuxedo normalmente. Nunca desligue o NAS no botão frontal."
+    },
+    green_red: {
+      cls: "warn",
+      title: "LED Status a piscar Verde e Vermelho alternadamente (NAS)",
+      meaning: "O NAS está a inicializar, a reconstruir um grupo RAID/ZFS (resilvering), a formatar discos ou a atualizar o firmware QuTS hero.",
+      action: "CRÍTICO: Nunca desligue a energia nem retire gavetas de disco durante este estado! Aguarde a conclusão na consola QuTS hero."
+    },
+    red_blink: {
+      cls: "danger",
+      title: "LED Status Vermelho (fixo ou a piscar) no NAS QNAP",
+      meaning: "Alerta de hardware ou armazenamento: disco em falha, pool ZFS quase cheio (>90%), ventoinha com anomalia ou temperatura elevada.",
+      action: "Não desligue o servidor. Avise imediatamente o docente responsável ou equipa CTE para inspecionar o painel Armazenamento e Snapshots (#t5)."
+    },
+    hdd_red: {
+      cls: "danger",
+      title: "LED de uma baía HDD 1–8 ou M.2 a Vermelho",
+      meaning: "Falha de leitura/escrita ou erro SMART detetado nessa unidade de disco específica.",
+      action: "NÃO retire a gaveta do disco por iniciativa própria! O sistema ZFS/RAID mantém os dados acessíveis, mas a substituição hot-swap é exclusiva da equipa técnica do CTE."
+    },
+    lan_amber: {
+      cls: "ok",
+      title: "LED LAN Laranja / Verde a piscar e USB Azul",
+      meaning: "Tráfego de rede ativo nas portas 2,5 GbE do NAS e/ou dispositivos USB 3.2 Gen2 ligados.",
+      action: "Comportamento normal. Nunca desligue os cabos de rede RJ45 do NAS ou da Tuxedo Atlas XL — interrompe máquinas virtuais e treinos remotos."
+    },
+    ups_beep: {
+      cls: "danger",
+      title: "UPS APC Smart-UPS (INV-224) a apitar ou com alerta no visor LCD",
+      meaning: "Corte de energia elétrica na sala (modo bateria ativo), sobrecarga ou aviso de bateria da UPS.",
+      action: "Guarde imediatamente o seu código/projeto na Tuxedo Atlas XL, pare treinos pesados de GPU (para poupar autonomia da UPS) e avise o docente/CTE."
+    }
+  };
+
+  var SYM_INFO = {
+    oom: {
+      cls: "warn",
+      title: "Erro «CUDA out of memory» ao correr modelo IA / PyTorch / Ollama",
+      cause: "A memória VRAM da placa gráfica está ocupada por outro notebook Jupyter/processo antigo ou o batch size / modelo escolhido excede a VRAM disponível.",
+      action: "1) Abra o terminal e execute nvidia-smi para ver que processos ocupam a GPU. 2) Feche kernels Jupyter inativos (Restart/Shut Down Kernel). 3) Reduza o batch_size ou use um modelo quantizado (ex.: 4-bit / 7B-8B)."
+    },
+    pip: {
+      cls: "",
+      title: "Erro «externally-managed-environment» ou «Permission denied» no pip",
+      cause: "Tentativa de instalar bibliotecas Python diretamente no sistema Linux global (ou uso indevido de sudo pip).",
+      action: "Crie e ative sempre um ambiente virtual próprio na pasta do seu grupo: python3 -m venv .venv && source .venv/bin/activate e só depois execute pip install."
+    },
+    ssh: {
+      cls: "warn",
+      title: "Não consigo aceder por SSH / JupyterLab à Tuxedo ou ao painel web do QNAP",
+      cause: "Computador do aluno noutra sub-rede Wi-Fi, endereço IP/porta incorretos ou serviço local não iniciado.",
+      action: "1) Confirme que está ligado à rede local do Estúdio 4C. 2) Verifique com o docente o IP/hostname atribuído à Tuxedo Atlas XL e ao QNAP TVS-h874. 3) Nunca reinicie o router/bastidor sem autorização."
+    },
+    vmslow: {
+      cls: "warn",
+      title: "A Máquina Virtual (Virtualization Station no QNAP) está lenta ou não arranca",
+      cause: "Demasiadas VMs ligadas em simultâneo a consumir os 32 GB de RAM e os 12 núcleos do Core i7-12700E.",
+      action: "Na consola da Virtualization Station, verifique com o docente se existem VMs de aulas anteriores que ficaram ligadas sem uso e encerre-as ordenadamente (Guest OS Shutdown)."
+    },
+    smb: {
+      cls: "",
+      title: "A pasta partilhada do NAS (SMB / NFS) não abre no meu computador",
+      cause: "Credenciais da turma incorretas ou caminho de rede mal introduzido.",
+      action: "No Windows use \\\\<IP-do-NAS>\\<partilha>; no macOS (MacBook Pro) ou Linux use smb://<IP-do-NAS>/<partilha> no Finder/Gestor de Ficheiros com as credenciais fornecidas pelo professor."
+    },
+    deleted: {
+      cls: "ok",
+      title: "Apaguei ou sobrescrevi por engano um ficheiro importante na pasta do NAS",
+      cause: "Eliminação acidental numa partilha SMB/NFS do QNAP TVS-h874.",
+      action: "Não crie novos ficheiros por cima: peça ao docente/equipa CTE para restaurar a versão anterior através da Reciclagem de Rede (@Recycle) ou dos Snapshots ZFS do QuTS hero (#t3-2)."
+    },
+    thermal: {
+      cls: "warn",
+      title: "As ventoinhas da Tuxedo Atlas XL ou do NAS estão muito rápidas / ruidosas",
+      cause: "Carga contínua de CPU/GPU durante treino de IA/renderização ou grelha frontal/superior obstruída.",
+      action: "1) Confirme que não há mochilas, cadernos ou objetos encostados à frente em madeira/mesh da Tuxedo Atlas XL nem às grelhas do NAS. 2) Verifique temperaturas com nvidia-smi ou no TUXEDO Control Center."
+    },
+    power: {
+      cls: "danger",
+      title: "Como terminar a sessão sem corromper discos ZFS nem trabalhos de colegas?",
+      cause: "O NAS QNAP e a Tuxedo podem ter tarefas ou VMs de outros grupos em execução.",
+      action: "NUNCA desligue o NAS QNAP TVS-h874 nem a UPS APC (operam 24/7). Na Tuxedo Atlas XL, faça apenas Logout da sua sessão (ou verifique com who / nvidia-smi e confirme com o docente antes de encerrar)."
+    }
+  };
+
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="Tuxedo_NAS_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) { html += ' · Contacte o CTE: ' + contactShort; }
+    html += '</div>';
+    return html;
+  }
+
+  var ledRes = document.getElementById("ledResult");
+  var symRes = document.getElementById("symResult");
+
+  function renderLed(key) {
+    var d = LED_INFO[key];
+    ledRes.className = "diag-panel " + d.cls;
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+  function renderSym(key) {
+    var d = SYM_INFO[key];
+    symRes.className = "diag-panel " + d.cls;
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+
+  var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
+  ledBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      ledBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderLed(b.getAttribute("data-led"));
+    });
+  });
+
+  var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
+  symBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      symBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderSym(b.getAttribute("data-sym"));
+    });
+  });
+
+  renderLed("status_green");
+  renderSym("oom");
+
+  var KEY = "tuxnas-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
+  var saved = {};
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
+    });
+  });
+  syncReturnState();
+
+  document.getElementById("hubResetCheck").addEventListener("click", function() {
+    boxes.forEach(function(b) { b.checked = false; });
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Guia de Início Rápido (A4)</title>
+<meta name="description" content="Guia de Início Rápido A4 da infraestrutura de IA e Virtualização do Estúdio 4C (INV-006 / INV-223 / INV-224): 6 passos, anatomia, comandos Linux/CUDA, LEDs do NAS QNAP e 5 regras de ouro.">
+<meta property="og:title" content="Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874 — Guia de Início Rápido A4 (CTE)">
+<meta property="og:description" content="Folha A4 pronta a imprimir para o Estúdio 4C: acesso SSH/Web, gestão de GPU/VRAM, ambientes Python venv, máquinas virtuais QuTS hero/ZFS e proteção UPS.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='12' width='18' height='40' rx='3' fill='%232C3B4B' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='15' y1='16' x2='15' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='19' y1='16' x2='19' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Cline x1='23' y1='16' x2='23' y2='48' stroke='%23E8711C' stroke-width='2'/%3E%3Crect x='33' y='20' width='22' height='32' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='2.2'/%3E%3Cline x1='38' y1='26' x2='38' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='43' y1='26' x2='43' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3Cline x1='48' y1='26' x2='48' y2='47' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #DDE4EC;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.38;
+  padding: 18px 12px 96px;
+}
+
+.toolbar {
+  max-width: 1020px;
+  margin: 0 auto 12px;
+  background: var(--dark);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.toolbar-crumb { font-size: 0.86rem; color: #C7D6E5; }
+.toolbar-crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.toolbar-crumb a:hover { text-decoration: underline; }
+.toolbar-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.tbtn {
+  font: inherit; font-size: 0.84rem; font-weight: 700;
+  border-radius: 7px; padding: 6px 12px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.1); color: #fff; text-decoration: none;
+}
+.tbtn:hover { background: rgba(255,255,255,0.2); }
+.tbtn.primary { background: var(--acc-btn); border-color: var(--acc-btn); }
+.tbtn.primary:hover { background: #96420A; }
+
+.sheet {
+  max-width: 1020px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(31,42,54,0.16);
+  border: 1px solid var(--line);
+}
+
+.banner {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 14px 20px 12px;
+  border-bottom: 4px solid var(--acc);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+.b-badge {
+  display: inline-block;
+  font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  background: rgba(232,113,28,0.22); border: 1px solid rgba(255,180,120,0.45);
+  color: #FFD2B3; padding: 2px 9px; border-radius: 999px; margin-bottom: 4px;
+}
+.banner h1 { margin: 0; font-size: 1.48rem; line-height: 1.12; }
+.banner p { margin: 3px 0 0; color: #C9D8E6; font-size: 0.85rem; }
+
+.kpi-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+.kpi {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 8px;
+  padding: 5px 10px;
+  text-align: center;
+}
+.kpi strong { display: block; font-size: 0.94rem; color: #FFB37B; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.kpi span { font-size: 0.7rem; color: #D4E1EE; text-transform: uppercase; letter-spacing: 0.03em; }
+
+.content { padding: 12px 18px 14px; display: flex; flex-direction: column; gap: 10px; }
+
+.section-title {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 3px;
+}
+.section-title .tag {
+  background: var(--dark); color: #fff; font-size: 0.72rem;
+  padding: 2px 7px; border-radius: 5px;
+}
+.section-title.acc .tag { background: var(--acc-btn); }
+.section-title.teal .tag { background: var(--teal-text); }
+.section-title.red .tag { background: var(--red-text); }
+
+/* 6 passos */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.step-card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: #FAFBFD;
+}
+.step-card:nth-child(1), .step-card:nth-child(4) { border-left-color: var(--acc); }
+.step-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.step-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--dark); color: #fff; font-weight: 800; font-size: 0.74rem;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.step-card h3 { margin: 0; font-size: 0.84rem; color: var(--dark); }
+.step-card p { margin: 0; font-size: 0.77rem; color: var(--text); }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.88em; background: var(--light); padding: 1px 4px; border-radius: 3px; }
+
+/* Grelha intermédia: Anatomia + Comandos/LEDs */
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.25fr;
+  gap: 10px;
+}
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #fff;
+}
+.anatomy-wrap {
+  display: grid;
+  grid-template-columns: 126px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.anatomy-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 4px;
+  font-size: 0.76rem;
+}
+.anatomy-list li { display: flex; align-items: flex-start; gap: 6px; }
+.pin {
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--acc-btn); color: #fff; font-weight: 800; font-size: 0.68rem;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+}
+.pin.teal { background: var(--teal-text); }
+.pin.blue { background: var(--blue-text); }
+.pin.dark { background: var(--dark); }
+
+table.mini {
+  width: 100%; border-collapse: collapse; font-size: 0.74rem; margin-bottom: 6px;
+}
+table.mini th, table.mini td {
+  border: 1px solid var(--line); padding: 3.5px 6px; text-align: left; vertical-align: middle;
+}
+table.mini thead th { background: var(--dark); color: #fff; font-size: 0.71rem; }
+table.mini tbody tr:nth-child(odd) { background: var(--light); }
+.led-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.led-green { background: #27AE60; }
+.led-amber { background: #F39C12; }
+.led-red { background: #E74C3C; }
+.led-ry { background: linear-gradient(135deg, #27AE60 50%, #E74C3C 50%); }
+
+/* 5 Regras de Ouro */
+.rules-box {
+  background: var(--red-soft);
+  border: 1.5px solid #E8B9B4;
+  border-left: 5px solid var(--red);
+  border-radius: 9px;
+  padding: 8px 11px;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+.rule-item {
+  background: #fff;
+  border: 1px solid #EDD0CD;
+  border-radius: 7px;
+  padding: 6px 8px;
+  font-size: 0.74rem;
+}
+.rule-item > strong:first-child { display: block; color: var(--red-text); font-size: 0.77rem; margin-bottom: 2px; }
+
+/* Rodapé: Checklist + Arquitetura Rede/ZFS + QR */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 148px;
+  gap: 10px;
+  align-items: stretch;
+}
+.check-box {
+  background: var(--green-soft);
+  border: 1px solid #BDE0CC;
+  border-left: 4px solid var(--green);
+  border-radius: 9px;
+  padding: 8px 10px;
+}
+.check-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 4px;
+  font-size: 0.75rem;
+}
+.check-list label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.check-list input { width: 14px; height: 14px; accent-color: var(--green); margin: 0; flex-shrink: 0; }
+.check-list input:checked + span { text-decoration: line-through; color: var(--grey); }
+
+.anac-box {
+  background: var(--blue-soft);
+  border: 1px solid #C2D9F5;
+  border-left: 4px solid var(--blue);
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+}
+.anac-box ul { margin: 3px 0 0; padding-left: 16px; }
+.anac-box li { margin-bottom: 2px; }
+
+.qr-box {
+  border: 1.5px dashed var(--line);
+  border-radius: 9px;
+  padding: 6px;
+  text-align: center;
+  background: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.69rem;
+  color: var(--grey);
+}
+.qr-box strong { color: var(--dark); font-size: 0.74rem; margin-top: 3px; }
+
+.sheet-foot {
+  background: var(--dark);
+  color: #C7D6E5;
+  font-size: 0.73rem;
+  padding: 7px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sheet-foot strong { color: #fff; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); }
+.fab-help:hover { background: var(--acc-btn); }
+
+@media (max-width: 860px) {
+  .kpi-row, .steps-grid, .mid-grid, .rules-grid, .bottom-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  @page { size: A4 portrait; margin: 5mm; }
+  html, body {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12.2px !important;
+    line-height: 1.24 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .toolbar, .fab-help { display: none !important; }
+  .sheet {
+    max-width: none !important;
+    width: 100% !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+  }
+  .banner { padding: 9px 14px 8px !important; gap: 6px !important; }
+  .banner h1 { font-size: 1.24rem !important; }
+  .banner p { font-size: 0.76rem !important; }
+  .kpi-row { grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; margin-top: 2px !important; }
+  .kpi { padding: 3px 6px !important; }
+  .kpi strong { font-size: 0.82rem !important; }
+  .kpi span { font-size: 0.62rem !important; }
+  .content { padding: 8px 12px 8px !important; gap: 7px !important; }
+  .section-title { font-size: 0.8rem !important; margin-bottom: 4px !important; padding-bottom: 2px !important; }
+  .steps-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 5px !important; }
+  .step-card { padding: 5px 7px !important; }
+  .step-card h3 { font-size: 0.76rem !important; }
+  .step-card p { font-size: 0.69rem !important; }
+  .mid-grid { grid-template-columns: 1.02fr 1.28fr !important; gap: 7px !important; }
+  .panel { padding: 6px 8px !important; }
+  .anatomy-wrap { grid-template-columns: 105px 1fr !important; gap: 6px !important; }
+  .anatomy-list { font-size: 0.68rem !important; gap: 3px !important; }
+  table.mini { font-size: 0.67rem !important; margin-bottom: 4px !important; }
+  table.mini th, table.mini td { padding: 2.2px 5px !important; }
+  .rules-box { padding: 6px 8px !important; }
+  .rules-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 5px !important; }
+  .rule-item { padding: 4px 6px !important; font-size: 0.67rem !important; }
+  .rule-item > strong:first-child { font-size: 0.7rem !important; }
+  .bottom-grid { grid-template-columns: 1.15fr 1fr 124px !important; gap: 7px !important; }
+  .check-box, .anac-box { padding: 6px 8px !important; font-size: 0.68rem !important; }
+  .check-list { font-size: 0.68rem !important; gap: 2.5px !important; }
+  .qr-box { padding: 4px !important; font-size: 0.62rem !important; }
+  .sheet-foot { padding: 5px 12px !important; font-size: 0.66rem !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-crumb">
+    <a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Tuxedo Atlas XL &amp; NAS QNAP</a> &rsaquo; Guia de Início Rápido (A4)
+  </div>
+  <div class="toolbar-btns">
+    <button class="tbtn" type="button" id="resetA4Check">Limpar checklist</button>
+    <a class="tbtn" href="Tuxedo_NAS_Guia_Inicio_Rapido.pdf" download>Transferir PDF (A4)</a>
+    <button class="tbtn primary" type="button" onclick="window.print()">Imprimir / Guardar PDF (1 pág. A4)</button>
+  </div>
+</div>
+
+<article class="sheet">
+  <header class="banner">
+    <div>
+      <span class="b-badge">CTE Informático · INV-006 (Tuxedo) · INV-223 (QNAP) · INV-224 (UPS) · Estúdio 4C</span>
+      <h1>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874</h1>
+      <p>Guia de Início Rápido — Treino IA / LLMs Locais (Linux &amp; CUDA), Máquinas Virtuais e Armazenamento ZFS 2,5 GbE</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 150 110" width="96" height="70" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="16" y="12" width="46" height="86" rx="6" fill="rgba(44,59,75,0.7)" stroke="#fff"/>
+        <line x1="27" y1="20" x2="27" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <line x1="36" y1="20" x2="36" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <line x1="45" y1="20" x2="45" y2="90" stroke="#E8711C" stroke-width="3"/>
+        <rect x="76" y="30" width="58" height="68" rx="6" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <line x1="88" y1="44" x2="88" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="98" y1="44" x2="98" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="108" y1="44" x2="108" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+        <line x1="118" y1="44" x2="118" y2="88" stroke="#C7D6E5" stroke-width="2.2"/>
+      </svg>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><strong>nvidia-smi</strong><span>Verificar GPU / VRAM livre</span></div>
+      <div class="kpi"><strong>python3 -m venv</strong><span>Ambiente isolado por grupo</span></div>
+      <div class="kpi"><strong>i7 12-Core · 32 GB</strong><span>QNAP Virtualization &amp; ZFS</span></div>
+      <div class="kpi"><strong>24/7 + UPS APC</strong><span>Nunca desligar o NAS / UPS</span></div>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- BLOCO 1: 6 PASSOS -->
+    <section>
+      <h2 class="section-title teal"><span class="tag">1</span> Da Ligação à Libertação de Recursos em 6 Passos</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">1</span><h3>Confirmar Estado e Ventilação</h3></div>
+          <p>Verifique grelhas livres na torre <strong>Tuxedo Atlas XL</strong>, LED <strong>Status Verde</strong> no <strong>QNAP TVS-h874</strong> e visor normal na <strong>UPS APC</strong>.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">2</span><h3>Iniciar Sessão (Local / SSH / Web)</h3></div>
+          <p>Aceda à Tuxedo (sessão Linux, SSH ou JupyterLab) ou ao QNAP (QuTS hero / Virtualization Station) com a conta da sua turma.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">3</span><h3>Verificar Recursos Partilhados</h3></div>
+          <p>Antes de lançar treinos IA ou VMs, corra <code>nvidia-smi</code> e <code>htop</code> na Tuxedo (ou veja a RAM disponível no QNAP) para não afetar colegas.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">4</span><h3>Ativar Ambiente Virtual (.venv)</h3></div>
+          <p>Trabalhe na pasta do grupo e ative o <code>venv</code> (<code>source .venv/bin/activate</code>). <strong>Nunca</strong> instale pacotes com <code>sudo pip</code>!</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">5</span><h3>Executar IA / LLMs ou VM e Guardar</h3></div>
+          <p>Corra scripts PyTorch/Ollama ou a Máquina Virtual da aula e guarde datasets/resultados finais na partilha SMB/NFS do NAS QNAP.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">6</span><h3>Libertar VRAM / VMs e Logout</h3></div>
+          <p>Pare kernels Jupyter e VMs temporárias, limpe <code>/tmp</code> e termine sessão (<em>Logout</em>). <strong>Nunca desligue o servidor NAS nem a UPS!</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO 2: ANATOMIA + COMANDOS/LEDS -->
+    <div class="mid-grid">
+      <section class="panel">
+        <h2 class="section-title acc"><span class="tag">2</span> Anatomia da Infraestrutura (Estúdio 4C)</h2>
+        <div class="anatomy-wrap">
+          <svg viewBox="0 0 155 168" width="118" height="132" aria-label="Esquema Tuxedo Atlas XL, QNAP TVS-h874 e UPS APC">
+            <!-- Torre Tuxedo esq -->
+            <rect x="12" y="14" width="52" height="102" rx="6" fill="#2C3B4B" stroke="#1F2A36" stroke-width="2.2"/>
+            <line x1="23" y1="22" x2="23" y2="108" stroke="#C87D4B" stroke-width="3.2"/>
+            <line x1="33" y1="22" x2="33" y2="108" stroke="#C87D4B" stroke-width="3.2"/>
+            <line x1="43" y1="22" x2="43" y2="108" stroke="#C87D4B" stroke-width="3.2"/>
+            <line x1="53" y1="22" x2="53" y2="108" stroke="#C87D4B" stroke-width="3.2"/>
+            <text x="38" y="127" text-anchor="middle" fill="#1F2A36" font-size="8.5" font-weight="bold">Tuxedo Atlas XL</text>
+            <!-- NAS QNAP dir topo -->
+            <rect x="78" y="24" width="66" height="58" rx="5" fill="#1F2A36" stroke="#1F2A36" stroke-width="2"/>
+            <line x1="82" y1="42" x2="140" y2="42" stroke="#D4A359" stroke-width="2"/>
+            <rect x="122" y="29" width="16" height="8" rx="1.5" fill="#4CE0F5"/>
+            <line x1="87" y1="47" x2="87" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="95" y1="47" x2="95" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="103" y1="47" x2="103" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="111" y1="47" x2="111" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="119" y1="47" x2="119" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="127" y1="47" x2="127" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <line x1="135" y1="47" x2="135" y2="77" stroke="#8FA3B5" stroke-width="3.5"/>
+            <text x="111" y="93" text-anchor="middle" fill="#1F2A36" font-size="8.5" font-weight="bold">QNAP TVS-h874</text>
+            <!-- UPS APC baixo dir -->
+            <rect x="78" y="104" width="66" height="36" rx="4" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2"/>
+            <rect x="98" y="112" width="26" height="12" rx="2" fill="#1D63B8"/>
+            <text x="111" y="152" text-anchor="middle" fill="#5B6672" font-size="8" font-weight="bold">UPS APC (INV-224)</text>
+            <!-- Pins -->
+            <circle cx="38" cy="14" r="8" fill="#E8711C"/><text x="38" y="17.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">1</text>
+            <circle cx="14" cy="64" r="8" fill="#1E7E8C"/><text x="14" y="67.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">2</text>
+            <circle cx="84" cy="24" r="8" fill="#1D63B8"/><text x="84" y="27.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">3</text>
+            <circle cx="142" cy="62" r="8" fill="#1F2A36"/><text x="142" y="65.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">4</text>
+            <circle cx="78" cy="122" r="8" fill="#E8711C"/><text x="78" y="125.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">5</text>
+          </svg>
+          <ul class="anatomy-list">
+            <li><span class="pin">1</span><div><strong>Tuxedo Atlas XL (INV-006):</strong> Torre Fractal North XL (frente madeira/mesh). Topo com botão Power e portas USB-A / USB-C.</div></li>
+            <li><span class="pin teal">2</span><div><strong>GPU IA &amp; Arrefecimento AiO:</strong> Placa gráfica dedicada p/ CUDA, PyTorch e LLMs. Manter frente e topo totalmente desobstruídos!</div></li>
+            <li><span class="pin blue">3</span><div><strong>QNAP TVS-h874 (INV-223):</strong> Core i7-12700E (12 núcleos), 32 GB RAM, 2× M.2 NVMe internos, LEDs Status/LAN e 2× portas 2,5 GbE.</div></li>
+            <li><span class="pin dark">4</span><div><strong>8 Baías SATA Hot-Swap (ZFS):</strong> Discos em pool ZFS com <em>snapshots</em>. <strong>Nunca abrir nem retirar gavetas de disco!</strong></div></li>
+            <li><span class="pin">5</span><div><strong>UPS APC Smart-UPS (INV-224):</strong> Protege o NAS/servidor contra falhas elétricas. Se apitar, guardar trabalhos e avisar o CTE.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title"><span class="tag">3</span> Comandos Essenciais &amp; LEDs do NAS QNAP</h2>
+        <table class="mini">
+          <thead><tr><th>Comando / Ação (Tuxedo &amp; QNAP)</th><th>Para que serve</th></tr></thead>
+          <tbody>
+            <tr><td><code>nvidia-smi</code> (ou <code>watch -n 2 nvidia-smi</code>)</td><td>Ver ocupação de VRAM, temperatura e processos ativos na GPU.</td></tr>
+            <tr><td><code>python3 -m venv .venv &amp;&amp; source .venv/bin/activate</code></td><td>Criar e ativar ambiente virtual Python isolado na pasta do grupo.</td></tr>
+            <tr><td><code>ollama list</code> / <code>ollama run &lt;modelo&gt;</code></td><td>Listar e testar modelos LLM locais instalados na estação AI.</td></tr>
+            <tr><td><code>smb://&lt;IP-NAS&gt;/&lt;partilha&gt;</code> (ou <code>\\&lt;IP-NAS&gt;\</code>)</td><td>Montar pasta partilhada de datasets e backups no QNAP via 2,5 GbE.</td></tr>
+            <tr><td><strong>Virtualization Station (Browser QuTS hero)</strong></td><td>Abrir consola web de Máquinas Virtuais Linux/Windows no NAS.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini" style="margin-bottom:0">
+          <thead><tr><th>Indicador LED / Alarme (QNAP / UPS)</th><th>Significado &amp; Regra de Segurança</th></tr></thead>
+          <tbody>
+            <tr><td><span class="led-dot led-green"></span><strong>Status Verde fixo / LAN a piscar</strong></td><td>NAS operacional e tráfego 2,5 GbE normal.</td></tr>
+            <tr><td><span class="led-dot led-ry"></span><strong>Status Verde / Vermelho alternado</strong></td><td>Reconstrução RAID/ZFS ou atualização — <strong>proibido desligar!</strong></td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Status ou HDD 1–8 a Vermelho</strong></td><td>Pool ZFS &gt; 90%, erro de disco ou ventoinha — avisar CTE já.</td></tr>
+            <tr><td><span class="led-dot led-amber"></span><strong>UPS APC a apitar (modo bateria)</strong></td><td>Falha elétrica! Guardar código, parar treino GPU e avisar docente.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- BLOCO 3: 5 REGRAS DE OURO -->
+    <section class="rules-box">
+      <h2 class="section-title red" style="border-bottom-color:#F0CFCB;margin-bottom:7px"><span class="tag">!</span> 5 Regras de Ouro da Infraestrutura IA &amp; NAS (INV-006 / INV-223 / INV-224)</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>1. Nunca Desligar o NAS</strong>O QNAP TVS-h874 e a UPS APC operam 24/7 para toda a escola. Nunca prima o botão Power nem retire cabos!</div>
+        <div class="rule-item"><strong>2. Gavetas de Disco Intocáveis</strong>As 8 baías SATA são hot-swap mas exclusivas da equipa técnica. Retirar um disco em uso degrada o pool ZFS!</div>
+        <div class="rule-item"><strong>3. Partilha Justa de VRAM</strong>Verifique sempre <code>nvidia-smi</code> antes de iniciar treinos e feche o kernel Jupyter assim que terminar a aula.</div>
+        <div class="rule-item"><strong>4. Zero «sudo pip» Global</strong>Use sempre ambientes virtuais (<code>venv</code>) ou contentores para não quebrar drivers CUDA/PyTorch de outras turmas.</div>
+        <div class="rule-item"><strong>5. Fluxo de Ar &amp; Backups</strong>Não encoste mochilas/livros às grelhas da Tuxedo/NAS. Guarde datasets importantes na partilha ZFS do QNAP.</div>
+      </div>
+    </section>
+
+    <!-- BLOCO 4: CHECKLIST + REDE/ZFS + QR -->
+    <div class="bottom-grid">
+      <section class="check-box">
+        <h2 class="section-title" style="border-bottom-color:#B7DEC8;color:#124C2A"><span class="tag" style="background:#17693A">&#10003;</span> Checklist de Fim de Sessão (Estúdio 4C)</h2>
+        <ul class="check-list" id="a4CheckList">
+          <li><label><input type="checkbox" id="a4-tx-1"><span><strong>VRAM libertada:</strong> Kernels Jupyter / processos GPU fechados (<code>nvidia-smi</code> limpo).</span></label></li>
+          <li><label><input type="checkbox" id="a4-tx-2"><span><strong>Trabalhos no NAS:</strong> Código/modelos guardados na pasta da turma e <code>/tmp</code> limpo.</span></label></li>
+          <li><label><input type="checkbox" id="a4-tx-3"><span><strong>VMs suspensas:</strong> Máquinas virtuais temporárias da aula encerradas ordenadamente.</span></label></li>
+          <li><label><input type="checkbox" id="a4-tx-4"><span><strong>Logout seguro:</strong> Sessão fechada sem desligar o QNAP TVS-h874 nem a UPS APC.</span></label></li>
+        </ul>
+      </section>
+
+      <section class="anac-box">
+        <h2 class="section-title" style="border-bottom-color:#B8D2F2;color:#144682"><span class="tag" style="background:#18539B">ZFS</span> Arquitetura IA + Virtualização</h2>
+        <ul>
+          <li><strong>Tuxedo Atlas XL (INV-006):</strong> Computação local para LLMs (Ollama), Visão Computacional, PyTorch e renderização vídeo.</li>
+          <li><strong>QNAP TVS-h874 (INV-223):</strong> QuTS hero ZFS (<em>self-healing</em> + <em>snapshots</em>) e VMs acessíveis pelos portáteis/MacBooks do CTE.</li>
+          <li><strong>Proteção APC (INV-224):</strong> Encerramento seguro do ZFS em caso de falha elétrica prolongada.</li>
+        </ul>
+      </section>
+
+      <aside class="qr-box" aria-label="Código QR para diagnóstico online">
+        <!-- FASE 3 (P3): substituir pelo QR code real de https://aem-cte-ajuda.netlify.app/Tuxedo_AI_NAS_QNAP/#diagnostico -->
+        <svg viewBox="0 0 80 80" width="66" height="66" fill="#1F2A36" aria-hidden="true">
+          <rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="#1F2A36" stroke-width="4"/>
+          <rect x="11" y="11" width="10" height="10"/>
+          <rect x="52" y="4" width="24" height="24" rx="3" fill="none" stroke="#1F2A36" stroke-width="4"/>
+          <rect x="59" y="11" width="10" height="10"/>
+          <rect x="4" y="52" width="24" height="24" rx="3" fill="none" stroke="#1F2A36" stroke-width="4"/>
+          <rect x="11" y="59" width="10" height="10"/>
+          <rect x="34" y="8" width="6" height="6"/><rect x="34" y="20" width="6" height="12"/>
+          <rect x="8" y="36" width="12" height="6"/><rect x="26" y="36" width="18" height="6"/>
+          <rect x="50" y="36" width="8" height="8"/><rect x="64" y="36" width="10" height="6"/>
+          <rect x="36" y="50" width="8" height="12"/><rect x="50" y="52" width="12" height="6"/>
+          <rect x="66" y="52" width="8" height="10"/><rect x="48" y="66" width="18" height="8"/>
+        </svg>
+        <strong>Algo não funciona?</strong>
+        <span>Leia este código para abrir o Diagnóstico Rápido</span>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="sheet-foot">
+    <span><strong>CTE Informático</strong> · Tuxedo Atlas XL (INV-006) + QNAP TVS-h874 (INV-223) + UPS APC (INV-224) · Estúdio 4C</span>
+    <span>Em caso de LED vermelho no NAS ou alarme na UPS: <strong>NÃO desligue na tomada</strong> e avise o responsável do CTE.</span>
+  </footer>
+</article>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "tuxnas-a4-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#a4CheckList input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+
+  var resetBtn = document.getElementById("resetA4Check");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>

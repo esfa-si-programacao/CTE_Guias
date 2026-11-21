@@ -6,7 +6,7 @@
 <title>CTE — Portal de Guias e Manuais de Equipamentos</title>
 <meta name="description" content="Portal de ajuda online do Centro Tecnológico Especializado (CTE) Informático: manuais, guias de início rápido, vídeos e ferramentas para os equipamentos requisitáveis.">
 <meta property="og:title" content="CTE — Portal de Guias e Manuais de Equipamentos">
-<meta property="og:description" content="Acesso rápido aos centros de ajuda online dos equipamentos do CTE Informático (Robô NAO V6, DJI Avata 2, Meta Quest 3 VR, DJI RoboMaster TT, DJI Pocket 2 Creator Combo).">
+<meta property="og:description" content="Acesso rápido aos centros de ajuda online dos equipamentos do CTE Informático (Robô NAO V6, DJI Avata 2, Meta Quest 3 VR, DJI RoboMaster TT, DJI Pocket 2 Creator Combo e Scanner 3D Einstar).">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial,sans-serif' font-size='24' font-weight='800' fill='%23E8711C'%3ECTE%3C/text%3E%3C/svg%3E">
 <style>
@@ -370,7 +370,7 @@ footer {
     </div>
     <div class="hero-stats">
       <div class="stat-card">
-        <span class="stat-num">5</span>
+        <span class="stat-num">7</span>
         <span class="stat-label">Equipamentos</span>
       </div>
     </div>
@@ -381,14 +381,16 @@ footer {
   <div class="controls-bar">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-144) ou área..." aria-label="Pesquisar equipamentos">
+      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-006) ou área..." aria-label="Pesquisar equipamentos">
     </div>
     <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por área">
-      <button type="button" class="pill active" data-cat="all">Todos (5)</button>
+      <button type="button" class="pill active" data-cat="all">Todos (7)</button>
       <button type="button" class="pill" data-cat="robotica">Robótica</button>
       <button type="button" class="pill" data-cat="drones">Drones</button>
       <button type="button" class="pill" data-cat="vr">Realidade Virtual</button>
       <button type="button" class="pill" data-cat="audiovisual">Audiovisual</button>
+      <button type="button" class="pill" data-cat="3d">Digitalização &amp; 3D</button>
+      <button type="button" class="pill" data-cat="ia-redes">IA &amp; Servidores</button>
     </div>
   </div>
 </div>
@@ -529,6 +531,62 @@ footer {
             <span class="mini-tag">Carta de Operador</span>
             <span class="mini-tag">Mic Sem Fios</span>
             <span class="mini-tag">Diagnóstico LED</span>
+          </div>
+        </div>
+        <div class="equip-footer">
+          <span class="open-cta">Abrir ajuda &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 6. Scanner 3D Einstar -->
+    <a class="equip-card" href="Scanner_3D_Einstar/index.html" data-cat="3d">
+      <div class="equip-media">
+        <img src="Scanner_3D_Einstar/einstar_3d_scanner.jpg" alt="Scanner 3D portátil Shining 3D Einstar com estojo e placa de calibração">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
+            <span class="cat-badge">Digitalização &amp; 3D</span>
+            <span class="inv-badge">INV-228 · 2 un. · SC - LMAS</span>
+          </div>
+          <h2>Scanner 3D Einstar</h2>
+          <p>Centro de ajuda completo para digitalização 3D: requisitos GPU/EXStar, placa de calibração por n.º de série, LEDs de distância, exportação STL/OBJ/PLY e Assistente IA (em breve).</p>
+          <div class="tags-row">
+            <span class="mini-tag">IA (em breve)</span>
+            <span class="mini-tag">Guia Rápido A4 / PDF</span>
+            <span class="mini-tag">Manuais Web</span>
+            <span class="mini-tag">Carta de Operador 3D</span>
+            <span class="mini-tag">Software EXStar</span>
+            <span class="mini-tag">Diagnóstico LED</span>
+          </div>
+        </div>
+        <div class="equip-footer">
+          <span class="open-cta">Abrir ajuda &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 7. Estação AI Tuxedo Atlas XL & NAS QNAP TVS-h874 -->
+    <a class="equip-card blue" href="Tuxedo_AI_NAS_QNAP/index.html" data-cat="ia-redes">
+      <div class="equip-media">
+        <img src="Tuxedo_AI_NAS_QNAP/tuxedo_nas_qnap.jpg" alt="Estação de Trabalho AI Tuxedo Atlas XL e Servidor NAS QNAP TVS-h874">
+      </div>
+      <div class="equip-body">
+        <div>
+          <div class="equip-meta-top">
+            <span class="cat-badge">IA &amp; Virtualização</span>
+            <span class="inv-badge">INV-006 / INV-223 · Estúdio 4C</span>
+          </div>
+          <h2>Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874</h2>
+          <p>Centro de ajuda completo da infraestrutura de IA e servidores do Estúdio 4C: Linux/CUDA, LLMs locais (Ollama/PyTorch), Máquinas Virtuais, armazenamento ZFS 2,5 GbE e proteção UPS.</p>
+          <div class="tags-row">
+            <span class="mini-tag">IA (em breve)</span>
+            <span class="mini-tag">Guia Rápido A4 / PDF</span>
+            <span class="mini-tag">Manuais Web</span>
+            <span class="mini-tag">Carta de Utilizador</span>
+            <span class="mini-tag">CUDA &amp; LLMs</span>
+            <span class="mini-tag">VMs &amp; ZFS</span>
           </div>
         </div>
         <div class="equip-footer">

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI Avata 2 FPV — Manual de Utilizador e Regras ANAC C1 (CTE · INV-151)</title>
+<meta name="description" content="Manual completo do conjunto FPV DJI Avata 2, DJI Goggles 3 e DJI RC Motion 3 do CTE: regras ANAC Classe C1, Observador Visual, controlos, passo a passo de voo, 4K HDR, 5 missões progressivas e checklists.">
+<meta property="og:title" content="DJI Avata 2 FPV — Manual de Utilizador e Regras ANAC C1 (CTE)">
+<meta property="og:description" content="Manual completo do conjunto DJI Avata 2 + Goggles 3 + RC Motion 3 (INV-151): regras ANAC C1, segurança FPV, controlos, captação 4K HDR e 5 missões pedagógicas.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='25' y='16' width='14' height='32' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='32' cy='22' r='3.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.3rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 116px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 88px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI Avata 2 FPV</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="DJI_Avata_2_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="DJI_Avata_2_Quiz_Habilitacao.html">Carta de Piloto FPV</a>
+      <a href="DJI_Avata_2_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>DJI Avata 2 FPV</h1>
+      <p class="sub">Manual de Utilizador, Operação FPV e Regras ANAC (Classe C1)</p>
+      <p class="kit">Conjunto DJI Avata 2 + DJI Goggles 3 + DJI RC Motion 3 · 4 kits (<code>INV-151</code>) + bateria extra (<code>INV-226</code>) · Estúdio 4C</p>
+      <p class="ver">Versão 1.0 · novembro de 2026 · Destinatários: Professores e Alunos do CTE</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 140 110" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="34" cy="30" r="19" stroke="#C7D6E5"/>
+      <circle cx="106" cy="30" r="19" stroke="#C7D6E5"/>
+      <circle cx="34" cy="80" r="19" stroke="#C7D6E5"/>
+      <circle cx="106" cy="80" r="19" stroke="#C7D6E5"/>
+      <rect x="52" y="20" width="36" height="70" rx="14" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+      <circle cx="70" cy="34" r="8" fill="#1F2A36" stroke="#E8711C" stroke-width="2.8"/>
+      <circle cx="70" cy="34" r="3" fill="#4CE0F5" stroke="none"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice do manual">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer o conjunto FPV</a>
+        <ul>
+          <li><a href="#s2-1">2.1 DJI Avata 2 (Aeronave C1)</a></li>
+          <li><a href="#s2-2">2.2 DJI Goggles 3 (Óculos)</a></li>
+          <li><a href="#s2-3">2.3 DJI RC Motion 3 (Comando)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras ANAC C1 e segurança FPV</a></li>
+      <li><a href="#s4">4. Ligar, Goggles 3 e LEDs</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Sequência de ligar (3 aparelhos)</a></li>
+          <li><a href="#s4-2">4.2 Dioptrias, Real View e embaciamento</a></li>
+          <li><a href="#s4-3">4.3 Tabela de LEDs do Avata 2</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Controlos do RC Motion 3</a></li>
+      <li><a href="#s6">6. Passo a passo do voo seguro</a></li>
+      <li><a href="#s7">7. Gravação 4K HDR e ficheiros</a></li>
+      <li><a href="#s8">8. Treino progressivo e missões</a>
+        <ul>
+          <li><a href="#s8-plano">8.1 Modelo de Plano de Voo</a></li>
+          <li><a href="#s8-inter">8.2 Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Desligar, devolver e registo</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist de devolução</a></li>
+          <li><a href="#s9-2">9.2 Folha de registo (Kits 1–4)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>O <strong>CTE Informático</strong> dispõe de <strong>4 kits DJI Avata 2 Pro-View Combo</strong> (<code>INV-151</code>) e <strong>1 bateria inteligente sobresselente</strong> (<code>INV-226</code>), guardados no <strong>Armário branco com tabuleiros (junto à janela) do Estúdio 4C</strong>. Cada kit combina o drone FPV <strong>DJI Avata 2</strong>, os óculos imersivos <strong>DJI Goggles 3</strong> e o comando gestual de uma mão <strong>DJI RC Motion 3</strong>, sendo ideal para atividades <em>place-based</em>, reconhecimento do território e captação de vídeo aéreo 4K HDR.</p>
+      <p>Este equipamento é uma <strong>aeronave não tripulada de Classe UE C1 (377 g)</strong>. Antes de qualquer voo escolar, os utilizadores devem completar a <a href="DJI_Avata_2_Quiz_Habilitacao.html">Carta de Piloto FPV</a>, respeitar rigorosamente a legislação europeia/ANAC e atuar sempre sob supervisão docente.</p>
+      <div class="note info">
+        <strong>Para gestão técnica, emparelhamento e conformidade institucional:</strong> Consulte o <a href="DJI_Avata_2_Manual_Tecnico.html">Manual Técnico e Manutenção</a> (Identificação Remota C1, emparelhamento dos 3 equipamentos, gestão de baterias Li-ion e 10 casos de diagnóstico).
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer o conjunto FPV</h2>
+
+      <h3 id="s2-1">2.1 DJI Avata 2 (Aeronave Classe C1)</h3>
+      <p>O DJI Avata 2 é um drone FPV estilo <em>cinewhoop</em> com protetores de hélices integrados na fuselagem, câmara estabilizada 4K ultra-grande-angular e memória interna generosa.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Componente / Característica</th><th>Especificação Oficial</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Peso à descolagem / Classe UE</strong></td><td>~<strong>377 g</strong> · <strong>Classe C1</strong> (com Identificação Remota Direta e consciencialização geográfica)</td></tr>
+            <tr><td><strong>Câmara e estabilização</strong></td><td>Sensor CMOS <strong>1/1.3"</strong> · Vídeo até <strong>4K @ 60 fps HDR</strong> · Campo de visão <strong>155°</strong> · Estabilização RockSteady / HorizonSteady</td></tr>
+            <tr><td><strong>Armazenamento</strong></td><td><strong>46 GB de memória interna</strong> + ranhura para cartão <strong>microSD</strong> + porta USB-C lateral</td></tr>
+            <tr><td><strong>Sensores de posicionamento</strong></td><td>Visão binocular <strong>apenas para baixo e para trás</strong> (<strong>SEM sensores frontais nem laterais!</strong>)</td></tr>
+            <tr><td><strong>Bateria e autonomia</strong></td><td>Li-ion <strong>2150 mAh / 14,76 V / 31,7 Wh</strong> (~145 g) · Até ~<strong>23 minutos</strong> de voo em condições ideais</td></tr>
+            <tr><td><strong>Segurança integrada</strong></td><td>Protetores de hélices integrados · Travão imediato (Hover) · Regresso a Casa (RTH) · Modo Tartaruga (<em>Turtle Mode</em>)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-2">2.2 DJI Goggles 3 (Óculos FPV)</h3>
+      <ul>
+        <li><strong>Peso e autonomia:</strong> ~<strong>470 g</strong> com bateria integrada na banda traseira (~<strong>3 horas</strong> de utilização).</li>
+        <li><strong>Visão em tempo real (<em>Real View + PiP</em>):</strong> Câmaras frontais integradas permitem ver o ambiente físico a cores sem retirar os óculos — basta dar <strong>2 toques no painel tátil do lado direito</strong> (ou 2 cliques no dial do RC Motion 3).</li>
+        <li><strong>Ajuste ótico individual:</strong> Duas rodas inferiores permitem ajustar a distância interpupilar (IPD) e as <strong>dioptrias de −6,0 D a +2,0 D</strong> (dispensa a maioria dos óculos graduados).</li>
+        <li><strong>Desembaciamento num toque (<em>One-Tap Defogging</em>):</strong> Ventoinha interna para remover rapidamente condensação em dias frios ou húmidos.</li>
+      </ul>
+
+      <h3 id="s2-3">2.3 DJI RC Motion 3 (Comando de Uma Mão)</h3>
+      <ul>
+        <li><strong>Peso:</strong> ~<strong>118 g</strong> · Utilizado com a mão direita (ou esquerda) e <strong>sempre com a fita de pulso colocada</strong>.</li>
+        <li><strong>Pilotagem intuitiva por inclinação do pulso:</strong> Um círculo guia em realidade aumentada (<em>AR Cursor / círculo de direção</em>) nos Goggles 3 mostra exatamente para onde o drone vai avançar quando pressiona o gatilho acelerador.</li>
+        <li><strong>Botões essenciais:</strong> Botão laranja <strong>Lock</strong> (travão imediato / descolar / aterrar), <strong>Gatilho Acelerador</strong> (avançar / recuar), Botão <strong>Modo (M)</strong> (Normal/Sport e RTH), <strong>Joystick</strong> (altitude e deslocação lateral), <strong>Dial</strong> e botão de <strong>Gravação</strong>.</li>
+      </ul>
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras legais ANAC (Classe C1) e segurança FPV</h2>
+      <p>Ao contrário de brinquedos ou micro-drones de sala de aula (como o RoboMaster TT), o DJI Avata 2 pesa <strong>377 g</strong> e possui câmara de alta resolução, enquadrando-se na <strong>Categoria Aberta — Subcategoria A1 (Classe C1)</strong> do Regulamento Europeu (UE) 2019/947 e normas da <strong>ANAC</strong> em Portugal.</p>
+
+      <div class="note danger">
+        <strong>REGRA LEGAL OBRIGATÓRIA EM FPV — OBSERVADOR VISUAL:</strong> Na Categoria Aberta, o drone tem de permanecer em linha de vista direta (<em>VLOS</em>). Como os <strong>DJI Goggles 3</strong> tapam a visão direta do piloto, <strong>é legalmente proibido voar sozinho</strong>: tem de estar sempre um <strong>Observador Visual</strong> posicionado mesmo ao lado do piloto, a olhar diretamente para o drone (sem binóculos) e pronto a avisar de obstáculos, pessoas ou aeronaves.
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Requisito / Regra</th><th>Obrigação na Escola e no Exterior (Portugal)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Registo de Operador (ANAC)</strong></td><td>Obrigatório em <a href="https://uas.anac.pt" target="_blank" rel="noopener noreferrer">uas.anac.pt &#8599;</a>. O número de operador (<code>PRT...</code>) deve estar afixado no drone e carregado na Identificação Remota Direta. <!-- CONFIRMAR: confirmar se a escola utiliza registo institucional de operador UAS ou registo do docente responsável --></td></tr>
+            <tr><td><strong>2. Formação Piloto Remoto A1/A3</strong></td><td>Obrigatório concluir a formação e exame online gratuito em <a href="https://rp.anac.pt" target="_blank" rel="noopener noreferrer">rp.anac.pt &#8599;</a> para pilotar aeronaves Classe C1 no exterior (em contexto escolar, o docente qualificado assume a supervisão).</td></tr>
+            <tr><td><strong>3. Zonas Geográficas (Voa na Boa)</strong></td><td>Consultar sempre <a href="https://dnt.anac.pt" target="_blank" rel="noopener noreferrer">dnt.anac.pt &#8599;</a> (ou app <strong>Voa na Boa</strong>) antes de qualquer voo exterior para verificar restrições junto a aeródromos, parques naturais ou zonas militares.</td></tr>
+            <tr><td><strong>4. Imagens Aéreas (AAN) e RGPD</strong></td><td>Para captação de fotografia/vídeo aéreo no exterior, verificar a necessidade de autorização da Autoridade Aeronáutica Nacional (<a href="https://www.aan.pt" target="_blank" rel="noopener noreferrer">aan.pt &#8599;</a>). Nunca filmar rostos identificáveis ou propriedades privadas sem consentimento (RGPD).</td></tr>
+            <tr><td><strong>5. Altitude e Pessoas</strong></td><td>Altitude máxima absoluta: <strong>120 metros</strong> acima do solo (em atividades escolares, manter muito abaixo — ex.: 5 a 25 m). <strong>Nunca sobrevoar aglomerados de pessoas</strong> (recreios cheios, festas, espetáculos) e evitar sobrevoo de pessoas não envolvidas.</td></tr>
+            <tr><td><strong>6. Sem sensores frontais!</strong></td><td>O DJI Avata 2 <strong>NÃO tem sensores de obstáculos à frente nem dos lados</strong> (apenas em baixo e atrás). Se avançar contra uma árvore, poste ou parede, o drone não desvia sozinho!</td></tr>
+            <tr><td><strong>7. Zero sol nos DJI Goggles 3</strong></td><td><strong>Nunca pouse nem segure os óculos com as lentes internas viradas para o sol</strong> ou janelas com sol direto. As lentes ampliam a luz solar e queimam permanentemente os ecrãs OLED internos em poucos segundos.</td></tr>
+            <tr><td><strong>8. Pilotar sempre sentado</strong></td><td>A visão FPV pode provocar perda de equilíbrio se estiver de pé. <strong>Sente-se numa cadeira ou banco estável</strong> antes de colocar os óculos sobre os olhos. Ao menor sinal de tontura, dê <strong>1 clique no botão Lock</strong> e aterre.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2>4. Ligar os 3 equipamentos, DJI Goggles 3 e LEDs</h2>
+
+      <h3 id="s4-1">4.1 Sequência oficial de arranque (1 clique + manter 2 s)</h3>
+      <p>Antes de ligar o conjunto, confirme que o drone, os óculos e o comando pertencem ao <strong>mesmo número de kit (1 a 4)</strong> e que <strong>retirou o protetor rígido do gimbal</strong> da frente do Avata 2.</p>
+      <ol>
+        <li><strong>Ligar o DJI Avata 2:</strong> Insira a bateria até ouvir o clique de segurança. Prima o botão de energia da bateria <strong>1 vez (curto)</strong> e, imediatamente a seguir, <strong>mantenha premido ~2 segundos</strong> até ouvir o sinal sonoro.</li>
+        <li><strong>Ligar os DJI Goggles 3:</strong> Abra as antenas dobráveis. Prima o botão de energia <strong>1 vez (curto) + manter ~2 segundos</strong>.</li>
+        <li><strong>Ligar o DJI RC Motion 3:</strong> Coloque a fita de pulso. Prima o botão de energia <strong>1 vez (curto) + manter ~2 segundos</strong>.</li>
+        <li><strong>Confirmar ligação:</strong> Em poucos segundos verá nos Goggles 3 a imagem em direto da câmara do Avata 2, o estado da bateria dos 3 equipamentos, o número de satélites GPS e o modo de voo (<strong>N</strong>).</li>
+      </ol>
+
+      <h3 id="s4-2">4.2 Ajustar dioptrias, Real View e desembaciamento</h3>
+      <ul>
+        <li><strong>Conforto na cabeça:</strong> Apoie primeiro a almofada frontal na testa, ajuste a roda traseira da banda elástica e só depois baixe as lentes para os olhos.</li>
+        <li><strong>Focagem (dioptrias −6,0 D a +2,0 D):</strong> Desbloqueie e rode os dois botões inferiores (um para cada olho) e deslize-os lateralmente para acertar a distância entre pupilas (IPD) até o texto nos menus ficar perfeitamente nítido. Depois, volte a trancar os botões se necessário.</li>
+        <li><strong>Ver o mundo real (<em>Real View</em>):</strong> Dê <strong>2 toques</strong> no lado direito dos óculos (ou <strong>2 cliques no dial</strong> do RC Motion 3) para alternar entre a câmara do drone e o ambiente real a cores à sua frente.</li>
+        <li><strong>Lentes embaciadas:</strong> Abra o menu interno dos Goggles 3 e ative o <strong>Desembaciamento (Defogging)</strong> para acionar a ventoinha. Limpe lentes exclusivamente com <strong>pano de microfibra seco</strong>.</li>
+      </ul>
+
+      <h3 id="s4-3">4.3 Tabela de estados do LED do DJI Avata 2</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Padrão do LED do Avata 2</th><th>Significado</th><th>Ação Recomendada</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Verde a piscar lentamente</strong></td><td>Sinal GNSS/GPS forte (exteriores)</td><td>Confirmar <em>Home Point</em> nos óculos e voar em Modo N.</td></tr>
+            <tr><td><strong>Verde a piscar 2× seguidas</strong></td><td>Posicionamento por visão ativo (sem GPS suficiente)</td><td>Adequado para espaços amplos com boa luz e piso com textura; atenção a deriva.</td></tr>
+            <tr><td><strong>Amarelo a piscar lentamente</strong></td><td>Modo ATTI (sem GPS nem visão estável)</td><td><strong>Não descolar</strong> (o drone deriva com o vento). Aguardar satélites ou melhorar iluminação.</td></tr>
+            <tr><td><strong>Amarelo a piscar rapidamente</strong></td><td>Ligação perdida com óculos / comando</td><td>Confirmar os 3 equipamentos ligados e do mesmo kit; ver <a href="DJI_Avata_2_Manual_Tecnico.html#t3-2">Emparelhamento</a>.</td></tr>
+            <tr><td><strong>Vermelho e Amarelo alternados</strong></td><td>Interferência magnética / bússola por calibrar</td><td>Afastar de metais, carros ou betão armado e seguir o assistente nos Goggles 3.</td></tr>
+            <tr><td><strong>Vermelho a piscar (lento / rápido)</strong></td><td>Bateria baixa / bateria crítica</td><td><strong>Regressar e aterrar imediatamente</strong> em zona plana e segura.</td></tr>
+            <tr><td><strong>Vermelho fixo</strong></td><td>Erro crítico de sistema</td><td>Não voar. Ler o código/aviso nos Goggles 3 e comunicar ao CTE.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Controlos do DJI RC Motion 3</h2>
+      <p>O comando <strong>DJI RC Motion 3</strong> permite pilotar com apenas uma mão através da orientação natural do pulso. Memorize primeiro o <strong>travão imediato (1 clique no botão laranja Lock)</strong> antes de tocar no acelerador.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Controlo</th><th>Ação / Gesto</th><th>Efeito no DJI Avata 2</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Botão Laranja (Lock) — 1× em voo</strong></td><td>1 clique curto</td><td><strong>TRAVÃO DE EMERGÊNCIA / PAIRAR:</strong> trava o drone e mantém-no parado no ar.</td></tr>
+            <tr><td><strong>Botão Laranja (Lock) — 2× no chão</strong></td><td>2 cliques rápidos</td><td>Liga (ou desliga, no solo) os motores sem descolar.</td></tr>
+            <tr><td><strong>Botão Laranja (Lock) — Manter</strong></td><td>Premir continuamente</td><td>No chão (motores ligados): <strong>descola automaticamente (~1,2 m)</strong>. Em voo pairado: <strong>aterra e desliga motores</strong>.</td></tr>
+            <tr><td><strong>Gatilho Acelerador</strong></td><td>Apertar / Empurrar para a frente</td><td><strong>Apertar:</strong> avança na direção do círculo AR nos óculos (mais pressão = mais velocidade). <strong>Empurrar para a frente:</strong> recua devagar.</td></tr>
+            <tr><td><strong>Inclinar pulso</strong></td><td>Cima / baixo / rodar esquerda-direita</td><td>Move o círculo guia AR para subir, descer e curvar suavemente na direção desejada.</td></tr>
+            <tr><td><strong>Botão Modo (M)</strong></td><td>1 clique / Manter premido</td><td><strong>1 clique:</strong> alterna entre <strong>Modo Normal (N)</strong> (obrigatório na escola) e Sport (S). <strong>Manter premido:</strong> ativa <strong>Regresso a Casa (RTH)</strong>; 1 clique cancela.</td></tr>
+            <tr><td><strong>Joystick</strong></td><td>Cima / baixo / esquerda / direita</td><td>Sobe ou desce na vertical; desliza lateralmente (<em>strafe</em>) para afinar enquadramentos sem acelerar.</td></tr>
+            <tr><td><strong>Dial + Botão de Gravação</strong></td><td>Rodar / 2× Dial / Botão lateral</td><td>Rodar ajusta o ângulo vertical do gimbal (<em>tilt</em>); <strong>2× Dial</strong> alterna <em>Real View</em>; botão de disparo inicia/para gravação 4K ou tira foto.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <strong>Atenção ao Modo Sport (S):</strong> No CTE, todos os alunos devem voar exclusivamente em <strong>Modo Normal (N)</strong>. Verifique sempre no canto do visor dos DJI Goggles 3 se surge a letra <strong>N</strong> antes de descolar.
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2>6. Passo a passo do voo FPV seguro</h2>
+      <ol>
+        <li><strong>Validar área e equipa:</strong> Confirmar autorização docente, consultar a app <strong>Voa na Boa</strong> (<code>dnt.anac.pt</code>) se no exterior, verificar ausência de chuva/vento forte e posicionar o <strong>Observador Visual ao lado do piloto</strong>.</li>
+        <li><strong>Inspeção física em terra:</strong> Retirar o protetor do gimbal, verificar as 4 hélices e os aros de proteção (sem fissuras), limpar sensores inferiores/traseiros, confirmar bateria encaixada até ao clique e colocar o drone num local plano, limpo e a pelo menos <strong>3 metros</strong> da equipa.</li>
+        <li><strong>Sentar e ligar os 3 equipamentos:</strong> Piloto senta-se confortavelmente com a fita do RC Motion 3 no pulso. Ligar Avata 2 → Goggles 3 → RC Motion 3 (1 clique + manter 2 s). Ajustar dioptrias.</li>
+        <li><strong>Verificação pré-descolagem nos óculos:</strong> Confirmar <strong>LED verde</strong>, <em>Home Point</em> registado (em exteriores com GPS), <strong>Modo Normal (N)</strong>, bateria &gt; 40% e ausência de alertas no visor.</li>
+        <li><strong>Descolagem controlada:</strong> Anunciar em voz alta <em>«A descolar!»</em>. O Observador confirma <em>«Zona livre!»</em>. Dar <strong>2 cliques no botão Lock</strong> (arranque de motores) e <strong>manter Lock premido</strong> para descolar até ~1,2 m e pairar estável.</li>
+        <li><strong>Voo suave em Modo N:</strong> Praticar primeiro pequenas rotações e pequenos toques no gatilho acelerador, lembrando sempre que <strong>não existem sensores frontais nem laterais</strong>. O Observador comunica continuamente distâncias a árvores, edifícios e pessoas.</li>
+        <li><strong>Aterragem segura:</strong> Regressar sobre a zona plana de aterragem (com indicação do Observador), dar <strong>1 clique no botão Lock</strong> para imobilizar no ar, confirmar área livre por baixo e <strong>manter o botão Lock premido</strong> até pousar suavemente e parar os motores.</li>
+      </ol>
+
+      <div class="note info">
+        <strong>E se o drone virar ao contrário numa aterragem irregular? (Turtle Mode):</strong> Só ative o <em>Modo Tartaruga</em> (através do menu dos Goggles 3) se o drone estiver sobre <strong>piso plano, limpo e sem detritos</strong> (ex.: pavimento desportivo). Em relva alta, areia, cascalho ou perto de obstáculos, <strong>desligue os motores e peça ao Observador Visual para o endireitar à mão</strong> — evitará danificar hélices e motores!
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2>7. Gravação 4K HDR e transferência de ficheiros</h2>
+      <p>O DJI Avata 2 grava vídeo estabilizado até <strong>4K @ 60 fps HDR</strong> (e 1080p até 120 fps), guardando os ficheiros nos <strong>46 GB de memória interna</strong> ou no <strong>cartão microSD</strong> instalado na lateral do corpo (junto à porta USB-C).</p>
+      <ul>
+        <li><strong>Iniciar / parar gravação:</strong> Prima o botão de disparo (<em>Shutter/Record</em>) no DJI RC Motion 3 e confirme o contador vermelho de tempo de gravação nos Goggles 3.</li>
+        <li><strong>Transferência direta por cabo USB-C (recomendado na escola):</strong> Ligue o cabo USB-C do kit entre a porta lateral do DJI Avata 2 e o computador do Estúdio 4C. O drone aparece como armazenamento externo (memória interna de 46 GB e cartão microSD, se presente) — copie apenas os ficheiros da sua turma para a pasta do projeto.</li>
+        <li><strong>Transferência sem fios (QuickTransfer):</strong> Em alternativa, com a app <strong>DJI Fly</strong> num telemóvel autorizado pelo professor, pode transferir clipes rapidamente via Wi-Fi.</li>
+        <li><strong>Boa prática de privacidade (RGPD):</strong> Depois de confirmar que os vídeos foram copiados com sucesso para a pasta da turma, apague os ficheiros do drone (ou informe o CTE para limpeza periódica) e nunca publique imagens aéreas com pessoas identificáveis sem autorização.</li>
+      </ul>
+    </section>
+
+    <section id="s8">
+      <h2>8. Treino progressivo e 5 missões pedagógicas</h2>
+      <p>Siga a progressão abaixo por ordem. Nenhum aluno deve passar à missão seguinte sem dominar a anterior com calma e precisão.</p>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Missão 1 — Familiarização em Terra (Motores Desligados)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">10 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Dominar os DJI Goggles 3 e o RC Motion 3 sem levantar voo.</p>
+        <p><strong>Tarefas:</strong> Sentado, ajustar dioptrias (−6 a +2 D), ativar e desativar o <strong>Real View</strong> (2 toques lado direito e 2× dial), navegar no menu com o cursor AR, verificar o Modo N, simular mentalmente o reflexo de travão (<strong>1× botão laranja Lock</strong>) e confirmar o papel do Observador Visual.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Missão 2 — Descolagem, Pairar e Reflexo de Travão</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">15 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Controlar descolagem, pairar estável a 1,5 m, travão imediato e aterragem exata no ponto de partida.</p>
+        <p><strong>Tarefas:</strong> Descolar (2× Lock → manter), usar apenas o <strong>Joystick</strong> para subir/descer entre 1 m e 2 m e deslizar lateralmente 1 m, avançar devagar 2 m, acionar <strong>1× Lock (Travão imediato)</strong> ao sinal verbal do Observador e aterrar no quadrado inicial (manter Lock).</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Missão 3 — Circuito «Oito Suave» em Modo Normal (N)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">20 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Coordenar pulso e acelerador em curvas largas e contínuas com comunicação piloto–observador.</p>
+        <p><strong>Tarefas:</strong> Colocar dois cones afastados 10 m num campo desportivo livre. Voar a ~2,5 m de altitude descrevendo um «8» suave em Modo N, mantendo sempre velocidade reduzida e informando cada mudança de direção ao Observador Visual.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Missão 4 — Registo Aéreo <em>Place-Based</em> (4K HDR)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">25 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Produzir 3 planos cinematográficos estáveis de um espaço escolar ou património local (área livre de pessoas).</p>
+        <p><strong>Tarefas:</strong> Gravar em 4K HDR: (1) <em>Plano de revelação</em> subindo suavemente com o joystick enquanto inclina ligeiramente o gimbal com o dial; (2) <em>Travelling lateral</em> paralelo a uma fachada/jardim; (3) <em>Órbita lenta</em> em Modo N. Transferir para o PC por USB-C e montar um clipe de 30 segundos.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Missão 5 — Operação em Dupla (Piloto + Observador) com Plano de Voo</h4>
+          <div class="proj-badges"><span class="lvl adv">Projeto</span><span class="lvl">35 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Executar uma missão completa de levantamento audiovisual alternando papéis (Piloto ↔ Observador) com briefing formal de segurança C1.</p>
+        <p><strong>Tarefas:</strong> Preencher o modelo de Plano de Voo abaixo, validar zona na app <strong>Voa na Boa</strong>, realizar o voo documentando 2 pontos de interesse geográficos/arquitetónicos da escola e fazer debriefing técnico sobre segurança, bateria consumida e qualidade dos planos.</p>
+      </div>
+
+      <h3 id="s8-plano">8.1 Modelo copiável de Plano de Voo &amp; Segurança FPV (Classe C1)</h3>
+      <div class="code-wrap">
+        <button class="copy-btn" type="button" data-copy>Copiar modelo</button>
+        <pre><code>PLANO DE VOO FPV — DJI AVATA 2 (CTE · INV-151 · CLASSE C1)
+==========================================================
+Data / Hora:      ____/____/202__   |   Kit N.º (1–4): ____
+Docente / Turma:  ________________________________________
+Piloto (sentado): ________________  |   Observador Visual: ________________
+Local do voo:     ________________________________________
+
+1. VERIFICAÇÃO LEGAL &amp; ESPAÇO AÉREO (EXTERIOR)
+   [ ] Consulta app Voa na Boa (dnt.anac.pt): Zona livre / autorizada
+   [ ] Autorização AAN (aan.pt) verificada (se aplicável a imagem aérea)
+   [ ] Registo Operador (PRT) e supervisão docente A1/A3 confirmados
+   [ ] Sem aglomerados de pessoas e área de segurança delimitada (&gt; 3 m descolagem)
+   [ ] Condições meteorológicas: sem chuva, vento calmo, boa visibilidade
+
+2. VERIFICAÇÃO TÉCNICA DO CONJUNTO
+   [ ] Protetor do gimbal REMOVIDO · Hélices e aros intactos
+   [ ] 3 equipamentos ligados (Avata 2 + Goggles 3 + Motion 3) e bateria &gt; 50%
+   [ ] Dioptrias ajustadas · Real View testado · Goggles 3 longe do sol direto
+   [ ] LED verde (GPS/Visão) · Home Point atualizado · Modo Normal (N) ativo
+
+3. OBJETIVO DO VOO &amp; EMERGÊNCIA
+   Altitude planeada (máx. escolar): ____ m  (limite legal absoluto: 120 m)
+   Plano(s) a gravar (4K / 46 GB ou SD): __________________________________
+   Reflexo de emergência combinado: 1 clique Botão Laranja (Lock) = TRAVÃO IMEDIATO</code></pre>
+      </div>
+
+      <h3 id="s8-inter">8.2 Ideias interdisciplinares (<em>Place-Based Learning</em>)</h3>
+      <ul>
+        <li><strong>Geografia &amp; Ciências Naturais:</strong> Análise da ocupação do solo, coberto vegetal, bacias de drenagem e microclimas do recinto escolar ou parque natural autorizado.</li>
+        <li><strong>Audiovisual, Multimédia &amp; Português:</strong> Planos aéreos imersivos integrados com entrevistas gravadas na <a href="../DJI_Pocket_2_Creator/index.html">DJI Pocket 2 Creator Combo</a> para documentários locais.</li>
+        <li><strong>Física &amp; Matemática:</strong> Estudo de forças aerodinâmicas (sustentação, arrasto, inclinação), relação velocidade–energia da bateria (31,7 Wh) e estimativa trigonométrica de alturas e áreas.</li>
+        <li><strong>Artes Visuais &amp; Arquitetura:</strong> Composição em perspetiva aérea, geometria de edifícios escolares, simetrias e leitura de espaços urbanos.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Desligar, devolver e registo de utilização</h2>
+
+      <h3 id="s9-1">9.1 Checklist interativa de devolução (4 h de validade)</h3>
+      <p class="hint">Marque cada ponto antes de entregar o kit no <strong>Armário branco com tabuleiros (janela) do Estúdio 4C</strong>. As marcações limpam-se automaticamente ao fim de 4 horas.</p>
+      <button class="reset" type="button" id="resetChecklist">Limpar marcações</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir folha de registo</button>
+      <ul class="check">
+        <li><label><input type="checkbox" id="u-av2-1"><span><strong>1. 3 aparelhos desligados:</strong> Avata 2, Goggles 3 e RC Motion 3 desligados (1 clique + 2 s); bateria do drone deixada a arrefecer fora do carregador.</span></label></li>
+        <li><label><input type="checkbox" id="u-av2-2"><span><strong>2. Protetor do gimbal e lentes:</strong> Protetor rígido do gimbal recolocado; lentes dos Goggles 3 limpas só com microfibra seca e protegidas da luz solar.</span></label></li>
+        <li><label><input type="checkbox" id="u-av2-3"><span><strong>3. Ficheiros copiados (46 GB / SD):</strong> Vídeos da turma transferidos para o computador e conformidade RGPD verificada.</span></label></li>
+        <li><label><input type="checkbox" id="u-av2-4"><span><strong>4. Inspeção de hélices, aros e sensores:</strong> 4 hélices sem rachas, estrutura de proteção intacta e sensores inferiores/traseiros limpos.</span></label></li>
+        <li><label><input type="checkbox" id="u-av2-5"><span><strong>5. Kit INV-151 completo:</strong> Avata 2, Goggles 3, RC Motion 3 (com fita de pulso), baterias correspondentes, hub/cabos USB-C e mochila/mala do kit.</span></label></li>
+        <li><label><input type="checkbox" id="u-av2-6"><span><strong>6. Registo e aviso ao CTE:</strong> Identificar o n.º do kit (1–4), sinalizar baterias abaixo de 30% ou qualquer contacto/queda ocorrida.</span></label></li>
+      </ul>
+
+      <h3 id="s9-2">9.2 Folha imprimível de registo de voos (Kits 1 a 4 · <code>INV-151</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Turma / Piloto + Observador</th><th>Kit (1–4)</th><th>Local (Int./Ext.)</th><th>Voa na Boa / ANAC</th><th>Estado na Devolução / Ocorrências</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador DJI Avata 2 FPV (<code>INV-151</code> · Classe C1) · Em caso de dúvida técnica, consulte o <a href="DJI_Avata_2_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "avata2-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar modelo"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

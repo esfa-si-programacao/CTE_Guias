@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Piloto FPV — DJI Avata 2 (CTE · Classe C1)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas de segurança FPV e regras ANAC Classe C1 para o conjunto DJI Avata 2, DJI Goggles 3 e DJI RC Motion 3 (INV-151), com cartão imprimível.">
+<meta property="og:title" content="Carta de Piloto FPV — DJI Avata 2 (CTE)">
+<meta property="og:description" content="Valide em 2 minutos as regras ANAC Classe C1, Observador Visual, travão de emergência e cuidados com os Goggles 3 antes de requisitar um kit INV-151.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='25' y='16' width='14' height='32' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='32' cy='22' r='3.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9em; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI Avata 2 FPV</a> &rsaquo; Carta de Piloto FPV</nav>
+      <h1>Carta de Piloto FPV — DJI Avata 2</h1>
+      <p>Valide em 2 minutos as regras ANAC Classe C1, segurança FPV e controlos antes de requisitar um kit (<code>INV-151</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página DJI Avata 2</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Segurança FPV</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º Multimédia">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Piloto FPV</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="DJI_Avata_2_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-151 · Classe UE C1</div>
+      <h2>Carta de Piloto FPV — DJI Avata 2</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação interna de segurança FPV e regras ANAC C1 para o conjunto DJI Avata 2, DJI Goggles 3 e DJI RC Motion 3. (Não substitui o certificado oficial ANAC A1/A3.)</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Piloto FPV — DJI Avata 2 (<code>INV-151</code> · Classe C1) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Observador Visual (ANAC)",
+      critica: true,
+      q: "Num voo FPV com os DJI Goggles 3 colocados, qual é a regra legal obrigatória da ANAC em Categoria Aberta?",
+      opts: [
+        "Ter um Observador Visual ao lado com vista direta do drone.",
+        "Voar sozinho desde que a bateria esteja acima de oitenta por cento.",
+        "Apenas utilizar o modo de vídeo em alta definição durante a aula.",
+        "Subir acima dos 120 metros para ganhar melhor sinal de satélites."
+      ],
+      ans: 0,
+      exp: "Como os óculos FPV impedem o contacto visual direto (VLOS), a lei exige sempre um Observador Visual ao lado do piloto a vigiar o drone e o espaço aéreo."
+    },
+    {
+      cat: "Travão de emergência",
+      critica: true,
+      q: "Durante o voo, desorientou-se ou viu um obstáculo próximo. Que comando do RC Motion 3 trava e faz o Avata 2 pairar imediatamente?",
+      opts: [
+        "Carregar duas vezes seguidas no gatilho do acelerador.",
+        "Dar 1 clique no botão laranja (Lock) do RC Motion 3.",
+        "Desligar rapidamente os óculos Goggles 3 mantendo o botão.",
+        "Empurrar o joystick lateral para baixo durante cinco segundos."
+      ],
+      ans: 1,
+      exp: "O botão laranja (Lock) do RC Motion 3 funciona como travão imediato: 1 clique durante o voo trava o DJI Avata 2 e coloca-o a pairar parado no lugar."
+    },
+    {
+      cat: "Sensores de obstáculos",
+      critica: true,
+      q: "Em que direções o DJI Avata 2 possui sensores visuais de posicionamento e deteção?",
+      opts: [
+        "Apenas para baixo e para trás — não tem sensores frontais.",
+        "Em todas as seis direções em redor da estrutura e das hélices.",
+        "Apenas na frente e nas laterais para desviar automaticamente.",
+        "Na parte superior e nos quatro cantos dos protetores rígidos."
+      ],
+      ans: 0,
+      exp: "Regra crítica: o DJI Avata 2 tem sensores binoculares apenas para baixo e para trás — NÃO deteta obstáculos à frente nem dos lados!"
+    },
+    {
+      cat: "Proteção solar Goggles 3",
+      critica: true,
+      q: "Numa pausa de uma atividade no exterior com sol, qual é o cuidado obrigatório com os óculos DJI Goggles 3?",
+      opts: [
+        "Pousá-los com as lentes internas viradas para cima para arejar.",
+        "Limpá-los com álcool etílico para retirar o calor das lentes.",
+        "Nunca expor as lentes internas ao sol direto (queima os OLED).",
+        "Retirar a bateria traseira antes de caminhar até à zona de voo."
+      ],
+      ans: 2,
+      exp: "Tal como nos óculos VR, as lentes dos DJI Goggles 3 atuam como lupas: poucos segundos de sol direto queimam permanentemente os ecrãs OLED internos."
+    },
+    {
+      cat: "Regras ANAC Classe C1",
+      critica: true,
+      q: "O DJI Avata 2 (377 g) é um drone de Classe UE C1. Qual destas práticas cumpre as regras ANAC para voos no exterior?",
+      opts: [
+        "Sobrevoar aglomerados de alunos no recreio para filmar a festa.",
+        "Registo operador, exame A1/A3, máx. 120 m e mapa Voa na Boa.",
+        "Dispensa qualquer registo ou consulta de espaço aéreo abaixo de 500 g.",
+        "Voar acima de 150 metros sempre que o vento esteja muito calmo."
+      ],
+      ans: 1,
+      exp: "Em Classe C1 (Categoria Aberta A1) é obrigatório registo de operador (uas.anac.pt), exame A1/A3 (rp.anac.pt), consultar zonas no Voa na Boa (dnt.anac.pt), nunca exceder 120 m nem sobrevoar ajuntamentos."
+    },
+    {
+      cat: "Ligar e desligar (DJI)",
+      critica: false,
+      q: "Deu um clique rápido no botão de energia do Avata 2 e acenderam-se os LEDs da bateria, mas o drone não ligou. O que deve fazer?",
+      opts: [
+        "Dar 1 clique curto e imediatamente manter premido cerca de 2 s.",
+        "Manter o botão premido durante dez segundos seguidos sem largar.",
+        "Pressionar o botão de energia cinco vezes muito depressa.",
+        "Ligar primeiro o cabo USB-C ao computador para desbloquear."
+      ],
+      ans: 0,
+      exp: "O Avata 2, os Goggles 3 e o RC Motion 3 usam a sequência de segurança DJI: 1 clique curto seguido de pressão contínua (~2 segundos) para ligar ou desligar."
+    },
+    {
+      cat: "Protetor do gimbal",
+      critica: false,
+      q: "O que deve verificar obrigatoriamente na câmara frontal do DJI Avata 2 ANTES de o ligar?",
+      opts: [
+        "Aplicar limpa-vidros diretamente sobre o motor da câmara.",
+        "Retirar o protetor rígido do gimbal antes de ligar.",
+        "Rodar a lente à mão até encostar totalmente para baixo.",
+        "Manter a tampa protetora montada durante todo o voo."
+      ],
+      ans: 1,
+      exp: "Retire sempre o protetor rígido do gimbal antes de ligar o drone para não bloquear o movimento de calibração da câmara nem sobrecarregar o motor."
+    },
+    {
+      cat: "Descolar (RC Motion 3)",
+      critica: false,
+      q: "Com o drone pronto no chão (LED verde), como inicia os motores e faz a descolagem automática no DJI RC Motion 3?",
+      opts: [
+        "2 cliques no botão laranja (Lock) e depois manter premido.",
+        "Carregar no botão Modo (M) três vezes e puxar o gatilho a fundo.",
+        "Inclinar o comando para cima enquanto carrega na roda lateral.",
+        "Pressionar apenas o joystick para cima até atingir dois metros."
+      ],
+      ans: 0,
+      exp: "No RC Motion 3: dê 2 cliques rápidos no botão laranja (Lock) para ligar os motores e mantenha-o premido para descolar automaticamente até cerca de 1,2 m."
+    },
+    {
+      cat: "Real View (Goggles 3)",
+      critica: false,
+      q: "Está com os DJI Goggles 3 colocados e quer ver rapidamente a sala ou os colegas à sua volta sem tirar os óculos. Como ativa o Real View?",
+      opts: [
+        "Desligando o drone para a câmara dos óculos assumir a imagem.",
+        "Dando 2 toques no lado direito dos óculos (ou 2× no dial).",
+        "Rodando os botões inferiores de dioptrias até ao limite mínimo.",
+        "Mantendo premido o botão laranja (Lock) durante três segundos."
+      ],
+      ans: 1,
+      exp: "Dois toques no painel tátil direito dos DJI Goggles 3 (ou 2 cliques no dial do RC Motion 3) ativam o Real View a cores para ver o ambiente real em segurança."
+    },
+    {
+      cat: "Dioptrias e lentes",
+      critica: false,
+      q: "A imagem nos DJI Goggles 3 aparece desfocada ou as lentes começaram a embaciar. Qual é a solução correta?",
+      opts: [
+        "Esfregar as lentes com lenço de papel seco ou com a manga.",
+        "Ajustar as dioptrias (−6 a +2 D) e ativar o desembaciamento.",
+        "Usar o drone apenas sem os óculos olhando para o comando.",
+        "Deixar os óculos virados para o sol dois minutos para secar."
+      ],
+      ans: 1,
+      exp: "Os DJI Goggles 3 permitem ajustar distância interpupilar e dioptrias (−6,0 D a +2,0 D) nas rodas inferiores e incluem ventoinha de Desembaciamento num Toque (Defogging)."
+    },
+    {
+      cat: "Regresso a Casa (RTH)",
+      critica: false,
+      q: "No DJI RC Motion 3, para que serve manter premido o botão Modo (M) durante o voo no exterior?",
+      opts: [
+        "Para ativar o Regresso a Casa (RTH); 1 clique volta a cancelar.",
+        "Para alternar instantaneamente a gravação entre foto e vídeo 4K.",
+        "Para desligar os motores em pleno ar caso haja vento forte.",
+        "Para aumentar o brilho das lentes internas dos DJI Goggles 3."
+      ],
+      ans: 0,
+      exp: "1 clique no botão M alterna entre Modo Normal (N) e Sport (S); manter premido inicia o Regresso a Casa (RTH) com GPS (1 clique cancela a qualquer momento)."
+    },
+    {
+      cat: "Modo de voo na escola",
+      critica: false,
+      q: "Qual é o modo de voo recomendado no CTE para todos os alunos e voos pedagógicos com o DJI Avata 2?",
+      opts: [
+        "Modo Sport (S) no máximo para percorrer o pátio depressa.",
+        "Modo Normal (N), mais suave e fácil de controlar em segurança.",
+        "Modo ATTI sem sensores para treinar a deriva com o vento.",
+        "Modo Tartaruga (Turtle Mode) durante todo o percurso aéreo."
+      ],
+      ans: 1,
+      exp: "No CTE deve voar sempre em Modo Normal (N): a velocidade é limitada, as curvas são progressivas e a margem de reação com o travão Lock é muito maior."
+    },
+    {
+      cat: "Modo Tartaruga",
+      critica: false,
+      q: "O DJI Avata 2 caiu e ficou virado ao contrário. Quando é seguro utilizar o Modo Tartaruga (Turtle Mode)?",
+      opts: [
+        "Em qualquer terreno, incluindo relva alta, areia ou gravilha solta.",
+        "Apenas em piso plano e limpo; fora disso, virar à mão desligado.",
+        "Sempre que as hélices estiverem presas em ramos ou arbustos.",
+        "Enquanto o Observador Visual segura no drone com as duas mãos."
+      ],
+      ans: 1,
+      exp: "O Turtle Mode só deve ser usado em superfícies planas e limpas. Sobre relva alta, pedras ou areia pode danificar motores e hélices — peça ao Observador para o virar com os motores parados."
+    },
+    {
+      cat: "Conforto FPV",
+      critica: false,
+      q: "Qual é a postura recomendada para pilotar o DJI Avata 2 com os Goggles 3 e o que fazer se sentir tonturas?",
+      opts: [
+        "Caminhar atrás do drone em pé e acelerar para passar depressa.",
+        "Pilotar sentado; se tiver tonturas, travar (1× Lock) e aterrar.",
+        "Fechar os olhos durante alguns segundos sem mexer no comando.",
+        "Entregar os óculos a outro colega enquanto o drone continua a subir."
+      ],
+      ans: 1,
+      exp: "Pilote sempre sentado para evitar perda de equilíbrio com a visão imersiva. Ao menor sinal de tontura, dê 1 clique no botão Lock para pairar e aterre calmamente."
+    },
+    {
+      cat: "LED de estado",
+      critica: false,
+      q: "O LED de estado do DJI Avata 2 começou a piscar a vermelho durante o voo. O que significa e como deve agir?",
+      opts: [
+        "Significa gravação 4K ativa e pode continuar o voo sem parar.",
+        "Bateria baixa ou crítica: regressar e aterrar imediatamente.",
+        "Indica sinal GPS excelente e autorização para voar mais longe.",
+        "Modo Normal (N) ligado e sensores frontais a funcionar a 100%."
+      ],
+      ans: 1,
+      exp: "Vermelho a piscar indica bateria baixa (lento) ou crítica com aterragem forçada iminente (rápido). Regresse de imediato e aterre num local plano e seguro."
+    },
+    {
+      cat: "Devolução do kit",
+      critica: false,
+      q: "No final da aula, antes de devolver o kit DJI Avata 2 (INV-151) ao Estúdio 4C, que verificação é essencial?",
+      opts: [
+        "Carregar a bateria ainda muito quente dentro da mala fechada.",
+        "Guardar apenas o drone e deixar os Goggles 3 ligados na mesa.",
+        "Desligar os 3, copiar vídeos (46 GB/SD), pôr protetor e conferir kit.",
+        "Formatar os óculos e retirar as quatro hélices com chave de fendas."
+      ],
+      ans: 2,
+      exp: "Antes de devolver ao armário branco do Estúdio 4C: desligue os 3 equipamentos, copie os vídeos (46 GB internos/SD), recoloque o protetor do gimbal, deixe arrefecer a bateria e confira todas as peças."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [], idx = 0, score = 0, answered = false, failedCriticals = [], certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildAttempt() {
+    var crits = QUESTIONS.filter(function(q) { return q.critica; });
+    var normals = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crits.concat(normals));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|AV2-INV151").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas FPV / ANAC C1 e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir a Carta de Piloto FPV.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra de segurança «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de operar o conjunto FPV.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

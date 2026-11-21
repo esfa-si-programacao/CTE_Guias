@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI Avata 2 FPV — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para operar o conjunto FPV DJI Avata 2, óculos DJI Goggles 3 e comando DJI RC Motion 3 do CTE: regras ANAC C1, observador visual, travão de emergência, diagnóstico e devolução.">
+<meta property="og:title" content="DJI Avata 2 FPV — Voar em segurança na aula (CTE)">
+<meta property="og:description" content="Ajuda rápida para operar o conjunto DJI Avata 2 + Goggles 3 + RC Motion 3 (INV-151): regras ANAC Classe C1, controlos, diagnóstico LED e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='25' y='16' width='14' height='32' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='32' cy='22' r='3.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-text: #5B2C6F;
+  --purple-soft: #F4ECF7;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.88rem; padding: 8px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.topbar-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 24px 20px 28px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.hero-media { width: 132px; height: 116px; border-radius: 14px; background: #fff; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 6px; }
+.hero-media.svg-fallback { background: rgba(255,255,255,0.07); }
+.hero-media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 { margin: 0; font-size: clamp(1.55rem, 3.6vw, 2.35rem); line-height: 1.14; }
+.hero .sub { color: #D4E1EE; font-size: 1.02rem; margin: 8px 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn-hero-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: var(--acc-btn); border: 2px solid var(--acc-btn); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 20px; border-radius: 9px; transition: background 0.15s ease, transform 0.15s ease; }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+
+main.container { max-width: 1120px; width: 100%; margin: 18px auto 28px; padding: 0 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.card-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(31,42,54,0.05); }
+.sec-head { background: var(--light); border-bottom: 1px solid var(--line); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
+
+.percurso-grid { display: grid; grid-template-columns: 265px 1fr; gap: 14px; align-items: stretch; }
+.steps-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.step-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 11px; padding: 12px 14px; background: #FAFBFD; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.step-card.step-lead { border-top-color: var(--acc); background: #fff; }
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-lead .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 7px; border-top: 1px solid var(--line); }
+.action-link { font-size: 0.88rem; font-weight: 700; color: var(--acc-text); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
+
+.quick-visual { background: var(--light); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; display: flex; flex-direction: column; gap: 6px; }
+.qv-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; font-size: 0.82rem; line-height: 1.3; }
+.qv-key { min-width: 72px; text-align: center; font-weight: 800; font-size: 0.74rem; padding: 3px 6px; border-radius: 5px; background: var(--dark); color: #fff; flex-shrink: 0; }
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
+
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.shortcut-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; box-shadow: 0 3px 10px rgba(31,42,54,0.04); }
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note { margin-top: 4px !important; font-size: 0.84rem !important; color: var(--dark) !important; font-weight: 600; }
+.soon-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; background: var(--purple-soft); border: 1px solid #D7BDE2; color: var(--purple-text); font-size: 0.82rem; font-weight: 700; }
+.shortcut-alt { display: block; margin-top: 5px; font-size: 0.875rem; font-weight: 600; color: var(--teal-text); text-decoration: none; }
+.shortcut-alt:hover { text-decoration: underline; }
+
+.diag-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
+.led-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 10px; }
+.led-btn { font: inherit; font-size: 0.86rem; font-weight: 600; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--light); color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px; text-align: left; transition: all 0.14s ease; }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
+.led-orb { width: 15px; height: 15px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.22); }
+.orb-green { background: #27AE60; animation: pulse 1.6s infinite; }
+.orb-amber { background: #F39C12; animation: pulse 1.4s infinite; }
+.orb-amber-fast { background: #F39C12; animation: pulse 0.55s infinite; }
+.orb-red-blink { background: #E74C3C; animation: pulse 0.7s infinite; }
+.orb-red-yel { background: linear-gradient(135deg, #E74C3C 50%, #F39C12 50%); animation: pulse 0.9s infinite; }
+.orb-red { background: #C0392B; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+.diag-panel { border: 1.5px solid var(--line); border-left: 5px solid var(--teal); border-radius: 10px; padding: 13px 15px; background: var(--teal-soft); }
+.diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
+.diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
+.diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
+.diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(31,42,54,0.22); font-size: 0.88rem; color: var(--dark); }
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
+
+.sym-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.sym-btn { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; transition: all 0.14s ease; }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+.docs-list { list-style: none; margin: 0; padding: 0; }
+.doc-row { display: flex; justify-content: space-between; align-items: center; gap: 8px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fmt-link { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--light); color: var(--dark); white-space: nowrap; transition: border-color 0.14s ease, background 0.14s ease; }
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; list-style: none; padding: 0; margin: 0; }
+.check-grid label { display: flex; gap: 9px; align-items: flex-start; background: var(--light); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.88rem; }
+.check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
+.check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready { margin-top: 14px; padding: 12px 15px; border-radius: 9px; background: var(--green-soft); border: 1.5px solid var(--green); color: #124C2A; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 700; font-size: 0.94rem; }
+
+.btn { font: inherit; font-size: 0.88rem; font-weight: 700; border: 1.5px solid var(--line); background: #fff; color: var(--dark); padding: 7px 14px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
+
+.details-stack { display: flex; flex-direction: column; gap: 10px; }
+details.fold-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,42,54,0.04); }
+details.fold-box summary { list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: var(--dark); background: var(--light); display: flex; align-items: center; gap: 10px; }
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before { content: "▸"; display: inline-block; color: var(--acc-text); font-size: 1.05rem; transition: transform 0.15s ease; }
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.specs-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
+
+.ext-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; }
+.ext-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.ext-list a { font-size: 0.9rem; font-weight: 700; color: var(--teal-text); text-decoration: none; }
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+footer { text-align: center; padding: 16px 20px 96px; font-size: 0.88rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 960px) {
+  .percurso-grid { grid-template-columns: 1fr; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 88px; height: 78px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.38rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary { width: 100%; padding: 9px 16px; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; DJI Avata 2 FPV</nav>
+    <span>CTE Informático</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): pode substituir dji_avata_2.jpg por fotografia real de um kit do CTE -->
+      <img src="dji_avata_2.jpg" alt="Drone FPV DJI Avata 2, óculos DJI Goggles 3 e comando DJI RC Motion 3" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 140 110" width="104" height="82" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="34" cy="30" r="19" stroke="#C7D6E5"/>
+        <circle cx="106" cy="30" r="19" stroke="#C7D6E5"/>
+        <circle cx="34" cy="80" r="19" stroke="#C7D6E5"/>
+        <circle cx="106" cy="80" r="19" stroke="#C7D6E5"/>
+        <rect x="52" y="20" width="36" height="70" rx="14" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <circle cx="70" cy="34" r="8" fill="#1F2A36" stroke="#E8711C" stroke-width="2.8"/>
+        <circle cx="70" cy="34" r="3" fill="#4CE0F5" stroke="none"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1>Voar o DJI Avata 2 FPV na aula</h1>
+      <p class="sub">Avata 2 + Goggles 3 + RC Motion 3: das regras ANAC C1 à devolução, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
+      <div>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem antes de requisitar e voar o conjunto FPV DJI Avata 2 (Classe UE C1).</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <article class="step-card step-lead">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o essencial (1 min)</h3></div>
+            <p>4 regras e atalhos críticos de voo FPV em segurança.</p>
+          </div>
+          <!-- FASE 3 (Vídeo): quando gravar o vídeo curto (60-90 s), pode substituir .quick-visual por:
+          <div class="video-box">
+            <video controls preload="metadata" src="Como_Voar_DJI_Avata_2_FPV.mp4#t=0.5">
+              <track kind="captions" src="Como_Voar_DJI_Avata_2_FPV.vtt" srclang="pt" label="Português" default>
+            </video>
+          </div>
+          -->
+          <div class="quick-visual" aria-label="4 regras e atalhos vitais FPV">
+            <div class="qv-item"><span class="qv-key red">OBSERVADOR</span><span class="qv-desc">Obrigatório ao lado do piloto (FPV)</span></div>
+            <div class="qv-item"><span class="qv-key acc">1× LARANJA</span><span class="qv-desc">Travão imediato e pairar (Lock)</span></div>
+            <div class="qv-item"><span class="qv-key teal">2 TOQUES</span><span class="qv-desc">Lado dir. Goggles 3 → Real View</span></div>
+            <div class="qv-item"><span class="qv-key">SEM FRENTE</span><span class="qv-desc">Só sensores atrás e em baixo!</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="DJI_Avata_2_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+          </div>
+        </article>
+
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Piloto FPV</h3></div>
+              <p>8 perguntas de segurança e regras ANAC C1, com cartão imprimível.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="DJI_Avata_2_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Validar zona e equipa (ANAC)</h3></div>
+              <p>Confirmar zona no <em>Voa na Boa</em>, observador visual e supervisão docente.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="DJI_Avata_2_Manual_Utilizador.html#s3">Regras ANAC C1 &rarr;</a>
+              <a class="action-link teal" href="DJI_Avata_2_Manual_Utilizador.html#s5">Controlos Motion 3 &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Preparar e voar (3 equipamentos)</h3></div>
+              <p>Requisitar kit, ajustar dioptrias nos Goggles 3, verificar GPS/Visão e voar em modo N.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Requisitar &#8599;</a>
+              <a class="action-link teal" href="DJI_Avata_2_Manual_Utilizador.html#s6">Passo a passo de voo &rarr;</a>
+              <a class="action-link teal" href="DJI_Avata_2_Manual_Utilizador.html#s4">Goggles 3 &amp; LEDs &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Copiar vídeos e devolver</h3></div>
+              <p>6 verificações (memória 46 GB/SD, proteção solar lentes, 3 aparelhos).</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pelo LED do Avata 2 ou sintoma nos Goggles 3 / Motion 3.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Treino e missões pedagógicas</h3>
+          <p>5 exercícios progressivos de pilotagem FPV, captação 4K e modelo de Plano de Voo.</p>
+        </div>
+        <a class="action-link teal" href="DJI_Avata_2_Manual_Utilizador.html#s8">Ver missões e plano de voo &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais do DJI Avata 2 e regras ANAC do CTE.</p>
+          <p class="shortcut-note" id="aiSoonText"><span class="soon-pill">Será disponibilizado brevemente</span></p>
+          <p class="shortcut-note" id="aiAccountNote" hidden>Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" id="aiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Entretanto, use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
+  <section class="card-section" id="diagnostico">
+    <div class="sec-head">
+      <div>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione o padrão do LED de estado do DJI Avata 2 ou o problema observado antes/durante o voo.</p>
+      </div>
+      <a class="btn" href="DJI_Avata_2_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias de apoio no diagnóstico:
+           avata2_bateria_led.jpg (bateria encaixada e indicador de estado do Avata 2)
+           goggles3_dioptrias.jpg (parte inferior dos Goggles 3 com ajuste de dioptrias e lateral Real View)
+           motion3_botoes.jpg (botão laranja Lock, gatilho acelerador e botão Modo M no RC Motion 3) -->
+      <div class="diag-grid">
+        <div>
+          <h3 class="diag-sub">1. LED de estado do DJI Avata 2</h3>
+          <div class="led-buttons" id="ledButtons">
+            <button type="button" class="led-btn active" data-led="green" aria-pressed="true"><span class="led-orb orb-green"></span>Verde lento / 2× verde</button>
+            <button type="button" class="led-btn" data-led="amber_slow" aria-pressed="false"><span class="led-orb orb-amber"></span>Amarelo lento</button>
+            <button type="button" class="led-btn" data-led="amber_fast" aria-pressed="false"><span class="led-orb orb-amber-fast"></span>Amarelo rápido</button>
+            <button type="button" class="led-btn" data-led="red_yel" aria-pressed="false"><span class="led-orb orb-red-yel"></span>Vermelho / Amarelo</button>
+            <button type="button" class="led-btn" data-led="red_blink" aria-pressed="false"><span class="led-orb orb-red-blink"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="red_solid" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho fixo</button>
+          </div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <h3 class="diag-sub">2. Problema no treino ou voo</h3>
+          <div class="sym-pills" id="symButtons">
+            <button type="button" class="sym-btn active" data-sym="noboot" aria-pressed="true">Não liga (1× + 2 s)</button>
+            <button type="button" class="sym-btn" data-sym="nolink" aria-pressed="false">Sem imagem nos Goggles 3</button>
+            <button type="button" class="sym-btn" data-sym="fog" aria-pressed="false">Lentes embaciadas / desfocadas</button>
+            <button type="button" class="sym-btn" data-sym="notakeoff" aria-pressed="false">Motores não arrancam</button>
+            <button type="button" class="sym-btn" data-sym="upside" aria-pressed="false">Caiu virado ao contrário</button>
+            <button type="button" class="sym-btn" data-sym="rth" aria-pressed="false">Como travar ou regressar</button>
+            <button type="button" class="sym-btn" data-sym="dizzy" aria-pressed="false">Tonturas nos óculos</button>
+            <button type="button" class="sym-btn" data-sym="files" aria-pressed="false">Copiar vídeos (46 GB / SD)</button>
+          </div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCUMENTOS (LINHAS COMPACTAS) -->
+  <section class="card-section" id="documentos">
+    <div class="sec-head">
+      <div>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e guia A4 pronto a imprimir e plastificar.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="DJI_Avata_2_Infografico_Inicio_Rapido.html">Ver online (A4)</a>
+            <a class="fmt-link" href="DJI_Avata_2_Guia_Inicio_Rapido.pdf">PDF · 181 KB</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador, FPV e Regras ANAC (Classe C1)</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="DJI_Avata_2_Manual_Utilizador.html">Ver online</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Piloto FPV</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="DJI_Avata_2_Quiz_Habilitacao.html">Fazer o quiz</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CHECKLIST DE DEVOLUÇÃO -->
+  <section class="card-section" id="devolucao">
+    <div class="sec-head">
+      <div>
+        <h2>Checklist de devolução</h2>
+        <p>Confirme os 6 pontos antes de entregar no armário branco (janela) do Estúdio 4C (limpa-se ao fim de 4 h).</p>
+      </div>
+      <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia real do kit arrumado
+      <figure style="margin:0 0 14px">
+        <img src="avata2_kit_mala.jpg" alt="Kit completo DJI Avata 2 Pro-View Combo INV-151 com Goggles 3 e RC Motion 3 arrumados" loading="lazy" style="width:100%;max-width:680px;border-radius:10px;border:1px solid var(--line)">
+      </figure>
+      -->
+      <ul class="check-grid">
+        <li><label><input type="checkbox" id="av2-c1"><span><strong>1. 3 aparelhos desligados:</strong> Avata 2, Goggles 3 e RC Motion 3 desligados (1 clique + 2 s) e bateria do drone fria.</span></label></li>
+        <li><label><input type="checkbox" id="av2-c2"><span><strong>2. Protetor gimbal e lentes:</strong> Protetor do gimbal recolocado; lentes dos Goggles 3 limpas só com microfibra seca e longe do sol.</span></label></li>
+        <li><label><input type="checkbox" id="av2-c3"><span><strong>3. Vídeos copiados (46 GB / SD):</strong> Ficheiros da turma transferidos e privacidade/RGPD verificados.</span></label></li>
+        <li><label><input type="checkbox" id="av2-c4"><span><strong>4. Inspeção de hélices e aros:</strong> 4 hélices intactas sem fissuras, aros sem rachas e sensores inferiores/traseiros limpos.</span></label></li>
+        <li><label><input type="checkbox" id="av2-c5"><span><strong>5. Kit completo (INV-151):</strong> DJI Avata 2, DJI Goggles 3, DJI RC Motion 3 (com fita de pulso), baterias e cabos/hub.</span></label></li>
+        <li><label><input type="checkbox" id="av2-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar o n.º do kit (1–4), baterias abaixo de 30% ou qualquer impacto/anomalia.</span></label></li>
+      </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Tudo pronto para devolver.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar devolução &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECÇÕES RECOLHIDAS -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico, Conformidade ANAC C1 e Manutenção</strong> (emparelhamento 3 equipamentos, Identificação Remota, baterias Li-ion, firmware e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="DJI_Avata_2_Manual_Tecnico.html">Ver online</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento pronta a carregar)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="DJI_Avata_2_Base_Conhecimento_NotebookLM.md">Markdown</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Geografia/Place-Based, Audiovisual, Educação Física, Arquitetura e Física de Voo)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="DJI_Avata_2_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-151 (4 kits Pro-View Combo) + INV-226 (bateria extra) · Estúdio 4C · Armário branco (janela)</li>
+          <li><strong>Aeronave:</strong> DJI Avata 2 · 377 g · Classe UE <strong>C1</strong> · Sensores visuais <strong>inferiores e traseiros</strong> (sem frontais!)</li>
+          <li><strong>Câmara e memória:</strong> Sensor 1/1.3" · 4K 60 fps HDR · 155° FOV · <strong>46 GB internos</strong> + ranhura microSD</li>
+          <li><strong>Autonomia drone:</strong> ~23 min (bateria Li-ion 2150 mAh / 14,76 V / 31,7 Wh)</li>
+          <li><strong>Óculos:</strong> DJI Goggles 3 (~470 g · ~3 h autonomia · Real View PiP · dioptrias −6,0 D a +2,0 D · desembaciamento)</li>
+          <li><strong>Comando:</strong> DJI RC Motion 3 (~118 g · 1 mão · Travão imediato Lock · RTH · Modos N/S)</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="ext-list">
+        <li>
+          <a href="https://www.dji.com/avata-2" target="_blank" rel="noopener noreferrer">Página Oficial DJI Avata 2 &#8599;</a>
+          <p>Especificações oficiais, Goggles 3, RC Motion 3 e segurança.</p>
+        </li>
+        <li>
+          <a href="https://www.dji.com/downloads/products/avata-2" target="_blank" rel="noopener noreferrer">Manuais Oficiais e Transferências (DJI Avata 2) &#8599;</a>
+          <p>Manuais PDF do Avata 2, Goggles 3, RC Motion 3 e DJI Fly.</p>
+        </li>
+        <li>
+          <a href="https://uas.anac.pt" target="_blank" rel="noopener noreferrer">ANAC — Registo de Operador de Drones (Portugal) &#8599;</a>
+          <p>Plataforma oficial para registo de operador UAS (n.º PRT).</p>
+        </li>
+        <li>
+          <a href="https://rp.anac.pt" target="_blank" rel="noopener noreferrer">ANAC — Formação e Exame Online A1/A3 &#8599;</a>
+          <p>Formação gratuita e certificado de piloto remoto (obrigatório C1).</p>
+        </li>
+        <li>
+          <a href="https://dnt.anac.pt" target="_blank" rel="noopener noreferrer">ANAC — Mapa de Zonas Geográficas (Voa na Boa) &#8599;</a>
+          <p>Consultar restrições de espaço aéreo antes de qualquer voo exterior.</p>
+        </li>
+        <li>
+          <a href="https://www.aan.pt" target="_blank" rel="noopener noreferrer">AAN — Autoridade Aeronáutica Nacional (e-AAN) &#8599;</a>
+          <p>Autorizações de captação de imagens aéreas e zonas especiais.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online DJI Avata 2 FPV · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
+    urlRequisicao: "",          // formulário de requisição do DJI Avata 2
+    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+    urlNotebookLM: "",          // colar aqui o link do NotebookLM quando estiver criado
+    checklistValidadeHoras: 4
+  };
+
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var aiSoonText = document.getElementById("aiSoonText");
+  var aiAccountNote = document.getElementById("aiAccountNote");
+  if (aiLink && CONFIG.urlNotebookLM) {
+    aiLink.href = CONFIG.urlNotebookLM;
+    aiLink.hidden = false;
+    if (aiSoonText) aiSoonText.hidden = true;
+    if (aiAccountNote) aiAccountNote.hidden = false;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  var LED_INFO = {
+    green: {
+      cls: "ok",
+      title: "Verde lento (GNSS/GPS) ou Verde 2× (Visão ativa)",
+      meaning: "Posicionamento pronto! Verde lento indica sinal GPS forte (exteriores); 2 piscadelas verdes indicam sensores de visão ativos.",
+      action: "Confirme o Ponto de Origem (Home Point) nos Goggles 3 e a posição do Observador Visual antes de descolar em Modo Normal (N)."
+    },
+    amber_slow: {
+      cls: "warn",
+      title: "Amarelo a piscar lentamente",
+      meaning: "Sem GPS (GNSS) nem posicionamento visual suficiente (modo ATTI — o drone deriva com o vento!).",
+      action: "Evite descolar assim. Em interiores, aumente a luz; no exterior, aguarde satélites GPS longe de edifícios altos."
+    },
+    amber_fast: {
+      cls: "warn",
+      title: "Amarelo a piscar rapidamente",
+      meaning: "Ligação perdida entre o DJI Avata 2, os Goggles 3 e o comando RC Motion 3.",
+      action: "Confirme que os 3 equipamentos estão ligados (1 clique + manter 2 s). Se não ligarem, consulte o procedimento de emparelhamento no Manual Técnico."
+    },
+    red_yel: {
+      cls: "warn",
+      title: "Vermelho e Amarelo alternados",
+      meaning: "É necessária calibração da bússola ou existe interferência magnética forte no local.",
+      action: "Afaste o drone de estruturas metálicas, betão armado ou viaturas e siga as instruções de calibração apresentadas nos DJI Goggles 3."
+    },
+    red_blink: {
+      cls: "danger",
+      title: "Vermelho a piscar (lento ou rápido)",
+      meaning: "Bateria baixa (lento) ou bateria crítica com aterragem automática iminente (rápido).",
+      action: "Regresse e aterre imediatamente num local seguro e plano. Deixe a bateria arrefecer antes de a carregar."
+    },
+    red_solid: {
+      cls: "danger",
+      title: "Vermelho fixo (constante)",
+      meaning: "Erro crítico de sistema no drone.",
+      action: "Não tente descolar. Consulte a mensagem detalhada nos DJI Goggles 3, reinicie o drone e, se persistir, entregue o kit ao CTE."
+    }
+  };
+
+  var SYM_INFO = {
+    noboot: {
+      cls: "",
+      title: "O drone, os Goggles 3 ou o RC Motion 3 não ligam",
+      cause: "Os equipamentos DJI usam sequência de segurança de dois toques (1 clique apenas mostra os LEDs de bateria!).",
+      action: "Para ligar ou desligar cada um dos 3 equipamentos: dê 1 clique curto no botão de energia e, imediatamente a seguir, mantenha premido cerca de 2 segundos até ouvir o sinal sonoro."
+    },
+    nolink: {
+      cls: "warn",
+      title: "Os Goggles 3 ligam mas não mostram a câmara do Avata 2",
+      cause: "Ordem de arranque incompleta, bateria do drone desligada ou equipamentos trocados entre os 4 kits INV-151.",
+      action: "1) Confirme que os 3 equipamentos têm o mesmo n.º de kit (1–4) e estão ligados. 2) Confirme nos Goggles 3 que o modelo selecionado é DJI Avata 2. 3) Se necessário, reemparelhe conforme o Manual Técnico (#t3-2)."
+    },
+    fog: {
+      cls: "",
+      title: "Imagem desfocada ou lentes embaciadas nos DJI Goggles 3",
+      cause: "Ajuste de dioptrias incorreto para o utilizador ou condensação nas lentes.",
+      action: "1) Rode os botões inferiores dos Goggles 3 para ajustar a distância (IPD) e as dioptrias (−6,0 D a +2,0 D) até focar. 2) Se embaciar, ative o Desembaciamento num Toque (Defogging) no menu dos óculos. 3) Limpe só com microfibra seca."
+    },
+    notakeoff: {
+      cls: "warn",
+      title: "Os motores não arrancam ao carregar no botão laranja",
+      cause: "Protetor do gimbal ainda montado, zona geográfica bloqueada (GEO), bateria fraca ou sequência incorreta no RC Motion 3.",
+      action: "1) Verifique se retirou o protetor do gimbal e leia o aviso nos Goggles 3. 2) No RC Motion 3: dê 2 cliques rápidos no botão laranja (Lock) para ligar os motores e depois mantenha premido para descolar (~1,2 m)."
+    },
+    upside: {
+      cls: "warn",
+      title: "O drone aterrou ou caiu virado ao contrário",
+      cause: "Toque em obstáculo ou aterragem irregular.",
+      action: "Só use o Modo Tartaruga (Turtle Mode) em superfície limpa e plana (nunca sobre relva alta, areia ou pedras!). Caso contrário, desligue os motores e peça ao Observador Visual para o virar manualmente."
+    },
+    rth: {
+      cls: "ok",
+      title: "Preciso de travar imediatamente ou fazer regressar o drone",
+      cause: "Desorientação FPV, aproximação de obstáculo ou perda de referência visual.",
+      action: "TRAVÃO IMEDIATO: dê 1 clique no botão laranja (Lock) do RC Motion 3 — o Avata 2 trava e paira no lugar! Para Regresso a Casa (RTH em exteriores com GPS), mantenha premido o botão Modo (M); 1 clique cancela."
+    },
+    dizzy: {
+      cls: "danger",
+      title: "Tonturas, desorientação ou enjoo ao usar os Goggles 3",
+      cause: "Sensação imersiva FPV (especialmente em curvas rápidas ou piloto em pé).",
+      action: "1) Dê 1 clique no botão laranja (Lock) para travar e pairar, e aterre (manter Lock premido). 2) Dê 2 toques na lateral direita dos Goggles 3 para ativar Real View. 3) Pilote sempre SENTADO e em Modo Normal (N)!"
+    },
+    files: {
+      cls: "",
+      title: "Como transferir os vídeos 4K do Avata 2 (46 GB internos ou microSD)",
+      cause: "O Avata 2 tem 46 GB de memória interna além da ranhura microSD.",
+      action: "Ligue o cabo USB-C à lateral do Avata 2 (o drone pode estar desligado para acesso USB ou ligado em modo QuickTransfer via DJI Fly) e copie os ficheiros para o computador da turma."
+    }
+  };
+
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="DJI_Avata_2_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) { html += ' · Contacte o CTE: ' + contactShort; }
+    html += '</div>';
+    return html;
+  }
+
+  var ledRes = document.getElementById("ledResult");
+  var symRes = document.getElementById("symResult");
+
+  function renderLed(key) {
+    var d = LED_INFO[key];
+    ledRes.className = "diag-panel " + d.cls;
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+  function renderSym(key) {
+    var d = SYM_INFO[key];
+    symRes.className = "diag-panel " + d.cls;
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+
+  var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
+  ledBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      ledBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderLed(b.getAttribute("data-led"));
+    });
+  });
+
+  var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
+  symBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      symBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderSym(b.getAttribute("data-sym"));
+    });
+  });
+
+  renderLed("green");
+  renderSym("noboot");
+
+  var KEY = "avata2-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
+  var saved = {};
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
+    });
+  });
+  syncReturnState();
+
+  document.getElementById("hubResetCheck").addEventListener("click", function() {
+    boxes.forEach(function(b) { b.checked = false; });
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DJI Avata 2 FPV — Manual Técnico, Conformidade ANAC C1 e Manutenção (CTE · INV-151)</title>
+<meta name="description" content="Administração técnica dos 4 kits DJI Avata 2 Pro-View Combo (INV-151) + bateria extra (INV-226) do CTE: conformidade ANAC Classe C1, Identificação Remota, emparelhamento dos 3 equipamentos, baterias Li-ion, firmware e 10 casos de troubleshooting.">
+<meta property="og:title" content="DJI Avata 2 FPV — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Gestão técnica dos 4 kits DJI Avata 2 + Goggles 3 + RC Motion 3 (INV-151): ANAC C1, emparelhamento, baterias 31,7 Wh, 46 GB internos e 10 casos.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Ccircle cx='18' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='20' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='18' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='46' cy='44' r='9' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Crect x='25' y='16' width='14' height='32' rx='6' fill='%231E7E8C' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='32' cy='22' r='3.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, #16222E 0%, #1F3A4D 100%); color: #fff; padding: 38px 24px 34px; border-bottom: 4px solid var(--teal); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.badge-tech { display: inline-block; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(30, 126, 140, 0.35); border: 1px solid rgba(114, 217, 232, 0.4); color: #9EEAF5; padding: 4px 11px; border-radius: 999px; margin-bottom: 10px; }
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); line-height: 1.12; }
+.hero .sub { color: #9EEAF5; font-size: 1.15rem; margin: 6px 0 10px; font-weight: 600; }
+.hero .meta { color: #B8CAD9; font-size: 0.92rem; margin: 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 265px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
+
+main { min-width: 0; max-width: 850px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.55rem; margin: 0 0 12px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.filter-input { width: 100%; font: inherit; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 8px; margin-bottom: 12px; background: var(--light); }
+.filter-input:focus { outline: none; border-color: var(--teal); background: #fff; }
+
+.btn { font: inherit; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--line); background: #fff; color: var(--dark); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
+
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+}
+@media print {
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--teal-text); }
+  .hero .meta { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 10px 0 0; }
+  main { max-width: none; }
+  tr, .note { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">DJI Avata 2 FPV</a> &rsaquo; Manual Técnico</nav>
+    <div class="topbar-links">
+      <a href="DJI_Avata_2_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="DJI_Avata_2_Manual_Utilizador.html">Manual de Utilizador</a>
+      <a href="DJI_Avata_2_Quiz_Habilitacao.html">Carta de Piloto FPV</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
+      <h1>DJI Avata 2 FPV — Manual Técnico</h1>
+      <p class="sub">Gestão dos 4 Kits Pro-View Combo, Conformidade ANAC C1, Emparelhamento e Manutenção</p>
+      <p class="meta">Inventário <strong>INV-151</strong> (4 kits) + <strong>INV-226</strong> (bateria extra) · Estúdio 4C · Armário branco (janela) · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice técnico">
+    <h2>Índice Técnico</h2>
+    <ul>
+      <li><a href="#t1">1. Âmbito, ANAC e RGPD</a></li>
+      <li><a href="#t2">2. Arquitetura Hardware &amp; Kits</a></li>
+      <li><a href="#t3">3. Gestão, Emparelhamento &amp; C1</a>
+        <ul>
+          <li><a href="#t3-1">3.1 Numeração dos 4 kits (1–4)</a></li>
+          <li><a href="#t3-2">3.2 Emparelhar os 3 equipamentos</a></li>
+          <li><a href="#t3-3">3.3 Identificação Remota, GEO e Firmware</a></li>
+        </ul>
+      </li>
+      <li><a href="#t4">4. Manutenção preventiva</a>
+        <ul>
+          <li><a href="#t4-1">4.1 Baterias Li-ion (31,7 Wh) e férias</a></li>
+          <li><a href="#t4-2">4.2 Ótica Goggles 3, hélices e sensores</a></li>
+          <li><a href="#t4-3">4.3 Memória interna 46 GB e microSD</a></li>
+        </ul>
+      </li>
+      <li><a href="#t5">5. Troubleshooting (10 casos)</a></li>
+      <li><a href="#t6">6. Emergência, impactos e avarias</a></li>
+      <li><a href="#t7">7. Ficha técnica de inspeção</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="t1">
+      <h2>1. Âmbito, conformidade institucional ANAC e RGPD</h2>
+      <p>Este manual destina-se aos <strong>docentes responsáveis</strong> e à <strong>equipa técnica do CTE Informático</strong> que gerem os <strong>4 kits DJI Avata 2 Pro-View Combo</strong> (<code>INV-151</code>) e a <strong>bateria sobresselente</strong> (<code>INV-226</code>) arrumados no <strong>Armário branco com tabuleiros (junto à janela) do Estúdio 4C</strong>.</p>
+      <div class="note danger">
+        <strong>Segurança de credenciais e números de registo:</strong> Não publique neste site contas institucionais DJI, palavras-passe, nem o número de registo de operador UAS completo (<code>PRT...</code>) com o código secreto de 3 dígitos usado na Identificação Remota Direta. Guarde esses dados exclusivamente no dossiê interno do CTE.
+      </div>
+      <ul>
+        <li><strong>Conformidade legal (UE 2019/947 · ANAC):</strong> A aeronave pesa ~377 g e pertence à <strong>Classe C1</strong>. Qualquer voo exterior exige registo de operador em <a href="https://uas.anac.pt" target="_blank" rel="noopener noreferrer">uas.anac.pt &#8599;</a>, piloto remoto qualificado A1/A3 (<a href="https://rp.anac.pt" target="_blank" rel="noopener noreferrer">rp.anac.pt &#8599;</a>), consulta prévia em <a href="https://dnt.anac.pt" target="_blank" rel="noopener noreferrer">dnt.anac.pt &#8599;</a> (<em>Voa na Boa</em>), autorização <a href="https://www.aan.pt" target="_blank" rel="noopener noreferrer">AAN &#8599;</a> quando exigível para imagem aérea e <strong>Observador Visual obrigatório</strong> junto ao piloto.</li>
+        <li><strong>Privacidade (RGPD):</strong> Os 46 GB de memória interna do drone e os cartões microSD são partilhados entre turmas. Estabeleça a regra de copiar e eliminar ficheiros no final de cada projeto, verificando que nenhuma imagem com menores ou propriedade privada circula sem autorização.</li>
+      </ul>
+      <!-- CONFIRMAR: validar com a Direção/CTE qual o número de registo de operador institucional da escola (PRT...) e a política interna para voos em espaços fechados (pavilhão gimnodesportivo) vs. recinto exterior -->
+    </section>
+
+    <section id="t2">
+      <h2>2. Arquitetura Hardware &amp; Composição dos Kits</h2>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Elemento</th><th>Especificações Verificadas (DJI Oficial)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Inventário CTE</strong></td><td><code>INV-151</code>: 4× DJI Avata 2 Pro-View Combo · <code>INV-226</code>: 1× DJI Avata 2 Intelligent Flight Battery · Estúdio 4C (Armário branco com tabuleiros junto à janela).</td></tr>
+            <tr><td><strong>Aeronave (DJI Avata 2)</strong></td><td>~377 g · Classe UE <strong>C1</strong> (Direct Remote ID + geo-awareness) · Sensor 1/1.3" · 4K 60 fps HDR · 155° FOV · <strong>46 GB internos</strong> + microSD + USB-C · Visão binocular apenas <strong>inferior e traseira</strong> (sem sensores frontais/laterais).</td></tr>
+            <tr><td><strong>Bateria Inteligente</strong></td><td>Li-ion <strong>2150 mAh / 14,76 V / 31,7 Wh</strong> (~145 g · tensão máx. carga 17 V) · ~23 min de voo · Carregamento via Hub bidirecional USB-C PD ou diretamente no drone.</td></tr>
+            <tr><td><strong>Óculos (DJI Goggles 3)</strong></td><td>~470 g com bateria integrada (~3 h autonomia) · Real View + PiP (câmaras frontais a cores) · Dioptrias <strong>−6,0 D a +2,0 D</strong> + ajuste IPD · Desembaciamento num toque · Ecrãs OLED sensíveis a luz solar direta.</td></tr>
+            <tr><td><strong>Comando (DJI RC Motion 3)</strong></td><td>~118 g · Comando de 1 mão com fita de pulso · Travão imediato (1× botão Lock laranja), descolagem/aterragem (2× + manter Lock), gatilho acelerador, botão Modo (N/S e RTH), joystick e dial.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t3">
+      <h2>3. Gestão dos 4 kits, emparelhamento e conformidade C1</h2>
+
+      <h3 id="t3-1">3.1 Numeração rigorosa dos 4 kits (Kit 1 a Kit 4)</h3>
+      <p>Como cada conjunto emparelha <strong>3 equipamentos</strong> (Avata 2 ↔ Goggles 3 ↔ RC Motion 3), misturar componentes entre malas causa perda imediata de ligação na aula.</p>
+      <ul>
+        <li>Etiquete de forma durável e visível (<code>AV2-1</code> a <code>AV2-4</code>) o corpo do Avata 2 (fora dos sensores e entradas de ar), os DJI Goggles 3, o RC Motion 3, o hub de carga e a respetiva mochila/mala.</li>
+        <li>Afixe em cada DJI Avata 2 uma etiqueta discreta com o <strong>n.º de operador ANAC</strong> (sem o código secreto de 3 dígitos) conforme exigido pela regulamentação C1.</li>
+        <li>Identifique também a bateria extra <code>INV-226</code> para fácil conferência no inventário.</li>
+      </ul>
+
+      <h3 id="t3-2">3.2 Emparelhamento manual dos 3 equipamentos (Linking)</h3>
+      <p>Se um componente for substituído ou não ligar automaticamente ao conjunto:</p>
+      <ol>
+        <li><strong>Confirmar modelo nos Goggles 3:</strong> Ligue o Avata 2, os Goggles 3 e o RC Motion 3 (1 clique curto + manter 2 s). No menu dos Goggles 3 (<em>Estado / Status</em>), confirme que o modelo de aeronave selecionado é <strong>DJI Avata 2</strong>.</li>
+        <li><strong>Emparelhar Avata 2 ↔ DJI Goggles 3:</strong>
+          <ul>
+            <li>Mantenha premido o botão de energia do <strong>DJI Avata 2</strong> durante <strong>mais de 4 segundos</strong> até emitir um sinal sonoro e os LEDs da bateria piscarem em sequência.</li>
+            <li>Mantenha premido o botão de energia dos <strong>DJI Goggles 3</strong> até emitir avisos sonoros contínuos e os LEDs piscarem em sequência (ou inicie o emparelhamento pelo menu dos óculos / DJI Fly).</li>
+            <li>Quando concluído, os sinais param e a imagem da câmara surge nos Goggles 3.</li>
+          </ul>
+        </li>
+        <li><strong>Emparelhar DJI Goggles 3 ↔ DJI RC Motion 3:</strong>
+          <ul>
+            <li>Mantenha premido o botão de energia dos <strong>DJI Goggles 3</strong> até emitir aviso sonoro contínuo e LEDs em sequência.</li>
+            <li>Mantenha premido o botão de energia do <strong>DJI RC Motion 3</strong> até emitir aviso sonoro contínuo e os LEDs piscarem em sequência.</li>
+            <li>Assim que ambos pararem de apitar e os LEDs ficarem estáveis, o emparelhamento está concluído.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3 id="t3-3">3.3 Identificação Remota Direta (C1), Zonas GEO e Firmware</h3>
+      <ul>
+        <li><strong>Identificação Remota Direta (Classe C1):</strong> Insira o número de registo de operador UAS (incluindo os 3 dígitos privados no campo dedicado) na app <strong>DJI Fly</strong> com os Goggles 3 ligados por cabo USB-C OTG ao smartphone de gestão do CTE. Confirme que o estado surge como ativo antes de voos exteriores.</li>
+        <li><strong>Atualizações de Firmware e Base GEO:</strong> Atualize os 3 equipamentos (Avata 2, Goggles 3 e RC Motion 3) através da app <strong>DJI Fly</strong> ou do software <strong>DJI Assistant 2 (Consumer Drones Series)</strong> <em>apenas entre aulas</em>, com baterias acima de 50%, para evitar bloqueios inesperados durante uma saída de campo.</li>
+        <li><strong>Desbloqueio de Zonas GEO (quando autorizado):</strong> Se uma atividade escolar decorrer numa zona de autorização DJI mas devidamente autorizada pela ANAC/AAN, efetue o pedido de desbloqueio antecipadamente com a conta DJI de gestão do CTE.</li>
+      </ul>
+    </section>
+
+    <section id="t4">
+      <h2>4. Manutenção preventiva</h2>
+
+      <h3 id="t4-1">4.1 Baterias Li-ion (31,7 Wh), carregamento e férias escolares</h3>
+      <ul>
+        <li><strong>Arrefecimento obrigatório:</strong> Após um voo, aguarde <strong>15 a 20 minutos</strong> até a bateria do Avata 2 arrefecer antes de a inserir no hub de carga bidirecional ou guardar na mala fechada.</li>
+        <li><strong>Carregamento vigiado:</strong> Carregue as baterias dos drones, os Goggles 3 e os RC Motion 3 em bancada ventilada, nunca sem supervisão durante a noite e nunca sobre superfícies inflamáveis.</li>
+        <li><strong>Pausas longas e férias escolares:</strong> Armazene todas as baterias com carga entre <strong>40% e 60%</strong> (as baterias inteligentes DJI descarregam automaticamente para nível de armazenamento após alguns dias de inatividade). Faça um ciclo de verificação e recarga a cada <strong>2 a 3 meses</strong> (incluindo Goggles 3 e RC Motion 3) para evitar descarga profunda irreversível.</li>
+        <li><strong>Descarte seguro:</strong> Se alguma bateria apresentar inchaço, fissura após impacto, fuga ou aquecimento anómalo, <strong>retire-a de serviço imediatamente</strong>, isole-a num local ventilado longe de materiais combustíveis e encaminhe para reciclagem especializada.</li>
+      </ul>
+
+      <h3 id="t4-2">4.2 Proteção OLED dos Goggles 3, hélices e sensores</h3>
+      <ul>
+        <li><strong>Ecrãs OLED dos Goggles 3:</strong> Reforce visualmente junto dos docentes que <strong>nem 5 segundos de sol direto</strong> podem incidir sobre as lentes internas. Guarde sempre os óculos dentro da mochila/capa com as lentes viradas para dentro/sombra.</li>
+        <li><strong>Higienização das almofadas faciais:</strong> Após utilização entre turmas, limpe a almofada de testa e apoio facial dos Goggles 3 com toalhete sem álcool agressivo ou pano húmido bem espremido. Limpe as lentes <strong>apenas com pano de microfibra seco</strong>.</li>
+        <li><strong>Hélices e aros:</strong> Inspecione mensalmente (e após qualquer impacto) todas as pás das hélices e os protetores integrados. Substitua imediatamente qualquer hélice lascada ou empenada, respeitando a marcação correta de sentido de rotação (CW/CCW) e parafusos originais DJI.</li>
+        <li><strong>Sensores inferiores e traseiros:</strong> Mantenha limpos com pano de microfibra seco os sensores binoculares inferiores e traseiros, bem como a lente da câmara principal.</li>
+      </ul>
+
+      <h3 id="t4-3">4.3 Limpeza da memória interna (46 GB) e cartões microSD</h3>
+      <ul>
+        <li>Ligue periodicamente cada Avata 2 por cabo USB-C a um PC do Estúdio 4C e verifique o espaço livre nos <strong>46 GB internos</strong> e nos cartões microSD (recomendado <strong>microSD UHS-I V30 / U3</strong> para 4K 60 fps HDR).</li>
+        <li>Após confirmar que as turmas já copiaram os seus trabalhos, apague os ficheiros antigos (ou formate o microSD nos menus dos Goggles 3) para garantir conformidade RGPD e evitar que a gravação pare a meio de uma saída de campo.</li>
+      </ul>
+    </section>
+
+    <section id="t5">
+      <h2>5. Matriz de Troubleshooting (10 casos)</h2>
+      <p>Use o campo de pesquisa abaixo para filtrar rapidamente por sintoma, LED, peça ou palavra-chave:</p>
+      <input type="search" id="tsFilter" class="filter-input" placeholder="Filtrar problemas (ex.: emparelhar, gimbal, sol, GPS, bússola, bateria, 46 GB, Turtle)..." aria-label="Filtrar tabela de troubleshooting">
+      <div class="tw">
+        <table id="tsTable">
+          <thead><tr><th>#</th><th>Sintoma / Alerta</th><th>Causa Provável</th><th>Resolução Técnica</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Avata 2, Goggles 3 ou Motion 3 não ligam</strong></td>
+              <td>Apenas 1 clique simples (mostra nível de bateria) ou bateria em hibernação/descarregada.</td>
+              <td>Aplicar sequência DJI (<strong>1 clique curto + manter ~2 s</strong>). Se não acender nenhum LED, carregar via USB-C PD durante 20–30 min e repetir.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Goggles 3 ligados mas sem imagem do drone / LED amarelo rápido</strong></td>
+              <td>Equipamentos trocados entre os 4 kits (<code>INV-151</code>), modelo errado selecionado ou perda de emparelhamento.</td>
+              <td>Confirmar etiquetas do mesmo kit (1–4), selecionar <em>DJI Avata 2</em> em <em>Estado</em> nos Goggles 3 e executar o <a href="#t3-2">emparelhamento manual (#t3-2)</a>.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Motores não arrancam ao premir botão laranja (Lock)</strong></td>
+              <td>Protetor do gimbal ainda montado, zona GEO bloqueada, firmware inconsistente, bateria fraca ou sequência incorreta.</td>
+              <td>Retirar protetor do gimbal, ler o aviso exato nos Goggles 3, validar zona GEO/bateria e confirmar sequência <strong>2× Lock → manter</strong>.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>LED vermelho e amarelo alternados (erro de bússola)</strong></td>
+              <td>Interferência magnética forte (betão armado, mesas metálicas, carros, colunas de som).</td>
+              <td>Afastar o drone para uma zona livre de metal e executar a <strong>calibração da bússola</strong> seguindo o guia animado nos Goggles 3.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>LED amarelo lento / drone deriva sem se fixar (modo ATTI)</strong></td>
+              <td>Poucos satélites GPS (exteriores obstruídos) ou pouca luz/piso espelhado (interiores) para os sensores de visão inferiores.</td>
+              <td>Não voar em modo ATTI com alunos. No exterior aguardar GPS estável (LED verde lento); no interior garantir boa iluminação e chão texturado (não refletor).</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Imagem desfocada ou lentes embaciadas nos Goggles 3</strong></td>
+              <td>Dioptrias/IPD desajustadas para o utilizador atual ou condensação térmica.</td>
+              <td>Ajustar rodas inferiores (−6,0 D a +2,0 D e IPD) até focar. Ativar <em>One-Tap Defogging</em> no menu dos óculos. Limpar só com microfibra seca.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><strong>Erro de gimbal / vibração forte na imagem 4K</strong></td>
+              <td>Drone ligado com o protetor do gimbal posto, hélice empenada/rachada após toque ou sujidade no eixo.</td>
+              <td>Desligar o drone, retirar protetor/detritos, inspecionar as 4 hélices (trocar se danificadas), reiniciar e executar <em>Calibração automática do gimbal</em> nos Goggles 3.</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><strong>A gravação 4K para sozinha ou dá erro de cartão lento</strong></td>
+              <td>Memória interna (46 GB) cheia ou cartão microSD abaixo de V30/U3.</td>
+              <td>Copiar vídeos da turma para PC e libertar os 46 GB internos; utilizar apenas cartões microSD <strong>UHS-I V30 / U3</strong> formatados nos próprios óculos.</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><strong>Drone virou ao contrário após toque/aterragem</strong></td>
+              <td>Desequilíbrio na aterragem ou contacto lateral em obstáculo.</td>
+              <td>Só usar <em>Turtle Mode</em> em piso plano e limpo. Em relva, areia ou gravilha, desligar motores, virar à mão e inspecionar hélices e motores antes de novo voo.</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td><strong>Mancha permanente amarela/roxa no ecrã dos Goggles 3</strong></td>
+              <td>Exposição direta das lentes internas à luz solar (queimadura térmica dos ecrãs OLED).</td>
+              <td>Dano irreversível de hardware (não reparável por software). Retirar os Goggles 3 de serviço, registar ocorrência e contactar assistência DJI autorizada.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t6">
+      <h2>6. Protocolo de emergência, impactos e avarias</h2>
+      <ul>
+        <li><strong>Durante o voo (desorientação ou risco de colisão):</strong> Dar <strong>1 clique imediato no botão laranja (Lock)</strong> para travar e pairar; o Observador Visual orienta verbalmente a descida e aterragem (manter Lock). Em caso de tontura do piloto, o docente ou observador orienta a aterragem imediata antes de retirar os óculos.</li>
+        <li><strong>Após queda ou colisão:</strong> Desligar o Avata 2 antes de o recolher se as hélices estiverem bloqueadas. Inspecionar a bateria (risco térmico/inchaço), os 4 aros de proteção, as 4 hélices, o eixo do gimbal e os sensores inferiores/traseiros. <strong>Não voltar a voar</strong> se existir fissura estrutural, motor preso ou cheiro anómalo.</li>
+        <li><strong>Registo e isolamento:</strong> Identificar o n.º do kit (<code>AV2-1</code> a <code>AV2-4</code>), colocar etiqueta <em>«Em revisão técnica — Não requisitar»</em>, nunca tentar abrir o corpo do drone ou dos Goggles 3 e comunicar ao coordenador do CTE com data, sintomas e eventual código de erro visto nos óculos.</li>
+      </ul>
+    </section>
+
+    <section id="t7">
+      <h2>7. Ficha técnica de inspeção periódica (<code>INV-151</code> &amp; <code>INV-226</code>)</h2>
+      <p>Recomenda-se uma verificação periódica aos 4 kits e bateria sobresselente no armário branco (janela) do Estúdio 4C:</p>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Responsável</th><th>Kits (1–4) + INV-226</th><th>Hélices / Aros / Gimbal</th><th>Goggles 3 (OLED / Lentes)</th><th>Baterias / 46 GB / Firmware</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual Técnico DJI Avata 2 FPV (<code>INV-151</code> / <code>INV-226</code>) · Uso interno para docentes responsáveis e apoio técnico.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var inp = document.getElementById("tsFilter");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#tsTable tbody tr"));
+  if (inp) {
+    inp.addEventListener("input", function() {
+      var q = (inp.value || "").trim().toLowerCase();
+      rows.forEach(function(r) {
+        r.style.display = (!q || r.textContent.toLowerCase().indexOf(q) !== -1) ? "" : "none";
+      });
+    });
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

@@ -174,17 +174,15 @@ header.hero {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 14px 18px;
+  padding: 15px 18px;
   box-shadow: 0 8px 24px rgba(31, 42, 54, 0.08);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
 }
 .search-box {
   position: relative;
-  flex: 1 1 280px;
+  width: 100%;
 }
 .search-box svg {
   position: absolute;
@@ -422,13 +420,13 @@ footer a:hover {
   <div class="hero-inner">
     <div class="hero-topbar">
       <nav class="hero-crumb" aria-label="Caminho de navegação">
-        <a href="index.html">&larr; Página inicial</a>
+        <a href="index.html">&larr; Portal CTE</a>
         <span>&rsaquo;</span>
         <span>Manuais, Guias e Vídeos</span>
       </nav>
       <a class="mode-switch" href="ajuda-ia.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
-        Ir para Ajuda IA (Gemini Notebook)
+        Ir para Ajuda IA (NotebookLM)
       </a>
     </div>
 

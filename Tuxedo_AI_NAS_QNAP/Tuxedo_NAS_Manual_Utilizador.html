@@ -92,7 +92,7 @@ table.log tbody tr { background: #fff; }
 
 .proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
 .proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
-.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-head h3 { margin: 0; font-size: 1.06rem; color: var(--dark); }
 .proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
 .lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
@@ -116,7 +116,7 @@ button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
 footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
 footer a { color: var(--teal-text); font-weight: 600; }
 
-.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
 .fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
 @media (max-width: 860px) {
@@ -380,7 +380,7 @@ pip install --upgrade pip</code></pre>
 
       <div class="proj-card">
         <div class="proj-head">
-          <h4>Projeto 1 — Explorar e Testar um LLM Local na Tuxedo Atlas XL (Ollama)</h4>
+          <h3>Projeto 1 — Explorar e Testar um LLM Local na Tuxedo Atlas XL (Ollama)</h3>
           <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">20 min</span></div>
         </div>
         <p><strong>Objetivo:</strong> Compreender a diferença entre IA na nuvem e inferência LLM 100% local acelerada por GPU.</p>
@@ -389,7 +389,7 @@ pip install --upgrade pip</code></pre>
 
       <div class="proj-card">
         <div class="proj-head">
-          <h4>Projeto 2 — Ambiente Python Isolado e Script de Benchmark CPU vs. GPU (PyTorch)</h4>
+          <h3>Projeto 2 — Ambiente Python Isolado e Script de Benchmark CPU vs. GPU (PyTorch)</h3>
           <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">25 min</span></div>
         </div>
         <p><strong>Objetivo:</strong> Criar um ambiente virtual <code>.venv</code> limpo e medir a aceleração da placa gráfica na multiplicação de matrizes tensoriais.</p>
@@ -398,7 +398,7 @@ pip install --upgrade pip</code></pre>
 
       <div class="proj-card">
         <div class="proj-head">
-          <h4>Projeto 3 — Classificação / Visão Computacional com Dataset Partilhado no NAS</h4>
+          <h3>Projeto 3 — Classificação / Visão Computacional com Dataset Partilhado no NAS</h3>
           <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">40 min</span></div>
         </div>
         <p><strong>Objetivo:</strong> Treinar ou afinar (<em>fine-tuning</em>) uma rede neuronal de visão lendo o dataset preparado na partilha 2,5 GbE do QNAP TVS-h874.</p>
@@ -407,7 +407,7 @@ pip install --upgrade pip</code></pre>
 
       <div class="proj-card">
         <div class="proj-head">
-          <h4>Projeto 4 — Laboratório de Servidor Linux em Máquina Virtual (QNAP Virtualization Station)</h4>
+          <h3>Projeto 4 — Laboratório de Servidor Linux em Máquina Virtual (QNAP Virtualization Station)</h3>
           <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">45 min</span></div>
         </div>
         <p><strong>Objetivo:</strong> Operar uma Máquina Virtual Linux no QNAP TVS-h874 a partir de um portátil da sala (BOLTX505 ou MacBook Pro).</p>
@@ -416,7 +416,7 @@ pip install --upgrade pip</code></pre>
 
       <div class="proj-card">
         <div class="proj-head">
-          <h4>Projeto 5 — Microserviço RAG / API de IA Local com Docker e Armazenamento ZFS</h4>
+          <h3>Projeto 5 — Microserviço RAG / API de IA Local com Docker e Armazenamento ZFS</h3>
           <div class="proj-badges"><span class="lvl adv">Avançado</span><span class="lvl">60 min</span></div>
         </div>
         <p><strong>Objetivo:</strong> Integrar a capacidade de inferência GPU da Tuxedo Atlas XL com documentos técnicos guardados no NAS QNAP.</p>

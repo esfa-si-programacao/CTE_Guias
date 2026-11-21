@@ -479,9 +479,10 @@ table.mini tbody tr:nth-child(even) { background: var(--light); }
 }
 
 /* Botão flutuante Ajuda (apenas ecrã) */
+
 .fab-help {
   position: fixed;
-  left: 18px;
+  right: 18px;
   bottom: 18px;
   z-index: 90;
   display: inline-flex;
@@ -499,6 +500,19 @@ table.mini tbody tr:nth-child(even) { background: var(--light); }
   transition: transform 0.15s ease, background 0.15s ease;
 }
 .fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 600px) {
+  .topbar { padding: 8px 14px; }
+  .sheet { margin-left: 8px; margin-right: 8px; }
+  header.hero { grid-template-columns: 1fr; padding: 14px 16px; }
+  .hero-art { display: none; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .anatomy-wrap { grid-template-columns: 1fr; justify-items: center; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.85rem; }
+  table.mini { font-size: 0.81rem; }
+  .fab-help { right: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.84rem; }
+}
 
 @page {
   size: A4 portrait;
@@ -739,23 +753,11 @@ table.mini tbody tr:nth-child(even) { background: var(--light); }
 
       <aside class="qr-box" aria-label="Espaço para QR Code do portal online">
         <div class="qr-placeholder">
-          <svg viewBox="0 0 60 60" width="66" height="66" fill="#1F2A36" aria-hidden="true">
-            <rect x="4" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
-            <rect x="9" y="9" width="6" height="6"/>
-            <rect x="40" y="4" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
-            <rect x="45" y="9" width="6" height="6"/>
-            <rect x="4" y="40" width="16" height="16" fill="none" stroke="#1F2A36" stroke-width="3.5"/>
-            <rect x="9" y="45" width="6" height="6"/>
-            <rect x="25" y="6" width="4" height="4"/><rect x="31" y="10" width="4" height="8"/>
-            <rect x="25" y="24" width="10" height="10" fill="#E8711C"/>
-            <rect x="6" y="26" width="12" height="4"/><rect x="40" y="26" width="14" height="4"/>
-            <rect x="26" y="40" width="6" height="6"/><rect x="36" y="38" width="8" height="4"/>
-            <rect x="48" y="40" width="8" height="8"/><rect x="36" y="48" width="8" height="8"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" width="72" height="72" shape-rendering="crispEdges" role="img" aria-label="Código QR para https://aem-cte-ajuda.netlify.app/Meta_Quest_3_VR/#diagnostico"><rect width="45" height="45" fill="#fff"/><path fill="#111827" d="M4 4h7v1h-7zM12 4h2v1h-2zM16 4h6v1h-6zM23 4h2v1h-2zM31 4h2v1h-2zM34 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM13 5h5v1h-5zM20 5h2v1h-2zM23 5h1v1h-1zM26 5h4v1h-4zM32 5h1v1h-1zM34 5h1v1h-1zM40 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM18 6h1v1h-1zM21 6h2v1h-2zM25 6h2v1h-2zM28 6h1v1h-1zM30 6h1v1h-1zM32 6h1v1h-1zM34 6h1v1h-1zM36 6h3v1h-3zM40 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h2v1h-2zM15 7h2v1h-2zM20 7h3v1h-3zM28 7h5v1h-5zM34 7h1v1h-1zM36 7h3v1h-3zM40 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM12 8h3v1h-3zM18 8h5v1h-5zM24 8h1v1h-1zM27 8h1v1h-1zM29 8h3v1h-3zM34 8h1v1h-1zM36 8h3v1h-3zM40 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h3v1h-3zM17 9h5v1h-5zM23 9h2v1h-2zM29 9h1v1h-1zM32 9h1v1h-1zM34 9h1v1h-1zM40 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h7v1h-7zM12 11h2v1h-2zM15 11h1v1h-1zM19 11h2v1h-2zM25 11h1v1h-1zM27 11h2v1h-2zM31 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h4v1h-4zM15 12h1v1h-1zM17 12h1v1h-1zM20 12h1v1h-1zM23 12h2v1h-2zM32 12h6v1h-6zM40 12h1v1h-1zM4 13h2v1h-2zM9 13h1v1h-1zM11 13h3v1h-3zM15 13h1v1h-1zM18 13h1v1h-1zM21 13h3v1h-3zM25 13h2v1h-2zM28 13h5v1h-5zM36 13h4v1h-4zM4 14h1v1h-1zM6 14h2v1h-2zM10 14h3v1h-3zM15 14h1v1h-1zM17 14h3v1h-3zM21 14h3v1h-3zM25 14h1v1h-1zM27 14h2v1h-2zM31 14h1v1h-1zM33 14h1v1h-1zM35 14h2v1h-2zM5 15h2v1h-2zM15 15h2v1h-2zM18 15h10v1h-10zM30 15h1v1h-1zM37 15h3v1h-3zM4 16h7v1h-7zM12 16h1v1h-1zM14 16h2v1h-2zM18 16h1v1h-1zM21 16h1v1h-1zM25 16h2v1h-2zM28 16h1v1h-1zM31 16h1v1h-1zM33 16h3v1h-3zM37 16h4v1h-4zM5 17h5v1h-5zM13 17h3v1h-3zM17 17h1v1h-1zM19 17h2v1h-2zM22 17h1v1h-1zM25 17h1v1h-1zM27 17h1v1h-1zM30 17h3v1h-3zM36 17h2v1h-2zM39 17h2v1h-2zM4 18h2v1h-2zM7 18h1v1h-1zM10 18h4v1h-4zM19 18h1v1h-1zM21 18h1v1h-1zM27 18h1v1h-1zM31 18h2v1h-2zM35 18h4v1h-4zM4 19h2v1h-2zM11 19h1v1h-1zM13 19h1v1h-1zM15 19h2v1h-2zM18 19h2v1h-2zM21 19h2v1h-2zM26 19h1v1h-1zM28 19h1v1h-1zM30 19h2v1h-2zM33 19h1v1h-1zM35 19h2v1h-2zM38 19h2v1h-2zM7 20h1v1h-1zM10 20h1v1h-1zM12 20h2v1h-2zM16 20h2v1h-2zM22 20h2v1h-2zM26 20h3v1h-3zM33 20h3v1h-3zM37 20h4v1h-4zM4 21h6v1h-6zM11 21h4v1h-4zM16 21h3v1h-3zM20 21h1v1h-1zM23 21h3v1h-3zM30 21h3v1h-3zM35 21h2v1h-2zM39 21h1v1h-1zM4 22h2v1h-2zM8 22h7v1h-7zM18 22h1v1h-1zM20 22h3v1h-3zM24 22h3v1h-3zM29 22h1v1h-1zM31 22h2v1h-2zM35 22h2v1h-2zM4 23h4v1h-4zM9 23h1v1h-1zM11 23h4v1h-4zM16 23h3v1h-3zM21 23h2v1h-2zM25 23h1v1h-1zM28 23h1v1h-1zM35 23h2v1h-2zM38 23h2v1h-2zM5 24h1v1h-1zM7 24h1v1h-1zM9 24h2v1h-2zM15 24h1v1h-1zM19 24h3v1h-3zM23 24h1v1h-1zM25 24h4v1h-4zM31 24h5v1h-5zM37 24h1v1h-1zM6 25h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM14 25h1v1h-1zM19 25h3v1h-3zM27 25h1v1h-1zM29 25h1v1h-1zM31 25h2v1h-2zM35 25h2v1h-2zM39 25h1v1h-1zM5 26h2v1h-2zM8 26h1v1h-1zM10 26h2v1h-2zM13 26h1v1h-1zM19 26h1v1h-1zM22 26h1v1h-1zM24 26h4v1h-4zM29 26h1v1h-1zM31 26h1v1h-1zM33 26h6v1h-6zM4 27h3v1h-3zM14 27h1v1h-1zM17 27h1v1h-1zM19 27h2v1h-2zM25 27h1v1h-1zM28 27h1v1h-1zM30 27h1v1h-1zM32 27h1v1h-1zM35 27h2v1h-2zM38 27h1v1h-1zM40 27h1v1h-1zM7 28h2v1h-2zM10 28h1v1h-1zM13 28h3v1h-3zM20 28h1v1h-1zM23 28h2v1h-2zM27 28h1v1h-1zM33 28h3v1h-3zM37 28h2v1h-2zM40 28h1v1h-1zM4 29h2v1h-2zM7 29h2v1h-2zM11 29h2v1h-2zM15 29h3v1h-3zM22 29h2v1h-2zM26 29h1v1h-1zM28 29h5v1h-5zM35 29h4v1h-4zM7 30h1v1h-1zM10 30h1v1h-1zM14 30h3v1h-3zM19 30h1v1h-1zM21 30h3v1h-3zM27 30h2v1h-2zM30 30h2v1h-2zM34 30h1v1h-1zM36 30h1v1h-1zM12 31h1v1h-1zM18 31h4v1h-4zM23 31h5v1h-5zM30 31h1v1h-1zM38 31h3v1h-3zM4 32h3v1h-3zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h1v1h-1zM16 32h3v1h-3zM20 32h2v1h-2zM24 32h3v1h-3zM28 32h1v1h-1zM32 32h6v1h-6zM39 32h1v1h-1zM12 33h1v1h-1zM15 33h3v1h-3zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h4v1h-4zM30 33h1v1h-1zM32 33h1v1h-1zM36 33h1v1h-1zM39 33h1v1h-1zM4 34h7v1h-7zM12 34h2v1h-2zM15 34h3v1h-3zM19 34h1v1h-1zM21 34h1v1h-1zM27 34h4v1h-4zM32 34h1v1h-1zM34 34h1v1h-1zM36 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM13 35h1v1h-1zM16 35h1v1h-1zM21 35h4v1h-4zM26 35h2v1h-2zM30 35h1v1h-1zM32 35h1v1h-1zM36 35h3v1h-3zM4 36h1v1h-1zM6 36h3v1h-3zM10 36h1v1h-1zM12 36h4v1h-4zM17 36h3v1h-3zM22 36h1v1h-1zM26 36h1v1h-1zM28 36h3v1h-3zM32 36h9v1h-9zM4 37h1v1h-1zM6 37h3v1h-3zM10 37h1v1h-1zM13 37h3v1h-3zM17 37h1v1h-1zM20 37h1v1h-1zM23 37h3v1h-3zM29 37h3v1h-3zM34 37h2v1h-2zM37 37h1v1h-1zM39 37h1v1h-1zM4 38h1v1h-1zM6 38h3v1h-3zM10 38h1v1h-1zM14 38h3v1h-3zM18 38h1v1h-1zM20 38h2v1h-2zM24 38h3v1h-3zM30 38h1v1h-1zM33 38h2v1h-2zM37 38h1v1h-1zM39 38h1v1h-1zM4 39h1v1h-1zM10 39h1v1h-1zM15 39h1v1h-1zM17 39h2v1h-2zM21 39h2v1h-2zM25 39h1v1h-1zM28 39h1v1h-1zM31 39h1v1h-1zM33 39h1v1h-1zM36 39h1v1h-1zM38 39h2v1h-2zM4 40h7v1h-7zM12 40h1v1h-1zM16 40h1v1h-1zM18 40h3v1h-3zM23 40h3v1h-3zM27 40h2v1h-2zM31 40h1v1h-1zM33 40h3v1h-3zM37 40h1v1h-1zM39 40h2v1h-2z"/></svg>
         </div>
         <strong>Algo não funciona?</strong>
         <span>Leia este código para abrir o Diagnóstico Rápido</span>
-        <!-- FASE 3 (P3): substituir o SVG de exemplo pelo QR code final de https://aem-cte-ajuda.netlify.app/Meta_Quest_3_VR/#diagnostico -->
+        <!-- QR Code SVG oficial offline (ISO/IEC 18004 V5-M) para https://aem-cte-ajuda.netlify.app/Meta_Quest_3_VR/#diagnostico -->
       </aside>
     </div>
   </div>

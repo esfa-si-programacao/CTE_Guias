@@ -92,7 +92,7 @@ table.log tbody tr { background: #fff; }
 
 .proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
 .proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
-.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-head h3 { margin: 0; font-size: 1.06rem; color: var(--dark); }
 .proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
 .lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
@@ -116,7 +116,7 @@ button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
 footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
 footer a { color: var(--teal-text); font-weight: 600; }
 
-.fab-help { position: fixed; left: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
 .fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
 
 @media (max-width: 860px) {
@@ -375,31 +375,31 @@ footer a { color: var(--teal-text); font-weight: 600; }
       <p>Sugestão de percurso gradual — comece sempre pelos projetos sem voo ou de trajeto curto:</p>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 1 — "Semáforo e Mensagem na Matriz 8×8" (Sem Voo)</h4><div class="proj-badges"><span class="lvl">Iniciante · 20 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 1 — "Semáforo e Mensagem na Matriz 8×8" (Sem Voo)</h3><div class="proj-badges"><span class="lvl">Iniciante · 20 min</span></div></div>
         <p><strong>Comandos:</strong> <code>command</code> &rarr; ler <code>battery?</code> &rarr; alternar o LED RGB (<code>EXT led</code>) entre vermelho, amarelo e verde &rarr; apresentar texto deslizante <code>CTE</code> na matriz 8×8 (<code>EXT mled</code>).</p>
         <p style="margin:0"><strong>Objetivo:</strong> Validar a ligação Wi-Fi, o protocolo SDK 3.0 e o módulo ESP32 com total segurança sobre a mesa.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 2 — "Polígono Autónomo (Quadrado de 60 cm)"</h4><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 2 — "Polígono Autónomo (Quadrado de 60 cm)"</h3><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span></div></div>
         <p><strong>Sequência:</strong> <code>takeoff</code> &rarr; ciclo de 4 repetições (<code>forward 60</code> + <code>cw 90</code> + mudar cor do LED a cada lado) &rarr; <code>land</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Aplicar ciclos (<em>loops</em>) e geometria espacial em voo interior controlado.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 3 — "Guarda de Obstáculos com Sensor ToF"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 35 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 3 — "Guarda de Obstáculos com Sensor ToF"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 35 min</span></div></div>
         <p><strong>Lógica:</strong> Ler continuamente <code>EXT tof?</code>. Enquanto a distância for &gt; 600 mm, LED verde e avançar em passos curtos de 25 cm; se detetar obstáculo (&lt; 600 mm), LED vermelho, ícone de alerta na matriz 8×8 e aterrar ou rodar 90°.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Combinar sensores de distância em tempo real com tomada de decisão condicional.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 4 — "Entrega de Precisão com Mission Pads"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 4 — "Entrega de Precisão com Mission Pads"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span></div></div>
         <p><strong>Lógica:</strong> Colocar dois Mission Pads (ID 1 e ID 2) a 1 m de distância &rarr; <code>mon</code> &rarr; <code>takeoff</code> &rarr; centrar sobre o Pad 1 &rarr; saltar para o Pad 2 (<code>jump 100 0 80 30 0 m1 m2</code>) &rarr; <code>land</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Dominar sistemas de coordenadas 3D (x, y, z) e aterragem exata em alvo visual.</p>
       </div>
 
       <div class="proj-card" id="s8-python">
-        <div class="proj-head"><h4>Projeto 5 — "Voo Seguro em Python com Matriz LED (<code>djitellopy</code>)"</h4><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 5 — "Voo Seguro em Python com Matriz LED (<code>djitellopy</code>)"</h3><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
         <p>Exemplo completo e seguro em Python (note o bloco <code>try / finally</code> para garantir a aterragem mesmo em caso de erro ou interrupção <code>Ctrl+C</code>):</p>
         <div class="code-wrap">
           <button class="copy-btn" type="button" data-copy>Copiar código</button>

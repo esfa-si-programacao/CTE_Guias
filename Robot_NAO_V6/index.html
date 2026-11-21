@@ -161,6 +161,22 @@ header.hero {
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 .btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+.btn-hero-ai {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  background: rgba(108, 52, 131, 0.52);
+  border: 1.5px solid rgba(226, 184, 248, 0.65);
+  color: #F6E9FC;
+  font-weight: 700;
+  font-size: 0.96rem;
+  padding: 10px 18px;
+  border-radius: 9px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.btn-hero-ai:hover { background: rgba(108, 52, 131, 0.82); border-color: #F6E9FC; }
 
 /* Conteúdo principal */
 main.container {
@@ -198,7 +214,7 @@ main.container {
 /* Secção Percurso (5 passos) */
 .percurso-grid {
   display: grid;
-  grid-template-columns: 245px 1fr;
+  grid-template-columns: 275px 1fr;
   gap: 14px;
   align-items: stretch;
 }
@@ -270,13 +286,48 @@ main.container {
 }
 .video-box video {
   display: block;
-  max-height: 310px;
+  max-height: 230px;
   width: auto;
   max-width: 100%;
   background: #000;
   border-radius: 9px;
   border: 1px solid var(--line);
 }
+.quick-visual {
+  background: var(--light);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.qv-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 7px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+.qv-key {
+  min-width: 68px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.7rem;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background: var(--dark);
+  color: #fff;
+  flex-shrink: 0;
+}
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
 
 /* Preciso de... (3 atalhos) */
 .shortcuts-grid {
@@ -598,10 +649,10 @@ footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 .footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
 
-/* Botão flutuante Ajuda (canto inferior esquerdo) */
+/* Botão flutuante Ajuda (canto inferior direito) */
 .fab-help {
   position: fixed;
-  left: 18px;
+  right: 18px;
   bottom: 18px;
   z-index: 90;
   display: inline-flex;
@@ -632,7 +683,8 @@ footer a:hover { text-decoration: underline; }
   .hero h1 { font-size: 1.38rem; }
   .hero .sub { font-size: 0.92rem; }
   .hero-actions { margin-top: 10px; gap: 8px; }
-  .btn-hero-primary, .btn-hero-secondary { width: 100%; padding: 9px 16px; }
+  .btn-hero-primary, .btn-hero-secondary, .btn-hero-ai { width: 100%; padding: 9px 16px; }
+  .fab-help { right: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.84rem; }
   main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
   .sec-head { padding: 9px 14px; }
   .sec-body { padding: 10px 14px; }
@@ -690,6 +742,7 @@ footer a:hover { text-decoration: underline; }
       <div class="hero-actions">
         <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
         <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+        <a class="btn-hero-ai" id="heroAiLink" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
       </div>
     </div>
   </div>
@@ -707,11 +760,11 @@ footer a:hover { text-decoration: underline; }
     </div>
     <div class="sec-body">
       <div class="percurso-grid">
-        <!-- Passo 1 com vídeo embutido -->
+        <!-- Passo 1 com vídeo embutido + 4 regras vitais (visíveis mesmo sem som) -->
         <article class="step-card step-video">
           <div>
-            <div class="step-head"><span class="step-num">1</span><h3>Ver o vídeo</h3></div>
-            <p>Ligar o NAO e descobrir o IP (1 min).</p>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o vídeo e o essencial</h3></div>
+            <p>Ligar o NAO e descobrir o IP (1 min) + 4 regras vitais.</p>
           </div>
           <div class="video-box">
             <video controls preload="metadata" src="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4#t=0.5">
@@ -720,6 +773,15 @@ footer a:hover { text-decoration: underline; }
               -->
               O seu navegador não suporta vídeo HTML5. <a href="Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4">Abrir vídeo MP4</a>.
             </video>
+          </div>
+          <div class="quick-visual" aria-label="4 regras vitais do Robô NAO V6">
+            <div class="qv-item"><span class="qv-key red">PELO TRONCO</span><span class="qv-desc">Nunca agarrar cabeça, braços ou pernas</span></div>
+            <div class="qv-item"><span class="qv-key teal">1× PEITO</span><span class="qv-desc">NAO diz o endereço IP em voz alta</span></div>
+            <div class="qv-item"><span class="qv-key acc">DESLIGAR 3 s</span><span class="qv-desc">Postura Crouch + esperar TODOS os LEDs apagar</span></div>
+            <div class="qv-item"><span class="qv-key">ÍCONE ♥ OFF</span><span class="qv-desc">Desligar Vida Autónoma ao programar</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="NAO_V6_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
           </div>
         </article>
 
@@ -799,7 +861,7 @@ footer a:hover { text-decoration: underline; }
           <p class="shortcut-note">Requer conta Google da escola.</p>
         </div>
         <div>
-          <a class="action-link" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">Abrir assistente IA &#8599;</a>
+          <a class="action-link" id="aiLink" href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">Abrir assistente IA &#8599;</a>
           <a class="shortcut-alt" href="#diagnostico">Sem conta? Use o diagnóstico rápido &rarr;</a>
         </div>
       </div>
@@ -1032,6 +1094,7 @@ footer a:hover { text-decoration: underline; }
     contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
     urlRequisicao: "",          // formulário de requisição do NAO
     urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+    urlNotebookLM: "https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview",
     checklistValidadeHoras: 4
   };
 
@@ -1052,6 +1115,13 @@ footer a:hover { text-decoration: underline; }
   if (reqLink && CONFIG.urlRequisicao) {
     reqLink.href = CONFIG.urlRequisicao;
     reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) aiLink.href = CONFIG.urlNotebookLM;
+    if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
   }
 
   function formatContacto(includeHorario) {

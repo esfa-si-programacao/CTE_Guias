@@ -177,17 +177,27 @@ header.hero {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 14px 18px;
+  padding: 15px 18px;
   box-shadow: 0 8px 24px rgba(31, 42, 54, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.controls-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 .search-box {
   position: relative;
-  flex: 1 1 280px;
+  flex: 1 1 300px;
+}
+.result-count {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--grey);
 }
 .search-box svg {
   position: absolute;
@@ -263,7 +273,6 @@ header.hero {
   color: var(--acc-text);
   font-weight: 700;
   text-decoration: none;
-  white-space: nowrap;
 }
 .info-banner-link:hover {
   text-decoration: underline;
@@ -479,6 +488,7 @@ footer a:hover {
 }
 
 @media (max-width: 720px) {
+  .controls-wrap, .info-banner, main.container { padding-left: 16px; padding-right: 16px; }
   .equip-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -489,21 +499,21 @@ footer a:hover {
   <div class="hero-inner">
     <div class="hero-topbar">
       <nav class="hero-crumb" aria-label="Caminho de navegação">
-        <a href="index.html">&larr; Página inicial</a>
+        <a href="index.html">&larr; Portal CTE</a>
         <span>&rsaquo;</span>
         <span>Ajuda IA</span>
       </nav>
-      <a class="mode-switch" href="manuais.html">
+      <a class="mode-switch" href="index.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        Ir para Manuais, Guias e Vídeos
+        Ver Manuais, Guias e Diagnóstico
       </a>
     </div>
 
     <div class="hero-main">
       <div>
-        <div class="hero-badge">CTE Informático · Cadernos Gemini / NotebookLM</div>
+        <div class="hero-badge">CTE Informático · Ajuda IA (NotebookLM)</div>
         <h1>Ajuda IA por Equipamento</h1>
-        <p class="sub">Escolha um equipamento abaixo para abrir diretamente o respetivo caderno no Gemini Notebook (NotebookLM), treinado exclusivamente com os manuais, guias e regras do CTE.</p>
+        <p class="sub">Escolha um equipamento abaixo para colocar dúvidas rápidas durante a aula ao respetivo assistente IA (NotebookLM), treinado exclusivamente com os manuais e regras do CTE.</p>
       </div>
       <div class="hero-stats">
         <div class="stat-card">
@@ -517,9 +527,12 @@ footer a:hover {
 
 <div class="controls-wrap">
   <div class="controls-bar">
-    <div class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
+    <div class="controls-top">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
+      </div>
+      <span class="result-count" id="resultCount">7 de 7 equipamentos</span>
     </div>
     <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por área">
       <button type="button" class="pill active" data-cat="all">Todos (7)</button>
@@ -535,8 +548,8 @@ footer a:hover {
 
 <div class="info-banner">
   <div class="info-banner-inner">
-    <span><strong>Nota de acesso:</strong> Os cadernos abrem no Google NotebookLM e requerem sessão iniciada com conta Google (ex.: conta da escola).</span>
-    <a class="info-banner-link" href="manuais.html">Prefere manuais, vídeos ou diagnóstico sem conta? &rarr;</a>
+    <span><strong>Nota de acesso:</strong> Os assistentes IA abrem no Google NotebookLM e requerem sessão iniciada com conta Google (ex.: conta da escola).</span>
+    <a class="info-banner-link" href="index.html">Prefere manuais, vídeos ou diagnóstico sem login? &rarr;</a>
   </div>
 </div>
 
@@ -560,7 +573,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
         </div>
       </div>
@@ -583,7 +596,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="https://notebook.google.com/notebook/7e02c760-40c7-4cf1-a673-5e48e83a7505/preview" target="_blank" rel="noopener noreferrer">
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
         </div>
       </div>
@@ -606,7 +619,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="https://notebook.google.com/notebook/33afbc15-9471-4332-996d-c35ea62004d6/preview" target="_blank" rel="noopener noreferrer">
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
         </div>
       </div>
@@ -629,7 +642,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="https://notebook.google.com/notebook/e3067140-32a5-4401-bc80-1ca6734cd525/preview" target="_blank" rel="noopener noreferrer">
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
         </div>
       </div>
@@ -652,7 +665,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="https://notebook.google.com/notebook/f520d382-dd9d-4cdb-a1f6-e05ca99b6f42/preview" target="_blank" rel="noopener noreferrer">
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
         </div>
       </div>
@@ -675,7 +688,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="#" target="_blank" rel="noopener noreferrer" hidden>
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
           <div class="soon-box" data-soon-box>
             <span class="soon-label">Caderno IA em preparação</span>
@@ -702,7 +715,7 @@ footer a:hover {
         </div>
         <div class="equip-footer">
           <a class="ai-btn" data-ai-link href="#" target="_blank" rel="noopener noreferrer" hidden>
-            Abrir Caderno Gemini / NotebookLM &#8599;
+            Perguntar à IA (NotebookLM) &#8599;
           </a>
           <div class="soon-box" data-soon-box>
             <span class="soon-label">Caderno IA em preparação</span>
@@ -720,7 +733,7 @@ footer a:hover {
 </main>
 
 <footer>
-  <strong>CTE — Centro Tecnológico Especializado</strong> · Ajuda IA (Gemini / NotebookLM) · <a href="index.html">&larr; Voltar à página inicial</a>
+  <strong>CTE — Centro Tecnológico Especializado</strong> · Ajuda IA (NotebookLM) · <a href="index.html">&larr; Voltar ao Portal CTE</a>
 </footer>
 
 <script>
@@ -770,6 +783,7 @@ footer a:hover {
   var filterPills = document.getElementById("filterPills");
   var pills = Array.prototype.slice.call(document.querySelectorAll(".pill"));
   var emptyState = document.getElementById("emptyState");
+  var resultCount = document.getElementById("resultCount");
   var activeCat = "all";
 
   if (filterPills && cards.length < 6) {
@@ -794,6 +808,9 @@ footer a:hover {
       }
     });
 
+    if (resultCount) {
+      resultCount.textContent = visible + " de " + cards.length + " equipamentos";
+    }
     emptyState.style.display = visible === 0 ? "block" : "none";
   }
 

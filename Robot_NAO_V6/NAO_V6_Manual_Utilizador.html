@@ -198,7 +198,7 @@ table.log tbody tr { background: #fff; }
   flex-wrap: wrap;
   margin-bottom: 6px;
 }
-.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-head h3 { margin: 0; font-size: 1.06rem; color: var(--dark); }
 .proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .lvl {
   font-size: 0.76rem;
@@ -293,7 +293,7 @@ footer a { color: var(--teal-text); font-weight: 600; }
 /* Botão flutuante Ajuda */
 .fab-help {
   position: fixed;
-  left: 18px;
+  right: 18px;
   bottom: 18px;
   z-index: 90;
   display: inline-flex;
@@ -640,31 +640,31 @@ footer a { color: var(--teal-text); font-weight: 600; }
       <p>Sugestão de percurso gradual para trabalhar com turmas — todos podem ser <strong>construídos</strong> no Robô Virtual; os projetos 2 e 4 só podem ser <strong>testados</strong> no NAO físico:</p>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 1 — "Olá, CTE!" (Falar em Português e Acenar)</h4><div class="proj-badges"><span class="lvl">Iniciante · 15 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 1 — "Olá, CTE!" (Falar em Português e Acenar)</h3><div class="proj-badges"><span class="lvl">Iniciante · 15 min</span></div></div>
         <p><strong>Caixas:</strong> <code>Set Language</code> (<em>Portuguese</em>) &rarr; <code>Wake Up</code> &rarr; <code>Animated Say</code> (<em>"Olá! Eu sou o Robô NAO do CTE Informático."</em>) &rarr; <code>Rest</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Aprender a encadear caixas, configurar Português e terminar sempre em modo seguro <code>Rest</code>.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 2 — "Sensores Táteis e Emoções com LEDs"</h4><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
+        <div class="proj-head"><h3>Projeto 2 — "Sensores Táteis e Emoções com LEDs"</h3><div class="proj-badges"><span class="lvl">Iniciante · 25 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
         <p><strong>Caixas:</strong> <code>Tactile Head</code> ligado a três ramos: Frente &rarr; <code>Eye LEDs</code> (Verde) + <code>Say</code> (<em>"Olá, tudo bem?"</em>); Meio &rarr; Azul + <em>"Estou a pensar..."</em>; Trás &rarr; Amarelo + <em>"Cuidado atrás!"</em>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Explorar eventos dos 3 sensores capacitivos da cabeça e resposta visual com LEDs.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 3 — "Coreografia Segura na Timeline"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 40 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 3 — "Coreografia Segura na Timeline"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 40 min</span></div></div>
         <p><strong>Caixas:</strong> <code>Stand</code> &rarr; <code>Timeline</code> (criar poses de saudação/exercício de braços com <em>keyframes</em> espaçados e movimentos suaves) &rarr; <code>Stand</code> &rarr; <code>Rest</code>.</p>
         <p style="margin:0"><strong>Objetivo:</strong> Controlar articulações sem colisões, validando o equilíbrio no Robô Virtual antes do teste físico.</p>
       </div>
 
       <div class="proj-card">
-        <div class="proj-head"><h4>Projeto 4 — "Interação por Voz ou Visão"</h4><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
+        <div class="proj-head"><h3>Projeto 4 — "Interação por Voz ou Visão"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 45 min</span><span class="lvl phys">Requer NAO físico para testar</span></div></div>
         <p><strong>Variante Voz:</strong> <code>Set Language</code> (<em>Portuguese</em>) &rarr; <code>Speech Reco.</code> (lista curta: <code>sentar;levantar;olá;parar</code>) &rarr; <code>Switch Case</code> &rarr; ações correspondentes. <em>(Reduza o ruído da sala para melhor reconhecimento.)</em></p>
         <p style="margin:0"><strong>Variante Visão:</strong> <code>Face Detection</code> ou <code>NAO Mark</code> para cumprimentar automaticamente quando deteta um rosto ou cartão visual.</p>
       </div>
 
       <div class="proj-card" id="s8-python">
-        <div class="proj-head"><h4>Projeto 5 — "Introdução a Python no NAO V6"</h4><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
+        <div class="proj-head"><h3>Projeto 5 — "Introdução a Python no NAO V6"</h3><div class="proj-badges"><span class="lvl adv">Avançado · 45–60 min</span></div></div>
         <p>Arraste uma caixa vazia <strong>Python Script</strong> no Choregraphe e faça duplo clique para editar o código. <em>Nota: o motor interno do Choregraphe 2.8 utiliza <strong>Python 2.7</strong> com os serviços NAOqi 2.8 (<code>ALTextToSpeech</code>, <code>ALLeds</code>, <code>ALMotion</code>, <code>ALRobotPosture</code>).</em></p>
         <div class="code-wrap">
           <button class="copy-btn" type="button" data-copy>Copiar código</button>

@@ -694,6 +694,8 @@ footer a:hover { text-decoration: underline; }
   footer { padding-bottom: 20px; }
 }
 </style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
 </head>
 <body>
 
@@ -868,12 +870,12 @@ footer a:hover { text-decoration: underline; }
         <div>
           <h3 class="diag-sub">1. Luz LED (óculos ou comandos)</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="white" aria-pressed="true"><span class="led-orb orb-white"></span>Branco fixo</button>
-            <button type="button" class="led-btn" data-led="green" aria-pressed="false"><span class="led-orb orb-green"></span>Verde fixo</button>
-            <button type="button" class="led-btn" data-led="amber" aria-pressed="false"><span class="led-orb orb-amber"></span>Laranja fixo</button>
-            <button type="button" class="led-btn" data-led="red" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho / piscar</button>
-            <button type="button" class="led-btn" data-led="off" aria-pressed="false"><span class="led-orb orb-off"></span>Sem luz</button>
-            <button type="button" class="led-btn" data-led="ctrl" aria-pressed="false"><span class="led-orb orb-blink"></span>Comandos a piscar</button>
+            <button type="button" class="led-btn active" data-led="white" data-led-desc="Branco fixo (ligado)" aria-pressed="true"><span class="led-orb led-pat-solid-white"></span>Branco fixo</button>
+            <button type="button" class="led-btn" data-led="green" data-led-desc="Verde fixo (carga completa)" aria-pressed="false"><span class="led-orb led-pat-solid-green"></span>Verde fixo</button>
+            <button type="button" class="led-btn" data-led="amber" data-led-desc="Laranja fixo (a carregar)" aria-pressed="false"><span class="led-orb led-pat-solid-amber"></span>Laranja fixo</button>
+            <button type="button" class="led-btn" data-led="red" data-led-desc="Vermelho fixo ou a piscar" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho / piscar</button>
+            <button type="button" class="led-btn" data-led="off" data-led-desc="Apagado (sem luz)" aria-pressed="false"><span class="led-orb led-pat-off"></span>Sem luz</button>
+            <button type="button" class="led-btn" data-led="ctrl" data-led-desc="Branco a piscar nos comandos" aria-pressed="false"><span class="led-orb led-pat-blink-white"></span>Comandos a piscar</button>
           </div>
           <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
@@ -1061,15 +1063,19 @@ footer a:hover { text-decoration: underline; }
   Ajuda
 </a>
 
+<script src="../cte-config.js"></script>
 <script>
 (function() {
-  var CONFIG = {
-    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
-    urlRequisicao: "",          // formulário de requisição dos Meta Quest 3
-    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
     urlNotebookLM: "https://notebook.google.com/notebook/33afbc15-9471-4332-996d-c35ea62004d6/preview",
     checklistValidadeHoras: 4
   };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("quest3", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
 
   // Fallback seguro da imagem do topo para o SVG dos óculos VR
   var heroImg = document.getElementById("heroImg");
@@ -1091,15 +1097,19 @@ footer a:hover { text-decoration: underline; }
   }
 
   var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
   var aiSoonText = document.getElementById("aiSoonText");
   var aiAccountNote = document.getElementById("aiAccountNote");
-  if (aiLink && CONFIG.urlNotebookLM) {
-    aiLink.href = CONFIG.urlNotebookLM;
-    var heroAiLink = document.getElementById("heroAiLink");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
     if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
-    aiLink.hidden = false;
     if (aiSoonText) aiSoonText.hidden = true;
     if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
   }
 
   function formatContacto(includeHorario) {
@@ -1308,5 +1318,6 @@ footer a:hover { text-decoration: underline; }
   });
 })();
 </script>
+<script src="../cte-diag.js"></script>
 </body>
 </html>

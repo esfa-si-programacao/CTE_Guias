@@ -1,0 +1,14 @@
+# Regras para alojamento Apache (XAMPP local / InfinityFree)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirecionar páginas antigas consolidadas para a página inicial unificada
+  RewriteRule ^manuais\.html$ index.html [R=301,L]
+  RewriteRule ^ajuda-ia\.html$ index.html?vista=ia [R=301,L]
+
+  # Bloquear acesso web direto a pastas e ficheiros internos
+  RewriteRule ^(_interno|_site|scripts)/ - [F,L]
+  RewriteRule (^|/)outros(/|$) - [F,L]
+  RewriteRule ^(A_fazer\.md|README\.md|site\.txt|netlify\.toml)$ - [F,L]
+  RewriteRule \.xlsx?$ - [F,L,NC]
+</IfModule>

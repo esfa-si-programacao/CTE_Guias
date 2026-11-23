@@ -234,6 +234,8 @@ footer a:hover { text-decoration: underline; }
   footer { padding-bottom: 20px; }
 }
 </style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
 </head>
 <body>
 
@@ -402,12 +404,12 @@ footer a:hover { text-decoration: underline; }
         <div>
           <h3 class="diag-sub">1. LEDs e indicadores (QNAP / Tuxedo / UPS)</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="status_green" aria-pressed="true"><span class="led-orb orb-green"></span>Status Verde fixo (NAS)</button>
-            <button type="button" class="led-btn" data-led="green_red" aria-pressed="false"><span class="led-orb orb-green-blink"></span>Verde / Vermelho (NAS)</button>
-            <button type="button" class="led-btn" data-led="red_blink" aria-pressed="false"><span class="led-orb orb-red-blink"></span>Vermelho a piscar (NAS)</button>
-            <button type="button" class="led-btn" data-led="hdd_red" aria-pressed="false"><span class="led-orb orb-red"></span>LED HDD 1–8 Vermelho</button>
-            <button type="button" class="led-btn" data-led="lan_amber" aria-pressed="false"><span class="led-orb orb-amber"></span>LAN 2,5GbE Laranja</button>
-            <button type="button" class="led-btn" data-led="ups_beep" aria-pressed="false"><span class="led-orb orb-blue"></span>UPS APC a apitar / LCD</button>
+            <button type="button" class="led-btn active" data-led="status_green" data-led-desc="Verde fixo (NAS normal)" aria-pressed="true"><span class="led-orb led-pat-solid-green"></span>Status Verde fixo (NAS)</button>
+            <button type="button" class="led-btn" data-led="green_red" data-led-desc="Alterna verde ↔ vermelho" aria-pressed="false"><span class="led-orb led-pat-alt-green-red"></span>Verde / Vermelho (NAS)</button>
+            <button type="button" class="led-btn" data-led="red_blink" data-led-desc="Vermelho a piscar (alerta NAS)" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho a piscar (NAS)</button>
+            <button type="button" class="led-btn" data-led="hdd_red" data-led-desc="Vermelho fixo (baía HDD / M.2)" aria-pressed="false"><span class="led-orb led-pat-solid-red"></span>LED HDD 1–8 Vermelho</button>
+            <button type="button" class="led-btn" data-led="lan_amber" data-led-desc="Laranja / Verde a piscar (tráfego rede)" aria-pressed="false"><span class="led-orb led-pat-blink-amber-slow"></span>LAN 2,5GbE Laranja</button>
+            <button type="button" class="led-btn" data-led="ups_beep" data-led-desc="Alerta LCD / sinal sonoro UPS" aria-pressed="false"><span class="led-orb led-pat-alert-ups"></span>UPS APC a apitar / LCD</button>
           </div>
           <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
@@ -582,15 +584,19 @@ footer a:hover { text-decoration: underline; }
   Ajuda
 </a>
 
+<script src="../cte-config.js"></script>
 <script>
 (function() {
-  var CONFIG = {
-    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
-    urlRequisicao: "",          // formulário de reserva de sessão GPU / VM
-    urlRegistoDevolucao: "",    // formulário de registo de utilização
-    urlNotebookLM: "",          // colar aqui o link do NotebookLM quando estiver criado
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
+    urlNotebookLM: "",
     checklistValidadeHoras: 4
   };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("tuxedo", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
 
   var heroImg = document.getElementById("heroImg");
   var heroSvg = document.getElementById("heroSvgFallback");
@@ -610,15 +616,19 @@ footer a:hover { text-decoration: underline; }
   }
 
   var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
   var aiSoonText = document.getElementById("aiSoonText");
   var aiAccountNote = document.getElementById("aiAccountNote");
-  if (aiLink && CONFIG.urlNotebookLM) {
-    aiLink.href = CONFIG.urlNotebookLM;
-    var heroAiLink = document.getElementById("heroAiLink");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
     if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
-    aiLink.hidden = false;
     if (aiSoonText) aiSoonText.hidden = true;
     if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
   }
 
   function formatContacto(includeHorario) {
@@ -814,5 +824,6 @@ footer a:hover { text-decoration: underline; }
   });
 })();
 </script>
+<script src="../cte-diag.js"></script>
 </body>
 </html>

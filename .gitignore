@@ -1,0 +1,17 @@
+# Pasta de trabalho local e saída de build da Netlify (não publicar no Git)
+_interno/
+_site/
+
+# Ficheiros internos / inventário e rascunhos
+*.xlsx
+*.xls
+*.xlsm
+site.txt
+Robot_NAO_V6/outros/
+
+# Ficheiros temporários de sistema / Office / Python
+~$*
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

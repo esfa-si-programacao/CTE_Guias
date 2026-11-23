@@ -26,6 +26,14 @@
   --purple: #6C3483;
   --purple-dark: #512564;
   --purple-soft: #F4ECF7;
+  --emerald: #1B7A5A;
+  --emerald-soft: #E8F6F1;
+  --indigo: #3949AB;
+  --indigo-soft: #EEF0FB;
+  --green: #1E8449;
+  --green-soft: #E9F7EF;
+  --danger: #B91C1C;
+  --danger-hover: #991B1B;
   --light: #F3F6F9;
   --line: #D5DCE3;
   --grey: #5B6672;
@@ -339,6 +347,10 @@ main.container {
 .equip-card.purple:hover { border-color: var(--purple); }
 .equip-card.blue { border-top-color: var(--blue); }
 .equip-card.blue:hover { border-color: var(--blue); }
+.equip-card.emerald { border-top-color: var(--emerald); }
+.equip-card.emerald:hover { border-color: var(--emerald); }
+.equip-card.indigo { border-top-color: var(--indigo); }
+.equip-card.indigo:hover { border-color: var(--indigo); }
 
 .equip-media {
   position: relative;
@@ -394,6 +406,8 @@ main.container {
 .equip-card.teal .cat-badge { background: var(--teal-soft); color: var(--teal-text); }
 .equip-card.purple .cat-badge { background: var(--purple-soft); color: var(--purple); }
 .equip-card.blue .cat-badge { background: var(--blue-soft); color: var(--blue); }
+.equip-card.emerald .cat-badge { background: var(--emerald-soft); color: var(--emerald); }
+.equip-card.indigo .cat-badge { background: var(--indigo-soft); color: var(--indigo); }
 
 .inv-badge {
   font-size: 0.74rem;
@@ -520,6 +534,444 @@ footer a:hover {
   font-weight: 600;
 }
 
+/* Pesquisa global de sintomas e LEDs */
+.quick-diag-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.quick-diag-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--grey);
+  margin-right: 2px;
+}
+.quick-chip {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #F0C4A5;
+  background: var(--acc-soft);
+  color: var(--acc-text);
+  cursor: pointer;
+  transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+}
+.quick-chip:hover {
+  background: var(--acc-btn);
+  border-color: var(--acc-btn);
+  color: #fff;
+}
+.quick-chip.clear-chip {
+  border-color: var(--line);
+  background: var(--light);
+  color: var(--dark2);
+}
+.quick-chip.clear-chip:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: #fff;
+}
+
+.diag-results-wrap {
+  margin-bottom: 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 20px rgba(31, 42, 54, 0.06);
+}
+.diag-results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.diag-results-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.diag-results-head h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--dark);
+}
+.diag-count-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-text);
+}
+.diag-clear-btn {
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--light);
+  color: var(--dark2);
+  cursor: pointer;
+}
+.diag-clear-btn:hover {
+  border-color: var(--dark);
+  background: var(--dark);
+  color: #fff;
+}
+.diag-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+.diag-hit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  background: #FAFCFE;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+.diag-hit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(31, 42, 54, 0.09);
+  background: #fff;
+}
+.diag-hit.sev-danger { border-left-color: #C0392B; background: #FFF9F9; }
+.diag-hit.sev-warn   { border-left-color: #D97706; background: #FFFDF7; }
+.diag-hit.sev-ok     { border-left-color: #1E8449; background: #F8FDF9; }
+
+.diag-hit-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.diag-eq-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--acc-soft);
+  color: var(--acc-text);
+}
+.diag-eq-pill.teal   { background: var(--teal-soft); color: var(--teal-text); }
+.diag-eq-pill.purple { background: var(--purple-soft); color: var(--purple); }
+.diag-eq-pill.blue    { background: var(--blue-soft); color: var(--blue); }
+.diag-eq-pill.emerald { background: var(--emerald-soft); color: var(--emerald); }
+.diag-eq-pill.indigo  { background: var(--indigo-soft); color: var(--indigo); }
+
+/* Seletor de intenção no topo ("O que precisa agora?") */
+.intent-wrap {
+  max-width: 1180px;
+  width: 100%;
+  margin: 18px auto 0;
+  padding: 0 24px;
+}
+.intent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.intent-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+  min-height: 58px;
+  padding: 11px 15px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+}
+.intent-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--acc);
+  box-shadow: 0 6px 16px rgba(31, 42, 54, 0.08);
+}
+.intent-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--acc-soft);
+  color: var(--acc-text);
+}
+.intent-btn[data-intent="fix"] .intent-icon {
+  background: #FEF2F2;
+  color: var(--danger);
+}
+.intent-btn[data-intent="ideas"] .intent-icon {
+  background: var(--teal-soft);
+  color: var(--teal-text);
+}
+.intent-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.intent-title {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.2;
+}
+.intent-sub {
+  font-size: 0.79rem;
+  color: var(--grey);
+  line-height: 1.25;
+}
+.intent-btn.active {
+  border-color: var(--acc);
+  background: var(--acc-soft);
+  box-shadow: 0 6px 18px rgba(232, 113, 28, 0.14);
+}
+.intent-btn.active .intent-icon {
+  background: var(--acc-btn);
+  color: #fff;
+}
+.intent-btn[data-intent="fix"].active {
+  border-color: var(--danger);
+  background: #FEF2F2;
+  box-shadow: 0 6px 18px rgba(185, 28, 28, 0.13);
+}
+.intent-btn[data-intent="fix"].active .intent-icon {
+  background: var(--danger);
+  color: #fff;
+}
+.intent-btn[data-intent="ideas"].active {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  box-shadow: 0 6px 18px rgba(30, 126, 140, 0.14);
+}
+.intent-btn[data-intent="ideas"].active .intent-icon {
+  background: var(--teal);
+  color: #fff;
+}
+
+/* Estados dos botões dos cartões conforme intenção */
+body.intent-fix .btn-manual {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+body.intent-fix .btn-manual:hover {
+  background: var(--danger-hover);
+  border-color: var(--danger-hover);
+}
+body.intent-ideas .btn-manual {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+body.intent-ideas .btn-manual:hover {
+  background: var(--teal-text);
+  border-color: var(--teal-text);
+}
+body.intent-fix .quick-diag-row {
+  background: #FEF2F2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border-top: 1px solid #F5C2C0;
+}
+
+/* Selos de metadados curtos (nível + tempo) */
+.mini-tag.lvl-init { background: #E9F7EF; border-color: #B7E4C7; color: #166534; }
+.mini-tag.lvl-mid  { background: #FEF5E7; border-color: #F5CBA7; color: #9A5008; }
+.mini-tag.lvl-adv  { background: #EEF0FB; border-color: #C5CAE9; color: #283593; }
+
+/* Vista unificada "Só Ajuda IA" (substitui ajuda-ia.html) */
+button.ai-only-link {
+  font: inherit;
+  cursor: pointer;
+}
+.ai-status-pill {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  display: none;
+}
+.ai-status-pill.ready {
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid #B7E4C7;
+}
+.ai-status-pill.soon {
+  background: var(--light);
+  color: var(--grey);
+  border: 1px solid var(--line);
+}
+.ai-access-banner {
+  max-width: 1180px;
+  width: 100%;
+  margin: 18px auto 0;
+  padding: 0 24px;
+}
+.ai-access-inner {
+  background: var(--purple-soft);
+  border: 1px solid #DFC9EC;
+  border-left: 4px solid var(--purple);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+.ai-access-inner strong { color: var(--purple-dark); }
+.ai-back-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--acc-text);
+  background: #fff;
+  border: 1px solid #F0C4A5;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.ai-back-btn:hover { background: var(--acc-soft); }
+.ai-fallback-link {
+  display: none;
+  text-align: center;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--acc-text);
+  text-decoration: none;
+  margin-top: 6px;
+}
+.ai-fallback-link:hover { text-decoration: underline; }
+
+body.view-ai header.hero {
+  background: linear-gradient(135deg, #1E1A2E 0%, var(--dark2) 55%, #37234B 100%);
+  border-bottom-color: var(--purple);
+}
+body.view-ai .ai-only-link {
+  background: rgba(232, 113, 28, 0.32);
+  border-color: rgba(255, 196, 148, 0.55);
+  color: #FFE7D3;
+}
+body.view-ai .ai-only-link:hover {
+  background: rgba(232, 113, 28, 0.52);
+}
+body.view-ai .ai-status-pill { display: inline-block; }
+body.view-ai .equip-actions { grid-template-columns: 1fr; }
+body.view-ai .btn-manual { display: none; }
+body.view-ai .btn-ai {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+  padding: 11px 14px;
+}
+body.view-ai .btn-ai:hover {
+  background: var(--purple-dark);
+  border-color: var(--purple-dark);
+}
+body.view-ai .equip-card.ai-is-soon .ai-fallback-link { display: block; }
+body.view-ai .equip-card.ai-is-soon { border-top-color: #9AA5B1; }
+
+@media (max-width: 820px) {
+  .intent-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .intent-wrap, .ai-access-banner { padding-left: 16px; padding-right: 16px; }
+  .pill, .quick-chip, .btn-manual, .btn-ai, .btn-ai-soon { min-height: 44px; }
+}
+
+.diag-kind-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--dark2);
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.diag-hit h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.3;
+  color: var(--dark);
+}
+.diag-hit p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--grey);
+  line-height: 1.45;
+}
+.diag-hit-cta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--teal-text);
+}
+.diag-hit.sev-danger .diag-hit-cta { color: #B91C1C; }
+.diag-hit.sev-warn .diag-hit-cta   { color: #B45309; }
+
+.diag-more-wrap {
+  margin-top: 14px;
+  text-align: center;
+}
+.diag-more-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--teal);
+  background: var(--teal-soft);
+  color: var(--teal-text);
+  cursor: pointer;
+}
+.diag-more-btn:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.equip-grid-heading {
+  margin: 0 0 12px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--grey);
+}
+
 @media (max-width: 820px) {
   .hero-side {
     align-items: flex-start;
@@ -531,12 +983,14 @@ footer a:hover {
 @media (max-width: 720px) {
   header.hero { padding: 26px 18px 44px; }
   .controls-wrap, .mode-guide, main.container { padding-left: 16px; padding-right: 16px; }
-  .equip-grid { grid-template-columns: 1fr; }
+  .equip-grid, .diag-results-grid { grid-template-columns: 1fr; }
+  .diag-results-wrap { padding: 14px; }
 }
 @media (max-width: 420px) {
   .equip-actions { grid-template-columns: 1fr; }
 }
 </style>
+<link rel="stylesheet" href="cte-leds.css">
 </head>
 <body>
 
@@ -547,10 +1001,10 @@ footer a:hover {
         <div class="hero-logo">
           <img src="logo_escolas_mangualde.png" alt="Escolas de Mangualde">
         </div>
-        <div class="hero-badge">CTE Informático · Centro Tecnológico Especializado</div>
+        <div class="hero-badge" id="heroBadge">CTE Informático · Centro Tecnológico Especializado</div>
       </div>
-      <h1>Sistema de Ajuda CTE</h1>
-      <p class="sub">Escolha o seu equipamento abaixo para aceder aos <strong>Manuais e Guias</strong> (sem login) ou para <strong>Perguntar à IA</strong> durante a aula (requer conta Google da escola).</p>
+      <h1 id="heroTitle">Sistema de Ajuda CTE</h1>
+      <p class="sub" id="heroSub">Escolha o que precisa e o equipamento para aceder aos <strong>Manuais e Guias</strong> (sem login) ou para <strong>Perguntar à IA</strong> durante a aula (requer conta Google da escola).</p>
     </div>
 
     <div class="hero-side">
@@ -564,10 +1018,10 @@ footer a:hover {
           <span class="stat-label">Cadernos IA</span>
         </div>
       </div>
-      <a class="ai-only-link" href="ajuda-ia.html">
+      <button type="button" class="ai-only-link" id="aiViewToggle" aria-pressed="false">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
-        Ver vista só Ajuda IA &rarr;
-      </a>
+        <span id="aiViewToggleText">Ver vista só Ajuda IA &rarr;</span>
+      </button>
     </div>
   </div>
 </header>
@@ -577,7 +1031,7 @@ footer a:hover {
     <div class="controls-top">
       <div class="search-box">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="search" id="searchInput" placeholder="Pesquisar equipamento, código de inventário (ex.: INV-217) ou área..." aria-label="Pesquisar equipamentos">
+        <input type="search" id="searchInput" placeholder="Pesquisar equipamento, sintoma ou LED (ex.: &quot;luz vermelha&quot;, &quot;não liga&quot;, &quot;drone&quot;, INV-217)..." aria-label="Pesquisar equipamentos, sintomas e LEDs">
       </div>
       <span class="result-count" id="resultCount">7 de 7 equipamentos</span>
     </div>
@@ -590,32 +1044,79 @@ footer a:hover {
       <button type="button" class="pill" data-cat="3d">Digitalização &amp; 3D</button>
       <button type="button" class="pill" data-cat="ia-redes">IA &amp; Servidores</button>
     </div>
+    <div class="quick-diag-row" aria-label="Atalhos rápidos de diagnóstico">
+      <span class="quick-diag-label">Avaria rápida:</span>
+      <button type="button" class="quick-chip" data-quick-query="luz vermelha">Luz vermelha</button>
+      <button type="button" class="quick-chip" data-quick-query="não liga">Não liga</button>
+      <button type="button" class="quick-chip" data-quick-query="sem wi-fi">Sem Wi-Fi / IP</button>
+      <button type="button" class="quick-chip" data-quick-query="desfocado">Imagem desfocada</button>
+      <button type="button" class="quick-chip" data-quick-query="sem som">Sem som</button>
+      <button type="button" class="quick-chip clear-chip" id="quickClearBtn" hidden>Limpar</button>
+    </div>
   </div>
 </div>
 
-<div class="mode-guide" aria-label="Orientação rápida de utilização">
-  <div class="mode-guide-grid">
-    <div class="guide-tip">
-      <span class="guide-tip-icon" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+<div class="intent-wrap" id="intentWrap">
+  <div class="intent-grid" role="group" aria-label="Escolha o que pretende fazer">
+    <button type="button" class="intent-btn active" data-intent="start" aria-pressed="true">
+      <span class="intent-icon" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       </span>
-      <div><strong>Manuais e Guias (sem login):</strong> recomendado para a 1.ª aula, tirar a Carta de Habilitação, ver vídeos/PDFs e resolver avarias no diagnóstico LED.</div>
-    </div>
-    <div class="guide-tip ai">
-      <span class="guide-tip-icon" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+      <span class="intent-copy">
+        <span class="intent-title">Vou usar pela 1.ª vez</span>
+        <span class="intent-sub">Abre o percurso em 5 passos e a Carta</span>
       </span>
-      <div><strong>Perguntar à IA (NotebookLM):</strong> recomendado durante a aula para dúvidas rápidas baseadas nos manuais do CTE. <em>Requer conta Google da escola.</em></div>
-    </div>
+    </button>
+    <button type="button" class="intent-btn" data-intent="fix" aria-pressed="false">
+      <span class="intent-icon" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </span>
+      <span class="intent-copy">
+        <span class="intent-title">Algo não funciona</span>
+        <span class="intent-sub">Abre direto no diagnóstico de LEDs e avarias</span>
+      </span>
+    </button>
+    <button type="button" class="intent-btn" data-intent="ideas" aria-pressed="false">
+      <span class="intent-icon" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+      </span>
+      <span class="intent-copy">
+        <span class="intent-title">Quero ideias para a aula</span>
+        <span class="intent-sub">Abre direto nos projetos práticos e propostas</span>
+      </span>
+    </button>
+  </div>
+</div>
+
+<div class="ai-access-banner" id="aiAccessBanner" hidden>
+  <div class="ai-access-inner">
+    <span><strong>Nota de acesso (Ajuda IA):</strong> Os assistentes abrem no Google NotebookLM e requerem sessão iniciada com conta Google da escola.</span>
+    <button type="button" class="ai-back-btn" id="aiBackBtn">Prefere manuais ou diagnóstico sem login? &rarr;</button>
   </div>
 </div>
 
 <main class="container">
+  <section class="diag-results-wrap" id="diagSearchSection" aria-live="polite" hidden>
+    <div class="diag-results-head">
+      <div class="diag-results-title-row">
+        <h2>Soluções rápidas no diagnóstico</h2>
+        <span class="diag-count-badge" id="diagResultCount">0 soluções</span>
+      </div>
+      <button type="button" class="diag-clear-btn" id="diagClearBtn">Limpar pesquisa</button>
+    </div>
+    <div class="diag-results-grid" id="diagResultsGrid"></div>
+    <div class="diag-more-wrap" id="diagMoreWrap" hidden>
+      <button type="button" class="diag-more-btn" id="diagMoreBtn">Ver todas as soluções</button>
+    </div>
+  </section>
+
+  <h2 class="equip-grid-heading" id="equipGridHeading" hidden>Equipamentos correspondentes</h2>
   <div class="equip-grid" id="equipGrid">
 
     <!-- 1. Robô NAO V6 -->
-    <article class="equip-card" data-cat="robotica" data-equip="nao">
-      <a class="equip-media" href="Robot_NAO_V6/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card" data-cat="robotica" data-equip="nao" data-base-href="Robot_NAO_V6/index.html" data-projects-href="Robot_NAO_V6/NAO_V6_Manual_Utilizador.html#s8" data-keywords="robo robot humanoide nao h25600 programacao blocos choregraphe 2.8 virtual python falar andar ip video mp4 carta conducao">
+      <a class="equip-media" data-intent-link href="Robot_NAO_V6/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill ready" data-ai-status>Disponível</span>
         <img src="Robot_NAO_V6/nao_v6.jpg" alt="Robô Humanoide NAO V6">
       </a>
       <div class="equip-body">
@@ -624,54 +1125,56 @@ footer a:hover {
             <span class="cat-badge">Robótica Humanoide</span>
             <span class="inv-badge">INV-217 · 1 un. · Oficinas</span>
           </div>
-          <h2><a href="Robot_NAO_V6/index.html">Robô NAO V6 (H25600)</a></h2>
-          <p>Arranque seguro, Choregraphe 2.8 + Robô Virtual, projetos em Português, vídeo de 1 min, diagnóstico interativo de LEDs e Carta de Condução.</p>
+          <h2><a data-intent-link href="Robot_NAO_V6/index.html">Robô NAO V6</a></h2>
+          <p>Programar um robô humanoide para falar, caminhar e interagir em sala de aula com blocos ou Python.</p>
           <div class="tags-row">
-            <span class="mini-tag">Vídeo MP4</span>
-            <span class="mini-tag">Guia Rápido A4</span>
-            <span class="mini-tag">Manuais Web &amp; Word</span>
-            <span class="mini-tag">Carta de Condução</span>
-            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag lvl-mid">Intermédio</span>
+            <span class="mini-tag">Prep. ~10 min</span>
+            <span class="mini-tag">Vídeo 1 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="Robot_NAO_V6/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="Robot_NAO_V6/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
+          <span class="btn-ai-soon" data-ai-soon hidden>IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="Robot_NAO_V6/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 2. DJI Avata 2 -->
-    <article class="equip-card teal" data-cat="drones" data-equip="avata2">
-      <a class="equip-media" href="DJI_Avata_Drone/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card teal" data-cat="drones" data-equip="avata2" data-base-href="DJI_Avata_Drone/index.html" data-projects-href="DJI_Avata_Drone/DJI_Avata_2_Manual_Utilizador.html#s8" data-keywords="drone fpv avata 2 oculos goggles 3 rc motion 3 voar camara camera filmagem aerea anac classe c1 observador visual comando">
+      <a class="equip-media" data-intent-link href="DJI_Avata_Drone/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill ready" data-ai-status>Disponível</span>
         <img src="DJI_Avata_Drone/dji_avata_2.jpg" alt="Drone FPV DJI Avata 2 com DJI Goggles 3 e RC Motion 3">
       </a>
       <div class="equip-body">
         <div>
           <div class="equip-meta-top">
             <span class="cat-badge">Drones FPV</span>
-            <span class="inv-badge">INV-151 · 4 kits · C1</span>
+            <span class="inv-badge">INV-151 · 4 kits</span>
           </div>
-          <h2><a href="DJI_Avata_Drone/index.html">DJI Avata 2 — Drone FPV</a></h2>
-          <p>Conjunto DJI Avata 2, óculos Goggles 3 e comando RC Motion 3: regras ANAC C1, Observador Visual obrigatório, controlos e diagnóstico LED.</p>
+          <h2><a data-intent-link href="DJI_Avata_Drone/index.html">DJI Avata 2 — Drone FPV</a></h2>
+          <p>Voar em primeira pessoa com óculos FPV e comando de movimento, sempre acompanhado por observador visual.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Piloto FPV</span>
+            <span class="mini-tag lvl-adv">Avançado</span>
+            <span class="mini-tag">Prep. ~15 min</span>
             <span class="mini-tag">Regras ANAC C1</span>
-            <span class="mini-tag">Diagnóstico LED</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="DJI_Avata_Drone/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="DJI_Avata_Drone/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="https://notebook.google.com/notebook/7e02c760-40c7-4cf1-a673-5e48e83a7505/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
+          <span class="btn-ai-soon" data-ai-soon hidden>IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="DJI_Avata_Drone/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 3. Meta Quest 3 VR -->
-    <article class="equip-card purple" data-cat="vr" data-equip="quest3">
-      <a class="equip-media" href="Meta_Quest_3_VR/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card purple" data-cat="vr" data-equip="quest3" data-base-href="Meta_Quest_3_VR/index.html" data-projects-href="Meta_Quest_3_VR/Meta_Quest_3_Manual_Utilizador.html#s8" data-keywords="oculos vr rv realidade virtual mista meta quest 3 touch plus webxr 3d jogos simulacao boundary guardian casting projetar higienizacao">
+      <a class="equip-media" data-intent-link href="Meta_Quest_3_VR/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill ready" data-ai-status>Disponível</span>
         <img src="Meta_Quest_3_VR/meta_quest_3.jpg" alt="Óculos de Realidade Virtual Meta Quest 3 e controladores Touch Plus">
       </a>
       <div class="equip-body">
@@ -680,26 +1183,26 @@ footer a:hover {
             <span class="cat-badge">Realidade Virtual</span>
             <span class="inv-badge">INV-081 / INV-082 · 10 kits</span>
           </div>
-          <h2><a href="Meta_Quest_3_VR/index.html">Meta Quest 3 VR — Realidade Virtual e Mista</a></h2>
-          <p>Arranque seguro, controlos Touch Plus, projeção na sala (Casting), atividades VR/WebXR, higienização, diagnóstico interativo e Carta VR.</p>
+          <h2><a data-intent-link href="Meta_Quest_3_VR/index.html">Meta Quest 3 VR</a></h2>
+          <p>Explorar experiências de realidade virtual e mista e projetar a visão dos óculos para o quadro da sala.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Condução VR</span>
-            <span class="mini-tag">Slides PPTX &amp; Word</span>
-            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag lvl-init">Iniciante</span>
+            <span class="mini-tag">Prep. ~5 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="Meta_Quest_3_VR/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="Meta_Quest_3_VR/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="https://notebook.google.com/notebook/33afbc15-9471-4332-996d-c35ea62004d6/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
+          <span class="btn-ai-soon" data-ai-soon hidden>IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="Meta_Quest_3_VR/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 4. DJI RoboMaster TT (Tello Talent) -->
-    <article class="equip-card teal" data-cat="drones" data-equip="robomaster">
-      <a class="equip-media" href="DJI_RoboMaster_TT/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card teal" data-cat="drones" data-equip="robomaster" data-base-href="DJI_RoboMaster_TT/index.html" data-projects-href="DJI_RoboMaster_TT/RoboMaster_TT_Manual_Utilizador.html#s8" data-keywords="drone pequeno sala aula tello talent robomaster tt programavel python sdk 3.0 blocos mind+ matriz led 8x8 esp32 mission pads">
+      <a class="equip-media" data-intent-link href="DJI_RoboMaster_TT/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill ready" data-ai-status>Disponível</span>
         <img src="DJI_RoboMaster_TT/dji_robomaster_tt.jpg" alt="Drone educativo DJI RoboMaster TT (Tello Talent) com matriz LED 8×8">
       </a>
       <div class="equip-body">
@@ -708,26 +1211,26 @@ footer a:hover {
             <span class="cat-badge">Drones Programáveis</span>
             <span class="inv-badge">INV-144 · 10 kits</span>
           </div>
-          <h2><a href="DJI_RoboMaster_TT/index.html">DJI RoboMaster TT (Tello Talent)</a></h2>
-          <p>Programar e voar em sala de aula: módulo ESP32, matriz LED 8×8, programação por blocos (Mind+) e Python (SDK 3.0), e diagnóstico de LEDs.</p>
+          <h2><a data-intent-link href="DJI_RoboMaster_TT/index.html">DJI RoboMaster TT (Tello)</a></h2>
+          <p>Programar voos seguros dentro da sala de aula com blocos (Mind+) ou Python e mensagens na matriz LED.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Piloto</span>
-            <span class="mini-tag">Mind+ &amp; Python</span>
-            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag lvl-init">Iniciante</span>
+            <span class="mini-tag">Prep. ~10 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="DJI_RoboMaster_TT/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="DJI_RoboMaster_TT/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="https://notebook.google.com/notebook/e3067140-32a5-4401-bc80-1ca6734cd525/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
+          <span class="btn-ai-soon" data-ai-soon hidden>IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="DJI_RoboMaster_TT/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 5. DJI Pocket 2 Creator Combo -->
-    <article class="equip-card blue" data-cat="audiovisual" data-equip="pocket2">
-      <a class="equip-media" href="DJI_Pocket_2_Creator/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card blue" data-cat="audiovisual" data-equip="pocket2" data-base-href="DJI_Pocket_2_Creator/index.html" data-projects-href="DJI_Pocket_2_Creator/DJI_Pocket_2_Manual_Utilizador.html#s8" data-keywords="camara camera filmar video entrevista reportagem microfone sem fios audio estabilizador gimbal activetrack dji mimo vlog audiovisual">
+      <a class="equip-media" data-intent-link href="DJI_Pocket_2_Creator/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill ready" data-ai-status>Disponível</span>
         <img src="DJI_Pocket_2_Creator/dji_pocket_2.jpg" alt="Câmara estabilizada DJI Pocket 2 Creator Combo com microfone sem fios e acessórios">
       </a>
       <div class="equip-body">
@@ -736,26 +1239,26 @@ footer a:hover {
             <span class="cat-badge">Audiovisual · Vídeo</span>
             <span class="inv-badge">INV-152 · 4 kits</span>
           </div>
-          <h2><a href="DJI_Pocket_2_Creator/index.html">DJI Pocket 2 Creator Combo</a></h2>
-          <p>Produção vídeo escolar: proteção do gimbal 3 eixos, microfone sem fios, ActiveTrack, app DJI Mimo, diagnóstico rápido e Carta de Operador.</p>
+          <h2><a data-intent-link href="DJI_Pocket_2_Creator/index.html">DJI Pocket 2 Creator Combo</a></h2>
+          <p>Filmar entrevistas, tutoriais e reportagens escolares estabilizadas com microfone sem fios incluído.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Operador</span>
-            <span class="mini-tag">Mic Sem Fios</span>
-            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag lvl-init">Iniciante</span>
+            <span class="mini-tag">Prep. ~5 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="DJI_Pocket_2_Creator/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="DJI_Pocket_2_Creator/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="https://notebook.google.com/notebook/f520d382-dd9d-4cdb-a1f6-e05ca99b6f42/preview" target="_blank" rel="noopener noreferrer">Perguntar à IA &#8599;</a>
+          <span class="btn-ai-soon" data-ai-soon hidden>IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="DJI_Pocket_2_Creator/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 6. Scanner 3D Einstar -->
-    <article class="equip-card" data-cat="3d" data-equip="einstar">
-      <a class="equip-media" href="Scanner_3D_Einstar/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card emerald ai-is-soon" data-cat="3d" data-equip="einstar" data-base-href="Scanner_3D_Einstar/index.html" data-projects-href="Scanner_3D_Einstar/Einstar_Manual_Utilizador.html#s8" data-keywords="scanner 3d einstar shining 3d digitalizar digitalizacao impressora 3d imprimir stl obj ply exstar gpu calibracao objeto modelo">
+      <a class="equip-media" data-intent-link href="Scanner_3D_Einstar/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill soon" data-ai-status>Em preparação</span>
         <img src="Scanner_3D_Einstar/einstar_3d_scanner.jpg" alt="Scanner 3D portátil Shining 3D Einstar com estojo e placa de calibração">
       </a>
       <div class="equip-body">
@@ -764,50 +1267,47 @@ footer a:hover {
             <span class="cat-badge">Digitalização &amp; 3D</span>
             <span class="inv-badge">INV-228 · 2 un. · SC - LMAS</span>
           </div>
-          <h2><a href="Scanner_3D_Einstar/index.html">Scanner 3D Einstar</a></h2>
-          <p>Digitalização 3D: requisitos GPU/EXStar, placa de calibração única por n.º de série, LEDs de distância, exportação STL/OBJ/PLY e Carta 3D.</p>
+          <h2><a data-intent-link href="Scanner_3D_Einstar/index.html">Scanner 3D Einstar</a></h2>
+          <p>Digitalizar objetos reais a cores para criar modelos 3D prontos a editar ou enviar para impressão 3D.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Operador 3D</span>
-            <span class="mini-tag">Software EXStar</span>
-            <span class="mini-tag">Diagnóstico LED</span>
+            <span class="mini-tag lvl-mid">Intermédio</span>
+            <span class="mini-tag">Prep. ~10 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="Scanner_3D_Einstar/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="Scanner_3D_Einstar/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="#" target="_blank" rel="noopener noreferrer" hidden>Perguntar à IA &#8599;</a>
-          <span class="btn-ai-soon" data-ai-soon title="Caderno NotebookLM em preparação">IA em breve</span>
+          <span class="btn-ai-soon" data-ai-soon title="Caderno NotebookLM em preparação">IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="Scanner_3D_Einstar/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
     <!-- 7. Estação AI Tuxedo Atlas XL & NAS QNAP TVS-h874 -->
-    <article class="equip-card blue" data-cat="ia-redes" data-equip="tuxedo">
-      <a class="equip-media" href="Tuxedo_AI_NAS_QNAP/index.html" tabindex="-1" aria-hidden="true">
+    <article class="equip-card indigo ai-is-soon" data-cat="ia-redes" data-equip="tuxedo" data-base-href="Tuxedo_AI_NAS_QNAP/index.html" data-projects-href="Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Utilizador.html#s8" data-keywords="servidor computador estacao ia inteligencia artificial tuxedo atlas xl qnap tvs-h874 gpu cuda pytorch placa grafica linux ollama llm modelo local nas armazenamento zfs ups vm maquinas virtuais estudio 4c">
+      <a class="equip-media" data-intent-link href="Tuxedo_AI_NAS_QNAP/index.html" tabindex="-1" aria-hidden="true">
+        <span class="ai-status-pill soon" data-ai-status>Em preparação</span>
         <img src="Tuxedo_AI_NAS_QNAP/tuxedo_nas_qnap.jpg" alt="Estação de Trabalho AI Tuxedo Atlas XL e Servidor NAS QNAP TVS-h874">
       </a>
       <div class="equip-body">
         <div>
           <div class="equip-meta-top">
-            <span class="cat-badge">IA &amp; Virtualização</span>
+            <span class="cat-badge">IA &amp; Servidores</span>
             <span class="inv-badge">INV-006 / INV-223 · Estúdio 4C</span>
           </div>
-          <h2><a href="Tuxedo_AI_NAS_QNAP/index.html">Estação AI Tuxedo Atlas XL &amp; NAS QNAP TVS-h874</a></h2>
-          <p>Infraestrutura de IA e servidores do Estúdio 4C: Linux/CUDA, LLMs locais (Ollama/PyTorch), Máquinas Virtuais, armazenamento ZFS e proteção UPS.</p>
+          <h2><a data-intent-link href="Tuxedo_AI_NAS_QNAP/index.html">Estação AI Tuxedo &amp; NAS QNAP</a></h2>
+          <p>Executar modelos de IA locais (Ollama), máquinas virtuais e guardar projetos partilhados na rede do Estúdio 4C.</p>
           <div class="tags-row">
-            <span class="mini-tag">Guia Rápido A4 / PDF</span>
-            <span class="mini-tag">Manuais Web</span>
-            <span class="mini-tag">Carta de Utilizador</span>
-            <span class="mini-tag">CUDA &amp; LLMs</span>
-            <span class="mini-tag">VMs &amp; ZFS</span>
+            <span class="mini-tag lvl-adv">Avançado</span>
+            <span class="mini-tag">Prep. ~10 min</span>
           </div>
         </div>
         <div class="equip-actions">
-          <a class="btn-manual" href="Tuxedo_AI_NAS_QNAP/index.html">Manuais e Guias &rarr;</a>
+          <a class="btn-manual" data-intent-link data-intent-cta href="Tuxedo_AI_NAS_QNAP/index.html">Manuais e Guias &rarr;</a>
           <a class="btn-ai" data-ai-link href="#" target="_blank" rel="noopener noreferrer" hidden>Perguntar à IA &#8599;</a>
-          <span class="btn-ai-soon" data-ai-soon title="Caderno NotebookLM em preparação">IA em breve</span>
+          <span class="btn-ai-soon" data-ai-soon title="Caderno NotebookLM em preparação">IA em preparação</span>
         </div>
+        <a class="ai-fallback-link" href="Tuxedo_AI_NAS_QNAP/index.html">Entretanto, abrir manuais e guias &rarr;</a>
       </div>
     </article>
 
@@ -820,13 +1320,14 @@ footer a:hover {
 
 <footer>
   <p class="footer-contact" id="footerContact" hidden></p>
-  <strong>CTE — Centro Tecnológico Especializado</strong> · Escolas de Mangualde · <a href="ajuda-ia.html">Vista só Ajuda IA (NotebookLM)</a>
+  <strong>CTE — Centro Tecnológico Especializado</strong> · Escolas de Mangualde · <a href="?vista=ia" id="footerAiLink">Vista só Ajuda IA (NotebookLM)</a>
 </footer>
 
+<script src="cte-config.js"></script>
+<script src="cte-search-index.js"></script>
 <script>
 (function() {
-  // Configuração central da página inicial: preencher contactoCTE e links NotebookLM pendentes quando disponíveis
-  var PORTAL_CONFIG = {
+  var FALLBACK_CONFIG = {
     contactoCTE: { nome: "", email: "", sala: "", horario: "" },
     notebooks: {
       nao: "https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview",
@@ -838,20 +1339,39 @@ footer a:hover {
       tuxedo: ""
     }
   };
+  var PORTAL_CONFIG = window.CTE_CONFIG || FALLBACK_CONFIG;
+  var notebooks = PORTAL_CONFIG.notebooks || FALLBACK_CONFIG.notebooks;
+  var DIAG_INDEX = Array.isArray(window.CTE_SEARCH_INDEX) ? window.CTE_SEARCH_INDEX : [];
 
   var cards = Array.prototype.slice.call(document.querySelectorAll(".equip-card"));
   var readyCount = 0;
 
   cards.forEach(function(card) {
     var key = card.getAttribute("data-equip");
-    var url = PORTAL_CONFIG.notebooks[key];
+    var url = notebooks[key] || "";
     var aiLink = card.querySelector("[data-ai-link]");
     var aiSoon = card.querySelector("[data-ai-soon]");
+    var aiStatus = card.querySelector("[data-ai-status]");
     if (url && aiLink) {
       aiLink.href = url;
       aiLink.hidden = false;
       if (aiSoon) aiSoon.hidden = true;
+      card.classList.remove("ai-is-soon");
+      if (aiStatus) {
+        aiStatus.textContent = "Disponível";
+        aiStatus.classList.remove("soon");
+        aiStatus.classList.add("ready");
+      }
       readyCount++;
+    } else {
+      if (aiLink) { aiLink.href = "#"; aiLink.hidden = true; }
+      if (aiSoon) aiSoon.hidden = false;
+      card.classList.add("ai-is-soon");
+      if (aiStatus) {
+        aiStatus.textContent = "Em preparação";
+        aiStatus.classList.remove("ready");
+        aiStatus.classList.add("soon");
+      }
     }
   });
 
@@ -866,39 +1386,228 @@ footer a:hover {
     footerContact.hidden = false;
   }
 
+  function normalizeText(str) {
+    var s = String(str || "");
+    if (typeof s.normalize === "function") {
+      s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+    return s.toLowerCase();
+  }
+
+  function buildCardSearchText(card) {
+    var clone = card.cloneNode(true);
+    var skipEls = clone.querySelectorAll("[hidden], .ai-status-pill, .ai-fallback-link");
+    for (var i = 0; i < skipEls.length; i++) {
+      if (skipEls[i].parentNode) skipEls[i].parentNode.removeChild(skipEls[i]);
+    }
+    var visibleText = clone.textContent || "";
+    var keywords = card.getAttribute("data-keywords") || "";
+    return normalizeText(visibleText + " " + keywords);
+  }
+
+  var cardIndex = cards.map(function(card) {
+    return {
+      el: card,
+      cat: card.getAttribute("data-cat"),
+      text: buildCardSearchText(card)
+    };
+  });
+
   var searchInput = document.getElementById("searchInput");
   var filterPills = document.getElementById("filterPills");
   var pills = Array.prototype.slice.call(document.querySelectorAll(".pill"));
+  var quickChips = Array.prototype.slice.call(document.querySelectorAll("[data-quick-query]"));
+  var quickClearBtn = document.getElementById("quickClearBtn");
+  var diagSection = document.getElementById("diagSearchSection");
+  var diagGrid = document.getElementById("diagResultsGrid");
+  var diagCountBadge = document.getElementById("diagResultCount");
+  var diagMoreWrap = document.getElementById("diagMoreWrap");
+  var diagMoreBtn = document.getElementById("diagMoreBtn");
+  var diagClearBtn = document.getElementById("diagClearBtn");
+  var equipGridHeading = document.getElementById("equipGridHeading");
   var emptyState = document.getElementById("emptyState");
   var resultCount = document.getElementById("resultCount");
   var activeCat = "all";
+  var showAllDiag = false;
+  var DIAG_PREVIEW_LIMIT = 6;
+  var LED_HINT_RE = /\b(led|leds|luz|luzes|pisca|piscar|vermelh|amarel|laranj|verd|azul|branc|rox)/;
 
   if (filterPills && cards.length < 6) {
     filterPills.hidden = true;
   }
 
+  function scoreDiagItem(item, rawQuery, tokens, wantsLed) {
+    var score = 0;
+    var titleNorm = item.titleNorm || "";
+    var labelNorm = normalizeText(item.label || "");
+    if (labelNorm.indexOf(rawQuery) !== -1) score += 12;
+    if (titleNorm.indexOf(rawQuery) !== -1) score += 10;
+    for (var i = 0; i < tokens.length; i++) {
+      if (labelNorm.indexOf(tokens[i]) !== -1) score += 6;
+      if (titleNorm.indexOf(tokens[i]) !== -1) score += 8;
+    }
+    if (wantsLed && item.kind === "led") score += 6;
+    if (!wantsLed && item.kind === "sym") score += 3;
+    if (item.severity === "danger") score += 2;
+    else if (item.severity === "warn") score += 1;
+    return score;
+  }
+
+  function createDiagCard(item) {
+    var a = document.createElement("a");
+    a.className = "diag-hit" + (item.severity ? " sev-" + item.severity : "");
+    a.href = item.url;
+
+    var top = document.createElement("div");
+    top.className = "diag-hit-top";
+
+    var eqPill = document.createElement("span");
+    eqPill.className = "diag-eq-pill" + (item.color ? " " + item.color : "");
+    eqPill.textContent = item.equipName;
+    top.appendChild(eqPill);
+
+    var kindPill = document.createElement("span");
+    kindPill.className = "diag-kind-pill";
+    if (item.kind === "led" && item.ledClass) {
+      var housing = document.createElement("span");
+      housing.className = "led-housing led-housing-sm";
+      housing.setAttribute("aria-hidden", "true");
+      var orb = document.createElement("span");
+      orb.className = "led-orb led-orb-sm " + item.ledClass;
+      housing.appendChild(orb);
+      kindPill.appendChild(housing);
+      var lbl = document.createElement("span");
+      lbl.textContent = "LED · " + item.label;
+      kindPill.appendChild(lbl);
+    } else {
+      kindPill.textContent = "Sintoma";
+    }
+    top.appendChild(kindPill);
+
+    var h3 = document.createElement("h3");
+    h3.textContent = item.title;
+
+    var p = document.createElement("p");
+    p.textContent = item.snippet;
+
+    var cta = document.createElement("span");
+    cta.className = "diag-hit-cta";
+    cta.textContent = "Abrir solução no diagnóstico →";
+
+    var body = document.createElement("div");
+    body.style.display = "flex";
+    body.style.flexDirection = "column";
+    body.style.gap = "6px";
+    body.appendChild(top);
+    body.appendChild(h3);
+    body.appendChild(p);
+
+    a.appendChild(body);
+    a.appendChild(cta);
+    return a;
+  }
+
+  function renderDiagMatches(matches) {
+    if (!diagSection || !diagGrid) return;
+    if (!matches.length) {
+      diagSection.hidden = true;
+      diagGrid.innerHTML = "";
+      if (diagMoreWrap) diagMoreWrap.hidden = true;
+      return;
+    }
+
+    diagSection.hidden = false;
+    if (diagCountBadge) {
+      diagCountBadge.textContent = matches.length + (matches.length === 1 ? " solução" : " soluções");
+    }
+
+    var toShow = showAllDiag ? matches : matches.slice(0, DIAG_PREVIEW_LIMIT);
+    diagGrid.innerHTML = "";
+    var frag = document.createDocumentFragment();
+    toShow.forEach(function(entry) {
+      frag.appendChild(createDiagCard(entry.item));
+    });
+    diagGrid.appendChild(frag);
+
+    if (diagMoreWrap && diagMoreBtn) {
+      if (matches.length > DIAG_PREVIEW_LIMIT && !showAllDiag) {
+        diagMoreWrap.hidden = false;
+        diagMoreBtn.textContent = "Ver todas as " + matches.length + " soluções";
+      } else {
+        diagMoreWrap.hidden = true;
+      }
+    }
+  }
+
   function applyFilters() {
-    var query = (searchInput.value || "").trim().toLowerCase();
+    var rawQuery = normalizeText(searchInput.value).trim();
+    var tokens = rawQuery ? rawQuery.split(/\s+/) : [];
     var visible = 0;
 
-    cards.forEach(function(card) {
-      var cat = card.getAttribute("data-cat");
-      var text = (card.textContent || "").toLowerCase();
-      var matchesCat = (activeCat === "all" || cat === activeCat);
-      var matchesQuery = (!query || text.indexOf(query) !== -1);
+    if (quickClearBtn) {
+      quickClearBtn.hidden = !rawQuery;
+    }
+
+    cardIndex.forEach(function(item) {
+      var matchesCat = (activeCat === "all" || item.cat === activeCat);
+      var matchesQuery = tokens.every(function(tok) {
+        return item.text.indexOf(tok) !== -1;
+      });
 
       if (matchesCat && matchesQuery) {
-        card.style.display = "";
+        item.el.style.display = "";
         visible++;
       } else {
-        card.style.display = "none";
+        item.el.style.display = "none";
       }
     });
 
-    if (resultCount) {
-      resultCount.textContent = visible + " de " + cards.length + " equipamentos";
+    // Pesquisa global em LEDs e sintomas quando o utilizador escreve ≥ 2 caracteres
+    var diagMatches = [];
+    if (rawQuery.length >= 2 && DIAG_INDEX.length) {
+      var wantsLed = LED_HINT_RE.test(rawQuery);
+      for (var i = 0; i < DIAG_INDEX.length; i++) {
+        var entry = DIAG_INDEX[i];
+        if (activeCat !== "all" && entry.cat !== activeCat) continue;
+        var ok = true;
+        for (var t = 0; t < tokens.length; t++) {
+          if (entry.searchText.indexOf(tokens[t]) === -1) { ok = false; break; }
+        }
+        if (ok) {
+          diagMatches.push({
+            item: entry,
+            score: scoreDiagItem(entry, rawQuery, tokens, wantsLed)
+          });
+        }
+      }
+      diagMatches.sort(function(a, b) { return b.score - a.score; });
     }
-    emptyState.style.display = visible === 0 ? "block" : "none";
+
+    renderDiagMatches(diagMatches);
+
+    if (equipGridHeading) {
+      equipGridHeading.hidden = !(diagMatches.length > 0 && visible > 0);
+    }
+
+    if (resultCount) {
+      if (diagMatches.length > 0) {
+        var solLabel = diagMatches.length + (diagMatches.length === 1 ? " solução" : " soluções");
+        resultCount.textContent = visible > 0
+          ? (visible + (visible === 1 ? " equipamento · " : " equipamentos · ") + solLabel)
+          : (solLabel + " no diagnóstico");
+      } else {
+        resultCount.textContent = visible + " de " + cards.length + " equipamentos";
+      }
+    }
+
+    emptyState.style.display = (visible === 0 && diagMatches.length === 0) ? "block" : "none";
+  }
+
+  function clearSearch() {
+    searchInput.value = "";
+    showAllDiag = false;
+    applyFilters();
+    searchInput.focus();
   }
 
   pills.forEach(function(pill) {
@@ -906,11 +1615,152 @@ footer a:hover {
       pills.forEach(function(p) { p.classList.remove("active"); });
       pill.classList.add("active");
       activeCat = pill.getAttribute("data-cat") || "all";
+      showAllDiag = false;
       applyFilters();
     });
   });
 
-  searchInput.addEventListener("input", applyFilters);
+  quickChips.forEach(function(chip) {
+    chip.addEventListener("click", function() {
+      searchInput.value = chip.getAttribute("data-quick-query") || "";
+      showAllDiag = false;
+      applyFilters();
+    });
+  });
+
+  if (quickClearBtn) quickClearBtn.addEventListener("click", clearSearch);
+  if (diagClearBtn) diagClearBtn.addEventListener("click", clearSearch);
+  if (diagMoreBtn) {
+    diagMoreBtn.addEventListener("click", function() {
+      showAllDiag = true;
+      applyFilters();
+    });
+  }
+
+  searchInput.addEventListener("input", function() {
+    showAllDiag = false;
+    applyFilters();
+  });
+
+  // Seletor de intenção ("Vou usar pela 1.ª vez" / "Algo não funciona" / "Quero ideias para a aula")
+  var intentBtns = Array.prototype.slice.call(document.querySelectorAll(".intent-btn"));
+  var intentWrap = document.getElementById("intentWrap");
+  var INTENT_META = {
+    start: { cta: "Manuais e Guias →" },
+    fix:   { cta: "Abrir diagnóstico →" },
+    ideas: { cta: "Ver projetos e aula →" }
+  };
+
+  function setIntent(mode) {
+    var safeMode = INTENT_META[mode] ? mode : "start";
+    document.body.classList.remove("intent-start", "intent-fix", "intent-ideas");
+    document.body.classList.add("intent-" + safeMode);
+
+    intentBtns.forEach(function(b) {
+      var active = b.getAttribute("data-intent") === safeMode;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    cards.forEach(function(card) {
+      var baseHref = card.getAttribute("data-base-href") || "#";
+      var projHref = card.getAttribute("data-projects-href") || baseHref;
+      var targetHref = safeMode === "fix"
+        ? (baseHref + "#diagnostico")
+        : (safeMode === "ideas" ? projHref : baseHref);
+
+      var links = card.querySelectorAll("[data-intent-link]");
+      for (var i = 0; i < links.length; i++) {
+        links[i].href = targetHref;
+      }
+      var cta = card.querySelector("[data-intent-cta]");
+      if (cta) cta.textContent = INTENT_META[safeMode].cta;
+    });
+  }
+
+  intentBtns.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      setIntent(btn.getAttribute("data-intent"));
+    });
+  });
+
+  // Vista unificada "Só Ajuda IA" (substitui a antiga página duplicada ajuda-ia.html)
+  var aiViewToggle = document.getElementById("aiViewToggle");
+  var aiViewToggleText = document.getElementById("aiViewToggleText");
+  var aiAccessBanner = document.getElementById("aiAccessBanner");
+  var aiBackBtn = document.getElementById("aiBackBtn");
+  var footerAiLink = document.getElementById("footerAiLink");
+  var heroBadge = document.getElementById("heroBadge");
+  var heroTitle = document.getElementById("heroTitle");
+  var heroSub = document.getElementById("heroSub");
+  var isAiView = false;
+
+  function setAiView(enabled, syncUrl) {
+    isAiView = !!enabled;
+    document.body.classList.toggle("view-ai", isAiView);
+    if (aiViewToggle) aiViewToggle.setAttribute("aria-pressed", isAiView ? "true" : "false");
+    if (aiViewToggleText) {
+      aiViewToggleText.textContent = isAiView ? "← Voltar ao portal completo" : "Ver vista só Ajuda IA →";
+    }
+    if (aiAccessBanner) aiAccessBanner.hidden = !isAiView;
+    if (intentWrap) intentWrap.hidden = isAiView;
+    if (heroBadge) {
+      heroBadge.textContent = isAiView
+        ? "CTE Informático · Ajuda IA (NotebookLM)"
+        : "CTE Informático · Centro Tecnológico Especializado";
+    }
+    if (heroTitle) {
+      heroTitle.textContent = isAiView ? "Ajuda IA por Equipamento" : "Sistema de Ajuda CTE";
+    }
+    if (heroSub) {
+      heroSub.innerHTML = isAiView
+        ? "Escolha um equipamento para colocar dúvidas rápidas durante a aula ao respetivo assistente <strong>NotebookLM</strong>, treinado com os manuais e regras do CTE."
+        : "Escolha o que precisa e o equipamento para aceder aos <strong>Manuais e Guias</strong> (sem login) ou para <strong>Perguntar à IA</strong> durante a aula (requer conta Google da escola).";
+    }
+    if (footerAiLink) {
+      footerAiLink.textContent = isAiView ? "← Voltar ao portal completo" : "Vista só Ajuda IA (NotebookLM)";
+      footerAiLink.href = isAiView ? "index.html" : "?vista=ia";
+    }
+    if (syncUrl && window.history && typeof window.history.replaceState === "function") {
+      try {
+        var baseUrl = window.location.pathname;
+        window.history.replaceState(null, "", isAiView ? (baseUrl + "?vista=ia") : baseUrl);
+      } catch (e) {}
+    }
+  }
+
+  if (aiViewToggle) {
+    aiViewToggle.addEventListener("click", function() {
+      setAiView(!isAiView, true);
+    });
+  }
+  if (aiBackBtn) {
+    aiBackBtn.addEventListener("click", function() {
+      setAiView(false, true);
+    });
+  }
+  if (footerAiLink) {
+    footerAiLink.addEventListener("click", function(ev) {
+      ev.preventDefault();
+      setAiView(!isAiView, true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Inicializar vista / intenção a partir da URL (?vista=ia, ?modo=avaria, ?modo=aulas)
+  var urlParams = (typeof URLSearchParams === "function") ? new URLSearchParams(window.location.search) : null;
+  var vistaParam = urlParams ? (urlParams.get("vista") || "").toLowerCase() : "";
+  var modoParam = urlParams ? (urlParams.get("modo") || "").toLowerCase() : "";
+  if (vistaParam === "ia" || window.location.hash === "#ia") {
+    setAiView(true, false);
+  }
+  if (modoParam === "avaria" || modoParam === "fix") {
+    setIntent("fix");
+  } else if (modoParam === "aulas" || modoParam === "ideias" || modoParam === "ideas") {
+    setIntent("ideas");
+  } else {
+    setIntent("start");
+  }
 })();
 </script>
 </body>

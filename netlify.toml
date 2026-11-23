@@ -1,0 +1,40 @@
+[build]
+  publish = "_site"
+  command = "python3 scripts/build_netlify.py"
+
+# Redirecionar páginas antigas consolidadas para a página inicial unificada
+[[redirects]]
+  from = "/manuais.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/manuais"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ajuda-ia.html"
+  to = "/?vista=ia"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ajuda-ia"
+  to = "/?vista=ia"
+  status = 301
+  force = true
+
+# Cabeçalhos básicos de segurança e cache curta para a configuração central
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/cte-config.js"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"

@@ -234,6 +234,8 @@ footer a:hover { text-decoration: underline; }
   footer { padding-bottom: 20px; }
 }
 </style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
 </head>
 <body>
 
@@ -406,12 +408,12 @@ footer a:hover { text-decoration: underline; }
         <div>
           <h3 class="diag-sub">1. LED de distância ou estado</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="dist_green" aria-pressed="true"><span class="led-orb orb-green"></span>Verde (Distância)</button>
-            <button type="button" class="led-btn" data-led="dist_blue" aria-pressed="false"><span class="led-orb orb-blue-pulse"></span>Azul (Distância)</button>
-            <button type="button" class="led-btn" data-led="dist_red" aria-pressed="false"><span class="led-orb orb-red-dist"></span>Vermelho (Distância)</button>
-            <button type="button" class="led-btn" data-led="stat_blue" aria-pressed="false"><span class="led-orb orb-blue"></span>Azul fixo (Estado)</button>
-            <button type="button" class="led-btn" data-led="stat_red" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho (Estado)</button>
-            <button type="button" class="led-btn" data-led="stat_off" aria-pressed="false"><span class="led-orb orb-off"></span>Apagado (Sem luz)</button>
+            <button type="button" class="led-btn active" data-led="dist_green" data-led-desc="Verde fixo (~400 mm ideal)" aria-pressed="true"><span class="led-orb led-pat-solid-green"></span>Verde (Distância)</button>
+            <button type="button" class="led-btn" data-led="dist_blue" data-led-desc="Azul fixo (demasiado longe)" aria-pressed="false"><span class="led-orb led-pat-solid-blue"></span>Azul (Distância)</button>
+            <button type="button" class="led-btn" data-led="dist_red" data-led-desc="Vermelho / Amarelo (demasiado perto)" aria-pressed="false"><span class="led-orb led-pat-alt-red-amber"></span>Vermelho (Distância)</button>
+            <button type="button" class="led-btn" data-led="stat_blue" data-led-desc="Azul fixo (energia / ligado)" aria-pressed="false"><span class="led-orb led-pat-solid-blue"></span>Azul fixo (Estado)</button>
+            <button type="button" class="led-btn" data-led="stat_red" data-led-desc="Vermelho a piscar ou fixo (erro)" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho (Estado)</button>
+            <button type="button" class="led-btn" data-led="stat_off" data-led-desc="Apagado (sem energia)" aria-pressed="false"><span class="led-orb led-pat-off"></span>Apagado (Sem luz)</button>
           </div>
           <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
@@ -583,15 +585,19 @@ footer a:hover { text-decoration: underline; }
   Ajuda
 </a>
 
+<script src="../cte-config.js"></script>
 <script>
 (function() {
-  var CONFIG = {
-    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
-    urlRequisicao: "",          // formulário de requisição do Scanner 3D Einstar
-    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
-    urlNotebookLM: "",          // colar aqui o link do NotebookLM quando estiver criado
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
+    urlNotebookLM: "",
     checklistValidadeHoras: 4
   };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("einstar", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
 
   var heroImg = document.getElementById("heroImg");
   var heroSvg = document.getElementById("heroSvgFallback");
@@ -611,15 +617,19 @@ footer a:hover { text-decoration: underline; }
   }
 
   var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
   var aiSoonText = document.getElementById("aiSoonText");
   var aiAccountNote = document.getElementById("aiAccountNote");
-  if (aiLink && CONFIG.urlNotebookLM) {
-    aiLink.href = CONFIG.urlNotebookLM;
-    var heroAiLink = document.getElementById("heroAiLink");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
     if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
-    aiLink.hidden = false;
     if (aiSoonText) aiSoonText.hidden = true;
     if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
   }
 
   function formatContacto(includeHorario) {
@@ -815,5 +825,6 @@ footer a:hover { text-decoration: underline; }
   });
 })();
 </script>
+<script src="../cte-diag.js"></script>
 </body>
 </html>

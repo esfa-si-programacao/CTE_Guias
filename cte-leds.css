@@ -1,0 +1,282 @@
+/* ==========================================================================
+   CTE Informático — Animações CSS realistas de LEDs e pré-visualização
+   Partilhado entre a página inicial (pesquisa global) e os 7 equipamentos.
+   Respeita @media (prefers-reduced-motion: reduce).
+   ========================================================================== */
+
+.led-orb {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(15, 23, 42, 0.28);
+  vertical-align: middle;
+}
+
+/* Pequeno brilho especular para aspeto de LED físico */
+.led-orb::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+}
+
+.led-orb.led-pat-off::after {
+  opacity: 0.2;
+}
+
+.led-orb.led-orb-sm {
+  width: 13px;
+  height: 13px;
+}
+
+.led-orb.led-orb-lg {
+  width: 20px;
+  height: 20px;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.led-orb.led-orb-lg::after {
+  top: 3px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+}
+
+/* Moldura escura tipo carcaça de equipamento (faz sobressair LEDs brancos e brilho) */
+.led-housing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 999px;
+  background: #1B2632;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.55);
+  flex-shrink: 0;
+}
+
+.led-housing.led-housing-sm {
+  padding: 3px;
+}
+
+/* Barra de pré-visualização do LED ativo no topo do painel #ledResult */
+.led-preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: rgba(31, 42, 54, 0.06);
+  border: 1px solid rgba(31, 42, 54, 0.12);
+  font-size: 0.84rem;
+  color: #1F2A36;
+}
+
+.led-preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+  line-height: 1.3;
+}
+
+.led-preview-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #5B6672;
+}
+
+.led-pattern-desc {
+  font-weight: 700;
+  color: #1F2A36;
+}
+
+/* Realce breve quando o utilizador chega por pesquisa global (?led= ou ?sym=) */
+@keyframes cte-diag-focus {
+  0%   { box-shadow: 0 0 0 0 rgba(232, 113, 28, 0.55); }
+  45%  { box-shadow: 0 0 0 6px rgba(232, 113, 28, 0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 113, 28, 0); }
+}
+
+.diag-panel.diag-highlight {
+  animation: cte-diag-focus 1.3s ease-out 2;
+}
+
+/* ---------- Padrões fixos e apagado ---------- */
+
+.led-orb.led-pat-solid-white {
+  background: #FFFFFF;
+  box-shadow: 0 0 7px 1px rgba(186, 224, 255, 0.95);
+  animation: none;
+}
+
+.led-orb.led-pat-solid-green {
+  background: #22C55E;
+  box-shadow: 0 0 7px 1px rgba(34, 197, 94, 0.75);
+  animation: none;
+}
+
+.led-orb.led-pat-solid-amber {
+  background: #F59E0B;
+  box-shadow: 0 0 7px 1px rgba(245, 158, 11, 0.75);
+  animation: none;
+}
+
+.led-orb.led-pat-solid-blue {
+  background: #2563EB;
+  box-shadow: 0 0 7px 1px rgba(59, 130, 246, 0.8);
+  animation: none;
+}
+
+.led-orb.led-pat-solid-red {
+  background: #DC2626;
+  box-shadow: 0 0 7px 1px rgba(239, 68, 68, 0.8);
+  animation: none;
+}
+
+.led-orb.led-pat-off {
+  background: #475569;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.55);
+  animation: none;
+}
+
+/* ---------- Keyframes de padrões físicos de hardware ---------- */
+
+/* Respiração suave branco-azulado (NAO a arrancar) */
+@keyframes cte-led-breathe-white {
+  0%, 100% { background: #94A3B8; box-shadow: 0 0 1px rgba(148, 163, 184, 0.2); }
+  50%      { background: #FFFFFF; box-shadow: 0 0 10px 2px rgba(93, 173, 226, 0.95); }
+}
+
+/* Pisca 2× verde e faz pausa (DJI Avata 2 / RoboMaster TT) */
+@keyframes cte-led-blink-green-2x {
+  0%, 12%  { background: #22C55E; box-shadow: 0 0 9px 2px rgba(34, 197, 94, 0.88); }
+  16%, 24% { background: #14532D; box-shadow: none; }
+  28%, 40% { background: #22C55E; box-shadow: 0 0 9px 2px rgba(34, 197, 94, 0.88); }
+  44%, 100%{ background: #14532D; box-shadow: none; }
+}
+
+/* Pisca 3× vermelho rápido e faz pausa (DJI Pocket 2 alerta) */
+@keyframes cte-led-blink-red-3x {
+  0%, 9%   { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.9); }
+  12%, 17% { background: #5C1919; box-shadow: none; }
+  20%, 29% { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.9); }
+  32%, 37% { background: #5C1919; box-shadow: none; }
+  40%, 49% { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.9); }
+  52%, 100%{ background: #5C1919; box-shadow: none; }
+}
+
+/* Pisca amarelo (lento ou rápido consoante duração) */
+@keyframes cte-led-blink-amber {
+  0%, 45%  { background: #F59E0B; box-shadow: 0 0 9px 2px rgba(245, 158, 11, 0.88); }
+  52%, 100%{ background: #5E3A08; box-shadow: none; }
+}
+
+/* Pisca vermelho (lento ou rápido consoante duração) */
+@keyframes cte-led-blink-red {
+  0%, 45%  { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.9); }
+  52%, 100%{ background: #5C1919; box-shadow: none; }
+}
+
+/* Pisca roxo (RoboMaster TT SDK/Wi-Fi) */
+@keyframes cte-led-blink-purple {
+  0%, 45%  { background: #A855F7; box-shadow: 0 0 9px 2px rgba(168, 85, 247, 0.85); }
+  52%, 100%{ background: #3B185F; box-shadow: none; }
+}
+
+/* Pisca branco-ciano (Meta Quest 3 controladores Touch Plus) */
+@keyframes cte-led-blink-white {
+  0%, 45%  { background: #FFFFFF; box-shadow: 0 0 9px 2px rgba(56, 189, 248, 0.9); }
+  52%, 100%{ background: #475569; box-shadow: none; }
+}
+
+/* Pisca verde-azul (DJI Pocket 2 microfone sem fios) */
+@keyframes cte-led-blink-green-teal {
+  0%, 45%  { background: #22C55E; box-shadow: 0 0 9px 2px rgba(30, 126, 140, 0.9); }
+  52%, 100%{ background: #144A3A; box-shadow: none; }
+}
+
+/* Flashes curtos azuis (Robô NAO estado / notificação) */
+@keyframes cte-led-flash-blue {
+  0%, 14%  { background: #38BDF8; box-shadow: 0 0 10px 2px rgba(56, 189, 248, 0.95); }
+  20%, 60% { background: #1E3A5F; box-shadow: none; }
+  66%, 80% { background: #38BDF8; box-shadow: 0 0 10px 2px rgba(56, 189, 248, 0.95); }
+  86%, 100%{ background: #1E3A5F; box-shadow: none; }
+}
+
+/* Alternância real Vermelho ↔ Amarelo (DJI Avata 2 bússola/IMU; Einstar distância perto) */
+@keyframes cte-led-alt-red-amber {
+  0%, 46%  { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.88); }
+  50%, 96% { background: #F59E0B; box-shadow: 0 0 9px 2px rgba(245, 158, 11, 0.88); }
+  100%     { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.88); }
+}
+
+/* Alternância real Verde ↔ Vermelho (QNAP NAS reconstrução / alerta) */
+@keyframes cte-led-alt-green-red {
+  0%, 46%  { background: #22C55E; box-shadow: 0 0 9px 2px rgba(34, 197, 94, 0.88); }
+  50%, 96% { background: #EF4444; box-shadow: 0 0 9px 2px rgba(239, 68, 68, 0.88); }
+  100%     { background: #22C55E; box-shadow: 0 0 9px 2px rgba(34, 197, 94, 0.88); }
+}
+
+/* Alerta UPS (visor azul/âmbar intermitente) */
+@keyframes cte-led-alert-ups {
+  0%, 46%  { background: #F59E0B; box-shadow: 0 0 9px 2px rgba(245, 158, 11, 0.85); }
+  50%, 96% { background: #2563EB; box-shadow: 0 0 8px 1px rgba(37, 99, 235, 0.8); }
+  100%     { background: #F59E0B; box-shadow: 0 0 9px 2px rgba(245, 158, 11, 0.85); }
+}
+
+/* ---------- Classes aplicadas aos orbs ---------- */
+
+.led-orb.led-pat-breathe-white    { background: #FFFFFF; animation: cte-led-breathe-white 2.2s ease-in-out infinite; }
+.led-orb.led-pat-blink-green-2x   { background: #22C55E; animation: cte-led-blink-green-2x 2.2s linear infinite; }
+.led-orb.led-pat-blink-red-3x     { background: #EF4444; animation: cte-led-blink-red-3x 1.9s linear infinite; }
+.led-orb.led-pat-blink-amber-slow { background: #F59E0B; animation: cte-led-blink-amber 1.5s linear infinite; }
+.led-orb.led-pat-blink-amber-fast { background: #F59E0B; animation: cte-led-blink-amber 0.44s linear infinite; }
+.led-orb.led-pat-blink-red-slow   { background: #EF4444; animation: cte-led-blink-red 1.5s linear infinite; }
+.led-orb.led-pat-blink-red-fast   { background: #EF4444; animation: cte-led-blink-red 0.48s linear infinite; }
+.led-orb.led-pat-blink-purple     { background: #A855F7; animation: cte-led-blink-purple 1.2s linear infinite; }
+.led-orb.led-pat-blink-white      { background: #FFFFFF; animation: cte-led-blink-white 0.85s linear infinite; }
+.led-orb.led-pat-blink-green-teal { background: #22C55E; animation: cte-led-blink-green-teal 1.1s linear infinite; }
+.led-orb.led-pat-flash-blue       { background: #38BDF8; animation: cte-led-flash-blue 1.6s linear infinite; }
+.led-orb.led-pat-alt-red-amber    { background: #EF4444; animation: cte-led-alt-red-amber 1.0s linear infinite; }
+.led-orb.led-pat-alt-green-red    { background: #22C55E; animation: cte-led-alt-green-red 1.0s linear infinite; }
+.led-orb.led-pat-alert-ups        { background: #F59E0B; animation: cte-led-alert-ups 1.2s linear infinite; }
+
+/* ---------- Acessibilidade: movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .led-orb,
+  .diag-panel.diag-highlight {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Nas alternâncias de 2 cores, mostrar círculo dividido para não perder informação */
+  .led-orb.led-pat-alt-red-amber {
+    background: linear-gradient(135deg, #EF4444 50%, #F59E0B 50%) !important;
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.45);
+  }
+  .led-orb.led-pat-alt-green-red {
+    background: linear-gradient(135deg, #22C55E 50%, #EF4444 50%) !important;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.45);
+  }
+  .led-orb.led-pat-alert-ups {
+    background: linear-gradient(135deg, #F59E0B 50%, #2563EB 50%) !important;
+    box-shadow: 0 0 4px rgba(245, 158, 11, 0.45);
+  }
+  .led-orb.led-pat-breathe-white,
+  .led-orb.led-pat-blink-white {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 5px rgba(56, 189, 248, 0.75);
+  }
+}

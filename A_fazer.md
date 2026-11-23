@@ -1,73 +1,78 @@
-# A Fazer — Portal CTE e Site de Ajuda do Robô NAO V6 (`INV-217`)
+# A Fazer — Portal de Ajuda CTE Informático (7 Equipamentos)
 
-> Lista de tarefas pendentes, confirmações técnicas e materiais da **Fase 3** após a implementação das Fases 1 e 2 (20/11/2026).
-
----
-
-## 1. Configuração imediata (bloco `CONFIG`)
-
-Preencher o bloco `CONFIG` no topo do `<script>` de `Robot_NAO_V6/index.html` (enquanto estiverem vazios, os elementos respetivos permanecem ocultos):
-
-- [ ] **Contacto do CTE** (`CONFIG.contactoCTE`):
-  - `nome`: nome do docente / responsável CTE
-  - `email`: endereço de e-mail de contacto
-  - `sala`: localização / oficina (ex.: Oficinas CTE)
-  - `horario`: horário de atendimento / requisição
-- [ ] **Formulário de requisição** (`CONFIG.urlRequisicao`): URL do formulário para requisitar o NAO V6 (ativa o link no Passo 4 do percurso).
-- [ ] **Formulário de devolução** (`CONFIG.urlRegistoDevolucao`): URL para registar a devolução (ativa o botão «Registar devolução» quando os 6 itens da checklist estiverem marcados).
-- [ ] **Ligar a Carta de Condução à requisição (P5):** no formulário de requisição (Google Forms / Apps Script), adicionar um campo para o aluno indicar o **código de verificação de 6 caracteres** gerado pelo cartão de habilitação (`Robot_NAO_V6/NAO_V6_Quiz_Habilitacao.html`).
+> Lista global de tarefas pendentes e validações de terreno após a **Fase 1 técnica** (23/11/2026):
+> `cte-config.js` centralizado, pesquisa sem acentos e com sinónimos, remoção de `manuais.html` (com redirect 301) e publicação limpa para Netlify (`netlify.toml` + `scripts/build_netlify.py`).
 
 ---
 
-## 2. Confirmações técnicas e testes em escola
+## 1. Configuração imediata — editar apenas `cte-config.js`
 
-- [ ] **Versão do NAOqi e porta de ligação (`9559` vs. `9561`):** confirmar na consola web interna (`http://<IP-do-NAO>`) qual a versão exata do NAOqi instalada no `INV-217` (NAOqi ≤ 2.8.7.4 usa porta `9559`; NAOqi ≥ 2.8.7.7 usa porta `9561`) e atualizar o marcador `<!-- CONFIRMAR -->` em `Robot_NAO_V6/NAO_V6_Manual_Tecnico.html` (e, se for `9561`, atualizar também a explicação da pergunta 11 no Quiz e no Manual de Utilizador).
-- [ ] **Software adotado no CTE:** decidir se as aulas usarão apenas **Choregraphe 2.8** ou se também haverá utilização de **Vittascience** (atualmente apenas o Choregraphe 2.8 está publicado).
-- [ ] **Limitações do Robô Virtual no Choregraphe 2.8:** validar em sala o marcador `<!-- CONFIRMAR -->` na secção `#s8` de `Robot_NAO_V6/NAO_V6_Manual_Utilizador.html` (projetos 2 e 4 etiquetados como *«Requer NAO físico para testar»*).
-- [ ] **Acesso ao Assistente IA (NotebookLM):** testar o link do NotebookLM com uma **conta Google de aluno** da escola para confirmar se o Google Workspace permite o acesso.
+Todas as 9 páginas (página inicial, Ajuda IA e os 7 equipamentos) leem agora os dados a partir de **`cte-config.js`**:
 
----
-
-## 3. Materiais da Fase 3 (fotografias, capturas, legendas e projetos)
-
-### 3.1 Fotografias reais do NAO do CTE (largura máx. 1200 px, JPG/WebP < 300 KB)
-Os locais já estão preparados em comentários `<!-- FASE 3 (P1) -->` nos ficheiros HTML. Colocar os ficheiros em `Robot_NAO_V6/`:
-
-- [ ] `nao_v6_foto.jpg` — Fotografia do NAO do CTE de corpo inteiro (substitui `nao_v6.jpg` no topo de `Robot_NAO_V6/index.html`).
-- [ ] `nao_v6_botao_peito.jpg` — Botão do peito em grande plano (para o diagnóstico e Guia de Início Rápido).
-- [ ] `nao_v6_tampa_ethernet.jpg` — Tampa traseira da cabeça aberta com a porta Ethernet (RJ45) visível (`NAO_V6_Manual_Utilizador.html#s7-2` e diagnóstico «Sem IP»).
-- [ ] `nao_v6_mala.jpg` — Mala `INV-217` aberta com os 4 itens arrumados (checklist de devolução em `Robot_NAO_V6/index.html#devolucao`).
-
-### 3.2 Capturas anotadas do Choregraphe 2.8 (< 300 KB cada, em `Robot_NAO_V6/`)
-- [ ] `chor_connect_virtual.png` — Ligação ao Robô Virtual (`NAO_V6_Manual_Utilizador.html#s6`).
-- [ ] `chor_box_library.png` — Biblioteca de caixas e diagrama de fluxo (`NAO_V6_Manual_Utilizador.html#s6`).
-- [ ] `chor_antena_verde.png` — Ícone da Antena Verde na barra superior (`NAO_V6_Manual_Utilizador.html#s7-1`).
-- [ ] `chor_fixed_ip.png` — Ligação por *Use fixed IP/hostname* (`NAO_V6_Manual_Utilizador.html#s7-1`).
-- [ ] `chor_autonomous_life.png` — Ícone do coração (*Autonomous Life*) para o diagnóstico «Mexe-se sozinho».
-
-### 3.3 Página dedicada aos mini-projetos (P2 — `Robot_NAO_V6/NAO_V6_Projetos.html`)
-Para criar a página própria de projetos (e atualizar o atalho em `Robot_NAO_V6/index.html`):
-- [ ] Capturas dos diagramas finais dos 5 projetos no Choregraphe 2.8.
-- [ ] Projetos prontos a transferir (`projeto1_ola_cte.zip` … `projeto5_python.zip`).
-- [ ] Um desafio extra *«E se…?»* por projeto para alunos que terminem mais cedo.
-
-### 3.4 QR codes oficiais offline (P3)
-- [ ] Gerar e validar QR code SVG para `https://aem-cte-ajuda.netlify.app/Robot_NAO_V6/#percurso` (para imprimir e colar na mala `INV-217`).
-- [ ] Gerar e inserir QR code SVG definitivo para `https://aem-cte-ajuda.netlify.app/Robot_NAO_V6/#diagnostico` no espaço reservado de `Robot_NAO_V6/NAO_V6_Infografico_Inicio_Rapido.html`.
-
-### 3.5 Legendas do vídeo tutorial (P4)
-- [ ] Fornecer a transcrição em português do vídeo `Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.mp4` para criar `Robot_NAO_V6/Como_Ligar_o_Robo_NAO_e_Descobrir_o_Seu_IP.vtt` e ativar o `<track>` em `Robot_NAO_V6/index.html`.
+- [ ] **Contacto global do CTE** (`CTE_CONFIG.contactoCTE`): preencher `nome`, `email`, `sala` e `horario`.
+- [ ] **Formulário de requisição** (`CTE_CONFIG.urlRequisicao`): colar URL do formulário (ativa automaticamente o botão «Requisitar» no Passo 4 dos 7 equipamentos; se algum equipamento tiver formulário próprio, usar `CTE_CONFIG.equipamentos.<chave>`).
+- [ ] **Formulário de devolução** (`CTE_CONFIG.urlRegistoDevolucao`): colar URL (ativa «Registar devolução» quando os 6 itens da checklist estiverem marcados).
+- [ ] **Ligar a Carta de Habilitação à requisição:** incluir no formulário de requisição um campo para o código de verificação de 6 caracteres gerado pelo quiz.
+- [ ] **Cadernos NotebookLM em falta:** criar e colar em `CTE_CONFIG.notebooks` os links de `einstar` e `tuxedo`.
+- [ ] **Testar NotebookLM com conta Google de aluno:** confirmar se as contas escolares de alunos conseguem abrir os 5 cadernos já ativos sem bloqueio do Google Workspace.
 
 ---
 
-## 4. Sincronização de documentos Office e evolução futura
+## 2. Confirmações técnicas no terreno (14 marcadores `<!-- CONFIRMAR -->`)
 
-- [ ] **Atualizar documentos editáveis / PDF:** replicar as correções de texto (terminologia «Robô», «Guia de Início Rápido», nota C13 dos projetos 2 e 4, e novas notas técnicas de BMS/limpeza/portas) nos ficheiros:
-  - `Robot_NAO_V6/NAO_V6_Manual_Utilizador.docx`
-  - `Robot_NAO_V6/NAO_V6_Manual_Tecnico.docx`
-  - `Robot_NAO_V6/NAO_V6_Guia_Inicio_Rapido.docx` e `NAO_V6_Guia_Inicio_Rapido.pdf`
-  - `Robot_NAO_V6/NAO_V6_Apresentacao_Sala_Aula.pptx`
-- [ ] **Limpeza antes de publicar:** confirmar se a pasta `Robot_NAO_V6/outros/` (rascunhos e auditoria) deve ficar fora da publicação na Netlify.
-- [ ] **Melhorias opcionais futuras:**
-  - Replicar o novo formato compacto por percurso da página do NAO para `DJI_Avata_Drone/index.html` e `Meta_Quest_3_VR/index.html`.
-  - Adaptar para a paleta do CTE (100% offline, sem CDNs) o simulador interativo do botão do peito ou o diagrama clicável de pega segura presentes nos rascunhos de `Robot_NAO_V6/outros/`.
+### Robô NAO V6 (`INV-217`)
+- [ ] **Versão NAOqi e porta (`9559` vs. `9561`):** confirmar na consola web interna (`http://<IP-do-NAO>`) e atualizar `Robot_NAO_V6/NAO_V6_Manual_Tecnico.html` (e Quiz/Manual de Utilizador se for `9561`).
+- [ ] **Limitações do Robô Virtual (Choregraphe 2.8):** validar em sala os projetos 2 e 4 em `Robot_NAO_V6/NAO_V6_Manual_Utilizador.html#s8`.
+
+### DJI Avata 2 (`INV-151`)
+- [ ] **Registo de operador UAS (ANAC):** confirmar número institucional (`PRT...`) da escola vs. docente responsável e política interna para pavilhão/exterior (`DJI_Avata_Drone/DJI_Avata_2_Manual_Tecnico.html` e `DJI_Avata_2_Manual_Utilizador.html`).
+
+### Meta Quest 3 VR (`INV-081` / `INV-082`)
+- [ ] **Capacidade e gestão de contas:** confirmar 128 GB vs. 512 GB e modelo de contas Meta nos 10 kits (`Meta_Quest_3_VR/Meta_Quest_3_Manual_Tecnico.html`).
+- [ ] **Lista de apps educativas instaladas:** adaptar a lista às aplicações efetivamente instaladas nos kits (`Meta_Quest_3_VR/Meta_Quest_3_Manual_Utilizador.html`).
+
+### DJI RoboMaster TT (`INV-144`)
+- [ ] **Ambiente de programação nos PCs do Estúdio 4C:** confirmar se está instalado Mind+, Python/VS Code (`djitellopy`) ou ambos (`DJI_RoboMaster_TT/RoboMaster_TT_Manual_Utilizador.html`).
+
+### DJI Pocket 2 Creator Combo (`INV-152`)
+- [ ] **Cartões microSD e numeração dos kits:** confirmar capacidade dos microSD (64/128 GB U3) e se os 4 kits estão numerados de 1 a 4 (`DJI_Pocket_2_Creator/DJI_Pocket_2_Manual_Tecnico.html`).
+
+### Scanner 3D Einstar (`INV-228`)
+- [ ] **Estação de trabalho com EXStar + GPU:** indicar o código exato do PC/Mac compatível no Estúdio SC - LMAS (`Scanner_3D_Einstar/Einstar_Manual_Tecnico.html` e `Einstar_Manual_Utilizador.html`).
+
+### Estação AI Tuxedo Atlas XL (`INV-006`) & NAS QNAP (`INV-223`)
+- [ ] **Hardware exato da Tuxedo (`INV-006`):** registar CPU, GPU(s), VRAM, RAM DDR5 e SSDs (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Tecnico.html` e `Tuxedo_NAS_Manual_Utilizador.html`).
+- [ ] **Configuração RAID/ZFS do NAS (`INV-223`):** registar capacidade e nível RAID/ZFS das 8 baías SATA e 2 NVMe (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Tecnico.html`).
+- [ ] **IPs fixos / hostnames reais no Estúdio 4C:** substituir os exemplos pelos IPs/hostnames reais da Tuxedo e do QNAP (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Utilizador.html`).
+
+---
+
+## 3. Publicação limpa e higiene do repositório
+
+- [x] `Inventario_CTE_limpo.xlsx` (28,8 MB), `.docx` internos da raiz e `site.txt` movidos para `_interno/` (ignorado em `.gitignore` e excluído do deploy Netlify via `netlify.toml` + `scripts/build_netlify.py`).
+- [x] `Robot_NAO_V6/outros/` excluído automaticamente da publicação Netlify e bloqueado no `.htaccess`.
+- [ ] **Atenção ao histórico Git:** se o repositório GitHub (`esfa-si-programacao/CTE_Guias`) for público e `Inventario_CTE_limpo.xlsx` contiver dados internos sensíveis (valores, n.ºs de série, etc.), ponderar limpar o histórico Git (ex.: `git filter-repo`) ou tornar o repositório privado.
+- [ ] **Recursos ligados em «Para professores e equipa CTE»:** os ficheiros `*_Base_Conhecimento_NotebookLM.md` (nos 7 equipamentos) e os `.docx`/`.pptx` do NAO e Quest 3 mantêm-se publicados porque têm ligações ativas nas páginas. Caso decida retirá-los da web pública, remover primeiro as ligações nos respetivos `index.html`.
+- [ ] **Validar fisicamente os QR codes SVG** já embutidos nos 7 `*_Infografico_Inicio_Rapido.html` (apontam para `#diagnostico`).
+
+---
+
+## 4. Próximas fases planeadas
+
+### Fase 2 — Arquitetura partilhada e UX móvel
+- [x] Animações CSS realistas dos LEDs (`cte-leds.css`) com pré-visualização ao vivo (`cte-diag.js`) e respeito por `prefers-reduced-motion` nos 7 equipamentos.
+- [x] Pesquisa global de sintomas e LEDs em `index.html` via índice gerado automaticamente (`cte-search-index.js` + `scripts/generate_search_index.py`) com abertura direta (`?led=` / `?sym=`).
+- [x] Consolidação de `ajuda-ia.html` como vista unificada em `index.html?vista=ia` (com redirects 301), seletor de intenção («1.ª vez / Algo não funciona / Ideias para a aula») e cartões curtos com 1 cor por área, nível e tempo.
+- [x] Alvos tácteis ≥ 44 px, texto ≥ 16 px no diagnóstico móvel e barra fixa de atalhos rápidos (`cte-hub.css` + `cte-diag.js`) nos 7 equipamentos.
+- [x] Arquivo de `Robot_NAO_V6/Guião_Rápido_do_Robo_Humanoide.png` (4,15 MB) em `_interno/Robot_NAO_V6/`, mantendo `NAO_V6_Guia_Inicio_Rapido_ecra.webp` (150 KB) e `PDF` (86 KB).
+- [ ] *(Opcional)* Unificar o restante CSS inline repetido nos 36 ficheiros HTML (manuais, infográficos e quizzes) num `cte-base.css`.
+
+### Fase 3 — Kit visual mínimo (com alunos, 6–8 semanas)
+- [ ] 1 vídeo curto (60–90 s) legendado (`.vtt`) por equipamento (começar pelos mais requisitados: Quest 3, RoboMaster TT, Pocket 2, Avata 2; juntar `.vtt` ao vídeo já existente do NAO).
+- [ ] Foto real anotada da mala aberta por equipamento (`nao_v6_mala.jpg`, `avata2_kit_mala.jpg`, etc. — blocos já preparados em comentário nos HTML).
+- [ ] Cartão QR A6 plastificado para cada mala (`#percurso` + `#diagnostico` + n.º de inventário) e cartão «5 erros comuns».
+
+### Fase 4 — Aprofundar (contínuo)
+- [ ] Pequeno validador docente para o código de 6 caracteres da Carta de Habilitação.
+- [ ] Botão «Isto ajudou? 👍 / 👎» no diagnóstico ligado a Google Form e galeria de projetos da escola.
+- [ ] Fichas de atividade A4, planos de aula (45/90 min) e eventual PWA *network-first* (sem MP4 em precache).

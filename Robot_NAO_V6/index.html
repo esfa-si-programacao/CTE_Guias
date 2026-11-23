@@ -708,6 +708,8 @@ footer a:hover { text-decoration: underline; }
   footer { padding-bottom: 20px; }
 }
 </style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
 </head>
 <body>
 
@@ -886,12 +888,12 @@ footer a:hover { text-decoration: underline; }
         <div>
           <h3 class="diag-sub">1. Luz do botão do peito</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="boot" aria-pressed="true"><span class="led-orb orb-pulse"></span>Branco a pulsar</button>
-            <button type="button" class="led-btn" data-led="ready" aria-pressed="false"><span class="led-orb orb-white"></span>Branco fixo</button>
-            <button type="button" class="led-btn" data-led="green" aria-pressed="false"><span class="led-orb orb-green"></span>Verde fixo</button>
-            <button type="button" class="led-btn" data-led="amber" aria-pressed="false"><span class="led-orb orb-amber"></span>Amarelo / Laranja</button>
-            <button type="button" class="led-btn" data-led="red" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho a piscar</button>
-            <button type="button" class="led-btn" data-led="flash" aria-pressed="false"><span class="led-orb orb-blue"></span>Flashes / Azul</button>
+            <button type="button" class="led-btn active" data-led="boot" data-led-desc="Branco a pulsar suavemente" aria-pressed="true"><span class="led-orb led-pat-breathe-white"></span>Branco a pulsar</button>
+            <button type="button" class="led-btn" data-led="ready" data-led-desc="Branco fixo (pronto)" aria-pressed="false"><span class="led-orb led-pat-solid-white"></span>Branco fixo</button>
+            <button type="button" class="led-btn" data-led="green" data-led-desc="Verde fixo (bateria / OK)" aria-pressed="false"><span class="led-orb led-pat-solid-green"></span>Verde fixo</button>
+            <button type="button" class="led-btn" data-led="amber" data-led-desc="Amarelo / Laranja fixo" aria-pressed="false"><span class="led-orb led-pat-solid-amber"></span>Amarelo / Laranja</button>
+            <button type="button" class="led-btn" data-led="red" data-led-desc="Vermelho a piscar lentamente" aria-pressed="false"><span class="led-orb led-pat-blink-red-slow"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="flash" data-led-desc="Flashes curtos / Azul a piscar" aria-pressed="false"><span class="led-orb led-pat-flash-blue"></span>Flashes / Azul</button>
           </div>
           <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
@@ -928,8 +930,7 @@ footer a:hover { text-decoration: underline; }
           <span class="doc-title">Guia de Início Rápido</span>
           <div class="doc-formats">
             <a class="fmt-link web" href="NAO_V6_Infografico_Inicio_Rapido.html">Ver online</a>
-            <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido_ecra.webp" target="_blank" rel="noopener noreferrer">Ver imagem (150 KB)</a>
-            <a class="fmt-link" href="Gui%C3%A3o_R%C3%A1pido_do_Robo_Humanoide.png" download>Imprimir (PNG · 4,4 MB)</a>
+            <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido_ecra.webp" target="_blank" rel="noopener noreferrer">Imagem (WebP · 150 KB)</a>
             <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido.pdf">PDF · 86 KB</a>
             <a class="fmt-link" href="NAO_V6_Guia_Inicio_Rapido.docx">Word · 7 KB</a>
           </div>
@@ -1088,15 +1089,19 @@ footer a:hover { text-decoration: underline; }
   Ajuda
 </a>
 
+<script src="../cte-config.js"></script>
 <script>
 (function() {
-  var CONFIG = {
-    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
-    urlRequisicao: "",          // formulário de requisição do NAO
-    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
     urlNotebookLM: "https://notebook.google.com/notebook/452e2b41-31ec-4870-af6f-6f955c408fa5/preview",
     checklistValidadeHoras: 4
   };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("nao", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
 
   // Fallback seguro da imagem do topo para o SVG do robô
   var heroImg = document.getElementById("heroImg");
@@ -1120,8 +1125,11 @@ footer a:hover { text-decoration: underline; }
   var aiLink = document.getElementById("aiLink");
   var heroAiLink = document.getElementById("heroAiLink");
   if (CONFIG.urlNotebookLM) {
-    if (aiLink) aiLink.href = CONFIG.urlNotebookLM;
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
     if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
   }
 
   function formatContacto(includeHorario) {
@@ -1330,5 +1338,6 @@ footer a:hover { text-decoration: underline; }
   });
 })();
 </script>
+<script src="../cte-diag.js"></script>
 </body>
 </html>

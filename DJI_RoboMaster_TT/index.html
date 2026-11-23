@@ -654,6 +654,8 @@ footer a:hover { text-decoration: underline; }
   footer { padding-bottom: 20px; }
 }
 </style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
 </head>
 <body>
 
@@ -828,12 +830,12 @@ footer a:hover { text-decoration: underline; }
         <div>
           <h3 class="diag-sub">1. LED frontal do drone</h3>
           <div class="led-buttons" id="ledButtons">
-            <button type="button" class="led-btn active" data-led="green" aria-pressed="true"><span class="led-orb orb-green"></span>Verde (2 piscadelas)</button>
-            <button type="button" class="led-btn" data-led="purple" aria-pressed="false"><span class="led-orb orb-purple"></span>Roxo a piscar</button>
-            <button type="button" class="led-btn" data-led="amber_slow" aria-pressed="false"><span class="led-orb orb-amber"></span>Amarelo lento</button>
-            <button type="button" class="led-btn" data-led="amber_fast" aria-pressed="false"><span class="led-orb orb-amber-fast"></span>Amarelo rápido</button>
-            <button type="button" class="led-btn" data-led="red_blink" aria-pressed="false"><span class="led-orb orb-red-blink"></span>Vermelho a piscar</button>
-            <button type="button" class="led-btn" data-led="red_solid" aria-pressed="false"><span class="led-orb orb-red"></span>Vermelho fixo</button>
+            <button type="button" class="led-btn active" data-led="green" data-led-desc="Verde a piscar 2× e pausa" aria-pressed="true"><span class="led-orb led-pat-blink-green-2x"></span>Verde (2 piscadelas)</button>
+            <button type="button" class="led-btn" data-led="purple" data-led-desc="Roxo a piscar (SDK / Wi-Fi)" aria-pressed="false"><span class="led-orb led-pat-blink-purple"></span>Roxo a piscar</button>
+            <button type="button" class="led-btn" data-led="amber_slow" data-led-desc="Amarelo a piscar lentamente" aria-pressed="false"><span class="led-orb led-pat-blink-amber-slow"></span>Amarelo lento</button>
+            <button type="button" class="led-btn" data-led="amber_fast" data-led-desc="Amarelo a piscar rapidamente" aria-pressed="false"><span class="led-orb led-pat-blink-amber-fast"></span>Amarelo rápido</button>
+            <button type="button" class="led-btn" data-led="red_blink" data-led-desc="Vermelho a piscar (alerta)" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="red_solid" data-led-desc="Vermelho fixo constante" aria-pressed="false"><span class="led-orb led-pat-solid-red"></span>Vermelho fixo</button>
           </div>
           <div class="diag-panel" id="ledResult" aria-live="polite"></div>
         </div>
@@ -1009,15 +1011,19 @@ footer a:hover { text-decoration: underline; }
   Ajuda
 </a>
 
+<script src="../cte-config.js"></script>
 <script>
 (function() {
-  var CONFIG = {
-    contactoCTE: { nome: "", email: "", sala: "", horario: "" }, // preencher quando disponível
-    urlRequisicao: "",          // formulário de requisição do RoboMaster TT
-    urlRegistoDevolucao: "",    // formulário de devolução (pode ser o mesmo)
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
     urlNotebookLM: "https://notebook.google.com/notebook/e3067140-32a5-4401-bc80-1ca6734cd525/preview",
     checklistValidadeHoras: 4
   };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("robomaster", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
 
   var heroImg = document.getElementById("heroImg");
   var heroSvg = document.getElementById("heroSvgFallback");
@@ -1037,15 +1043,19 @@ footer a:hover { text-decoration: underline; }
   }
 
   var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
   var aiSoonText = document.getElementById("aiSoonText");
   var aiAccountNote = document.getElementById("aiAccountNote");
-  if (aiLink && CONFIG.urlNotebookLM) {
-    aiLink.href = CONFIG.urlNotebookLM;
-    var heroAiLink = document.getElementById("heroAiLink");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
     if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
-    aiLink.hidden = false;
     if (aiSoonText) aiSoonText.hidden = true;
     if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
   }
 
   function formatContacto(includeHorario) {
@@ -1241,5 +1251,6 @@ footer a:hover { text-decoration: underline; }
   });
 })();
 </script>
+<script src="../cte-diag.js"></script>
 </body>
 </html>

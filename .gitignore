@@ -1,6 +1,7 @@
 # Pasta de trabalho local e saída de build da Netlify (não publicar no Git)
 _interno/
 _site/
+Meta_Quest_3_VR/demo_video/
 
 # Ficheiros internos / inventário e rascunhos
 *.xlsx

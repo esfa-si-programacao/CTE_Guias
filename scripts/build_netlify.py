@@ -16,6 +16,7 @@ EXCLUDED_DIRS = {
     ".vscode",
     "_site",
     "_interno",
+    "demo_video",
     "scripts",
     "outros",
     "node_modules",

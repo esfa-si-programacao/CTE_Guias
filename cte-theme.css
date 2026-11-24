@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Tema Institucional — Agrupamento de Escolas de Mangualde
+   Baseado na paleta oficial de https://www.escolasdemangualde.pt/
+   - Verde-petróleo institucional: #12876F (escuro acessível: #0F7560 / #0D6B58)
+   - Verde-menta das barras:       #D0E7E2 / #C4E1DB
+   - Acento secundário oliva:      #CCCC65
+   - Superfícies brancas e neutras:#FFFFFF / #F4F8F7 / #333333 / #666666
+   ========================================================================== */
+
+:root {
+  --dark: #10322B;
+  --dark2: #164A3F;
+
+  --acc: #12876F;
+  --acc-btn: #0F7560;
+  --acc-btn-hover: #0B5C4B;
+  --acc-text: #0D6B58;
+  --acc-soft: #E6F3F0;
+
+  --teal: #12876F;
+  --teal-text: #0D6B58;
+  --teal-soft: #D0E7E2;
+
+  --aem-mint: #D0E7E2;
+  --aem-mint-foot: #C4E1DB;
+  --aem-olive: #CCCC65;
+
+  --light: #EEF6F4;
+  --line: #CEDCD8;
+  --grey: #5A6663;
+  --text: #263330;
+  --bg: #F4F8F7;
+}
+
+/* Cabeçalhos institucionais (portal, hubs, manuais, quizzes) */
+header.hero,
+.doc-header,
+.sheet-header {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  border-bottom-color: var(--acc);
+}
+
+.hero-badge {
+  color: #E8F5B8;
+  border-color: rgba(204, 204, 101, 0.42);
+  background: rgba(18, 135, 111, 0.28);
+}
+
+.hero .sub {
+  color: #CFE4DF;
+}
+
+.stat-num {
+  color: var(--aem-olive);
+}
+
+.stat-label {
+  color: #CFE4DF;
+}
+
+/* Barra superior e barra fixa de atalhos com toque verde-menta da escola */
+.topbar {
+  background: #0B2520;
+  border-bottom: 1px solid rgba(208, 231, 226, 0.16);
+}
+
+.cte-jump-bar {
+  background: rgba(235, 245, 242, 0.96);
+  border-bottom-color: var(--aem-mint-foot);
+}
+
+/* Atalhos de avaria rápida harmonizados com o verde-petróleo */
+.quick-chip {
+  border-color: #9FD1C6;
+  background: var(--acc-soft);
+  color: var(--acc-text);
+}
+.quick-chip:hover {
+  background: var(--acc-btn);
+  border-color: var(--acc-btn);
+  color: #fff;
+}
+
+/* Botões e estados ativos na página inicial */
+.intent-btn.active {
+  border-color: var(--acc);
+  background: var(--acc-soft);
+  box-shadow: 0 6px 18px rgba(18, 135, 111, 0.14);
+}
+.intent-btn[data-intent="ideas"] .intent-icon {
+  background: #F4F5DC;
+  color: #5C6214;
+}
+.intent-btn[data-intent="ideas"].active {
+  border-color: #9EA332;
+  background: #F7F8E4;
+  box-shadow: 0 6px 18px rgba(158, 163, 50, 0.16);
+}
+.intent-btn[data-intent="ideas"].active .intent-icon {
+  background: #6F7519;
+  color: #fff;
+}
+
+/* Foco acessível por teclado na cor institucional */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--acc);
+  outline-offset: 2px;
+}
+
+/* Rodapé com assinatura verde-menta inspirada em escolasdemangualde.pt */
+footer {
+  border-top: 3px solid var(--aem-mint-foot);
+  background: #FFFFFF;
+}
+
+footer a {
+  color: var(--acc-text);
+}
+
+/* Preservar contraste limpo em impressão (infográficos A4 e cartas de habilitação) */
+@media print {
+  body {
+    background: #FFFFFF !important;
+  }
+}

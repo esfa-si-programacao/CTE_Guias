@@ -10,7 +10,7 @@ a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
 input:focus-visible {
-  outline: 3px solid #E8711C;
+  outline: 3px solid var(--acc, #12876F);
   outline-offset: 2px;
 }
 

@@ -104,9 +104,9 @@
 
 /* Realce breve quando o utilizador chega por pesquisa global (?led= ou ?sym=) */
 @keyframes cte-diag-focus {
-  0%   { box-shadow: 0 0 0 0 rgba(232, 113, 28, 0.55); }
-  45%  { box-shadow: 0 0 0 6px rgba(232, 113, 28, 0.25); }
-  100% { box-shadow: 0 0 0 0 rgba(232, 113, 28, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(18, 135, 111, 0.55); }
+  45%  { box-shadow: 0 0 0 6px rgba(18, 135, 111, 0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(18, 135, 111, 0); }
 }
 
 .diag-panel.diag-highlight {

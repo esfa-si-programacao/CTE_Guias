@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extrai automaticamente LED_INFO e SYM_INFO das 7 páginas de equipamento para cte-search-index.js."""
+"""Extrai automaticamente LED_INFO e SYM_INFO das 9 páginas de equipamento para cte-search-index.js."""
 
 from pathlib import Path
 import html
@@ -67,6 +67,22 @@ EQUIPMENTS = [
         "color": "indigo",
         "synonyms": "servidor computador estacao ia gpu cuda vram linux ollama nas qnap zfs smb ssh vm ups",
     },
+    {
+        "dir": "Cricut_Maker_3",
+        "key": "cricut",
+        "name": "Cricut Maker 3",
+        "cat": "corte",
+        "color": "",
+        "synonyms": "cricut maker 3 impressora corte vinil htv iron-on termocolante design space tapete lamina suporte b rodinhas espelhar usb bluetooth 24v",
+    },
+    {
+        "dir": "Promethean_ActivPanel_LX",
+        "key": "activpanel",
+        "name": "Promethean ActivPanel LX",
+        "cat": "audiovisual",
+        "color": "blue",
+        "synonyms": "painel interativo quadro interativo promethean activpanel lx 65 ecra monitor tatil toque touch caneta ops ops-a android edla hdmi usb-c espelhamento screen share airplay miracast freeze standby mdm",
+    },
 ]
 
 # Expansões de género e sinónimos comuns para melhorar pesquisas em português do dia a dia
@@ -89,13 +105,24 @@ WORD_ALIASES = {
     "tonturas": "enjoo nauseas mal estar",
     "bloqueado": "bloqueada travou encravou congelou nao responde",
     "bloqueados": "bloqueado travou encravou ecra preto nao liga",
-    "ecra preto": "nao liga sem imagem bloqueado",
-    "nao liga": "desligado sem energia bateria botao",
-    "sem som": "sem audio mudo microfone volume",
+    "ecra preto": "nao liga sem imagem bloqueado sem sinal",
+    "sem sinal": "sem imagem ecra preto hdmi usb-c entrada fonte",
+    "sem imagem": "sem sinal ecra preto hdmi usb-c entrada fonte",
+    "toque": "touch tatil caneta nao responde",
+    "freeze": "congelado congelada parado parada imagem parada",
+    "congelado": "freeze parado bloqueado imagem parada",
+    "screen share": "espelhamento airplay miracast projetar partilhar ecra sem fios",
+    "nao liga": "desligado sem energia bateria botao interruptor",
+    "sem som": "sem audio mudo microfone volume colunas",
     "microfone": "mic som audio voz gravar",
     "sobreaquecimento": "quente aquece temperatura ventoinha",
     "aquece": "quente sobreaquecimento temperatura",
     "bateria": "carregar carregador carga descarregado",
+    "tapete": "base aderente folha cartolina smart material",
+    "vinil": "autocolante htv iron-on termocolante decalque",
+    "lamina": "laminas corte suporte b fresa rasga nao corta",
+    "espelhar": "invertido contrario espelho mirror htv termocolante",
+    "htv": "termocolante iron-on camisola t-shirt ferro espelhar",
 }
 
 ENTRY_RE = re.compile(
@@ -266,7 +293,7 @@ def generate_index() -> list[dict]:
 
     header = (
         "/**\n"
-        " * Índice global de diagnóstico (LEDs e sintomas) dos 7 equipamentos do CTE.\n"
+        " * Índice global de diagnóstico (LEDs e sintomas) dos 9 equipamentos do CTE.\n"
         " * Gerado automaticamente por scripts/generate_search_index.py — não editar manualmente.\n"
         " */\n"
         "window.CTE_SEARCH_INDEX = "

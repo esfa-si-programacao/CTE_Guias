@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cricut Maker 3 — Guia de Início Rápido (CTE · INV-005)</title>
+<meta name="description" content="Folha visual A4 da Impressora de Corte Cricut Maker 3 pronta a imprimir: 6 passos, anatomia A/B, tapetes por cor, luzes LED, 5 regras de ouro e devolução.">
+<meta property="og:title" content="Cricut Maker 3 — Guia de Início Rápido (Infográfico A4)">
+<meta property="og:description" content="Folha visual A4 da Cricut Maker 3 (INV-005): 6 passos, Suportes A/B, cores dos tapetes, regra Espelhar para HTV e checklist.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='20' width='44' height='24' rx='6' fill='none' stroke='%23fff' stroke-width='2.8'/%3E%3Cline x1='15' y1='32' x2='49' y2='32' stroke='%234CE0F5' stroke-width='2.4'/%3E%3Crect x='25' y='25' width='14' height='12' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='1.8'/%3E%3Ccircle cx='46' cy='25' r='2.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #E4E9EF;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.38;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+body { padding-bottom: 96px; }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.86rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1020px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+.toolbar { max-width: 1020px; margin: 14px auto 0; padding: 0 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.toolbar-info { font-size: 0.85rem; color: var(--grey); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 0.88rem; font-weight: 600; border-radius: 6px; padding: 7px 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: #fff; color: var(--dark); transition: all 0.15s ease; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); color: #fff; border-color: var(--acc-btn); }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+
+.sheet { max-width: 1020px; margin: 12px auto 28px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(31, 42, 54, 0.12); overflow: hidden; border: 1px solid var(--line); }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 18px 24px 14px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; border-bottom: 4px solid var(--acc); }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); color: #FFD2B3; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px; }
+.hero h1 { margin: 0; font-size: 1.75rem; line-height: 1.12; }
+.hero p.sub { margin: 4px 0 0; color: #C7D6E5; font-size: 0.88rem; }
+.kpi-row { display: grid; grid-template-columns: repeat(4, minmax(105px, 1fr)); gap: 8px; margin-top: 10px; }
+.kpi { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.16); border-radius: 8px; padding: 6px 8px; text-align: center; }
+.kpi strong { display: block; font-size: 0.94rem; color: #FFB37B; line-height: 1.15; }
+.kpi span { font-size: 0.68rem; color: #D2DFEC; text-transform: uppercase; letter-spacing: 0.03em; }
+.hero-art { width: 108px; height: 86px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 6px; }
+
+.content { padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 13px; }
+.section-title { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dark); margin: 0 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--light); }
+.section-title .tag { background: var(--dark); color: #fff; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; }
+.section-title.red .tag { background: var(--red-text); }
+.section-title.teal .tag { background: var(--teal-text); }
+.section-title.acc .tag { background: var(--acc-btn); }
+.section-title.green .tag { background: var(--green-text); }
+
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+.step-card { background: var(--light); border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 8px; padding: 8px 10px; }
+.step-head { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: 0.78rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-card h3 { margin: 0; font-size: 0.85rem; color: var(--dark); }
+.step-card p { margin: 0; font-size: 0.77rem; color: #364554; }
+
+.mid-grid { display: grid; grid-template-columns: 1.04fr 1fr; gap: 14px; align-items: stretch; }
+.panel { border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; background: #fff; }
+
+.anatomy-wrap { display: grid; grid-template-columns: 126px 1fr; gap: 10px; align-items: center; }
+.anatomy-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; font-size: 0.75rem; }
+.anatomy-list li { display: flex; gap: 6px; align-items: flex-start; }
+.pin { min-width: 18px; height: 18px; border-radius: 50%; background: var(--acc); color: #fff; font-size: 0.68rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+.pin.blue { background: var(--blue); }
+.pin.teal { background: var(--teal); }
+.pin.dark { background: var(--dark); }
+
+table.mini { width: 100%; border-collapse: collapse; font-size: 0.74rem; margin-bottom: 8px; }
+table.mini th, table.mini td { border: 1px solid var(--line); padding: 4px 7px; text-align: left; vertical-align: middle; }
+table.mini thead th { background: var(--dark); color: #fff; font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.03em; }
+table.mini tbody tr:nth-child(even) { background: var(--light); }
+
+.led-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; border: 1px solid rgba(0,0,0,0.22); }
+.led-white { background: #fff; border-color: #94A3B8; }
+.led-red { background: #E74C3C; }
+.led-purple { background: #8E44AD; }
+.mat-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+
+.rules-box { background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 9px; padding: 10px 13px; }
+.rules-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.rule-item { background: #fff; border: 1px solid #F0CFCB; border-radius: 7px; padding: 7px 8px; font-size: 0.74rem; }
+.rule-item > strong:first-child { display: block; color: var(--red-text); font-size: 0.77rem; margin-bottom: 2px; }
+
+.bottom-grid { display: grid; grid-template-columns: 1.2fr 1fr 145px; gap: 12px; align-items: stretch; }
+.check-box { background: var(--green-soft); border: 1px solid #B7DEC8; border-left: 4px solid var(--green); border-radius: 8px; padding: 9px 11px; }
+.check-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; }
+.check-list label { display: flex; align-items: flex-start; gap: 6px; cursor: pointer; }
+.check-list input { margin-top: 2px; accent-color: var(--green); }
+.check-list input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+.net-box { background: var(--blue-soft); border: 1px solid #BBD4F0; border-left: 4px solid var(--blue); border-radius: 8px; padding: 9px 11px; font-size: 0.75rem; }
+.net-box ul { margin: 0; padding-left: 16px; }
+.net-box li { margin: 3px 0; }
+
+.qr-box { border: 1.5px dashed var(--grey); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--light); font-size: 0.68rem; color: var(--grey); }
+.qr-placeholder { width: 78px; height: 78px; border: 1px solid var(--line); background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; padding: 5px; }
+.qr-box strong { color: var(--dark); font-size: 0.72rem; display: block; }
+
+.sheet-footer { background: var(--dark); color: #C7D6E5; font-size: 0.72rem; padding: 7px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.sheet-footer strong { color: #fff; }
+
+@media (max-width: 860px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .mid-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.fab-help {
+  position: fixed; right: 18px; bottom: 18px; z-index: 90;
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px;
+  border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none;
+  font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@page { size: A4 portrait; margin: 5mm; }
+@media print {
+  html, body { background: #fff; padding-bottom: 0; line-height: 1.24; font-size: 12.2px; }
+  .topbar, .toolbar, .fab-help { display: none !important; }
+  .sheet { max-width: none; margin: 0; border: none; border-radius: 0; box-shadow: none; }
+  header.hero { padding: 9px 14px 8px; gap: 12px; }
+  .hero-badge { margin-bottom: 3px; font-size: 0.68rem; padding: 2px 8px; }
+  .hero h1 { font-size: 1.48rem; }
+  .hero p.sub { font-size: 0.84rem; margin-top: 2px; }
+  .hero-art { width: 88px; height: 70px; padding: 4px; }
+  .hero-art svg { width: 74px; height: 54px; }
+  .kpi-row { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+  .kpi { padding: 4px 6px; }
+  .kpi strong { font-size: 0.88rem; }
+  .kpi span { font-size: 0.64rem; }
+  .content { padding: 8px 12px 8px; gap: 7px; }
+  .section-title { font-size: 0.86rem; margin-bottom: 5px; padding-bottom: 3px; }
+  .steps-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .step-card { padding: 5px 7px; }
+  .step-head { margin-bottom: 2px; }
+  .step-num { width: 18px; height: 18px; font-size: 0.72rem; }
+  .step-card h3 { font-size: 0.84rem; }
+  .mid-grid { grid-template-columns: 1.02fr 1fr; gap: 8px; }
+  .panel { padding: 7px 9px; }
+  .anatomy-wrap { grid-template-columns: 98px 1fr; gap: 7px; }
+  .anatomy-wrap svg { width: 92px; height: auto; }
+  .anatomy-list { gap: 3px; }
+  .pin { min-width: 15px; height: 15px; font-size: 0.64rem; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.76rem; }
+  table.mini { font-size: 0.73rem; margin-bottom: 5px; }
+  table.mini th, table.mini td { padding: 2.5px 5px; }
+  .rules-box { padding: 7px 10px; }
+  .rules-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .rule-item { padding: 5px 6px; }
+  .rule-item > strong:first-child { font-size: 0.78rem; }
+  .bottom-grid { grid-template-columns: 1.2fr 1fr 116px; gap: 7px; }
+  .check-box, .net-box { padding: 6px 8px; }
+  .check-list { gap: 3px; }
+  .net-box li { margin: 2px 0; }
+  .qr-box { padding: 5px; font-size: 0.66rem; }
+  .qr-placeholder { width: 62px; height: 62px; margin-bottom: 3px; }
+  .qr-placeholder svg { width: 52px; height: 52px; }
+  .sheet-footer { padding: 4px 12px; font-size: 0.72rem; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Cricut Maker 3</a> &rsaquo; Guia de Início Rápido</nav>
+    <div>Equipamento <strong>INV-005</strong> · 4 unidades · Estúdio 4C &amp; SC - LMAS</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-info">
+    <strong>Guia de Início Rápido A4 · Cricut Maker 3 (INV-005)</strong>
+    <span>Desenhado para consulta rápida online e impressão plastificada junto à bancada de corte.</span>
+  </div>
+  <div class="toolbar-actions">
+    <a class="btn" href="index.html">&larr; Página Cricut</a>
+    <a class="btn" href="Cricut_Maker_3_Manual_Utilizador.html">Manual Completo</a>
+    <button class="btn" type="button" id="resetChecks">Limpar Checklist</button>
+    <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar PDF (A4)</button>
+  </div>
+</div>
+
+<article class="sheet">
+  <header class="hero">
+    <div>
+      <div class="hero-badge">CTE Informático · Inventário INV-005 · 4 Unidades · Estúdio 4C &amp; SC - LMAS</div>
+      <h1>Cricut Maker 3 — Guia de Início Rápido</h1>
+      <p class="sub">Impressora de Corte Inteligente · Força até 4 kg · Design Space · Bluetooth / USB</p>
+      <div class="kpi-row">
+        <div class="kpi"><strong>25 cm Livres</strong><span>Atrás &amp; à Frente</span></div>
+        <div class="kpi"><strong>24 V / 3 A</strong><span>Fonte Oficial + USB</span></div>
+        <div class="kpi"><strong>Suportes A / B</strong><span>Caneta · Lâmina</span></div>
+        <div class="kpi"><strong>HTV = Espelhar</strong><span>Brilhante p/ Baixo</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 120 90" width="90" height="68" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="16" width="100" height="52" rx="10" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <line x1="18" y1="42" x2="102" y2="42" stroke="#C7D6E5" stroke-width="2"/>
+        <rect x="42" y="29" width="22" height="22" rx="4" fill="#1F2A36" stroke="#E8711C" stroke-width="2.2"/>
+        <circle cx="88" cy="26" r="4" fill="#fff"/>
+        <circle cx="99" cy="26" r="2.8" fill="#4CE0F5" stroke="none"/>
+        <rect x="24" y="54" width="72" height="24" rx="3" fill="rgba(255,255,255,0.14)" stroke="#C7D6E5" stroke-width="1.6"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- BLOCO 1: 6 PASSOS -->
+    <section>
+      <h2 class="section-title teal"><span class="tag">1</span> Do Projeto ao Corte Seguro em 6 Passos</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">1</span><h3>Bancada &amp; Energia (24 V)</h3></div>
+          <p>Deixar ≥ <strong>25 cm livres atrás</strong>. Ligar fonte oficial <strong>24 V / 3 A</strong> + cabo <strong>USB</strong> (ou Bluetooth) e confirmar luz <strong>Branca fixa</strong>.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">2</span><h3>Preparar no Design Space</h3></div>
+          <p>Usar Win/Mac/iOS/Android (sem Chromebooks!). Juntar elementos com <strong>Anexar</strong>. Se for vinil HTV, ativar <strong>Espelhar (ON)</strong>!</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">3</span><h3>Confirmar Suportes A &amp; B</h3></div>
+          <p><strong>Suporte A:</strong> canetas/vinco. <strong>Suporte B:</strong> lâmina assente plana — fechar <strong>1.º aba esquerda</strong>, depois direita.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">4</span><h3>Fixar Material &amp; Carregar</h3></div>
+          <p>Alinhar tapete (ou <em>Smart Material</em> ≥ 33×15,2 cm) às guias laterais e premir <strong>Carregar (↑↓)</strong>. HTV = lado brilhante p/ baixo!</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">5</span><h3>Cortar &amp; Vigiar</h3></div>
+          <p>Premir <strong>Iniciar (▶)</strong> quando piscar. Nunca meter dedos na calha nem puxar o tapete em movimento; usar <strong>Pausa</strong> se precisar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">6</span><h3>Descarregar &amp; Proteger</h3></div>
+          <p>Premir <strong>Descarregar (↑↓)</strong>. Dobrar o tapete ao contrário p/ descolar papel e repor sempre a <strong>película protetora</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO 2: ANATOMIA + LUZES/TAPETES -->
+    <div class="mid-grid">
+      <section class="panel">
+        <h2 class="section-title acc"><span class="tag">2</span> Anatomia da Cricut Maker 3</h2>
+        <div class="anatomy-wrap">
+          <svg viewBox="0 0 144 130" width="118" height="108" aria-label="Esquema dos componentes da Cricut Maker 3">
+            <!-- Corpo -->
+            <rect x="12" y="20" width="120" height="72" rx="12" fill="#EEF2F6" stroke="#1F2A36" stroke-width="2.2"/>
+            <!-- Tampa aberta / ranhura -->
+            <rect x="20" y="28" width="84" height="36" rx="5" fill="#fff" stroke="#5B6672" stroke-width="1.5"/>
+            <!-- Calha -->
+            <line x1="22" y1="42" x2="102" y2="42" stroke="#1F2A36" stroke-width="2.2"/>
+            <!-- Carro A & B -->
+            <rect x="44" y="34" width="14" height="19" rx="3" fill="#2C3B4B" stroke="#1F2A36" stroke-width="1.5"/>
+            <text x="51" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">A</text>
+            <rect x="60" y="34" width="14" height="19" rx="3" fill="#1E7E8C" stroke="#1F2A36" stroke-width="1.5"/>
+            <text x="67" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">B</text>
+            <!-- Barra de rolos & star wheels -->
+            <line x1="22" y1="58" x2="102" y2="58" stroke="#5B6672" stroke-width="2"/>
+            <circle cx="38" cy="58" r="2.2" fill="#1F2A36"/>
+            <circle cx="56" cy="58" r="2.2" fill="#1F2A36"/>
+            <circle cx="74" cy="58" r="2.2" fill="#1F2A36"/>
+            <circle cx="92" cy="58" r="2.2" fill="#1F2A36"/>
+            <!-- Painel botões dir. -->
+            <circle cx="117" cy="34" r="4.5" fill="#fff" stroke="#1F2A36" stroke-width="1.6"/>
+            <circle cx="117" cy="48" r="4" fill="#1E7E8C"/>
+            <circle cx="117" cy="61" r="4" fill="#E8711C"/>
+            <!-- Tapete a sair na frente -->
+            <rect x="30" y="76" width="66" height="38" rx="3" fill="#E8F6EF" stroke="#1E8449" stroke-width="1.8"/>
+            <!-- Pins -->
+            <circle cx="44" cy="22" r="8" fill="#1D63B8"/><text x="44" y="25.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">1</text>
+            <circle cx="72" cy="22" r="8" fill="#E8711C"/><text x="72" y="25.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">2</text>
+            <circle cx="127" cy="22" r="8" fill="#1F2A36"/><text x="127" y="25.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">3</text>
+            <circle cx="92" cy="68" r="8" fill="#1E7E8C"/><text x="92" y="71.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">4</text>
+            <circle cx="24" cy="94" r="8" fill="#1E8449"/><text x="24" y="97.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">5</text>
+          </svg>
+          <ul class="anatomy-list">
+            <li><span class="pin blue">1</span><div><strong>Suporte A (Esq.):</strong> Canetas Cricut e estilete de vinco (descer até assentar sem forçar).</div></li>
+            <li><span class="pin">2</span><div><strong>Suporte B (Dir.):</strong> Lâminas e ferramentas <em>QuickSwap</em>. Fechar <strong>1.º aba esq.</strong>, depois dir.</div></li>
+            <li><span class="pin dark">3</span><div><strong>Botões:</strong> Energia (LED estado), Carregar (↑↓), Iniciar (▶) e Pausa (⏸).</div></li>
+            <li><span class="pin teal">4</span><div><strong>Rodinhas Estrela:</strong> Uniformes p/ <em>Print Then Cut</em>; à direita só p/ couro/feltro/espuma.</div></li>
+            <li><span class="pin" style="background:var(--green)">5</span><div><strong>Guias &amp; Tapete:</strong> Encostar tapete às guias antes de premir Carregar (↑↓).</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title"><span class="tag">3</span> Luzes LED &amp; Cores dos Tapetes</h2>
+        <table class="mini">
+          <thead><tr><th>Luz Botão Energia</th><th>Significado &amp; Ação</th></tr></thead>
+          <tbody>
+            <tr><td><span class="led-dot led-white"></span><strong>Branco fixo / a piscar</strong></td><td>Pronta a cortar / A processar ou aguarda botão.</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Vermelho + Carregar Branco</strong></td><td>Atualização de <em>firmware</em> — ligar por <strong>cabo USB</strong>.</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Vermelho fixo / a piscar</strong></td><td>Fonte 24 V/3 A, sensores sujos ou espaço traseiro preso.</td></tr>
+            <tr><td><span class="led-dot led-purple"></span><strong>Roxo (fixo / a piscar)</strong></td><td>Bluetooth + erro vermelho — ligar por <strong>cabo USB</strong>.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini" style="margin-bottom:0">
+          <thead><tr><th>Tapete de Corte</th><th>Materiais Recomendados</th></tr></thead>
+          <tbody>
+            <tr><td><span class="mat-dot" style="background:#3B82F6"></span><strong>LightGrip (Azul)</strong></td><td>Papel fino, cartolina leve, papel vegetal.</td></tr>
+            <tr><td><span class="mat-dot" style="background:#22C55E"></span><strong>StandardGrip (Verde)</strong></td><td>Cartolina forte, <strong>vinil adesivo</strong>, <strong>vinil HTV</strong>.</td></tr>
+            <tr><td><span class="mat-dot" style="background:#8B5CF6"></span><strong>StrongGrip (Roxo)</strong></td><td>Cartão prensado, couro, madeira balsa, purpurina.</td></tr>
+            <tr><td><span class="mat-dot" style="background:#EC4899"></span><strong>FabricGrip (Rosa)</strong></td><td>Tecidos e feltro (usar com Lâmina Rotativa).</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- BLOCO 3: 5 REGRAS DE OURO -->
+    <section class="rules-box">
+      <h2 class="section-title red" style="border-bottom-color:#F0CFCB;margin-bottom:7px"><span class="tag">!</span> 5 Regras de Ouro da Cricut Maker 3 (CTE · INV-005)</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>1. 25 cm Livres Atrás</strong>Nunca encostar à parede — o tapete ou vinil precisa de 25 cm livres atrás e à frente.</div>
+        <div class="rule-item"><strong>2. Fonte 24 V / 3 A</strong>Usar só o adaptador oficial 24 V/3 A; nunca trocar por fontes antigas de 18 V ou 2,5 A.</div>
+        <div class="rule-item"><strong>3. Dedos &amp; Lâminas</strong>Nunca tocar no carro em movimento (força 4 kg!) nem na ponta da lâmina sem capa protetora.</div>
+        <div class="rule-item"><strong>4. HTV = Espelhar!</strong>Em vinil termocolante: Espelhar ON, lado brilhante p/ baixo e NUNCA usar Transfer Tape!</div>
+        <div class="rule-item"><strong>5. Tapete &amp; Limpeza</strong>Dobrar tapete p/ descolar, repor película protetora e NUNCA usar ar comprimido/acetona.</div>
+      </div>
+    </section>
+
+    <!-- BLOCO 4: CHECKLIST + VINIL + QR CODE -->
+    <div class="bottom-grid">
+      <section class="check-box">
+        <h2 class="section-title green" style="border-bottom-color:#C5E5D2;margin-bottom:6px"><span class="tag">✓</span> Checklist de Devolução (INV-005)</h2>
+        <ul class="check-list">
+          <li><label><input type="checkbox" id="cr3-iq-1"><span><strong>Máquina desligada</strong> e cabos USB / 24 V arrumados.</span></label></li>
+          <li><label><input type="checkbox" id="cr3-iq-2"><span><strong>Tapete limpo</strong> e com <strong>película protetora transparente</strong>.</span></label></li>
+          <li><label><input type="checkbox" id="cr3-iq-3"><span><strong>Lâminas com capa</strong>, ferramentas arrumadas e rodinhas centradas.</span></label></li>
+          <li><label><input type="checkbox" id="cr3-iq-4"><span><strong>Reportado ao CTE</strong> lâmina gasta, tapete ou luz vermelha.</span></label></li>
+        </ul>
+      </section>
+
+      <section class="net-box">
+        <h2 class="section-title" style="border-bottom-color:#C5DBF2;margin-bottom:6px"><span class="tag" style="background:var(--blue)">±</span> Adesivo vs. Termocolante (HTV)</h2>
+        <ul>
+          <li><strong>Vinil Adesivo:</strong> Face colorida <strong>p/ cima</strong> · Espelhar <strong>OFF</strong> · Usar <em>Transfer Tape</em>.</li>
+          <li><strong>HTV (<em>Iron-On</em>):</strong> Lado brilhante <strong>p/ baixo</strong> · Espelhar <strong>ON</strong> · <strong>Sem</strong> <em>Transfer Tape</em>.</li>
+          <li><strong>Design Space:</strong> Win 10+, Mac 11+, iOS/Android (sem Linux/Chromebook).</li>
+        </ul>
+      </section>
+
+      <aside class="qr-box" aria-label="Código QR para abrir o Diagnóstico Rápido online">
+        <div class="qr-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" width="72" height="72" shape-rendering="crispEdges" role="img" aria-label="Código QR para https://aem-cte-ajuda.netlify.app/Cricut_Maker_3/#diagnostico"><rect width="41" height="41" fill="#fff"/><path fill="#111827" d="M4 4h7v1h-7zM12 4h1v1h-1zM14 4h2v1h-2zM17 4h1v1h-1zM22 4h2v1h-2zM25 4h3v1h-3zM30 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM16 5h2v1h-2zM20 5h2v1h-2zM26 5h3v1h-3zM30 5h1v1h-1zM36 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM16 6h3v1h-3zM20 6h1v1h-1zM22 6h2v1h-2zM27 6h1v1h-1zM30 6h1v1h-1zM32 6h3v1h-3zM36 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM16 7h1v1h-1zM21 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM30 7h1v1h-1zM32 7h3v1h-3zM36 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM13 8h2v1h-2zM17 8h4v1h-4zM23 8h1v1h-1zM26 8h1v1h-1zM28 8h1v1h-1zM30 8h1v1h-1zM32 8h3v1h-3zM36 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM18 9h1v1h-1zM21 9h4v1h-4zM28 9h1v1h-1zM30 9h1v1h-1zM36 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h7v1h-7zM12 11h1v1h-1zM15 11h1v1h-1zM18 11h2v1h-2zM21 11h1v1h-1zM24 11h1v1h-1zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h3v1h-3zM13 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM21 12h2v1h-2zM25 12h1v1h-1zM27 12h1v1h-1zM30 12h1v1h-1zM33 12h1v1h-1zM35 12h2v1h-2zM4 13h1v1h-1zM7 13h3v1h-3zM12 13h2v1h-2zM15 13h1v1h-1zM17 13h1v1h-1zM20 13h1v1h-1zM22 13h4v1h-4zM27 13h1v1h-1zM30 13h2v1h-2zM33 13h2v1h-2zM36 13h1v1h-1zM4 14h5v1h-5zM10 14h1v1h-1zM12 14h3v1h-3zM16 14h2v1h-2zM22 14h1v1h-1zM24 14h2v1h-2zM27 14h7v1h-7zM36 14h1v1h-1zM4 15h1v1h-1zM7 15h2v1h-2zM11 15h1v1h-1zM15 15h2v1h-2zM19 15h1v1h-1zM22 15h3v1h-3zM26 15h1v1h-1zM28 15h1v1h-1zM31 15h1v1h-1zM33 15h1v1h-1zM35 15h1v1h-1zM6 16h1v1h-1zM8 16h4v1h-4zM16 16h1v1h-1zM18 16h2v1h-2zM21 16h1v1h-1zM25 16h5v1h-5zM32 16h2v1h-2zM6 17h4v1h-4zM11 17h1v1h-1zM13 17h2v1h-2zM17 17h4v1h-4zM23 17h1v1h-1zM26 17h1v1h-1zM28 17h2v1h-2zM31 17h1v1h-1zM34 17h2v1h-2zM6 18h1v1h-1zM10 18h1v1h-1zM13 18h1v1h-1zM15 18h2v1h-2zM18 18h1v1h-1zM21 18h3v1h-3zM28 18h1v1h-1zM30 18h2v1h-2zM33 18h2v1h-2zM4 19h2v1h-2zM7 19h1v1h-1zM12 19h1v1h-1zM14 19h3v1h-3zM19 19h1v1h-1zM22 19h1v1h-1zM24 19h3v1h-3zM28 19h4v1h-4zM33 19h2v1h-2zM7 20h5v1h-5zM13 20h3v1h-3zM18 20h2v1h-2zM22 20h1v1h-1zM24 20h2v1h-2zM27 20h1v1h-1zM29 20h2v1h-2zM32 20h2v1h-2zM4 21h1v1h-1zM7 21h1v1h-1zM9 21h1v1h-1zM14 21h1v1h-1zM16 21h1v1h-1zM19 21h1v1h-1zM21 21h1v1h-1zM24 21h4v1h-4zM29 21h2v1h-2zM32 21h2v1h-2zM36 21h1v1h-1zM5 22h2v1h-2zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM17 22h5v1h-5zM24 22h1v1h-1zM26 22h1v1h-1zM29 22h1v1h-1zM31 22h2v1h-2zM34 22h2v1h-2zM5 23h1v1h-1zM7 23h2v1h-2zM11 23h1v1h-1zM13 23h2v1h-2zM16 23h3v1h-3zM21 23h1v1h-1zM26 23h3v1h-3zM30 23h1v1h-1zM32 23h1v1h-1zM36 23h1v1h-1zM9 24h2v1h-2zM13 24h1v1h-1zM16 24h2v1h-2zM19 24h5v1h-5zM25 24h3v1h-3zM33 24h3v1h-3zM4 25h2v1h-2zM9 25h1v1h-1zM18 25h1v1h-1zM20 25h1v1h-1zM22 25h3v1h-3zM26 25h2v1h-2zM29 25h1v1h-1zM34 25h1v1h-1zM36 25h1v1h-1zM7 26h2v1h-2zM10 26h1v1h-1zM12 26h1v1h-1zM14 26h2v1h-2zM18 26h1v1h-1zM21 26h2v1h-2zM26 26h3v1h-3zM30 26h2v1h-2zM34 26h3v1h-3zM5 27h2v1h-2zM8 27h1v1h-1zM11 27h2v1h-2zM17 27h2v1h-2zM22 27h1v1h-1zM28 27h1v1h-1zM33 27h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h5v1h-5zM18 28h2v1h-2zM21 28h1v1h-1zM24 28h1v1h-1zM26 28h8v1h-8zM35 28h2v1h-2zM12 29h9v1h-9zM22 29h2v1h-2zM27 29h2v1h-2zM32 29h2v1h-2zM35 29h1v1h-1zM4 30h7v1h-7zM12 30h1v1h-1zM15 30h1v1h-1zM17 30h2v1h-2zM20 30h4v1h-4zM25 30h4v1h-4zM30 30h1v1h-1zM32 30h1v1h-1zM4 31h1v1h-1zM10 31h1v1h-1zM12 31h2v1h-2zM16 31h1v1h-1zM19 31h2v1h-2zM23 31h1v1h-1zM25 31h4v1h-4zM32 31h4v1h-4zM4 32h1v1h-1zM6 32h3v1h-3zM10 32h1v1h-1zM13 32h1v1h-1zM16 32h5v1h-5zM22 32h4v1h-4zM27 32h6v1h-6zM34 32h1v1h-1zM36 32h1v1h-1zM4 33h1v1h-1zM6 33h3v1h-3zM10 33h1v1h-1zM12 33h1v1h-1zM14 33h2v1h-2zM17 33h3v1h-3zM22 33h1v1h-1zM26 33h2v1h-2zM31 33h1v1h-1zM36 33h1v1h-1zM4 34h1v1h-1zM6 34h3v1h-3zM10 34h1v1h-1zM12 34h4v1h-4zM17 34h1v1h-1zM19 34h2v1h-2zM24 34h2v1h-2zM27 34h2v1h-2zM30 34h2v1h-2zM4 35h1v1h-1zM10 35h1v1h-1zM14 35h2v1h-2zM17 35h3v1h-3zM21 35h1v1h-1zM23 35h1v1h-1zM26 35h2v1h-2zM29 35h1v1h-1zM31 35h2v1h-2zM36 35h1v1h-1zM4 36h7v1h-7zM12 36h3v1h-3zM16 36h1v1h-1zM20 36h3v1h-3zM25 36h1v1h-1zM27 36h1v1h-1zM30 36h1v1h-1zM32 36h1v1h-1zM34 36h1v1h-1z"/></svg>
+        </div>
+        <strong>Algo não funciona?</strong>
+        <span>Leia este código para abrir o Diagnóstico Rápido</span>
+        <!-- QR Code SVG oficial offline (ISO/IEC 18004 V4-M) para https://aem-cte-ajuda.netlify.app/Cricut_Maker_3/#diagnostico -->
+      </aside>
+    </div>
+  </div>
+
+  <footer class="sheet-footer">
+    <span><strong>CTE Informático</strong> · Impressora de Corte Cricut Maker 3 · Inventário <strong>INV-005</strong> · Estúdio 4C &amp; SC - LMAS</span>
+    <span>Em caso de luz vermelha persistente ou carro preso: <strong>PARE, desligue da tomada e contacte o CTE</strong>.</span>
+  </footer>
+</article>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "cricut-infografico-check";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-list input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecks");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>

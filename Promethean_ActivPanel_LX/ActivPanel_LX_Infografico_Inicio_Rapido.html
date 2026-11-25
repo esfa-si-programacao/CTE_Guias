@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promethean ActivPanel LX (65&quot;) — Guia de Início Rápido (CTE · INV-186)</title>
+<meta name="description" content="Folha visual A4 dos Painéis Interativos Promethean ActivPanel LX (65&quot;) + OPS-A pronta a imprimir e plastificar junto ao painel: 6 passos, anatomia de portas e botões, LEDs, 5 regras de ouro, ligações PC/Screen Share e checklist de fim de aula.">
+<meta property="og:title" content="Promethean ActivPanel LX (65&quot;) — Guia de Início Rápido (Infográfico A4)">
+<meta property="og:description" content="Guia A4 pronto a imprimir para os 6 painéis ActivPanel LX + OPS-A (INV-186): arranque, entradas USB-C/HDMI+Touch, Screen Share e boas práticas.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='9' y='14' width='46' height='30' rx='4' fill='%231E7E8C' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M18 33 L26 24 L33 30 L45 20' fill='none' stroke='%23FFB37B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='49' x2='40' y2='49' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='2' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #E4E9EF;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.38;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+body { padding-bottom: 96px; }
+
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.86rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.topbar-in {
+  max-width: 1020px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+.toolbar {
+  max-width: 1020px;
+  margin: 14px auto 0;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.toolbar-info {
+  font-size: 0.85rem;
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 7px 13px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); color: #fff; border-color: var(--acc-btn); }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+
+.sheet {
+  max-width: 1020px;
+  margin: 12px auto 28px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(31, 42, 54, 0.12);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 18px 24px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 4px solid var(--acc);
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFD2B3;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 1.72rem;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.hero p.sub {
+  margin: 4px 0 0;
+  color: #C7D6E5;
+  font-size: 0.87rem;
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(105px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.kpi {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+}
+.kpi strong {
+  display: block;
+  font-size: 0.96rem;
+  color: #FFB37B;
+  line-height: 1.15;
+}
+.kpi span {
+  font-size: 0.68rem;
+  color: #D2DFEC;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.hero-art {
+  width: 112px;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.content {
+  padding: 15px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--dark);
+  margin: 0 0 7px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--light);
+}
+.section-title .tag {
+  background: var(--dark);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.section-title.red .tag { background: var(--red-text); }
+.section-title.teal .tag { background: var(--teal-text); }
+.section-title.acc .tag { background: var(--acc-btn); }
+.section-title.green .tag { background: var(--green-text); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+.step-card {
+  background: var(--light);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-card h3 { margin: 0; font-size: 0.85rem; color: var(--dark); }
+.step-card p { margin: 0; font-size: 0.77rem; color: #364554; }
+
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: 13px;
+  align-items: stretch;
+}
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: #fff;
+}
+
+.anatomy-wrap {
+  display: grid;
+  grid-template-columns: 126px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.anatomy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.75rem;
+}
+.anatomy-list li {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+.pin {
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--acc);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.pin.blue { background: var(--blue); }
+.pin.teal { background: var(--teal); }
+.pin.dark { background: var(--dark); }
+.pin.red { background: var(--red); }
+
+table.mini {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.73rem;
+  margin-bottom: 8px;
+}
+table.mini th, table.mini td {
+  border: 1px solid var(--line);
+  padding: 3.5px 7px;
+  text-align: left;
+  vertical-align: middle;
+}
+table.mini thead th {
+  background: var(--dark);
+  color: #fff;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+table.mini tbody tr:nth-child(even) { background: var(--light); }
+
+.led-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.22);
+}
+.led-blue { background: #2563EB; }
+.led-red { background: #DC2626; }
+.led-white { background: #fff; box-shadow: 0 0 4px #64748B; }
+.led-amber { background: #F59E0B; }
+.led-off { background: #475569; }
+
+.rules-box {
+  background: var(--red-soft);
+  border: 1.5px solid #E5B4AE;
+  border-left: 5px solid var(--red);
+  border-radius: 9px;
+  padding: 9px 12px;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.rule-item {
+  background: #fff;
+  border: 1px solid #F0CFCB;
+  border-radius: 7px;
+  padding: 6px 8px;
+  font-size: 0.73rem;
+}
+.rule-item strong {
+  display: block;
+  color: var(--red-text);
+  font-size: 0.76rem;
+  margin-bottom: 2px;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 145px;
+  gap: 11px;
+  align-items: stretch;
+}
+.check-box {
+  background: var(--green-soft);
+  border: 1px solid #B7DEC8;
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  padding: 9px 11px;
+}
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.74rem;
+}
+.check-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  cursor: pointer;
+}
+.check-list input { margin-top: 2px; accent-color: var(--green); }
+.check-list input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+.net-box {
+  background: var(--blue-soft);
+  border: 1px solid #BBD4F0;
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 0.74rem;
+}
+.net-box ul { margin: 0; padding-left: 15px; }
+.net-box li { margin: 3px 0; }
+
+.qr-box {
+  border: 1.5px dashed var(--grey);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--light);
+  font-size: 0.68rem;
+  color: var(--grey);
+}
+.qr-placeholder {
+  width: 78px;
+  height: 78px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  padding: 4px;
+}
+.qr-box strong { color: var(--dark); font-size: 0.72rem; display: block; }
+
+.sheet-footer {
+  background: var(--dark);
+  color: #C7D6E5;
+  font-size: 0.72rem;
+  padding: 7px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sheet-footer strong { color: #fff; }
+
+.fab-help {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .mid-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .topbar { padding: 8px 14px; }
+  .sheet { margin-left: 8px; margin-right: 8px; }
+  header.hero { grid-template-columns: 1fr; padding: 14px 16px; }
+  .hero-art { display: none; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .anatomy-wrap { grid-template-columns: 1fr; justify-items: center; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.85rem; }
+  table.mini { font-size: 0.81rem; }
+  .fab-help { right: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.84rem; }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 4.5mm;
+}
+@media print {
+  html, body {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.22 !important;
+  }
+  .topbar, .toolbar, .fab-help { display: none !important; }
+  .sheet {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+  }
+  header.hero { grid-template-columns: 1fr auto !important; padding: 8px 13px 7px !important; gap: 10px !important; }
+  .hero-art { display: flex !important; width: 86px !important; height: 70px !important; }
+  .hero-art svg { width: 78px !important; height: 58px !important; }
+  .hero-badge { font-size: 0.62rem !important; padding: 2px 7px !important; margin-bottom: 3px !important; }
+  .hero h1 { font-size: 1.24rem !important; }
+  .hero p.sub { font-size: 0.74rem !important; margin-top: 2px !important; }
+  .kpi-row { grid-template-columns: repeat(4, 1fr) !important; margin-top: 5px !important; gap: 5px !important; }
+  .kpi { padding: 3px 5px !important; }
+  .kpi strong { font-size: 0.8rem !important; }
+  .kpi span { font-size: 0.58rem !important; }
+  .content { padding: 7px 11px 7px !important; gap: 6px !important; }
+  .section-title { font-size: 0.76rem !important; margin-bottom: 4px !important; padding-bottom: 2px !important; }
+  .steps-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 5px !important; }
+  .step-card { padding: 4.5px 6.5px !important; }
+  .step-head { margin-bottom: 2px !important; gap: 5px !important; }
+  .step-num { width: 17px !important; height: 17px !important; font-size: 0.68rem !important; }
+  .step-card h3 { font-size: 0.75rem !important; }
+  .step-card p, .anatomy-list, .rule-item, .check-list, .net-box { font-size: 0.66rem !important; line-height: 1.24 !important; }
+  .mid-grid { grid-template-columns: 1.05fr 1fr !important; gap: 6px !important; }
+  .panel { padding: 5.5px 7.5px !important; }
+  .anatomy-wrap { grid-template-columns: 98px 1fr !important; gap: 6px !important; }
+  .anatomy-wrap svg { width: 96px !important; height: 96px !important; }
+  .anatomy-list { gap: 2.5px !important; }
+  .pin { min-width: 15px !important; height: 15px !important; font-size: 0.6rem !important; }
+  table.mini { font-size: 0.64rem !important; margin-bottom: 4px !important; }
+  table.mini th, table.mini td { padding: 2px 4.5px !important; }
+  .rules-box { padding: 5.5px 7.5px !important; }
+  .rules-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 4.5px !important; }
+  .rule-item { padding: 4px 5.5px !important; }
+  .rule-item strong { font-size: 0.69rem !important; margin-bottom: 1px !important; }
+  .bottom-grid { grid-template-columns: 1.15fr 1fr 116px !important; gap: 6px !important; }
+  .check-box, .net-box { padding: 5.5px 7.5px !important; }
+  .check-list { gap: 2.5px !important; }
+  .net-box li { margin: 2px 0 !important; }
+  .qr-box { padding: 5px !important; font-size: 0.6rem !important; }
+  .qr-placeholder { width: 66px !important; height: 66px !important; margin-bottom: 3px !important; padding: 3px !important; }
+  .qr-placeholder svg { width: 60px !important; height: 60px !important; }
+  .sheet-footer { padding: 4.5px 11px !important; font-size: 0.63rem !important; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Promethean ActivPanel LX (65&quot;)</a> &rsaquo; Guia de Início Rápido</nav>
+    <div>Equipamento <strong>INV-186</strong> · 6 Salas / Oficinas</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-info">
+    <strong>Guia de Início Rápido A4 · Promethean ActivPanel LX (INV-186)</strong>
+    <span>Desenhado para consulta rápida online e impressão plastificada junto a cada painel.</span>
+  </div>
+  <div class="toolbar-actions">
+    <a class="btn" href="index.html">&larr; Página do ActivPanel</a>
+    <a class="btn" href="ActivPanel_LX_Manual_Utilizador.html">Manual Completo</a>
+    <a class="btn" href="ActivPanel_LX_Guia_Inicio_Rapido.pdf" download>Transferir PDF (A4)</a>
+    <button class="btn" type="button" id="resetChecks">Limpar Checklist</button>
+    <button class="btn btn-primary" type="button" onclick="window.print()">Imprimir / Guardar PDF (A4)</button>
+  </div>
+</div>
+
+<article class="sheet">
+  <header class="hero">
+    <div>
+      <div class="hero-badge">CTE Informático · Inventário INV-186 · 6 Unidades (STEM · TEC1 · TEC2 · D3 · O1 · O3)</div>
+      <h1>Promethean ActivPanel LX (65&quot;) — Guia de Início Rápido</h1>
+      <p class="sub">Ecrã Tátil 4K UHD · Módulo OPS-A (Android EDLA) · Gestão MDM · Colunas Frontais 2× 15 W</p>
+      <div class="kpi-row">
+        <div class="kpi"><strong>65&quot; · 4K UHD</strong><span>20 Pontos de Toque</span></div>
+        <div class="kpi"><strong>OPS-A Android</strong><span>Whiteboard &amp; Google</span></div>
+        <div class="kpi"><strong>USB-C = 1 Cabo</strong><span>Vídeo + Som + Toque</span></div>
+        <div class="kpi"><strong>Screen Share</strong><span>Código 6 Dígitos (4×)</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 150 110" width="96" height="72" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="12" y="10" width="126" height="72" rx="6" fill="rgba(255,255,255,0.08)"/>
+        <rect x="18" y="16" width="114" height="56" rx="3" fill="rgba(30,126,140,0.35)" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/>
+        <path d="M34 52 L54 34 L72 47 L96 26 L114 38" stroke="#FFB37B" stroke-width="3"/>
+        <circle cx="75" cy="77" r="2.2" fill="#4CE0F5" stroke="none"/>
+        <line x1="50" y1="82" x2="46" y2="96" stroke="#C7D6E5"/>
+        <line x1="100" y1="82" x2="104" y2="96" stroke="#C7D6E5"/>
+        <line x1="36" y1="96" x2="114" y2="96" stroke-width="3"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- BLOCO 1: 6 PASSOS -->
+    <section>
+      <h2 class="section-title teal"><span class="tag">1</span> Da Entrada na Sala ao Standby em 6 Passos</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">1</span><h3>Confirmar Energia e Rodas</h3></div>
+          <p>Verifique os <strong>travões das rodas bloqueados</strong> (suportes <code>INV-191</code>). Se o LED estiver apagado, ligue o interruptor traseiro (<code>I</code>).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">2</span><h3>Acordar o Painel</h3></div>
+          <p>Com o LED <strong>vermelho fixo</strong>, prima 1 vez <strong>Energia</strong> na consola frontal (ou comando IR) e aguarde ~15 s pelo arranque.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">3</span><h3>Usar o OPS-A (Android)</h3></div>
+          <p>Na entrada <strong>OPS</strong>, use <strong>Whiteboard / Explain Everything</strong>, Chrome, Drive, <em>Annotate</em>, <em>Timer</em> e <em>Spinner</em> sem precisar de PC.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">4</span><h3>Ligar Portátil ou Espelhar</h3></div>
+          <p>Ligue <strong>1 cabo USB-C</strong> (vídeo+toque+som) ou <strong>HDMI + USB-B Touch</strong>, ou abra <strong>Screen Share</strong> (código 6 dígitos) e mude a Fonte.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">5</span><h3>Anotar, Congelar e Guardar</h3></div>
+          <p>Use <strong>Freeze</strong> para fixar o ecrã, a <strong>palma da mão</strong> para apagar no quadro e exporte apontamentos em PDF para o Drive.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">6</span><h3>Fechar Contas e Standby</h3></div>
+          <p><strong>Termine a sessão Google</strong> no OPS-A, pouse as <strong>2 canetas</strong> na bandeja e prima Energia para <strong>Standby</strong> (LED vermelho).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO 2: ANATOMIA + BOTÕES/LEDS -->
+    <div class="mid-grid">
+      <section class="panel">
+        <h2 class="section-title acc"><span class="tag">2</span> Anatomia, Portas e Acessórios</h2>
+        <div class="anatomy-wrap">
+          <svg viewBox="0 0 155 155" width="124" height="124" aria-label="Esquema numerado do Promethean ActivPanel LX">
+            <rect x="10" y="16" width="135" height="84" rx="7" fill="#1F2A36"/>
+            <rect x="16" y="22" width="123" height="65" rx="3" fill="#E6F4F6" stroke="#1E7E8C" stroke-width="1.8"/>
+            <path d="M32 66 L54 46 L76 58 L104 34 L122 46" fill="none" stroke="#1E7E8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="52" y="90" width="52" height="7" rx="3" fill="#0F172A"/>
+            <line x1="48" y1="100" x2="43" y2="122" stroke="#2C3B4B" stroke-width="4" stroke-linecap="round"/>
+            <line x1="107" y1="100" x2="112" y2="122" stroke="#2C3B4B" stroke-width="4" stroke-linecap="round"/>
+            <line x1="30" y1="122" x2="125" y2="122" stroke="#1F2A36" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- Pins -->
+            <circle cx="26" cy="96" r="8.5" fill="#E8711C"/><text x="26" y="99.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1</text>
+            <circle cx="77" cy="96" r="8.5" fill="#1E7E8C"/><text x="77" y="99.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">2</text>
+            <circle cx="126" cy="96" r="8.5" fill="#1D63B8"/><text x="126" y="99.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">3</text>
+            <circle cx="136" cy="36" r="8.5" fill="#1F2A36"/><text x="136" y="39.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">4</text>
+            <circle cx="136" cy="68" r="8.5" fill="#C0392B"/><text x="136" y="71.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">5</text>
+            <circle cx="77" cy="138" r="8.5" fill="#1E8449"/><text x="77" y="141.5" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">6</text>
+          </svg>
+          <ul class="anatomy-list">
+            <li><span class="pin">1</span><div><strong>Portas Frontais:</strong> <code>USB-C</code> (vídeo+som+toque+15 W), <code>HDMI</code>, <code>USB-B Touch</code> e <code>USB-A</code> (pen USB).</div></li>
+            <li><span class="pin teal">2</span><div><strong>Consola Central:</strong> Botões físicos (Energia + LED, Fonte, Vol &minus;/+, <strong>Freeze</strong>, Definições).</div></li>
+            <li><span class="pin blue">3</span><div><strong>Bandeja Magnética:</strong> <strong>2 canetas passivas</strong> (sem pilhas) + 2 colunas frontais 15 W.</div></li>
+            <li><span class="pin dark">4</span><div><strong>Traseira — OPS-A &amp; LAN:</strong> Módulo Android EDLA + 2× HDMI, 2× Touch, Áudio 3,5 mm e RJ45 In/Out.</div></li>
+            <li><span class="pin red">5</span><div><strong>Traseira — AC &amp; I/O:</strong> Cabo de corrente e interruptor físico (<code>I</code> ligado / <code>O</code> corte total).</div></li>
+            <li><span class="pin" style="background:var(--green)">6</span><div><strong>Suporte Móvel (<code>INV-191</code>):</strong> 4 rodas c/ travão — bloquear sempre durante a aula!</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title"><span class="tag">3</span> Consola Frontal &amp; LEDs de Estado</h2>
+        <table class="mini">
+          <thead><tr><th>Botão Frontal</th><th>Função Rápida</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Energia (Power)</strong></td><td>1 toque: Liga / <strong>Standby</strong> (&le; 0,5 W).</td></tr>
+            <tr><td><strong>Fonte (Input)</strong></td><td>Alterna <strong>OPS</strong>, USB-C, HDMI Frontal e HDMI 1/2.</td></tr>
+            <tr><td><strong>Volume (&minus; / +)</strong></td><td>Ajusta som das colunas frontais (30 W).</td></tr>
+            <tr><td><strong>Freeze</strong></td><td>Congela/descongela a imagem atual no ecrã.</td></tr>
+            <tr><td><strong>Definições (OSD)</strong></td><td>Menu rápido de brilho, imagem e áudio.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini" style="margin-bottom:0">
+          <thead><tr><th>LED de Energia</th><th>Significado &amp; Ação</th></tr></thead>
+          <tbody>
+            <tr><td><span class="led-dot led-blue"></span><strong>Azul / Branco fixo</strong></td><td>Ligado e ativo (se preto, mudar Fonte).</td></tr>
+            <tr><td><span class="led-dot led-red"></span><strong>Vermelho fixo</strong></td><td><strong>Standby</strong> normal — premir Energia p/ acordar.</td></tr>
+            <tr><td><span class="led-dot led-white"></span><strong>A pulsar / piscar</strong></td><td>A arrancar ou atualizar MDM — <strong>aguardar</strong>.</td></tr>
+            <tr><td><span class="led-dot led-amber"></span><strong>Âmbar / Sem sinal</strong></td><td>Fonte sem vídeo — <code>Win + P</code> ou mudar p/ OPS.</td></tr>
+            <tr><td><span class="led-dot led-off"></span><strong>Apagado / Piscar Verm.</strong></td><td>Confirmar AC + interruptor <code>I</code> / Reset 60 s.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- BLOCO 3: 5 REGRAS DE OURO -->
+    <section class="rules-box">
+      <h2 class="section-title red" style="border-bottom-color:#F0CFCB;margin-bottom:6px"><span class="tag">!</span> 5 Regras de Ouro Obrigatórias (Painéis Promethean INV-186)</h2>
+      <div class="rules-grid">
+        <div class="rule-item"><strong>1. Zero Marcadores</strong>Use apenas o dedo ou as 2 canetas do painel. NUNCA marcadores reais nem objetos rígidos.</div>
+        <div class="rule-item"><strong>2. Zero Sprays no Vidro</strong>Nunca pulverize líquidos no ecrã (entram na moldura tátil). Use apenas microfibra seca.</div>
+        <div class="rule-item"><strong>3. Rodas &amp; Cabos</strong>Mantenha os travões bloqueados. Antes de mover (2 adultos), desligue todos os cabos!</div>
+        <div class="rule-item"><strong>4. Standby, Não Corte</strong>Termine em <strong>Standby</strong> (LED vermelho). Nunca corte no interruptor traseiro <code>O</code> a quente.</div>
+        <div class="rule-item"><strong>5. Fechar Sessões</strong>Ao usar Google Drive ou Chrome no OPS-A, termine sempre a sessão antes de sair da sala.</div>
+      </div>
+    </section>
+
+    <!-- BLOCO 4: CHECKLIST + LIGAÇÕES + QR CODE -->
+    <div class="bottom-grid">
+      <section class="check-box">
+        <h2 class="section-title green" style="border-bottom-color:#C5E5D2;margin-bottom:6px"><span class="tag">✓</span> Checklist de Fim de Aula</h2>
+        <ul class="check-list">
+          <li><label><input type="checkbox" id="ap-iq-1"><span><strong>Sessão encerrada:</strong> Conta Google / Chrome / Drive fechados no OPS-A.</span></label></li>
+          <li><label><input type="checkbox" id="ap-iq-2"><span><strong>Cabos desligados:</strong> Portátil retirado pela ficha sem puxar fios.</span></label></li>
+          <li><label><input type="checkbox" id="ap-iq-3"><span><strong>Acessórios completos:</strong> 2 canetas na bandeja + comando IR no lugar.</span></label></li>
+          <li><label><input type="checkbox" id="ap-iq-4"><span><strong>Standby e rodas travadas:</strong> LED vermelho fixo; avisar CTE se houver falha.</span></label></li>
+        </ul>
+      </section>
+
+      <section class="net-box">
+        <h2 class="section-title" style="border-bottom-color:#C5DBF2;margin-bottom:6px"><span class="tag" style="background:var(--blue)">PC</span> Ligar Portátil &amp; Screen Share</h2>
+        <ul>
+          <li><strong>USB-C (1 cabo):</strong> Vídeo + áudio + toque + 15 W (use cabo de dados/vídeo, não de telemóvel).</li>
+          <li><strong>HDMI + Toque:</strong> Ligue <strong>HDMI</strong> + cabo <strong>USB-B Touch</strong> pareado; no PC use <code>Win + P</code> e saída som <em>ActivPanel</em>.</li>
+          <li><strong>Screen Share (OPS-A):</strong> Abrir app &rarr; código <strong>6 dígitos</strong> &rarr; aprovar na <strong>Sala de Espera</strong> (até 4 ecrãs).</li>
+          <li><strong>Plano B / Freeze:</strong> Ecrã parado? Prima <em>Freeze</em>! Wi-Fi lento? Ligue cabo USB-C ou HDMI frontal.</li>
+        </ul>
+      </section>
+
+      <aside class="qr-box" aria-label="Código QR para abrir o Diagnóstico Rápido online do Promethean ActivPanel LX">
+        <div class="qr-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" width="72" height="72" shape-rendering="crispEdges" role="img" aria-label="Código QR para https://aem-cte-ajuda.netlify.app/Promethean_ActivPanel_LX/#diagnostico"><rect width="45" height="45" fill="#fff"/><path fill="#111827" d="M4 4h7v1h-7zM12 4h1v1h-1zM17 4h2v1h-2zM20 4h3v1h-3zM24 4h4v1h-4zM29 4h1v1h-1zM34 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM12 5h1v1h-1zM14 5h3v1h-3zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h3v1h-3zM26 5h3v1h-3zM34 5h1v1h-1zM40 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM13 6h1v1h-1zM16 6h1v1h-1zM19 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h2v1h-2zM29 6h2v1h-2zM32 6h1v1h-1zM34 6h1v1h-1zM36 6h3v1h-3zM40 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM17 7h1v1h-1zM19 7h1v1h-1zM23 7h1v1h-1zM26 7h1v1h-1zM29 7h2v1h-2zM34 7h1v1h-1zM36 7h3v1h-3zM40 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM13 8h2v1h-2zM16 8h9v1h-9zM28 8h4v1h-4zM34 8h1v1h-1zM36 8h3v1h-3zM40 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM13 9h4v1h-4zM18 9h1v1h-1zM20 9h1v1h-1zM23 9h1v1h-1zM28 9h1v1h-1zM30 9h1v1h-1zM34 9h1v1h-1zM40 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h7v1h-7zM12 11h5v1h-5zM18 11h1v1h-1zM21 11h2v1h-2zM24 11h1v1h-1zM27 11h2v1h-2zM32 11h1v1h-1zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h3v1h-3zM13 12h1v1h-1zM15 12h1v1h-1zM17 12h4v1h-4zM23 12h3v1h-3zM28 12h1v1h-1zM34 12h1v1h-1zM37 12h1v1h-1zM39 12h2v1h-2zM7 13h2v1h-2zM11 13h1v1h-1zM15 13h3v1h-3zM19 13h2v1h-2zM27 13h1v1h-1zM31 13h2v1h-2zM35 13h1v1h-1zM38 13h2v1h-2zM4 14h1v1h-1zM6 14h1v1h-1zM9 14h2v1h-2zM15 14h1v1h-1zM19 14h1v1h-1zM21 14h1v1h-1zM26 14h3v1h-3zM30 14h1v1h-1zM33 14h1v1h-1zM36 14h3v1h-3zM5 15h1v1h-1zM8 15h1v1h-1zM12 15h1v1h-1zM17 15h1v1h-1zM19 15h1v1h-1zM23 15h1v1h-1zM26 15h5v1h-5zM33 15h1v1h-1zM35 15h1v1h-1zM37 15h2v1h-2zM5 16h1v1h-1zM9 16h2v1h-2zM13 16h3v1h-3zM17 16h2v1h-2zM21 16h1v1h-1zM24 16h1v1h-1zM26 16h5v1h-5zM33 16h2v1h-2zM36 16h2v1h-2zM39 16h2v1h-2zM4 17h2v1h-2zM12 17h3v1h-3zM16 17h5v1h-5zM22 17h2v1h-2zM25 17h1v1h-1zM28 17h1v1h-1zM30 17h8v1h-8zM4 18h3v1h-3zM9 18h2v1h-2zM12 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h4v1h-4zM26 18h1v1h-1zM32 18h1v1h-1zM36 18h1v1h-1zM38 18h2v1h-2zM5 19h2v1h-2zM13 19h5v1h-5zM19 19h1v1h-1zM21 19h2v1h-2zM25 19h3v1h-3zM30 19h7v1h-7zM5 20h1v1h-1zM7 20h2v1h-2zM10 20h3v1h-3zM14 20h1v1h-1zM18 20h5v1h-5zM24 20h3v1h-3zM29 20h1v1h-1zM35 20h4v1h-4zM40 20h1v1h-1zM4 21h2v1h-2zM7 21h1v1h-1zM11 21h1v1h-1zM14 21h1v1h-1zM16 21h1v1h-1zM20 21h1v1h-1zM23 21h6v1h-6zM34 21h1v1h-1zM38 21h3v1h-3zM4 22h1v1h-1zM6 22h8v1h-8zM15 22h3v1h-3zM19 22h5v1h-5zM25 22h1v1h-1zM28 22h2v1h-2zM31 22h4v1h-4zM36 22h1v1h-1zM39 22h2v1h-2zM6 23h1v1h-1zM9 23h1v1h-1zM11 23h1v1h-1zM14 23h1v1h-1zM16 23h3v1h-3zM21 23h1v1h-1zM23 23h1v1h-1zM26 23h1v1h-1zM28 23h1v1h-1zM30 23h3v1h-3zM35 23h3v1h-3zM39 23h1v1h-1zM4 24h1v1h-1zM6 24h6v1h-6zM13 24h1v1h-1zM16 24h1v1h-1zM20 24h3v1h-3zM24 24h2v1h-2zM27 24h1v1h-1zM30 24h2v1h-2zM33 24h1v1h-1zM35 24h2v1h-2zM40 24h1v1h-1zM5 25h3v1h-3zM9 25h1v1h-1zM11 25h2v1h-2zM14 25h5v1h-5zM20 25h1v1h-1zM22 25h4v1h-4zM27 25h1v1h-1zM30 25h1v1h-1zM32 25h1v1h-1zM37 25h1v1h-1zM7 26h1v1h-1zM9 26h3v1h-3zM13 26h1v1h-1zM15 26h1v1h-1zM17 26h1v1h-1zM21 26h1v1h-1zM25 26h1v1h-1zM27 26h1v1h-1zM32 26h1v1h-1zM34 26h2v1h-2zM4 27h1v1h-1zM8 27h1v1h-1zM18 27h1v1h-1zM22 27h2v1h-2zM27 27h3v1h-3zM31 27h2v1h-2zM34 27h1v1h-1zM36 27h4v1h-4zM5 28h2v1h-2zM10 28h1v1h-1zM12 28h2v1h-2zM16 28h4v1h-4zM22 28h1v1h-1zM24 28h1v1h-1zM26 28h11v1h-11zM38 28h1v1h-1zM40 28h1v1h-1zM5 29h1v1h-1zM8 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM17 29h1v1h-1zM20 29h1v1h-1zM22 29h1v1h-1zM24 29h1v1h-1zM28 29h1v1h-1zM30 29h1v1h-1zM32 29h5v1h-5zM39 29h2v1h-2zM5 30h3v1h-3zM9 30h2v1h-2zM12 30h1v1h-1zM14 30h1v1h-1zM18 30h8v1h-8zM28 30h3v1h-3zM32 30h3v1h-3zM37 30h1v1h-1zM39 30h1v1h-1zM4 31h1v1h-1zM11 31h2v1h-2zM14 31h3v1h-3zM18 31h1v1h-1zM20 31h1v1h-1zM25 31h1v1h-1zM27 31h1v1h-1zM30 31h5v1h-5zM36 31h1v1h-1zM39 31h1v1h-1zM7 32h1v1h-1zM10 32h1v1h-1zM12 32h1v1h-1zM14 32h3v1h-3zM19 32h2v1h-2zM22 32h1v1h-1zM24 32h4v1h-4zM29 32h1v1h-1zM31 32h8v1h-8zM12 33h1v1h-1zM18 33h2v1h-2zM21 33h1v1h-1zM24 33h2v1h-2zM27 33h1v1h-1zM32 33h1v1h-1zM36 33h1v1h-1zM38 33h1v1h-1zM40 33h1v1h-1zM4 34h7v1h-7zM12 34h1v1h-1zM15 34h2v1h-2zM19 34h3v1h-3zM26 34h1v1h-1zM32 34h1v1h-1zM34 34h1v1h-1zM36 34h1v1h-1zM38 34h3v1h-3zM4 35h1v1h-1zM10 35h1v1h-1zM12 35h3v1h-3zM17 35h2v1h-2zM20 35h1v1h-1zM23 35h1v1h-1zM26 35h2v1h-2zM31 35h2v1h-2zM36 35h1v1h-1zM4 36h1v1h-1zM6 36h3v1h-3zM10 36h1v1h-1zM13 36h1v1h-1zM16 36h1v1h-1zM22 36h1v1h-1zM26 36h1v1h-1zM30 36h1v1h-1zM32 36h6v1h-6zM39 36h1v1h-1zM4 37h1v1h-1zM6 37h3v1h-3zM10 37h1v1h-1zM12 37h2v1h-2zM16 37h4v1h-4zM21 37h2v1h-2zM24 37h1v1h-1zM27 37h1v1h-1zM34 37h1v1h-1zM36 37h1v1h-1zM40 37h1v1h-1zM4 38h1v1h-1zM6 38h3v1h-3zM10 38h1v1h-1zM12 38h1v1h-1zM14 38h1v1h-1zM17 38h2v1h-2zM20 38h5v1h-5zM27 38h2v1h-2zM31 38h4v1h-4zM36 38h1v1h-1zM4 39h1v1h-1zM10 39h1v1h-1zM13 39h1v1h-1zM15 39h1v1h-1zM18 39h1v1h-1zM20 39h1v1h-1zM22 39h1v1h-1zM24 39h1v1h-1zM29 39h1v1h-1zM33 39h1v1h-1zM35 39h4v1h-4zM4 40h7v1h-7zM12 40h1v1h-1zM14 40h2v1h-2zM18 40h2v1h-2zM21 40h1v1h-1zM23 40h1v1h-1zM28 40h3v1h-3zM33 40h2v1h-2zM36 40h5v1h-5z"/></svg>
+        </div>
+        <strong>Algo não funciona?</strong>
+        <span>Leia este código para abrir o Diagnóstico Rápido</span>
+        <!-- QR Code SVG oficial offline (ISO/IEC 18004 V5-M) para https://aem-cte-ajuda.netlify.app/Promethean_ActivPanel_LX/#diagnostico -->
+      </aside>
+    </div>
+  </div>
+
+  <footer class="sheet-footer">
+    <span><strong>CTE Informático</strong> · Promethean ActivPanel LX 65&quot; + OPS-A · <strong>INV-186</strong> (STEM, TEC1, TEC2, D3, O1, O3)</span>
+    <span>Vidro danificado, infiltração de líquido ou falha repetida: <strong>PARE e contacte a equipa CTE</strong>.</span>
+  </footer>
+</article>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "activpanel-lx-infografico-check";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-list input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecks");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>

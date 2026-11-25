@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cricut Maker 3 — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para usar a Impressora de Corte Cricut Maker 3 do CTE: Design Space, suportes A/B, tapetes, vinil adesivo e HTV (Espelhar!), diagnóstico LED e devolução.">
+<meta property="og:title" content="Cricut Maker 3 — Cortar e criar na aula (CTE)">
+<meta property="og:description" content="Ajuda rápida para operar a Cricut Maker 3 (INV-005 · Estúdio 4C e SC - LMAS): Design Space, tapetes, suportes A/B, luzes LED e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='20' width='44' height='24' rx='6' fill='none' stroke='%23fff' stroke-width='2.8'/%3E%3Cline x1='15' y1='32' x2='49' y2='32' stroke='%234CE0F5' stroke-width='2.4'/%3E%3Crect x='25' y='25' width='14' height='12' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='1.8'/%3E%3Ccircle cx='46' cy='25' r='2.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-text: #5B2C6F;
+  --purple-soft: #F4ECF7;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.88rem; padding: 8px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.topbar-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 24px 20px 28px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.hero-media { width: 132px; height: 116px; border-radius: 14px; background: #fff; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 6px; }
+.hero-media.svg-fallback { background: rgba(255,255,255,0.07); }
+.hero-media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 { margin: 0; font-size: clamp(1.55rem, 3.6vw, 2.35rem); line-height: 1.14; }
+.hero .sub { color: #D4E1EE; font-size: 1.02rem; margin: 8px 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn-hero-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: var(--acc-btn); border: 2px solid var(--acc-btn); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 20px; border-radius: 9px; transition: background 0.15s ease, transform 0.15s ease; }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+.btn-hero-ai { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(108, 52, 131, 0.52); border: 1.5px solid rgba(226, 184, 248, 0.65); color: #F6E9FC; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-ai:hover { background: rgba(108, 52, 131, 0.82); border-color: #F6E9FC; }
+
+main.container { max-width: 1120px; width: 100%; margin: 18px auto 28px; padding: 0 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.card-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(31,42,54,0.05); }
+.sec-head { background: var(--light); border-bottom: 1px solid var(--line); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
+
+.percurso-grid { display: grid; grid-template-columns: 265px 1fr; gap: 14px; align-items: stretch; }
+.steps-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.step-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 11px; padding: 12px 14px; background: #FAFBFD; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.step-card.step-lead { border-top-color: var(--acc); background: #fff; }
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-lead .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 7px; border-top: 1px solid var(--line); }
+.action-link { font-size: 0.88rem; font-weight: 700; color: var(--acc-text); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
+
+.quick-visual { background: var(--light); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; display: flex; flex-direction: column; gap: 6px; }
+.qv-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; font-size: 0.82rem; line-height: 1.3; }
+.qv-key { min-width: 78px; text-align: center; font-weight: 800; font-size: 0.72rem; padding: 3px 6px; border-radius: 5px; background: var(--dark); color: #fff; flex-shrink: 0; }
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
+
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.shortcut-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; box-shadow: 0 3px 10px rgba(31,42,54,0.04); }
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note { margin-top: 4px !important; font-size: 0.84rem !important; color: var(--dark) !important; font-weight: 600; }
+.soon-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; background: var(--purple-soft); border: 1px solid #D7BDE2; color: var(--purple-text); font-size: 0.82rem; font-weight: 700; }
+.shortcut-alt { display: block; margin-top: 5px; font-size: 0.875rem; font-weight: 600; color: var(--teal-text); text-decoration: none; }
+.shortcut-alt:hover { text-decoration: underline; }
+
+.diag-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
+.led-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 10px; }
+.led-btn { font: inherit; font-size: 0.86rem; font-weight: 600; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--light); color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px; text-align: left; transition: all 0.14s ease; }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
+.led-orb { width: 15px; height: 15px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.22); }
+
+.diag-panel { border: 1.5px solid var(--line); border-left: 5px solid var(--teal); border-radius: 10px; padding: 13px 15px; background: var(--teal-soft); }
+.diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
+.diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
+.diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
+.diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(31,42,54,0.22); font-size: 0.88rem; color: var(--dark); }
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
+
+.sym-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.sym-btn { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; transition: all 0.14s ease; }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+.docs-list { list-style: none; margin: 0; padding: 0; }
+.doc-row { display: flex; justify-content: space-between; align-items: center; gap: 8px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fmt-link { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--light); color: var(--dark); white-space: nowrap; transition: border-color 0.14s ease, background 0.14s ease; }
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; list-style: none; padding: 0; margin: 0; }
+.check-grid label { display: flex; gap: 9px; align-items: flex-start; background: var(--light); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.88rem; }
+.check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
+.check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready { margin-top: 14px; padding: 12px 15px; border-radius: 9px; background: var(--green-soft); border: 1.5px solid var(--green); color: #124C2A; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 700; font-size: 0.94rem; }
+
+.btn { font: inherit; font-size: 0.88rem; font-weight: 700; border: 1.5px solid var(--line); background: #fff; color: var(--dark); padding: 7px 14px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
+
+.details-stack { display: flex; flex-direction: column; gap: 10px; }
+details.fold-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,42,54,0.04); }
+details.fold-box summary { list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: var(--dark); background: var(--light); display: flex; align-items: center; gap: 10px; }
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before { content: "▸"; display: inline-block; color: var(--acc-text); font-size: 1.05rem; transition: transform 0.15s ease; }
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.specs-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
+
+.ext-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; }
+.ext-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.ext-list a { font-size: 0.9rem; font-weight: 700; color: var(--teal-text); text-decoration: none; }
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+footer { text-align: center; padding: 16px 20px 96px; font-size: 0.88rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 960px) {
+  .percurso-grid { grid-template-columns: 1fr; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 88px; height: 78px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.38rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary, .btn-hero-ai { width: 100%; padding: 9px 16px; }
+  .fab-help { right: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.84rem; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
+}
+</style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; Cricut Maker 3</nav>
+    <span>CTE Informático</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): pode substituir cricut_maker_3.jpg por fotografia real de uma unidade do CTE -->
+      <img src="cricut_maker_3.jpg" alt="Impressora de corte Cricut Maker 3 com tapete verde e rolo de vinil" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 130 96" width="96" height="72" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="10" y="20" width="110" height="56" rx="11" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+        <line x1="20" y1="48" x2="110" y2="48" stroke="#C7D6E5" stroke-width="2.4"/>
+        <rect x="46" y="34" width="24" height="24" rx="4" fill="#1F2A36" stroke="#E8711C" stroke-width="2.4"/>
+        <circle cx="96" cy="31" r="4.5" fill="#fff"/>
+        <circle cx="108" cy="31" r="3" fill="#4CE0F5" stroke="none"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1>Cortar com a Cricut Maker 3 na aula</h1>
+      <p class="sub">Do Design Space aos tapetes, vinil ou cartolina e devolução segura, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+        <a class="btn-hero-ai" id="heroAiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Perguntar à IA &#8599;</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
+      <div>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem antes de ligar e cortar numa das 4 unidades Cricut Maker 3 (Estúdio 4C e Estúdio SC - LMAS).</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <article class="step-card step-lead">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o essencial (1 min)</h3></div>
+            <p>4 regras vitais para não estragar tapetes, lâminas nem material.</p>
+          </div>
+          <!-- FASE 3 (Vídeo): quando gravar o vídeo curto (60-90 s), pode substituir .quick-visual por:
+          <div class="video-box">
+            <video controls preload="metadata" src="Como_Cortar_na_Cricut_Maker_3.mp4#t=0.5">
+              <track kind="captions" src="Como_Cortar_na_Cricut_Maker_3.vtt" srclang="pt" label="Português" default>
+            </video>
+          </div>
+          -->
+          <div class="quick-visual" aria-label="4 regras vitais da Cricut Maker 3">
+            <div class="qv-item"><span class="qv-key red">25 CM ATRÁS</span><span class="qv-desc">Deixar 25 cm livres atrás para o tapete sair</span></div>
+            <div class="qv-item"><span class="qv-key acc">HTV = ESPELHO</span><span class="qv-desc">Termocolante: Espelhar ON + brilhante p/ baixo</span></div>
+            <div class="qv-item"><span class="qv-key teal">SUPORTE B</span><span class="qv-desc">Lâmina assente plana; 1.º aba esq., depois dir.</span></div>
+            <div class="qv-item"><span class="qv-key">PELÍCULA</span><span class="qv-desc">Repor película protetora no tapete no fim</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="Cricut_Maker_3_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+          </div>
+        </article>
+
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Operador</h3></div>
+              <p>8 perguntas sobre tapetes, Suportes A/B, segurança e HTV, com cartão imprimível.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="Cricut_Maker_3_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Preparar Design Space &amp; Tapete</h3></div>
+              <p>Instalar/abrir Design Space (Win/Mac/iOS/Android), escolher tapete pela cor e confirmar Suportes A/B.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="Cricut_Maker_3_Manual_Utilizador.html#s2-3">Compatibilidade &rarr;</a>
+              <a class="action-link teal" href="Cricut_Maker_3_Manual_Utilizador.html#s5-1">Tapetes e vinis &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Carregar, cortar e depilar</h3></div>
+              <p>Requisitar unidade, deixar 25 cm livres, alinhar às guias, cortar, depilar e transferir.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Requisitar &#8599;</a>
+              <a class="action-link teal" href="Cricut_Maker_3_Manual_Utilizador.html#s6">Passo a passo &rarr;</a>
+              <a class="action-link teal" href="Cricut_Maker_3_Manual_Utilizador.html#s7">Depilar e descolar &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Proteger tapete e devolver</h3></div>
+              <p>6 verificações (película no tapete, lâmina c/ capa, calha limpa, fonte 24 V/3 A).</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pela luz do botão Energia ou sintoma no corte.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Ideias de projetos</h3>
+          <p>5 propostas: autocolante, cartão com vinco, Print Then Cut, HTV e maquete SVG.</p>
+        </div>
+        <a class="action-link teal" href="Cricut_Maker_3_Manual_Utilizador.html#s8">Ver projetos &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais e guias da Cricut Maker 3 do CTE.</p>
+          <p class="shortcut-note" id="aiSoonText"><span class="soon-pill">Será disponibilizado brevemente</span></p>
+          <p class="shortcut-note" id="aiAccountNote" hidden>Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" id="aiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Entretanto, use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
+  <section class="card-section" id="diagnostico">
+    <div class="sec-head">
+      <div>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione a cor da luz do botão Energia ou o problema observado ao cortar no Design Space.</p>
+      </div>
+      <a class="btn" href="Cricut_Maker_3_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias de apoio no diagnóstico:
+           cricut_botoes_painel.jpg (painel superior direito com Energia, Carregar, Iniciar e Pausa)
+           cricut_suportes_ab.jpg (Suporte A e Suporte B abertos com lâmina Fine-Point e colarinho)
+           cricut_rolos_sensores.jpg (barra de rolos, rodinhas estrela e sensores laterais) -->
+      <div class="diag-grid">
+        <div>
+          <h3 class="diag-sub">1. Luz do botão Energia</h3>
+          <div class="led-buttons" id="ledButtons">
+            <button type="button" class="led-btn active" data-led="white_solid" data-led-desc="Branco fixo (pronta)" aria-pressed="true"><span class="led-orb led-pat-solid-white"></span>Branco fixo</button>
+            <button type="button" class="led-btn" data-led="white_blink" data-led-desc="Branco a piscar (a processar)" aria-pressed="false"><span class="led-orb led-pat-blink-white"></span>Branco a piscar</button>
+            <button type="button" class="led-btn" data-led="red_fw" data-led-desc="Vermelho fixo + Carregar branco" aria-pressed="false"><span class="led-orb led-pat-solid-red"></span>Vermelho + Carregar</button>
+            <button type="button" class="led-btn" data-led="red_blink" data-led-desc="Vermelho a piscar (erro/obstrução)" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="purple" data-led-desc="Roxo fixo ou a piscar (BT + erro)" aria-pressed="false"><span class="led-orb led-pat-solid-purple"></span>Roxo (BT + Erro)</button>
+            <button type="button" class="led-btn" data-led="off" data-led-desc="Apagado (sem energia 24 V)" aria-pressed="false"><span class="led-orb led-pat-off"></span>Apagado (Sem luz)</button>
+          </div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <h3 class="diag-sub">2. Problema no corte ou ligação</h3>
+          <div class="sym-pills" id="symButtons">
+            <button type="button" class="sym-btn active" data-sym="nobt" aria-pressed="true">Bluetooth não liga</button>
+            <button type="button" class="sym-btn" data-sym="nocut" aria-pressed="false">Não corta até ao fim</button>
+            <button type="button" class="sym-btn" data-sym="htvflip" aria-pressed="false">HTV saiu ao contrário</button>
+            <button type="button" class="sym-btn" data-sym="matcurl" aria-pressed="false">Papel rasga / enrola</button>
+            <button type="button" class="sym-btn" data-sym="ptcoffset" aria-pressed="false">Print Then Cut desviado</button>
+            <button type="button" class="sym-btn" data-sym="rollers" aria-pressed="false">Rolos giram sem parar</button>
+            <button type="button" class="sym-btn" data-sym="smartmin" aria-pressed="false">Smart Material rejeitado</button>
+            <button type="button" class="sym-btn" data-sym="nostick" aria-pressed="false">Tapete não cola</button>
+          </div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCUMENTOS (LINHAS COMPACTAS) -->
+  <section class="card-section" id="documentos">
+    <div class="sec-head">
+      <div>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e guia A4 pronto a imprimir e plastificar junto à máquina.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="Cricut_Maker_3_Infografico_Inicio_Rapido.html">Ver online (A4)</a>
+            <a class="fmt-link" href="Cricut_Maker_3_Guia_Inicio_Rapido.pdf">PDF · 186 KB</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador e Design Space</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="Cricut_Maker_3_Manual_Utilizador.html">Ver online</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Operador Cricut</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="Cricut_Maker_3_Quiz_Habilitacao.html">Fazer o quiz</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CHECKLIST DE DEVOLUÇÃO -->
+  <section class="card-section" id="devolucao">
+    <div class="sec-head">
+      <div>
+        <h2>Checklist de devolução</h2>
+        <p>Confirme os 6 pontos antes de entregar o kit no Estúdio 4C ou SC - LMAS (limpa-se ao fim de 4 h).</p>
+      </div>
+      <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia real do kit completo arrumado
+      <figure style="margin:0 0 14px">
+        <img src="cricut_kit_completo.jpg" alt="Kit Cricut Maker 3 INV-005 com fonte 24 V/3 A, cabo USB, tapetes protegidos e ferramentas arrumadas" loading="lazy" style="width:100%;max-width:680px;border-radius:10px;border:1px solid var(--line)">
+      </figure>
+      -->
+      <ul class="check-grid">
+        <li><label><input type="checkbox" id="cr3-c1"><span><strong>1. Máquina desligada:</strong> Design Space fechado, botão Energia desligado e calha sem restos de papel/vinil.</span></label></li>
+        <li><label><input type="checkbox" id="cr3-c2"><span><strong>2. Tapete limpo e protegido:</strong> Aparas removidas com espátula e <strong>película transparente protetora</strong> recolocada.</span></label></li>
+        <li><label><input type="checkbox" id="cr3-c3"><span><strong>3. Lâminas com segurança:</strong> Lâmina <em>Fine-Point</em> no Suporte B (e lâminas extras com capa protetora na caixa).</span></label></li>
+        <li><label><input type="checkbox" id="cr3-c4"><span><strong>4. Rodinhas estrela centradas:</strong> Se foram movidas para a direita, voltar a distribuí-las uniformemente pela barra.</span></label></li>
+        <li><label><input type="checkbox" id="cr3-c5"><span><strong>5. Cabos e ferramentas (<code>INV-005</code>):</strong> Fonte oficial 24 V/3 A, cabo USB, depilador, espátula e sobras ≥ 15 cm arrumados.</span></label></li>
+        <li><label><input type="checkbox" id="cr3-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar se alguma lâmina perdeu corte, tapete sem cola ou qualquer erro LED.</span></label></li>
+      </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Tudo pronto para devolver.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar devolução &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECÇÕES RECOLHIDAS -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico, Design Space e Manutenção</strong> (4 unidades, firmware por USB, calibração, limpeza sem ar comprimido e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="Cricut_Maker_3_Manual_Tecnico.html">Ver online</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento pronta a carregar quando criar o caderno)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="Cricut_Maker_3_Base_Conhecimento_NotebookLM.md">Markdown</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Educação Visual, Português/História, Matemática/Robótica e Empreendedorismo)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="Cricut_Maker_3_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-005 · 4 unidades (Estúdio 4C: 2 · Estúdio SC - LMAS: 1 · Direção: 1)</li>
+          <li><strong>Força &amp; Materiais:</strong> Até <strong>4 000 g (4 kg)</strong> · +300 materiais · +13 ferramentas (Suportes A e B)</li>
+          <li><strong>Corte Smart Materials:</strong> Largura 33 cm (13"), corte 29,7 cm × até 3,65 m sem tapete (mín. 15,2 × 33 cm)</li>
+          <li><strong>Corte com Tapete:</strong> Até 29,2 cm (11,5") em tapetes 12"×12" / 12"×24" (Azul, Verde, Roxo, Rosa)</li>
+          <li><strong>Software Design Space:</strong> Win 10+ / macOS 11+ (4 GB RAM) · iOS 15+ / Android 10+ (<strong>sem Linux/Chromebook</strong>)</li>
+          <li><strong>Energia &amp; Ligações:</strong> Fonte oficial <strong>24 V / 3 A</strong> · Bluetooth + USB · ~4,84 kg · 53,8 × 17,8 × 15,1 cm</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="ext-list">
+        <li>
+          <a href="https://cricut.com/en-us/cutting-machines/cricut-maker/cricut-maker-3" target="_blank" rel="noopener noreferrer">Página Oficial Cricut Maker 3 &#8599;</a>
+          <p>Visão geral oficial, capacidades de corte, Smart Materials e ferramentas.</p>
+        </li>
+        <li>
+          <a href="https://design.cricut.com" target="_blank" rel="noopener noreferrer">Cricut Design Space (Transferir Software) &#8599;</a>
+          <p>Aplicação oficial para Windows, macOS, iOS e Android.</p>
+        </li>
+        <li>
+          <a href="https://help.cricut.com" target="_blank" rel="noopener noreferrer">Cricut Help Center (Centro de Ajuda Oficial) &#8599;</a>
+          <p>Guias de calibração, tapetes, lâminas QuickSwap e resolução de erros.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online Cricut Maker 3 · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script src="../cte-config.js"></script>
+<script>
+(function() {
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
+    urlNotebookLM: "",
+    checklistValidadeHoras: 4
+  };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("cricut", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
+
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
+  var aiSoonText = document.getElementById("aiSoonText");
+  var aiAccountNote = document.getElementById("aiAccountNote");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
+    if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
+    if (aiSoonText) aiSoonText.hidden = true;
+    if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  var LED_INFO = {
+    white_solid: {
+      cls: "ok",
+      title: "Botão Energia: Branco fixo",
+      meaning: "A Cricut Maker 3 está ligada, operacional e pronta a receber projetos do Cricut Design Space.",
+      action: "Alinhe o tapete (ou Smart Material) às guias laterais, deixe ≥ 25 cm livres atrás e siga as instruções no ecrã."
+    },
+    white_blink: {
+      cls: "",
+      title: "Botão Energia (ou Carregar/Iniciar) a piscar a Branco",
+      meaning: "A máquina está a comunicar dados ou aguarda que carregue no botão que está a piscar (Carregar ↑↓ ou Iniciar ▶).",
+      action: "Confirme no Design Space qual é o passo atual e prima o botão correspondente a piscar a branco."
+    },
+    red_fw: {
+      cls: "warn",
+      title: "Energia Vermelho fixo + Carregar Branco (ou sem outras luzes)",
+      meaning: "Se o botão Carregar estiver branco, há atualização de firmware pendente; se só Energia estiver vermelho fixo, é falha elétrica ou adaptador errado.",
+      action: "1) Confirme a fonte oficial 24 V / 3 A ligada diretamente numa tomada de parede. 2) Ligue por cabo USB a Windows/Mac e conclua a atualização de firmware no Design Space."
+    },
+    red_blink: {
+      cls: "danger",
+      title: "Botão Energia: Vermelho a piscar",
+      meaning: "Erro de carregamento ou corte: poeira nos sensores dos rolos, material torto, obstrução atrás da máquina ou carro encravado.",
+      action: "1) Desligue da corrente e confirme ≥ 25 cm livres atrás. 2) Empurre o carro suavemente 3–6× de ponta a ponta para soltar aparas. 3) Limpe os sensores junto às guias com microfibra seca (sem ar comprimido!)."
+    },
+    purple: {
+      cls: "warn",
+      title: "Botão Energia: Roxo (fixo ou a piscar)",
+      meaning: "A luz roxa resulta do Bluetooth ativo (azul) em simultâneo com um erro da máquina (vermelho).",
+      action: "Ligue a Cricut Maker 3 diretamente por cabo USB ao computador, reinicie a máquina e siga os passos de verificação da luz vermelha (sensores, rolos e firmware)."
+    },
+    off: {
+      cls: "danger",
+      title: "Luzes completamente apagadas",
+      meaning: "A máquina não está a receber energia da fonte 24 V / 3 A.",
+      action: "Confirme o cabo de corrente no transformador, o encaixe na traseira da Maker 3 e teste noutra tomada elétrica."
+    }
+  };
+
+  var SYM_INFO = {
+    nobt: {
+      cls: "warn",
+      title: "O Design Space não encontra a Cricut por Bluetooth ou cai a ligação",
+      cause: "Bluetooth ligado a outro portátil/iPad da sala, sistema não suportado (Chromebook/Linux) ou interferência.",
+      action: "1) Confirme Windows 10+, macOS 11+, iOS 15+ ou Android 10+. 2) Desligue o Bluetooth de dispositivos vizinhos. 3) Use o cabo USB direto ao computador (mais fiável na sala)."
+    },
+    nocut: {
+      cls: "warn",
+      title: "A lâmina não corta até ao fim ou deixa o material picotado",
+      cause: "Suporte B mal fechado, fibras presas na ponta da lâmina ou pressão baixa no Design Space.",
+      action: "1) Abra o Suporte B, assente bem o colarinho e feche 1.º a aba esquerda, depois a direita. 2) Limpe a ponta da lâmina com uma bola de papel de alumínio (com cuidado!). 3) Escolha pressão «Mais» (More) no ecrã."
+    },
+    htvflip: {
+      cls: "danger",
+      title: "O texto em vinil termocolante (HTV / Iron-On) saiu ao contrário",
+      cause: "Faltou ativar «Espelhar» (Mirror) antes de cortar, ou colocou o lado brilhante virado para cima.",
+      action: "Em todos os projetos HTV: ative Espelhar (ON) no ecrã de preparação do tapete e coloque o vinil com o lado brilhante para baixo (e nunca use Transfer Tape!)."
+    },
+    matcurl: {
+      cls: "",
+      title: "O papel/cartolina enrola ou rasga ao retirar do tapete",
+      cause: "Puxar o papel diretamente para cima a partir do tapete adesivo.",
+      action: "Vire o tapete ao contrário sobre a mesa e dobre suavemente o tapete afastando-o da cartolina enquanto a segura plana sobre a mesa."
+    },
+    ptcoffset: {
+      cls: "warn",
+      title: "Print Then Cut corta desviado da linha impressa",
+      cause: "Calibração desajustada, rodinhas estrela deslocadas ou luz forte a refletir sobre a marca preta.",
+      action: "Espace uniformemente as rodinhas estrela, reduza reflexos diretos sobre a máquina e corra Menu → Definições → Máquinas → Calibração."
+    },
+    rollers: {
+      cls: "danger",
+      title: "Os rolos giram sem parar ao premir Carregar (↑↓)",
+      cause: "Poeira ou aparas nos sensores óticos do material junto às guias.",
+      action: "Desligue a máquina da tomada e limpe suavemente os sensores junto às guias laterais com um pano de microfibra seco (nunca use ar comprimido!)."
+    },
+    smartmin: {
+      cls: "",
+      title: "O Smart Material é rejeitado ou diz que não tem tamanho suficiente",
+      cause: "Para cortar sem tapete, os Smart Materials têm de ter pelo menos 33 cm (13\") de largura × 15,2 cm (6\") de comprimento.",
+      action: "Se estiver a usar uma sobra mais curta que 15,2 cm ou material comum, cole-a num tapete StandardGrip (Verde) e selecione «No Tapete» no Design Space."
+    },
+    nostick: {
+      cls: "",
+      title: "O tapete perdeu aderência e o material desliza",
+      cause: "Fibras acumuladas na cola ou tapete guardado sem película protetora.",
+      action: "Prenda os cantos do material com fita de pintor para terminar a aula, avise o CTE e limpe o tapete suavemente com água morna e detergente neutro (secar ao ar)."
+    }
+  };
+
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="Cricut_Maker_3_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) { html += ' · Contacte o CTE: ' + contactShort; }
+    html += '</div>';
+    return html;
+  }
+
+  var ledRes = document.getElementById("ledResult");
+  var symRes = document.getElementById("symResult");
+
+  function renderLed(key) {
+    var d = LED_INFO[key];
+    ledRes.className = "diag-panel " + d.cls;
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+  function renderSym(key) {
+    var d = SYM_INFO[key];
+    symRes.className = "diag-panel " + d.cls;
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+
+  var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
+  ledBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      ledBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderLed(b.getAttribute("data-led"));
+    });
+  });
+
+  var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
+  symBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      symBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderSym(b.getAttribute("data-sym"));
+    });
+  });
+
+  renderLed("white_solid");
+  renderSym("nobt");
+
+  var KEY = "cricut-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
+  var saved = {};
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
+    });
+  });
+  syncReturnState();
+
+  document.getElementById("hubResetCheck").addEventListener("click", function() {
+    boxes.forEach(function(b) { b.checked = false; });
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
+  });
+})();
+</script>
+<script src="../cte-diag.js"></script>
+</body>
+</html>

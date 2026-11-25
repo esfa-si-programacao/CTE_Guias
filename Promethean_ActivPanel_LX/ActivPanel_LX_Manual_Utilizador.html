@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promethean ActivPanel LX (65&quot;) — Manual de Utilizador e Aulas Interativas (CTE · INV-186)</title>
+<meta name="description" content="Manual completo de utilização dos Painéis Interativos Promethean ActivPanel LX (65&quot;) com OPS-A (INV-186): segurança do ecrã, consola frontal, apps Android EDLA, ligação de portáteis USB-C/HDMI+Touch, espelhamento sem fios Screen Share e 5 dinâmicas de aula.">
+<meta property="og:title" content="Promethean ActivPanel LX (65&quot;) — Manual de Utilizador (CTE)">
+<meta property="og:description" content="Guia completo para professores e alunos usarem os 6 painéis Promethean ActivPanel LX + OPS-A nas salas e oficinas do CTE.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='9' y='14' width='46' height='30' rx='4' fill='%231E7E8C' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M18 33 L26 24 L33 30 L45 20' fill='none' stroke='%23FFB37B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='49' x2='40' y2='49' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='2' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body {
+  margin: 0;
+  font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.84rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.topbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 40px 24px 36px;
+  border-bottom: 4px solid var(--acc);
+}
+.hero-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  justify-content: space-between;
+}
+.hero h1 { margin: 0; font-size: clamp(1.9rem, 4.3vw, 2.9rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.25rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 132px; flex-shrink: 0; }
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 44px;
+  padding: 32px 24px 80px;
+}
+nav.toc {
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  font-size: 0.88rem;
+  border-right: 1px solid var(--line);
+  padding-right: 16px;
+}
+nav.toc h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  margin: 0 0 8px;
+}
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  padding: 3px 7px;
+  border-radius: 5px;
+}
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 {
+  font-size: 1.6rem;
+  margin: 0 0 12px;
+  padding-top: 8px;
+  color: var(--dark);
+  border-bottom: 2px solid var(--light);
+  padding-bottom: 6px;
+}
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--light);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note {
+  border: 1px solid;
+  border-left-width: 5px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 14px 0 18px;
+}
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+.note.ok { background: var(--green-soft); border-color: var(--green); }
+.note.ok strong { color: var(--green-text); }
+
+.doc-fig {
+  margin: 14px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #FAFBFD;
+}
+.doc-fig img, .doc-fig svg { display: block; width: 100%; max-width: 840px; height: auto; }
+.doc-fig figcaption { padding: 8px 12px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); }
+
+.proj-card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 14px 0 18px;
+  background: #FAFBFD;
+}
+.proj-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.proj-head h3 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-text);
+}
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+ul.check {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+ul.check li { margin: 0; }
+ul.check label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--light);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  height: 100%;
+  border: 1px solid var(--line);
+}
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset {
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  padding: 7px 13px;
+  cursor: pointer;
+  margin: 6px 8px 14px 0;
+}
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+footer {
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.86rem;
+  padding: 24px 24px 96px;
+  border-top: 1px solid var(--line);
+  background: var(--light);
+}
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 96px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  section { break-inside: auto; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Promethean ActivPanel LX (65&quot;)</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="ActivPanel_LX_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="ActivPanel_LX_Quiz_Habilitacao.html">Carta de Utilização</a>
+      <a href="ActivPanel_LX_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>Promethean ActivPanel LX (65&quot;)</h1>
+      <p class="sub">Manual de Utilizador e Aulas Interativas (OPS-A, Ligações e Screen Share)</p>
+      <p class="kit">6 painéis 4K com módulo OPS-A (Android EDLA) · Inventário CTE <strong>INV-186</strong> · Estúdios STEM, TEC1, TEC2, Hardware (D3) e Oficinas O1 e O3</p>
+      <p class="ver">Centro Tecnológico Especializado (CTE) Informático · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <svg viewBox="0 0 150 110" aria-hidden="true" class="hero-art" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="14" y="12" width="122" height="72" rx="6" fill="rgba(30,126,140,0.38)"/>
+      <rect x="20" y="18" width="110" height="56" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/>
+      <path d="M36 54 L56 36 L74 49 L98 28 L112 40" stroke="#FFB37B" stroke-width="3"/>
+      <circle cx="75" cy="79" r="2.2" fill="#4CE0F5" stroke="none"/>
+      <line x1="52" y1="84" x2="48" y2="98" stroke="#C7D6E5"/>
+      <line x1="98" y1="84" x2="102" y2="98" stroke="#C7D6E5"/>
+      <line x1="38" y1="98" x2="112" y2="98" stroke-width="3"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer o ActivPanel LX</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Onde estão os 6 painéis</a></li>
+          <li><a href="#s2-2">2.2 Portas, botões e acessórios</a></li>
+          <li><a href="#s2-3">2.3 Especificações técnicas</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras de segurança e cuidado</a></li>
+      <li><a href="#s4">4. Ligar, consola frontal e LEDs</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Passo a passo de arranque</a></li>
+          <li><a href="#s4-2">4.2 Botões da consola frontal</a></li>
+          <li><a href="#s4-3">4.3 Significado dos LEDs</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Usar o módulo OPS-A (Android)</a>
+        <ul>
+          <li><a href="#s5-1">5.1 Ferramentas Promethean</a></li>
+          <li><a href="#s5-2">5.2 Contas Google e privacidade</a></li>
+        </ul>
+      </li>
+      <li><a href="#s6">6. Ligar portátil por cabo</a>
+        <ul>
+          <li><a href="#s6-1">6.1 Via USB-C (1 cabo faz tudo)</a></li>
+          <li><a href="#s6-2">6.2 Via HDMI + USB Touch</a></li>
+          <li><a href="#s6-3">6.3 Ecrã estendido e áudio</a></li>
+        </ul>
+      </li>
+      <li><a href="#s7">7. Espelhamento sem fios (Screen Share)</a>
+        <ul>
+          <li><a href="#s7-1">7.1 Código de 6 dígitos e Sala de Espera</a></li>
+          <li><a href="#s7-2">7.2 AirPlay, Miracast e 4 ecrãs</a></li>
+        </ul>
+      </li>
+      <li><a href="#s8">8. 5 Dinâmicas para a sala de aula</a>
+        <ul>
+          <li><a href="#s8-inter">Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Terminar a aula e registar</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist interativa</a></li>
+          <li><a href="#s9-2">9.2 Registo de ocorrências</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- SECÇÃO 1 -->
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>Este manual explica como ligar, explorar o sistema Android integrado (<strong>OPS-A</strong>), ligar portáteis por cabo, espelhar dispositivos sem fios e encerrar em segurança os <strong>Painéis Interativos Promethean ActivPanel LX (65&quot;)</strong> do CTE Informático, registados com o código de inventário <code>INV-186</code>.</p>
+      <p>Destina-se a <strong>professores e alunos</strong> que utilizam as salas e oficinas do CTE no dia a dia. Para administração de rede escolar, gestão remota via <strong>MDM</strong>, limpeza técnica certificada e resolução aprofundada de avarias, consulte o <a href="ActivPanel_LX_Manual_Tecnico.html">Manual Técnico do ActivPanel LX</a>.</p>
+      <aside class="note info"><strong>Arquitetura em 2 camadas (Ecrã + OPS-A):</strong> O Promethean ActivPanel LX é um ecrã tátil 4K muito rápido e fiável, equipado na ranhura traseira com um computador Android certificado pela Google (<strong>OPS-A</strong>). Pode usá-lo de forma autónoma (como um grande tablet Android com Quadro Branco, Chrome e Drive) <em>ou</em> como monitor interativo gigante ligado ao seu portátil Windows/Mac.</aside>
+    </section>
+
+    <!-- SECÇÃO 2 -->
+    <section id="s2">
+      <h2>2. Conhecer o ActivPanel LX (65&quot;)</h2>
+
+      <h3 id="s2-1">2.1 Onde estão os 6 painéis (<code>INV-186</code>)</h3>
+      <!-- CONFIRMAR: confirmar quais das 6 salas têm o painel em suporte móvel com rodas INV-191 vs. suporte fixo de parede -->
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:32%"><col style="width:16%"><col style="width:52%"></colgroup>
+          <thead><tr><th>Espaço CTE</th><th>Unidades</th><th>Notas de Instalação</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Estúdio STEM</th><td>1 un.</td><td>Painel 65&quot; + OPS-A + suporte móvel c/ rodas (<code>INV-191</code>).</td></tr>
+            <tr><th scope="row">Estúdio TEC1</th><td>1 un.</td><td>Painel 65&quot; + OPS-A + suporte móvel c/ rodas (<code>INV-191</code>).</td></tr>
+            <tr><th scope="row">Estúdio TEC2</th><td>1 un.</td><td>Painel 65&quot; + OPS-A + suporte móvel c/ rodas (<code>INV-191</code>).</td></tr>
+            <tr><th scope="row">Estúdio Hardware (D3)</th><td>1 un.</td><td>Painel 65&quot; + OPS-A + suporte móvel c/ rodas (<code>INV-191</code>).</td></tr>
+            <tr><th scope="row">Oficina O1 e Oficina O3</th><td>2 un.</td><td>1 painel 65&quot; + OPS-A em cada oficina (<code>O1</code> e <code>O3</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-2">2.2 Portas, botões e acessórios da sala</h3>
+      <p>Em cada sala deve encontrar sempre os <strong>3 acessórios essenciais</strong> junto ao painel:</p>
+      <ul>
+        <li><strong>2 Canetas passivas Promethean</strong> (pousadas na bandeja magnética frontal — <em>não levam pilhas nem precisam de emparelhamento!</em>);</li>
+        <li><strong>1 Comando à distância (IR)</strong> para controlo de volume, congelamento de ecrã e mudança rápida de fonte à distância;</li>
+        <li><strong>Cabos de ligação rápida</strong> (consoante a sala: cabo USB-C ou conjunto HDMI + USB-B Touch).</li>
+      </ul>
+
+      <figure class="doc-fig">
+        <svg viewBox="0 0 800 320" role="img" aria-label="Esquema frontal e traseiro do Promethean ActivPanel LX com identificação da consola central, portas frontais, bandeja de canetas, ranhura OPS-A e interruptor traseiro">
+          <rect width="800" height="320" fill="#F8FAFC"/>
+          <!-- Vista Frontal -->
+          <text x="230" y="26" text-anchor="middle" fill="#1F2A36" font-size="14" font-weight="800">VISTA FRONTAL (65&quot; 4K UHD)</text>
+          <rect x="30" y="40" width="400" height="230" rx="10" fill="#1F2A36"/>
+          <rect x="42" y="52" width="376" height="190" rx="4" fill="#E6F4F6" stroke="#12876F" stroke-width="2"/>
+          <path d="M90 190 L145 132 L195 168 L265 104 L320 142" fill="none" stroke="#12876F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="230" y="218" text-anchor="middle" fill="#164A3F" font-size="12" font-weight="700">Vidro temperado antirreflexo · 20 pontos de toque (Vellum)</text>
+          <!-- Bandeja e consola -->
+          <rect x="42" y="246" width="88" height="16" rx="4" fill="#2C3B4B" stroke="#94A3B8" stroke-width="1"/>
+          <text x="86" y="258" text-anchor="middle" fill="#E2E8F0" font-size="9" font-weight="700">USB-C · HDMI · USB</text>
+          <rect x="172" y="246" width="116" height="16" rx="4" fill="#0F172A" stroke="#64748B" stroke-width="1"/>
+          <circle cx="192" cy="254" r="3.5" fill="#3B82F6"/>
+          <circle cx="208" cy="254" r="2.5" fill="#CBD5E1"/>
+          <circle cx="222" cy="254" r="2.5" fill="#CBD5E1"/>
+          <circle cx="236" cy="254" r="2.5" fill="#CBD5E1"/>
+          <circle cx="250" cy="254" r="2.5" fill="#CBD5E1"/>
+          <circle cx="264" cy="254" r="2.5" fill="#CBD5E1"/>
+          <rect x="320" y="248" width="94" height="10" rx="5" fill="#475569"/>
+          <!-- Pins frente -->
+          <circle cx="86" cy="285" r="12" fill="#E8711C"/><text x="86" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">1</text>
+          <circle cx="230" cy="285" r="12" fill="#12876F"/><text x="230" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">2</text>
+          <circle cx="367" cy="285" r="12" fill="#1D63B8"/><text x="367" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">3</text>
+          <text x="86" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">Portas Frontais</text>
+          <text x="230" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">Consola &amp; LED</text>
+          <text x="367" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">2 Canetas</text>
+
+          <!-- Vista Traseira / Lateral -->
+          <text x="615" y="26" text-anchor="middle" fill="#1F2A36" font-size="14" font-weight="800">ZONA TRASEIRA / LATERAL</text>
+          <rect x="465" y="40" width="300" height="230" rx="10" fill="#2C3B4B"/>
+          <!-- OPS-A slot -->
+          <rect x="485" y="66" width="110" height="62" rx="6" fill="#0F7560" stroke="#99F6E4" stroke-width="1.8"/>
+          <text x="540" y="94" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">Módulo OPS-A</text>
+          <text x="540" y="111" text-anchor="middle" fill="#D0E7E2" font-size="10">(Android EDLA)</text>
+          <!-- Portas traseiras -->
+          <rect x="615" y="66" width="130" height="110" rx="6" fill="#1F2A36" stroke="#94A3B8" stroke-width="1.4"/>
+          <text x="680" y="88" text-anchor="middle" fill="#FFB37B" font-size="11" font-weight="700">Painel de Ligações</text>
+          <text x="680" y="108" text-anchor="middle" fill="#E2E8F0" font-size="10">2× HDMI 2.0 · 2× Touch</text>
+          <text x="680" y="126" text-anchor="middle" fill="#E2E8F0" font-size="10">VGA · Áudio 3,5 mm</text>
+          <text x="680" y="144" text-anchor="middle" fill="#99F6E4" font-size="10">LAN RJ45 (In / Out)</text>
+          <text x="680" y="162" text-anchor="middle" fill="#CBD5E1" font-size="10">RS-232 · USB-A</text>
+          <!-- Interruptor AC -->
+          <rect x="485" y="196" width="150" height="52" rx="6" fill="#111827" stroke="#F87171" stroke-width="1.6"/>
+          <text x="560" y="217" text-anchor="middle" fill="#FCA5A5" font-size="11" font-weight="800">Alimentação AC + I / O</text>
+          <text x="560" y="234" text-anchor="middle" fill="#E2E8F0" font-size="10">Interruptor físico traseiro</text>
+          <!-- Pins trás -->
+          <circle cx="540" cy="285" r="12" fill="#0F7560"/><text x="540" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">4</text>
+          <circle cx="620" cy="285" r="12" fill="#C0392B"/><text x="620" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">5</text>
+          <circle cx="705" cy="285" r="12" fill="#1F2A36"/><text x="705" y="289" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">6</text>
+          <text x="540" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">Ranhura OPS-A</text>
+          <text x="620" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">Interruptor I/O</text>
+          <text x="705" y="309" text-anchor="middle" fill="#1F2A36" font-size="11" font-weight="700">HDMI / LAN</text>
+        </svg>
+        <figcaption>Esquema funcional do Promethean ActivPanel LX (65&quot;) com módulo OPS-A: <strong>(1)</strong> Portas frontais de acesso rápido, <strong>(2)</strong> Consola central e LED de energia, <strong>(3)</strong> Bandeja magnética para 2 canetas, <strong>(4)</strong> Ranhura do módulo Android OPS-A, <strong>(5)</strong> Entrada AC e interruptor físico <code>I/O</code>, <strong>(6)</strong> Portas traseiras HDMI, Touch e Ethernet RJ45.</figcaption>
+      </figure>
+
+      <h3 id="s2-3">2.3 Especificações técnicas principais</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+          <thead><tr><th>Característica</th><th>Especificação (ActivPanel LX 65&quot; + OPS-A)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Ecrã e resolução</th><td>65 polegadas TFT LCD (Direct LED) · <strong>4K UHD (3840 × 2160 @ 60 Hz)</strong> · ângulo 178° · vidro temperado antirreflexo 3,2 mm.</td></tr>
+            <tr><th scope="row">Tecnologia de toque</th><td><strong>Vellum Touch</strong> até <strong>20 pontos simultâneos</strong> · diferenciação caneta vs. dedo, rejeição de palma e apagamento com a palma da mão.</td></tr>
+            <tr><th scope="row">Sistema computacional</th><td>Módulo <strong>Promethean OPS-A</strong> (Android 12 com certificação <strong>Google EDLA</strong>, Google Play, Chrome, Drive e apps Promethean).</td></tr>
+            <tr><th scope="row">Áudio integrado</th><td><strong>2 colunas frontais de 15 W</strong> (30 W total) + saída de áudio 3,5 mm para amplificação externa se necessário.</td></tr>
+            <tr><th scope="row">Portas frontais</th><td><strong>1× USB-C</strong> (vídeo + áudio + toque + carga 15 W) · <strong>1× HDMI 2.0</strong> · <strong>1× USB-B (Touch)</strong> · <strong>1× USB-A</strong> (pen USB/periféricos).</td></tr>
+            <tr><th scope="row">Portas traseiras</th><td>2× HDMI 2.0 · 2× USB-B (Touch) · 1× USB-A · 1× VGA · Áudio 3,5 mm In/Out · LAN Ethernet RJ45 (In/Out) · RS-232 · ranhura OPS.</td></tr>
+            <tr><th scope="row">Dimensões e energia</th><td>1482 × 899 × 110 mm · ~36,6 kg · 100–240 V AC · consumo típico ~106 W · <strong>Standby &le; 0,5 W</strong> (arrefecimento silencioso sem ventoinha).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECÇÃO 3 -->
+    <section id="s3">
+      <h2>3. Regras de segurança e cuidado com o ecrã</h2>
+      <aside class="note danger"><strong>Proteger o vidro e a moldura tátil:</strong> Os 6 painéis servem dezenas de turmas por semana. Um risco profundo, impacto ou líquido infiltrado na moldura inferior pode inutilizar o toque em toda a superfície.</aside>
+      <ol>
+        <li><strong>Usar apenas o dedo ou as 2 canetas Promethean:</strong> <strong>NUNCA</strong> escreva no painel com marcadores de quadro branco reais, esferográficas, lápis ou objetos metálicos/pontiagudos.</li>
+        <li><strong>Não bater nem apoiar peso no vidro ou na bandeja:</strong> Não encoste mesas, cadeiras nem mochilas contra o ecrã, nem pendure objetos na bandeja das canetas.</li>
+        <li><strong>Suportes móveis com rodas (<code>INV-191</code>):</strong> Nos estúdios com suporte móvel, mantenha sempre <strong>todos os travões das rodas bloqueados</strong> durante a aula. Antes de deslocar o painel (sempre com 2 adultos), <strong>desligue e recolha primeiro todos os cabos</strong> (corrente, Ethernet, HDMI) para evitar quedas ou arrancar fichas!</li>
+        <li><strong>Zero líquidos pulverizados diretamente no ecrã:</strong> Nunca use spray limpa-vidros, água em excesso nem papel absorvente áspero. Para limpar dedadas, use apenas um pano de microfibra seco (ou siga a limpeza técnica descrita no Manual Técnico com o painel desligado).</li>
+        <li><strong>Não cortar a corrente a quente:</strong> No final da aula, coloque sempre o painel em <strong>Standby</strong> pelo botão frontal ou comando. Nunca desligue pelo interruptor traseiro <code>I/O</code> nem puxe a ficha da tomada enquanto o OPS-A estiver a gravar ou atualizar.</li>
+        <li><strong>Nunca remover o módulo OPS-A ligado:</strong> O módulo traseiro só pode ser manuseado pela equipa técnica do CTE com o painel completamente desligado da tomada.</li>
+        <li><strong>Manter a moldura interior desobstruída:</strong> Não cole post-its, fita-cola nem imãs nos rebordos internos do vidro — é aí que ficam os sensores infravermelhos de toque.</li>
+      </ol>
+    </section>
+
+    <!-- SECÇÃO 4 -->
+    <section id="s4">
+      <h2>4. Ligar, consola frontal e LEDs</h2>
+
+      <h3 id="s4-1">4.1 Passo a passo de arranque</h3>
+      <ol>
+        <li>Olhe para o <strong>LED no botão de energia</strong> (centro inferior do painel):
+          <ul>
+            <li><strong>Se estiver vermelho fixo (Standby):</strong> prima 1 vez o botão de Energia na consola frontal (ou no comando IR) e aguarde ~10–20 segundos.</li>
+            <li><strong>Se estiver totalmente apagado:</strong> verifique se o cabo de corrente está ligado à tomada e confirme que o <strong>interruptor traseiro</strong> está na posição <code>I</code>; o LED acenderá a vermelho e poderá então premir Energia.</li>
+          </ul>
+        </li>
+        <li>O painel liga o ecrã 4K e arranca automaticamente na última fonte usada (normalmente o módulo <strong>OPS-A Android</strong>).</li>
+        <li>Se pretender usar um computador externo, ligue o cabo (USB-C ou HDMI + USB Touch) e prima o botão de <strong>Fonte (Input)</strong> na consola frontal.</li>
+      </ol>
+
+      <h3 id="s4-2">4.2 Botões físicos da consola frontal</h3>
+      <!-- FASE 3 (P1): descomentar quando existir fotografia real da consola frontal
+      <figure class="doc-fig">
+        <img src="activpanel_consola_frontal.jpg" alt="Consola frontal central do Promethean ActivPanel LX com os 6 botões físicos" loading="lazy">
+        <figcaption>Botões físicos centrais da consola frontal do ActivPanel LX.</figcaption>
+      </figure>
+      -->
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+          <thead><tr><th>Botão na Consola</th><th>Função Imediata</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Energia (Power + LED)</th><td><strong>1 toque curto:</strong> liga o painel ou coloca em <strong>Standby</strong> (baixo consumo).</td></tr>
+            <tr><th scope="row">Seleção de Fonte (Input)</th><td>Abre o menu de entradas para alternar entre <strong>OPS (Android)</strong>, <strong>USB-C</strong>, <strong>HDMI Frontal</strong>, <strong>HDMI 1/2 Traseiro</strong> e <strong>VGA</strong>.</td></tr>
+            <tr><th scope="row">Volume (&minus; / +)</th><td>Diminui ou aumenta o volume das 2 colunas frontais de 15 W.</td></tr>
+            <tr><th scope="row">Congelar Ecrã (Freeze)</th><td>Congela a imagem atual no painel (útil para consultar o portátil sem projetar). <strong>Volte a premir para descongelar!</strong></td></tr>
+            <tr><th scope="row">Definições (Settings / OSD)</th><td>Abre o menu de definições rápidas de imagem (brilho/contraste), áudio e sistema do ecrã.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s4-3">4.3 Significado do LED do botão de energia</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:28%"><col style="width:32%"><col style="width:40%"></colgroup>
+          <thead><tr><th>Cor / Estado</th><th>Significado</th><th>O que fazer</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Azul / Branco fixo</strong></td><td>Painel ligado e ativo</td><td>Utilização normal. Se o ecrã estiver preto, escolha a fonte (OPS / HDMI / USB-C).</td></tr>
+            <tr><td><strong>Vermelho fixo</strong></td><td>Modo <strong>Standby</strong> (em espera)</td><td>Estado normal entre aulas. Prima Energia 1 vez para acordar.</td></tr>
+            <tr><td><strong>A pulsar / piscar</strong></td><td>A arrancar ou a atualizar</td><td>Aguarde 30–60 s sem cortar a energia.</td></tr>
+            <tr><td><strong>Âmbar / Sem sinal</strong></td><td>Fonte ativa sem sinal de vídeo</td><td>Acorde o portátil (<code>Win + P</code>) ou mude para OPS.</td></tr>
+            <tr><td><strong>Vermelho a piscar rápido</strong></td><td>Alerta de energia / arranque</td><td>Fazer <em>Hard Power Reset</em> de 60 s ou avisar o CTE.</td></tr>
+            <tr><td><strong>Apagado (sem luz)</strong></td><td>Sem corrente elétrica</td><td>Confirmar tomada, cabo AC e interruptor traseiro em <code>I</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECÇÃO 5 -->
+    <section id="s5">
+      <h2>5. Usar o módulo OPS-A (Android EDLA)</h2>
+      <p>Com a entrada <strong>OPS</strong> selecionada, o painel funciona de forma totalmente autónoma (sem precisar de ligar nenhum portátil), oferecendo um ambiente <strong>Android 12 certificado pela Google (EDLA)</strong> com acesso a Google Chrome, Google Drive, Docs, Slides, YouTube e ferramentas Promethean.</p>
+      <!-- CONFIRMAR: validar a lista exata de apps instaladas nos OPS-A via MDM (Explain Everything vs. Promethean Whiteboard clássico, Google Classroom, etc.) -->
+
+      <h3 id="s5-1">5.1 Ferramentas Promethean essenciais no dia a dia</h3>
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+          <thead><tr><th>Aplicação / Ferramenta</th><th>Como usar na aula</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Whiteboard / Explain Everything</th><td>Quadro branco infinito com canetas, marcadores, réguas, fundos quadriculados/pautados, inserção de imagens/PDF e exportação direta para PDF ou Google Drive. Suporta escrita simultânea (até 20 pontos) e <strong>apagar com a palma da mão</strong>.</td></tr>
+            <tr><th scope="row">Annotate (Anotar)</th><td>Cria uma camada transparente <strong>por cima de qualquer ecrã</strong> (um site no Chrome, um vídeo pausado ou até o portátil ligado por HDMI) para sublinhar, rodear e apontar conceitos.</td></tr>
+            <tr><th scope="row">Screen Capture (Captura)</th><td>Recorta qualquer zona do ecrã atual e envia-a imediatamente para o Quadro Branco para trabalhar com a turma.</td></tr>
+            <tr><th scope="row">Screen Share</th><td>Recebe ecrãs sem fios de portáteis, Chromebooks, tablets e telemóveis através de código de 6 dígitos (ver <a href="#s7">Secção 7</a>).</td></tr>
+            <tr><th scope="row">Timer &amp; Spinner</th><td>Temporizador gigante para desafios/exercícios cronometrados e roleta personalizável para sortear grupos, perguntas ou temas.</td></tr>
+            <tr><th scope="row">App HDMI / Fontes</th><td>Permite pré-visualizar e saltar rapidamente para o portátil ligado sem largar o ecrã tátil.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s5-2">5.2 Contas Google, ficheiros e privacidade</h3>
+      <aside class="note warn"><strong>Regra de privacidade obrigatória (painel partilhado):</strong> Se iniciar sessão com a sua conta Google escolar no OPS-A (para abrir Google Drive, Classroom ou Slides), <strong>termine sempre a sessão antes de sair da sala</strong> (ou use o navegador em janela anónima / pen USB na porta USB-A frontal). Nunca deixe o seu e-mail ou Drive aberto para a turma seguinte!</aside>
+    </section>
+
+    <!-- SECÇÃO 6 -->
+    <section id="s6">
+      <h2>6. Ligar um portátil ou tablet por cabo</h2>
+      <p>Quando precisa de software instalado no seu computador (ex.: VS Code, Choregraphe, EXStar, Packet Tracer, PowerPoint ou <strong>ActivInspire</strong>), ligue o portátil diretamente às portas frontais do ActivPanel LX:</p>
+
+      <h3 id="s6-1">6.1 Via USB-C frontal (1 cabo faz tudo — opção mais rápida)</h3>
+      <ol>
+        <li>Ligue um <strong>cabo USB-C compatível com vídeo e dados</strong> (USB-C DP Alt Mode) entre a porta USB-C do portátil e a porta <strong>USB-C frontal</strong> do ActivPanel LX.</li>
+        <li>Este único cabo transporta simultaneamente <strong>imagem 4K + som + toque interativo</strong> e ainda fornece até <strong>15 W</strong> de carregamento lento (em portáteis potentes, mantenha o carregador do portátil ligado).</li>
+        <li>Prima o botão <strong>Fonte (Input)</strong> na consola frontal e escolha <strong>USB-C</strong>.</li>
+      </ol>
+      <aside class="note info"><strong>Atenção ao cabo USB-C:</strong> Cabos USB-C finos de telemóvel servem apenas para carregar e <em>não</em> passam vídeo. Use sempre o cabo USB-C grosso de dados/vídeo disponível na sala.</aside>
+
+      <h3 id="s6-2">6.2 Via HDMI + cabo USB Touch (compatível com qualquer portátil)</h3>
+      <ol>
+        <li>Ligue o <strong>cabo HDMI</strong> do portátil à porta <strong>HDMI frontal</strong> (ou HDMI 1/2 traseira) do painel.</li>
+        <li><strong>Para ter controlo tátil no portátil (obrigatório!):</strong> ligue também o <strong>cabo USB-B (Touch)</strong> da porta Touch junto ao HDMI escolhido a uma porta USB do portátil. <em>Sem este segundo cabo, o painel mostra imagem e som, mas funciona apenas como televisão (sem toque).</em></li>
+        <li>Selecione a entrada <strong>HDMI</strong> correspondente no botão Fonte da consola frontal.</li>
+      </ol>
+
+      <h3 id="s6-3">6.3 Duplicar vs. Estender ecrã e saída de som</h3>
+      <ul>
+        <li><strong>Windows:</strong> prima <code>Win + P</code> e escolha <strong>Duplicar</strong> (vê o mesmo no portátil e no painel — mais fácil para usar o toque) ou <strong>Estender</strong> (usa o painel como 2.º monitor).</li>
+        <li><strong>macOS:</strong> abra <em>Definições do Sistema &rarr; Monitores</em> e escolha <em>Espelhar</em> ou <em>Ecrã alargado</em>.</li>
+        <li><strong>Áudio nas colunas do painel:</strong> clique no ícone do altifalante na barra de tarefas do portátil e confirme que a saída selecionada é <strong>ActivPanel / HDMI / USB-C Audio</strong> (e não os altifalantes internos do portátil).</li>
+      </ul>
+    </section>
+
+    <!-- SECÇÃO 7 -->
+    <section id="s7">
+      <h2>7. Espelhamento sem fios (Promethean Screen Share)</h2>
+      <p>O módulo <strong>OPS-A</strong> inclui a aplicação <strong>Promethean Screen Share</strong>, que permite a professores e alunos projetarem portáteis (Windows/Mac/Chromebook), tablets (Samsung Galaxy Tab S9 FE <code>INV-180</code> ou iPads <code>INV-178</code>) e telemóveis sem cabos.</p>
+
+      <h3 id="s7-1">7.1 Ligar com código de 6 dígitos e Sala de Espera</h3>
+      <ol>
+        <li>No painel (entrada <strong>OPS</strong>), abra a aplicação <strong>Screen Share</strong> — aparece uma janela flutuante com um <strong>código de 6 dígitos (Panel ID)</strong>.</li>
+        <li>No portátil ou tablet (ligado à mesma rede Wi-Fi escolar):
+          <ul>
+            <li><strong>Windows / macOS / Chrome:</strong> abra a app <strong>Promethean Screen Share Sender</strong> (disponível em <a href="https://share.mypromethean.com/" target="_blank" rel="noopener noreferrer">share.mypromethean.com &#8599;</a>), escreva o código de 6 dígitos e o seu nome.</li>
+            <li><strong>iPad / Android:</strong> abra a app móvel <strong>Promethean</strong>, selecione Professor/Aluno e introduza o código de 6 dígitos (não exige criação de conta).</li>
+          </ul>
+        </li>
+        <li><strong>Aprovação na Sala de Espera (<em>Waiting Room</em>):</strong> por segurança pedagógica, os pedidos ficam numa lista de espera no painel. O professor toca no ícone de utilizadores e escolhe quem entra no ecrã!</li>
+      </ol>
+
+      <h3 id="s7-2">7.2 AirPlay, Miracast, Multi-ecrã e Touchback</h3>
+      <ul>
+        <li><strong>Multi-ecrã (até 4 dispositivos):</strong> pode mostrar até 4 ecrãs de alunos lado a lado na mesma janela para comparar código, esquemas ou resoluções de problemas.</li>
+        <li><strong>Touchback (controlo tátil à distância):</strong> ao partilhar a partir da app Sender em Windows/macOS, o professor pode controlar o computador diretamente a partir do vidro tátil do ActivPanel.</li>
+        <li><strong>AirPlay (Apple) e Miracast (Windows <code>Win + K</code>):</strong> também podem ser utilizados consoante a configuração da rede Wi-Fi da sala (ver <a href="ActivPanel_LX_Manual_Tecnico.html#t3">Manual Técnico — Rede Escolar</a>).</li>
+      </ul>
+      <aside class="note ok"><strong>Plano B imediato:</strong> Se o Wi-Fi da sala estiver sobrecarregado ou isolado por VLAN durante uma apresentação importante, ligue simplesmente o cabo <strong>USB-C</strong> ou <strong>HDMI</strong> frontal — imagem 4K instantânea sem depender da rede.</aside>
+    </section>
+
+    <!-- SECÇÃO 8 -->
+    <section id="s8">
+      <h2>8. 5 Dinâmicas práticas para a sala de aula</h2>
+      <p>Cinco formas eficazes de tirar partido dos 20 pontos de toque, do OPS-A e do Screen Share nas aulas do CTE:</p>
+
+      <div class="proj-card">
+        <div class="proj-head"><h3>Dinâmica 1 — "Quadro Branco Exportável em 1 Minuto"</h3><div class="proj-badges"><span class="lvl">Iniciante · 10 min</span></div></div>
+        <p><strong>Ferramentas:</strong> <code>Whiteboard / Explain Everything</code> no OPS-A + fundo quadriculado ou pautado + 2 canetas.</p>
+        <p style="margin:0"><strong>Como fazer:</strong> Resolva um esquema ou exercício com 2 alunos a escrever ao mesmo tempo (toque simultâneo). No fim, exporte as páginas em <strong>PDF</strong> para o Google Drive/Classroom da turma — ninguém perde tempo a copiar tudo à pressa.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h3>Dinâmica 2 — "Revisão de Código e Esquemas com Annotate"</h3><div class="proj-badges"><span class="lvl">Iniciante · 20 min</span></div></div>
+        <p><strong>Ferramentas:</strong> Portátil ligado por <code>USB-C</code> (VS Code, Choregraphe ou Packet Tracer) + ferramenta <code>Annotate</code> + <code>Screen Capture</code>.</p>
+        <p style="margin:0"><strong>Como fazer:</strong> Projete o código ou topologia de rede, ative o <em>Annotate</em> para sublinhar erros de lógica ou caminhos de pacotes diretamente sobre o programa, capture o recorte e guarde no registo da aula.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h3>Dinâmica 3 — "Batalha de Soluções (4 Ecrãs em Simultâneo)"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 30 min</span></div></div>
+        <p><strong>Ferramentas:</strong> <code>Promethean Screen Share</code> + Sala de Espera + <code>Timer</code>.</p>
+        <p style="margin:0"><strong>Como fazer:</strong> Lance um desafio de 10 minutos com o <em>Timer</em> gigante no ecrã. Peça a 4 grupos que se liguem por Screen Share (código de 6 dígitos), aprove os 4 na Sala de Espera em vista dividida e comparem em turma as diferentes soluções lado a lado.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h3>Dinâmica 4 — "Estação de Montagem e Diagnóstico (Freeze)"</h3><div class="proj-badges"><span class="lvl inter">Intermédio · 40 min</span></div></div>
+        <p><strong>Ferramentas:</strong> Botão físico <code>Freeze</code> + esquema técnico em 4K.</p>
+        <p style="margin:0"><strong>Como fazer:</strong> No Estúdio Hardware (D3) ou Oficinas (O1/O3), projete o esquema de pinos/ligações em 4K e prima <strong>Freeze</strong> na consola frontal: os alunos continuam a ver o esquema fixo no painel gigante enquanto o professor usa o portátil livremente para registar avaliações ou preparar o passo seguinte.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head"><h3>Dinâmica 5 — "Aula Interativa Híbrida (ActivInspire / Web Apps)"</h3><div class="proj-badges"><span class="lvl adv">Avançado · 45 min</span></div></div>
+        <p><strong>Ferramentas:</strong> Portátil com <code>ActivInspire</code> ou simuladores web (Tinkercad, GeoGebra, PhET) + toque bidirecional (<code>USB-C</code> ou <code>HDMI + USB Touch</code>).</p>
+        <p style="margin:0"><strong>Como fazer:</strong> Os alunos manipulam circuitos, gráficos 3D ou blocos interativos diretamente no ecrã tátil de 65&quot;, usando o <em>Spinner</em> para sortear o próximo elemento a apresentar.</p>
+      </div>
+
+      <h3 id="s8-inter">Ideias interdisciplinares para professores</h3>
+      <ul>
+        <li><strong>Informática, Programação e Redes (TEC1, TEC2, D3):</strong> depuração coletiva de código Python/C#/Web, simulação interativa de redes e comparação de soluções de 4 grupos em simultâneo.</li>
+        <li><strong>STEM, Matemática e Física (Estúdio STEM):</strong> simulações PhET/GeoGebra manipuladas por toque, gráficos 4K com fundo quadriculado e registo fotográfico de experiências.</li>
+        <li><strong>Oficinas Práticas (O1 e O3):</strong> projeção permanente de esquemas de segurança/montagem com <em>Freeze</em>, checklists interativas e demonstrações em vídeo 4K com som frontal de 30 W.</li>
+        <li><strong>Línguas, História e Artes:</strong> análise coletiva de textos e mapas em alta definição, sublinhado colaborativo com <em>Annotate</em> e apresentações de tablets/telemóveis via Screen Share.</li>
+      </ul>
+    </section>
+
+    <!-- SECÇÃO 9 -->
+    <section id="s9">
+      <h2>9. Terminar a aula, limpar sessão e registar</h2>
+      <p>Nos últimos 2 minutos da aula, siga esta rotina rápida para proteger a sua privacidade e deixar o painel pronto para o docente seguinte:</p>
+      <ol>
+        <li><strong>Guarde o trabalho:</strong> exporte os quadros brancos importantes (PDF para Drive ou pen USB) e termine qualquer sessão aberta no <strong>OPS-A</strong> (Google Drive, Chrome, Classroom).</li>
+        <li><strong>Desligue portáteis pela ficha rígida:</strong> retire o cabo USB-C / HDMI / USB Touch sem puxar pelo fio e arrume-o no suporte lateral.</li>
+        <li><strong>Confira os acessórios:</strong> pouse as <strong>2 canetas passivas</strong> na bandeja frontal e deixe o comando IR no local habitual.</li>
+        <li><strong>Coloque o painel em Standby:</strong> prima 1 vez o botão de Energia na consola frontal (ou comando) até o LED passar a <strong>vermelho fixo</strong>. <em>Não desligue o interruptor traseiro <code>I/O</code> no dia a dia.</em></li>
+      </ol>
+
+      <h3 id="s9-1">9.1 Checklist interativa de início e fim de aula</h3>
+      <ul class="check">
+        <li><label><input type="checkbox" id="ap-u1"><span><strong>Início:</strong> Rodas do suporte móvel (<code>INV-191</code>) travadas e cabos livres de tropeçamentos.</span></label></li>
+        <li><label><input type="checkbox" id="ap-u2"><span><strong>Início:</strong> 2 canetas passivas e comando IR presentes junto ao painel.</span></label></li>
+        <li><label><input type="checkbox" id="ap-u3"><span><strong>Aula:</strong> Usadas apenas canetas Promethean ou dedo (zero marcadores reais).</span></label></li>
+        <li><label><input type="checkbox" id="ap-u4"><span><strong>Fim:</strong> Sessão Google / Chrome encerrada no OPS-A e quadros exportados.</span></label></li>
+        <li><label><input type="checkbox" id="ap-u5"><span><strong>Fim:</strong> Cabos desligados pela ficha e 2 canetas pousadas na bandeja magnética.</span></label></li>
+        <li><label><input type="checkbox" id="ap-u6"><span><strong>Fim:</strong> Painel colocado em <strong>Standby</strong> (LED vermelho fixo) e eventuais anomalias reportadas ao CTE.</span></label></li>
+      </ul>
+      <button class="reset" type="button" id="resetChecklist">Limpar lista</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir manual / ficha</button>
+
+      <h3 id="s9-2">9.2 Registo de ocorrências por sala (<code>INV-186</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Sala (STEM/TEC1/TEC2/D3/O1/O3)</th><th>Professor</th><th>Acessórios (2 canetas + IR)</th><th>Estado / Ocorrências</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador Promethean ActivPanel LX 65&quot; (<code>INV-186</code>) · <a href="index.html">&larr; Página do ActivPanel LX</a> · <a href="../index.html">Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "activpanel-lx-manual-check";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

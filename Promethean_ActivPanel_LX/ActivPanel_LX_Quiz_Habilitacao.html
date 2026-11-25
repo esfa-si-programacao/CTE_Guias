@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Utilização do Promethean ActivPanel LX — Quiz de Habilitação (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas de segurança e operação dos Painéis Interativos Promethean ActivPanel LX (65&quot;) + OPS-A, com cartão imprimível e código de verificação.">
+<meta property="og:title" content="Carta de Utilização — Promethean ActivPanel LX (CTE Informático)">
+<meta property="og:description" content="Quiz interativo de 8 perguntas sobre segurança do ecrã, cabos USB-C/HDMI+Touch, Screen Share e boas práticas nos 6 painéis INV-186.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='9' y='14' width='46' height='30' rx='4' fill='%231E7E8C' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M18 33 L26 24 L33 30 L45 20' fill='none' stroke='%23FFB37B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='49' x2='40' y2='49' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='2' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  color: #fff;
+  padding: 26px 24px 24px;
+  border-bottom: 4px solid var(--acc);
+}
+.hero-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.crumb {
+  font-size: 0.88rem;
+  color: #C7D6E5;
+  margin-bottom: 6px;
+}
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.nav-btn {
+  text-decoration: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main {
+  max-width: 880px;
+  width: 100%;
+  margin: 24px auto 40px;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.progress-card, .q-card, .result-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06);
+  margin-bottom: 18px;
+}
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--grey);
+  margin-bottom: 8px;
+}
+.bar-bg {
+  height: 10px;
+  background: var(--light);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--acc));
+  transition: width 0.25s ease;
+}
+
+.q-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--teal-soft);
+  color: var(--teal-text);
+  padding: 3px 11px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.q-title {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.opt-btn {
+  text-align: left;
+  font: inherit;
+  font-size: 0.96rem;
+  padding: 13px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--light);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: all 0.15s ease;
+}
+.opt-btn:hover:not(:disabled) {
+  border-color: var(--acc-btn);
+  background: var(--acc-soft);
+}
+.opt-btn:disabled { cursor: default; }
+.opt-letter {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-weight: 800;
+  font-size: 0.84rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.opt-btn.correct {
+  background: var(--green-soft);
+  border-color: var(--green);
+  color: #124C2A;
+}
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong {
+  background: var(--red-soft);
+  border-color: var(--red);
+  color: #6B2119;
+}
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback {
+  display: none;
+  margin-top: 16px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 0.94rem;
+  border: 1px solid;
+}
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn {
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary {
+  background: var(--acc-btn);
+  border-color: var(--acc-btn);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin: 8px 0 4px;
+}
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert {
+  display: none;
+  max-width: 640px;
+  margin: 16px auto;
+  text-align: left;
+  background: var(--red-soft);
+  border: 1.5px solid #E5B4AE;
+  border-left: 5px solid var(--red);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #5D1B14;
+  font-size: 0.92rem;
+}
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form {
+  max-width: 520px;
+  margin: 18px auto 14px;
+  display: grid;
+  grid-template-columns: 1fr 165px;
+  gap: 12px;
+  text-align: left;
+}
+.cert-form label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 4px;
+}
+.cert-form .req { color: var(--red-text); }
+.cert-form input {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 9px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+}
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err {
+  display: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--red-text);
+  margin-top: 4px;
+}
+.field-err.show { display: block; }
+
+.certificate {
+  display: none;
+  margin: 22px auto 10px;
+  max-width: 660px;
+  border: 3px double var(--dark);
+  border-radius: 12px;
+  padding: 24px 28px;
+  background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%);
+  text-align: center;
+  position: relative;
+}
+.certificate::before {
+  content: "";
+  display: block;
+  height: 6px;
+  background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal));
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--acc-text);
+  margin: 12px 0 4px;
+  border-bottom: 2px solid var(--line);
+  display: inline-block;
+  padding: 0 24px 4px;
+}
+.cert-code-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--light);
+  border: 1px solid var(--line);
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+.cert-code-box code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--dark);
+}
+.cert-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.86rem;
+  color: var(--grey);
+}
+
+footer {
+  text-align: center;
+  padding: 20px 24px 96px;
+  font-size: 0.86rem;
+  color: var(--grey);
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.fab-help {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) {
+  .cert-form { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Promethean ActivPanel LX (65&quot;)</a> &rsaquo; Carta de Utilização</nav>
+      <h1>Carta de Utilização — ActivPanel LX</h1>
+      <p>Valide em 2 minutos as regras de segurança, ligações e boas práticas dos painéis interativos (<code>INV-186</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar ao ActivPanel LX</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Segurança</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Ana Silva" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 11.º GPSI">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="ActivPanel_LX_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-186 (6 painéis)</div>
+      <h2>Cartão de Habilitação — Promethean ActivPanel LX</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação dos Painéis Interativos Promethean ActivPanel LX (65&quot;) + OPS-A.</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Utilização Promethean ActivPanel LX (<code>INV-186</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Proteção do ecrã",
+      critica: true,
+      q: "O que pode usar para escrever ou tocar no vidro do ActivPanel LX?",
+      opts: [
+        "Marcadores apagáveis de quadro branco normal.",
+        "O dedo ou as 2 canetas passivas Promethean.",
+        "Qualquer esferográfica com a ponta recolhida.",
+        "Canetas ativas com pilhas de qualquer marca."
+      ],
+      ans: 1,
+      exp: "Use apenas o dedo ou as 2 canetas passivas Promethean (não usam pilhas). Marcadores reais, esferográficas ou objetos duros mancham e riscam o vidro antirreflexo."
+    },
+    {
+      cat: "Limpeza segura",
+      critica: true,
+      q: "Como deve proceder se o vidro do painel tiver marcas de dedos?",
+      opts: [
+        "Pulverizar limpa-vidros diretamente sobre o ecrã.",
+        "Passar toalhete húmido com lixívia nos rebordos.",
+        "Limpar com pano de microfibra seco, sem sprays.",
+        "Usar papel de cozinha molhado com água fria."
+      ],
+      ans: 2,
+      exp: "Nunca pulverize líquidos diretamente no ecrã: escorrem para a moldura tátil infravermelha e danificam o painel. Use microfibra seca (ou limpeza técnica com painel desligado)."
+    },
+    {
+      cat: "Suporte móvel e cabos",
+      critica: true,
+      q: "Antes de deslocar um painel montado em suporte móvel com rodas, o que é obrigatório?",
+      opts: [
+        "Apenas destravar as duas rodas da frente.",
+        "Desligar primeiro todos os cabos e mover com 2 adultos.",
+        "Manter o cabo de corrente ligado para não perder o OPS.",
+        "Inclinar o ecrã para trás e empurrar pelo vidro."
+      ],
+      ans: 1,
+      exp: "Um painel de 65&quot; pesa 36,6 kg. Desligue sempre os cabos (corrente, Ethernet, HDMI) antes de destravar as rodas e desloque-o com 2 adultos pela estrutura, nunca pelo vidro."
+    },
+    {
+      cat: "Encerramento e energia",
+      critica: true,
+      q: "Como deve desligar o ActivPanel LX no final de uma aula normal?",
+      opts: [
+        "Desligar o interruptor traseiro I/O para cortar tudo.",
+        "Puxar o cabo de alimentação diretamente da tomada.",
+        "Deixar o ecrã ligado no máximo até ao dia seguinte.",
+        "Premir Energia na consola para o pôr em Standby."
+      ],
+      ans: 3,
+      exp: "No fim da aula, prima o botão Energia (consola frontal ou comando IR) para colocar o painel em Standby (LED vermelho, <= 0,5 W). Cortar a corrente a quente pode corromper o OPS-A."
+    },
+    {
+      cat: "Privacidade e contas",
+      critica: true,
+      q: "Iniciou sessão na sua conta Google no módulo OPS-A para abrir o Drive. O que faz antes de sair?",
+      opts: [
+        "Termina a sessão Google e fecha o navegador.",
+        "Muda apenas a entrada do painel para HDMI.",
+        "Minimiza a janela do Chrome para o fundo.",
+        "Bloqueia apenas o volume nas definições."
+      ],
+      ans: 0,
+      exp: "O painel é partilhado por várias turmas. Termine sempre a sessão na sua conta Google (Drive/Chrome/Classroom) antes de sair da sala para proteger os seus dados."
+    },
+    {
+      cat: "Toque no portátil",
+      critica: false,
+      q: "Ligou o portátil por HDMI e vê a imagem, mas tocar no ecrã não controla o PC. O que falta?",
+      opts: [
+        "Reiniciar o router Wi-Fi da sala de aula.",
+        "Ligar também o cabo USB-B (Touch) ao portátil.",
+        "Premir o botão Freeze duas vezes seguidas.",
+        "Trocar as pilhas das duas canetas do painel."
+      ],
+      ans: 1,
+      exp: "O cabo HDMI transmite vídeo e áudio, mas não transmite toque. Para controlar o portátil no vidro, ligue também o cabo USB-B Touch — ou use 1 único cabo USB-C de dados+vídeo."
+    },
+    {
+      cat: "Ligação USB-C",
+      critica: false,
+      q: "Que vantagem tem a porta USB-C frontal com um cabo compatível de dados e vídeo?",
+      opts: [
+        "Carrega o portátil a 150 W sem vídeo.",
+        "Substitui o módulo OPS-A do sistema Android.",
+        "Passa vídeo, áudio, toque e 15 W num só cabo.",
+        "Liga automaticamente todos os tablets da sala."
+      ],
+      ans: 2,
+      exp: "Um cabo USB-C com suporte de vídeo (DP Alt Mode) transporta imagem 4K, áudio, toque interativo e até 15 W de alimentação num único cabo."
+    },
+    {
+      cat: "Consola frontal",
+      critica: false,
+      q: "A imagem no painel ficou completamente parada, embora o portátil esteja a mexer. O que aconteceu?",
+      opts: [
+        "O botão Freeze (Congelar) foi ativado.",
+        "O cabo HDMI queimou a placa gráfica.",
+        "O módulo OPS-A entrou em modo de fábrica.",
+        "A resolução 4K foi desativada pelo MDM."
+      ],
+      ans: 0,
+      exp: "Quando o botão Freeze da consola frontal (ou comando IR) é premido, o ecrã congela a imagem atual. Basta voltar a premi-lo para descongelar."
+    },
+    {
+      cat: "LED de estado",
+      critica: false,
+      q: "O LED do botão de energia está completamente apagado e o painel não reage. Qual é a 1.ª verificação?",
+      opts: [
+        "Limpar a cache da aplicação Screen Share.",
+        "Aumentar o brilho no menu de definições.",
+        "Trocar o cabo HDMI para a porta traseira.",
+        "Confirmar cabo AC, tomada e interruptor traseiro I."
+      ],
+      ans: 3,
+      exp: "LED totalmente apagado indica ausência de corrente elétrica. Confirme a tomada, o encaixe do cabo AC atrás do painel e se o interruptor traseiro está em I (o LED deve acender a vermelho)."
+    },
+    {
+      cat: "Sem som",
+      critica: false,
+      q: "O vídeo passa no painel ligado por cabo ao portátil, mas o som só sai no portátil. O que faz?",
+      opts: [
+        "Seleciona ActivPanel/HDMI na saída de som do PC.",
+        "Desliga o cabo USB-B Touch da porta frontal.",
+        "Ativa o modo Avião no módulo OPS-A Android.",
+        "Muda a entrada do painel de HDMI para VGA."
+      ],
+      ans: 0,
+      exp: "Confirme o volume no painel e, no ícone do altifalante do portátil (Windows/macOS), selecione o Promethean / HDMI / USB-C como dispositivo de saída de áudio."
+    },
+    {
+      cat: "Screen Share",
+      critica: false,
+      q: "Um aluno inseriu o código de 6 dígitos no Screen Share, mas o ecrã ainda não apareceu. Porquê?",
+      opts: [
+        "O painel só aceita espelhamento por cabo HDMI.",
+        "O professor precisa de aprovar na Sala de Espera.",
+        "O Screen Share exige conta de administrador MDM.",
+        "Só funciona depois de desligar as duas canetas."
+      ],
+      ans: 1,
+      exp: "Por controlo pedagógico, os pedidos de espelhamento entram na Sala de Espera (Waiting Room) do Screen Share até o docente aprovar quem projeta."
+    },
+    {
+      cat: "Moldura tátil",
+      critica: false,
+      q: "A caneta falha sempre junto ao mesmo canto do ecrã. Qual é uma causa muito frequente?",
+      opts: [
+        "Falta de bateria na caneta passiva Promethean.",
+        "Poeira, papel ou autocolante na moldura interior.",
+        "O volume das colunas está acima de 50%.",
+        "A app Timer foi fechada sem guardar."
+      ],
+      ans: 1,
+      exp: "Os sensores infravermelhos de toque ficam na moldura interior do vidro. Papéis, post-its, fita-cola ou sujidade nos cantos bloqueiam os feixes e provocam falhas de toque."
+    },
+    {
+      cat: "Módulo OPS-A",
+      critica: false,
+      q: "Ligou o painel mas aparece «Sem sinal» em HDMI 1 em vez do Android. Como volta ao OPS-A?",
+      opts: [
+        "Prima Fonte (Input) na consola e escolha OPS.",
+        "Retire e volte a encaixar o OPS-A com tudo ligado.",
+        "Mantenha Volume + premido durante 30 segundos.",
+        "Ligue um cabo VGA entre o painel e o portátil."
+      ],
+      ans: 0,
+      exp: "O painel arranca na última fonte usada. Basta premir o botão Fonte (Input) na consola frontal e selecionar OPS. Nunca retire o módulo OPS-A com o painel ligado!"
+    },
+    {
+      cat: "Reinício físico",
+      critica: false,
+      q: "O painel bloqueou totalmente e não responde ao botão frontal. Como fazer um Hard Power Reset seguro?",
+      opts: [
+        "Carregar com força no vidro durante 10 segundos.",
+        "Desligar em O, tirar da tomada 60 s e religar.",
+        "Retirar os dois parafusos do módulo OPS-A.",
+        "Ligar dois portáteis ao mesmo tempo por HDMI."
+      ],
+      ans: 1,
+      exp: "O Hard Power Reset oficial consiste em pôr o interruptor traseiro em O, desligar o cabo da tomada durante pelo menos 60 segundos para descarregar condensadores, e voltar a ligar em I."
+    },
+    {
+      cat: "Quadro Branco",
+      critica: false,
+      q: "Como pode apagar rapidamente um erro no Quadro Branco do OPS-A sem ir à barra de ferramentas?",
+      opts: [
+        "Premir o botão de energia na consola frontal.",
+        "Passar a palma da mão aberta sobre o traço.",
+        "Agarrar as duas canetas em simultâneo no ecrã.",
+        "Agitar o comando à distância junto ao vidro."
+      ],
+      ans: 1,
+      exp: "A tecnologia Vellum Touch do ActivPanel LX reconhece a palma da mão aberta como borracha intuitiva no Quadro Branco, sem precisar de trocar de ferramenta."
+    },
+    {
+      cat: "Fim de aula",
+      critica: false,
+      q: "O que deve confirmar na bandeja frontal antes de sair da sala?",
+      opts: [
+        "Que as 2 canetas e o comando IR estão no lugar.",
+        "Que o interruptor traseiro ficou na posição O.",
+        "Que os cabos ficaram enrolados à volta do ecrã.",
+        "Que a conta Google ficou aberta para o dia seguinte."
+      ],
+      ans: 0,
+      exp: "Antes de sair, confirme as 2 canetas na bandeja magnética, o comando IR no suporte, cabos arrumados sem tensão, conta Google encerrada e painel em Standby."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [];
+  var idx = 0, score = 0, answered = false;
+  var failedCriticals = [];
+  var certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i];
+      copy[i] = copy[j];
+      copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) {
+        return { text: text, isCorrect: i === q.ans };
+      });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) {
+        if (shuffledOpts[k].isCorrect) { newAns = k; break; }
+      }
+      return {
+        cat: q.cat,
+        critica: q.critica,
+        q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns,
+        exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|ACTIVPANEL-INV186").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) {
+        failedCriticals.push(item);
+      }
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de segurança e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra crítica «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras abaixo" : "") + " antes de utilizar o painel.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0;
+    score = 0;
+    failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) {
+      sName.classList.add("invalid");
+      sName.setAttribute("aria-invalid", "true");
+      errName.classList.add("show");
+      ok = false;
+    }
+    if (!c) {
+      sClass.classList.add("invalid");
+      sClass.setAttribute("aria-invalid", "true");
+      errClass.classList.add("show");
+      ok = false;
+    }
+    if (!ok) {
+      if (!n) sName.focus();
+      else sClass.focus();
+      return;
+    }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

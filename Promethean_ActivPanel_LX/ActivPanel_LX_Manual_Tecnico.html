@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promethean ActivPanel LX (65&quot;) — Manual Técnico, OPS-A, MDM e Manutenção (CTE · INV-186)</title>
+<meta name="description" content="Manual técnico dos 6 painéis Promethean ActivPanel LX (65&quot;) com OPS-A do CTE: arquitetura, rede escolar e pass-through RJ45, gestão remota MDM, limpeza certificada, troubleshooting (10 casos) e protocolo de avarias.">
+<meta property="og:title" content="Promethean ActivPanel LX (65&quot;) — Manual Técnico e Manutenção (CTE)">
+<meta property="og:description" content="Administração OPS-A, gestão MDM (Radix/Promethean), rede escolar para Screen Share, limpeza segura e matriz de 10 casos de troubleshooting.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='9' y='14' width='46' height='30' rx='4' fill='%231E7E8C' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M18 33 L26 24 L33 30 L45 20' fill='none' stroke='%23FFB37B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='49' x2='40' y2='49' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='2' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.topbar {
+  background: #151E27;
+  color: #C7D6E5;
+  font-size: 0.84rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.topbar-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero {
+  background: linear-gradient(135deg, #16222E 0%, #1F3A4D 100%);
+  color: #fff;
+  padding: 38px 24px 34px;
+  border-bottom: 4px solid var(--teal);
+}
+.hero-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.badge-tech {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(30, 126, 140, 0.35);
+  border: 1px solid rgba(114, 217, 232, 0.4);
+  color: #9EEAF5;
+  padding: 4px 11px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.hero h1 { margin: 0; font-size: clamp(1.85rem, 4.1vw, 2.75rem); line-height: 1.12; }
+.hero .sub { color: #9EEAF5; font-size: 1.15rem; margin: 6px 0 10px; font-weight: 600; }
+.hero .meta { color: #B8CAD9; font-size: 0.92rem; margin: 0; }
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 265px 1fr;
+  gap: 44px;
+  padding: 32px 24px 80px;
+}
+nav.toc {
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  font-size: 0.88rem;
+  border-right: 1px solid var(--line);
+  padding-right: 16px;
+}
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--teal-soft); color: var(--teal-text); }
+
+main { min-width: 0; max-width: 850px; }
+section { margin-bottom: 42px; }
+section > h2 {
+  font-size: 1.55rem;
+  margin: 0 0 12px;
+  color: var(--dark);
+  border-bottom: 2px solid var(--light);
+  padding-bottom: 6px;
+}
+h3 { font-size: 1.14rem; color: var(--teal-text); margin: 24px 0 8px; }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--light);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note {
+  border: 1px solid;
+  border-left-width: 5px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 14px 0 18px;
+}
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.filter-input {
+  width: 100%;
+  font: inherit;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: var(--light);
+}
+.filter-input:focus { outline: none; border-color: var(--teal); background: #fff; }
+
+.btn {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--dark);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--teal-text); color: var(--teal-text); }
+
+footer {
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.86rem;
+  padding: 24px 24px 96px;
+  border-top: 1px solid var(--line);
+  background: var(--light);
+}
+
+.fab-help {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--acc);
+  box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+}
+@media print {
+  .topbar, nav.toc, .filter-input, .no-print, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--teal-text); }
+  .hero .meta { color: var(--grey); }
+  .layout { display: block; padding: 10px 0 0; }
+  main { max-width: none; }
+  tr, .note { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Promethean ActivPanel LX (65&quot;)</a> &rsaquo; Manual Técnico</nav>
+    <div class="topbar-links">
+      <a href="ActivPanel_LX_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="ActivPanel_LX_Manual_Utilizador.html">Manual de Utilizador</a>
+      <a href="ActivPanel_LX_Quiz_Habilitacao.html">Carta de Utilização</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="badge-tech">Área Técnica · Docentes Responsáveis &amp; Equipa CTE</span>
+      <h1>Promethean ActivPanel LX — Manual Técnico</h1>
+      <p class="sub">Arquitetura OPS-A, Rede Escolar, Gestão MDM, Limpeza Segura e Troubleshooting</p>
+      <p class="meta">6 unidades 65&quot; + OPS-A · Inventário <strong>INV-186</strong> · Versão 1.0 · novembro de 2026</p>
+    </div>
+    <button class="btn no-print" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice técnico">
+    <h2>Índice Técnico</h2>
+    <ul>
+      <li><a href="#t1">1. Âmbito e política de segurança</a></li>
+      <li><a href="#t2">2. Arquitetura Hardware &amp; OPS-A</a></li>
+      <li><a href="#t3">3. Rede Escolar, Screen Share e MDM</a>
+        <ul>
+          <li><a href="#t3-1">3.1 Ethernet pass-through (LAN In/Out)</a></li>
+          <li><a href="#t3-2">3.2 Requisitos de rede para Screen Share</a></li>
+          <li><a href="#t3-3">3.3 Gestão remota via MDM</a></li>
+        </ul>
+      </li>
+      <li><a href="#t4">4. Manutenção preventiva</a>
+        <ul>
+          <li><a href="#t4-1">4.1 Limpeza certificada do ecrã</a></li>
+          <li><a href="#t4-2">4.2 Suportes móveis e cablagem</a></li>
+          <li><a href="#t4-3">4.3 Revisão de sessões e firmware</a></li>
+        </ul>
+      </li>
+      <li><a href="#t5">5. Matriz de Troubleshooting (10 casos)</a></li>
+      <li><a href="#t6">6. Hard Power Reset e protocolo de avarias</a></li>
+      <li><a href="#t7">7. Ficha de inspeção das 6 salas</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="t1">
+      <h2>1. Âmbito e política de segurança</h2>
+      <p>Este documento destina-se aos <strong>docentes responsáveis pelo CTE e equipa de apoio informático</strong>. Consolida a gestão técnica dos <strong>6 painéis Promethean ActivPanel LX (65&quot;) com módulo OPS-A (Android EDLA)</strong> e licenciamento MDM registados em <code>INV-186</code> (Estúdios STEM, TEC1, TEC2, Hardware D3 e Oficinas O1 e O3).</p>
+      <aside class="note danger"><strong>Política de Credenciais (Portal Online):</strong> Palavras-passe da consola MDM (Promethean Admin Tools / Radix VISO), PINs de administração do OPS-A, contas Google Workspace institucionais ou chaves WPA2/VLAN da escola <strong>nunca devem ser publicadas</strong> nestas páginas nem afixadas nas salas.</aside>
+    </section>
+
+    <section id="t2">
+      <h2>2. Arquitetura Hardware &amp; OPS-A (<code>INV-186</code>)</h2>
+      <!-- CONFIRMAR: versão exata de RAM/Armazenamento dos módulos OPS-A instalados (4 GB/32 GB vs. 8 GB/64 GB) e nomes de host/etiquetas das 6 unidades no MDM -->
+      <div class="tw">
+        <table>
+          <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+          <thead><tr><th>Subsistema</th><th>Especificação Técnica (ActivPanel LX 65&quot; + OPS-A)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Ecrã e ótica</th><td>65&quot; TFT LCD Direct LED · 4K UHD (3840 × 2160 @ 60 Hz) · brilho típico 350–400 cd/m² · contraste 1200:1 · resposta 8 ms · vidro temperado antirreflexo 3,2 mm.</td></tr>
+            <tr><th scope="row">Sistema tátil</th><td>Tecnologia infravermelha <strong>Vellum Touch</strong> · até <strong>20 pontos de toque simultâneos</strong> · diferenciação caneta/dedo/palma · compatível com Windows, macOS, ChromeOS e Linux (HID plug-and-play).</td></tr>
+            <tr><th scope="row">Portas frontais</th><td>1× HDMI 2.0 · 1× USB-C 2.0 (DisplayPort Alt Mode vídeo/áudio + toque + <strong>15 W Power Delivery</strong>) · 1× USB-B 2.0 (Touch para HDMI frontal) · 1× USB-A 2.0.</td></tr>
+            <tr><th scope="row">Portas traseiras</th><td>2× HDMI 2.0 · 2× USB-B 2.0 (Touch) · 1× USB-A 2.0 · 1× VGA · Áudio 3,5 mm In/Out · RS-232 · <strong>LAN RJ45 In &amp; Out</strong> (encaminhamento direto para OPS) · ranhura padrão Intel OPS (80 pinos).</td></tr>
+            <tr><th scope="row">Módulo OPS-A</th><td>Computador encaixável <strong>Promethean OPS-A</strong> · <strong>Android 12 com certificação Google EDLA</strong> · CPU ARM Cortex-A55 Quad-Core · GPU Mali-G52 · Wi-Fi, Bluetooth, Ethernet, USB e microSD.</td></tr>
+            <tr><th scope="row">Áudio &amp; Térmica</th><td>2× 15 W frontais · conceção passiva <strong>sem ventoinha</strong> (silencioso) · 100–240 V AC · típico 106 W · Standby &le; 0,5 W.</td></tr>
+            <tr><th scope="row">Fixação / Suportes</th><td>VESA <strong>600 × 400 mm</strong> · 36,6 kg · suportes de chão com rodas <strong>Reflecta 105P-Shelf (<code>INV-191</code>)</strong> nos estúdios (STEM, TEC1, TEC2, Hardware D3).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t3">
+      <h2>3. Rede Escolar, Screen Share e MDM</h2>
+
+      <h3 id="t3-1">3.1 Ligação de rede Ethernet pass-through (LAN In/Out)</h3>
+      <ul>
+        <li>Os painéis ActivPanel LX possuem portas <strong>RJ45 LAN In e LAN Out</strong> que encaminham diretamente a ligação de rede cablada para o módulo <strong>OPS-A</strong> instalado na ranhura traseira.</li>
+        <li>Sempre que exista tomada de rede de parede junto ao painel (especialmente nas Oficinas O1/O3 e estúdios), <strong>dê preferência à ligação Ethernet cablada</strong> em vez de depender exclusivamente do Wi-Fi: garante atualizações MDM estáveis e menor latência no Screen Share.</li>
+        <li>Em painéis sobre suportes móveis (<code>INV-191</code>), garanta folga suficiente no cabo de rede ou use Wi-Fi escolar sem portal cativo (autorização por endereço MAC / rede técnica CTE).</li>
+      </ul>
+
+      <h3 id="t3-2">3.2 Requisitos de rede escolar para Screen Share, AirPlay e Miracast</h3>
+      <ul>
+        <li><strong>Mesma sub-rede / sem isolamento de clientes:</strong> Para que os dispositivos dos professores e alunos encontrem o recetor <strong>Screen Share</strong>, o tráfego entre a rede de utilizadores e a rede dos painéis não pode ter <em>AP/Client Isolation</em> ativo.</li>
+        <li><strong>AirPlay (iPads/macOS) e mDNS:</strong> Exige tráfego multicast mDNS/Bonjour entre o dispositivo Apple e o OPS-A (ou utilização do código de 6 dígitos via app Promethean Screen Share, que contorna limitações de descoberta mDNS em redes segmentadas!).</li>
+        <li><strong>Miracast (Windows):</strong> Utiliza Wi-Fi Direct; confirme que o módulo Wi-Fi do OPS-A se mantém ativo mesmo quando ligado por Ethernet, se pretender usar Miracast.</li>
+        <li><strong>Cache da app Screen Share:</strong> Se o código de 6 dígitos deixar de gerar ou der erro de servidor após períodos longos ligado, limpe a cache em <em>Definições Android &rarr; Aplicações &rarr; Screen Share &rarr; Limpar cache</em>.</li>
+      </ul>
+
+      <h3 id="t3-3">3.3 Gestão remota via MDM (Promethean Admin Tools / Radix VISO)</h3>
+      <!-- CONFIRMAR: confirmar qual plataforma MDM está ativa no agrupamento (Radix VISO MDM, Promethean Admin Tools ou Google Admin Console) e políticas de temporizador Standby -->
+      <p>O lote <code>INV-186</code> foi adquirido com <strong>MDM para gestão centralizada de painéis</strong> (suportando <strong>Promethean Admin Tools</strong>, <strong>Radix VISO MDM</strong> e <strong>Google Admin</strong>):</p>
+      <ul>
+        <li><strong>Inventário e grupos por sala:</strong> Nomear claramente cada unidade na consola MDM (ex.: <code>CTE-STEM-LX65</code>, <code>CTE-TEC1-LX65</code>, <code>CTE-TEC2-LX65</code>, <code>CTE-D3-LX65</code>, <code>CTE-O1-LX65</code>, <code>CTE-O3-LX65</code>).</li>
+        <li><strong>Atualizações OTA e apps:</strong> Distribuir remotamente atualizações de firmware do OPS-A e aplicações educativas fora do horário letivo.</li>
+        <li><strong>Gestão de energia (Standby automático):</strong> Configurar temporizador de suspensão (ex.: 30–60 min de inatividade) e encerramento programado ao final do dia (ex.: 19:30) para poupar energia e prolongar a vida útil do painel LCD.</li>
+        <li><strong>Privacidade em equipamento partilhado:</strong> Definir políticas que limpem sessões/browser periodicamente ou ativar perfil convidado/sessão limpa entre dias letivos.</li>
+      </ul>
+    </section>
+
+    <section id="t4">
+      <h2>4. Manutenção preventiva</h2>
+
+      <h3 id="t4-1">4.1 Limpeza segura do ecrã (procedimento oficial Promethean)</h3>
+      <ul>
+        <li><strong>Desligar sempre da corrente:</strong> Coloque o painel em Standby, desligue o interruptor traseiro (<code>O</code>) e retire a ficha da tomada antes de limpar com produto.</li>
+        <li><strong>Solução autorizada:</strong> Apenas <strong>álcool isopropílico (IPA) 70%–90%</strong> ou <strong>etanol 70%–90%</strong> aplicado levemente num <strong>pano 100% algodão ou microfibra limpo</strong>.</li>
+        <li><strong>NUNCA pulverizar diretamente no ecrã:</strong> Líquidos que escorram para a moldura inferior infiltram-se nos sensores infravermelhos e na placa da consola frontal, causando danos irreparáveis!</li>
+        <li><strong>Movimento de limpeza:</strong> Limpe o vidro suavemente numa única direção sem pressão excessiva, evitando os cantos estreitos da moldura de toque, e seque logo com um pano de microfibra seco.</li>
+        <li><strong>Estritamente proibido:</strong> limpa-vidros com amoníaco, lixívia, acetona, toalhetes abrasivos ou sprays desinfetantes aplicados diretamente no painel/portas.</li>
+      </ul>
+
+      <h3 id="t4-2">4.2 Suportes móveis (<code>INV-191</code>), cabos e acessórios</h3>
+      <ul>
+        <li>Verificar trimestralmente o aperto dos parafusos VESA (<code>600 × 400 mm</code>) e o estado dos travões das 4 rodas dos suportes Reflecta (<code>INV-191</code>).</li>
+        <li>Usar extensões curtas ou protetores de ficha nos cabos frontais (HDMI / USB-C / USB-B) para evitar desgaste mecânico das portas soldadas à placa frontal do painel.</li>
+        <li>Confirmar em cada sala a presença das <strong>2 canetas passivas</strong> (as pontas de nylon/feltro desgastadas podem ser substituídas sem comprar caneta nova) e pilhas no comando IR.</li>
+      </ul>
+
+      <h3 id="t4-3">4.3 Revisão periódica do OPS-A e armazenamento</h3>
+      <ul>
+        <li>No final de cada período letivo, verificar espaço livre no armazenamento interno do OPS-A (remover PDFs, vídeos e capturas antigas de turmas).</li>
+        <li>Confirmar que não ficaram contas pessoais de professores/alunos gravadas nas <em>Definições &rarr; Contas</em> do Android.</li>
+        <li>Verificar se o firmware do painel e do módulo OPS-A está atualizado via MDM.</li>
+      </ul>
+    </section>
+
+    <section id="t5">
+      <h2>5. Matriz de resolução de problemas (Troubleshooting)</h2>
+      <p>Filtre rapidamente pelo sintoma observado em sala:</p>
+      <input type="search" class="filter-input" id="tsFilter" placeholder="Pesquisar sintoma (ex.: toque, HDMI, USB-C, som, Freeze, Screen Share, OPS, MDM, LED)...">
+      <div class="tw">
+        <table id="tsTable">
+          <colgroup><col style="width:5%"><col style="width:23%"><col style="width:27%"><col style="width:45%"></colgroup>
+          <thead><tr><th>#</th><th>Sintoma</th><th>Causas Prováveis</th><th>Solução Passo a Passo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td><strong>Painel não liga / LED totalmente apagado</strong></td><td>Interruptor traseiro em <code>O</code>, cabo AC solto ou tomada sem corrente.</td><td>1) Testar tomada com outro aparelho; 2) Encaixar firme o cabo AC atrás do painel; 3) Ligar o interruptor traseiro para <code>I</code> (LED deve passar a vermelho fixo) e premir Energia.</td></tr>
+            <tr><td><strong>2</strong></td><td><strong>LED vermelho fixo e não acorda ao tocar</strong></td><td>Modo Standby sem <em>Wake on Touch</em> ativo ou pilhas gastas no comando IR.</td><td>Premir o botão físico de Energia na consola frontal central. Se não reagir, executar <em>Hard Power Reset</em> de 60 s (ver <a href="#t6">Secção 6</a>).</td></tr>
+            <tr><td><strong>3</strong></td><td><strong>Diz «Sem sinal» ao ligar portátil (HDMI/USB-C)</strong></td><td>Entrada errada selecionada, portátil só no ecrã interno ou cabo USB-C só de carga.</td><td>1) Selecionar a entrada exata na consola frontal (USB-C, HDMI Frontal, HDMI 1/2); 2) No Windows premir <code>Win + P</code> &rarr; Duplicar/Estender; 3) Substituir por cabo USB-C certificado para vídeo ou cabo HDMI.</td></tr>
+            <tr><td><strong>4</strong></td><td><strong>Imagem OK do PC, mas ecrã tátil não responde</strong></td><td>Cabo HDMI ligado sem cabo <strong>USB-B Touch</strong> na porta pareada, ou ligação USB em hub sem energia.</td><td>Ligar o cabo USB-B (Touch) diretamente entre a porta Touch correspondente ao HDMI usado e uma porta USB do portátil — ou usar 1 único cabo USB-C de vídeo+dados na porta frontal.</td></tr>
+            <tr><td><strong>5</strong></td><td><strong>Imagem totalmente congelada no ecrã</strong></td><td>Botão <strong>Freeze</strong> premido acidentalmente na consola frontal ou comando IR.</td><td>Voltar a premir <strong>Freeze</strong> uma vez para libertar o ecrã.</td></tr>
+            <tr><td><strong>6</strong></td><td><strong>Sem som nas colunas (2× 15 W)</strong></td><td>Mudo/volume a 0 no painel, saída áudio errada no portátil ou jack 3,5 mm ligado atrás.</td><td>1) Aumentar volume na consola frontal; 2) Selecionar saída de som <em>ActivPanel/HDMI/USB-C</em> no Windows/macOS; 3) Desligar qualquer cabo esquecido na saída 3,5 mm traseira.</td></tr>
+            <tr><td><strong>7</strong></td><td><strong>Screen Share / AirPlay falha ou não encontra painel</strong></td><td>VLANs isoladas, <em>Client Isolation</em> no Wi-Fi, código expirado, Sala de Espera sem aprovação ou cache presa.</td><td>1) Verificar rede Wi-Fi/Ethernet e código de 6 dígitos atual; 2) Aprovar pedido na <em>Waiting Room</em>; 3) Limpar cache da app Screen Share no OPS-A; 4) Usar cabo USB-C/HDMI como plano B imediato.</td></tr>
+            <tr><td><strong>8</strong></td><td><strong>Módulo OPS-A não arranca ou ecrã preto em OPS</strong></td><td>Bloqueio temporário do Android ou contacto ligeiramente frouxo na ranhura OPS (após transporte do suporte móvel).</td><td>1) Executar <em>Hard Power Reset</em> (60 s desligado da tomada); 2) Apenas pela equipa CTE com painel desligado da corrente: desapertar os 2 parafusos de fixação, reencaixar o módulo OPS-A com firmeza e voltar a ligar.</td></tr>
+            <tr><td><strong>9</strong></td><td><strong>Toque fantasma, traços cortados ou desalinhados</strong></td><td>Poeira/papel/autocolante na moldura interior IR, luz solar direta forte ou resolução não 16:9.</td><td>1) Inspecionar e limpar suavemente os 4 cantos internos da moldura de toque (sem objetos encostados); 2) Fechar estores contra sol direto; 3) Ajustar resolução do PC para 1920×1080 ou 3840×2160.</td></tr>
+            <tr><td><strong>10</strong></td><td><strong>Painel lento, apps travam ou ecrã bloqueado por MDM</strong></td><td>Falta de reinício prolongado, memória cheia no OPS-A ou política/bloqueio aplicado na consola MDM.</td><td>1) Reiniciar o OPS-A / Hard Power Reset 60 s; 2) Libertar ficheiros temporários e encerrar contas Google; 3) Consultar estado da unidade na consola MDM (Radix/Promethean Admin Tools).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="t6">
+      <h2>6. Hard Power Reset e protocolo de avarias</h2>
+      <h3>Procedimento de Hard Power Reset (descarga de condensadores)</h3>
+      <ol>
+        <li>Se possível, coloque primeiro o painel em <strong>Standby</strong> pelo botão frontal.</li>
+        <li>Mude o <strong>interruptor físico traseiro</strong> para a posição <code>O</code> (desligado).</li>
+        <li>Desligue o <strong>cabo de alimentação AC</strong> da tomada elétrica.</li>
+        <li><strong>Aguarde pelo menos 60 segundos completos</strong> para descarregar totalmente os condensadores internos.</li>
+        <li>Volte a ligar o cabo AC, mude o interruptor traseiro para <code>I</code> (LED vermelho fixo) e prima Energia na consola frontal.</li>
+      </ol>
+
+      <aside class="note danger"><strong>Critérios de Suspensão Imediata (não voltar a ligar — contactar assistência / fornecedor):</strong>
+        <ul style="margin:6px 0 0">
+          <li>Vidro frontal estalado, lascado ou moldura tátil deformada após impacto;</li>
+          <li>Cheiro a queimado, fumo, estalidos elétricos ou sobreaquecimento anómalo na traseira;</li>
+          <li>Infiltração de líquidos no ecrã ou na consola de botões;</li>
+          <li>Roda ou suporte móvel (<code>INV-191</code>) instável, inclinado ou com parafusos soltos (risco de queda de 36,6 kg!);</li>
+          <li>Falha repetida de arranque (LED vermelho a piscar) mesmo após <em>Hard Power Reset</em> de 60 segundos.</li>
+        </ul>
+      </aside>
+      <p><strong>Nunca abrir a tampa traseira do painel.</strong> Ao abrir um pedido de suporte Promethean/fornecedor, registe: sala, n.º de série do painel (etiqueta lateral/traseira) e do módulo OPS-A, versão de firmware, comportamento do LED frontal e fotografia/vídeo curto do sintoma.</p>
+    </section>
+
+    <section id="t7">
+      <h2>7. Ficha de inspeção periódica das 6 salas (<code>INV-186</code>)</h2>
+      <p>Recomenda-se verificação rápida no final de cada mês ou período letivo:</p>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Sala</th><th>Data</th><th>2 Canetas + Comando IR</th><th>Toque / USB-C / HDMI</th><th>OPS-A / MDM / Contas Limpas</th><th>Suporte / Rodas / Observações</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Estúdio STEM</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Estúdio TEC1</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Estúdio TEC2</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Estúdio Hardware (D3)</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Oficina O1</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Oficina O3</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual Técnico Promethean ActivPanel LX 65&quot; (<code>INV-186</code>) · Uso interno para docentes responsáveis e apoio técnico.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var inp = document.getElementById("tsFilter");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#tsTable tbody tr"));
+  if (inp) {
+    inp.addEventListener("input", function() {
+      var q = (inp.value || "").trim().toLowerCase();
+      rows.forEach(function(r) {
+        r.style.display = (!q || r.textContent.toLowerCase().indexOf(q) !== -1) ? "" : "none";
+      });
+    });
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>

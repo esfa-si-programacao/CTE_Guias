@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promethean ActivPanel LX (65") — Ajuda Online (CTE Informático)</title>
+<meta name="description" content="Ajuda rápida para usar os Painéis Interativos Promethean ActivPanel LX (65&quot;) com OPS-A do CTE: arranque, entradas HDMI/USB-C, espelhamento Screen Share, diagnóstico rápido e boas práticas de fim de aula.">
+<meta property="og:title" content="Promethean ActivPanel LX (65&quot;) — Usar o painel interativo na aula (CTE)">
+<meta property="og:description" content="Ajuda rápida para operar os 6 painéis Promethean ActivPanel LX (INV-186): OPS-A Android, ligação de portáteis, Screen Share sem fios, diagnóstico LED e fim de aula.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='9' y='14' width='46' height='30' rx='4' fill='%231E7E8C' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M18 33 L26 24 L33 30 L45 20' fill='none' stroke='%23FFB37B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='24' y1='49' x2='40' y2='49' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='2' fill='%234CE0F5'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --purple: #6C3483;
+  --purple-text: #5B2C6F;
+  --purple-soft: #F4ECF7;
+  --amber: #B9770E;
+  --amber-soft: #FEF9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.88rem; padding: 8px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.topbar-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 24px 20px 28px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.hero-media { width: 136px; height: 114px; border-radius: 14px; background: #fff; border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 6px; }
+.hero-media.svg-fallback { background: rgba(255,255,255,0.07); }
+.hero-media img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.hero-copy { flex: 1; min-width: 0; }
+.hero h1 { margin: 0; font-size: clamp(1.55rem, 3.6vw, 2.35rem); line-height: 1.14; }
+.hero .sub { color: #D4E1EE; font-size: 1.02rem; margin: 8px 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
+.btn-hero-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: var(--acc-btn); border: 2px solid var(--acc-btn); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 20px; border-radius: 9px; transition: background 0.15s ease, transform 0.15s ease; }
+.btn-hero-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); transform: translateY(-1px); }
+.btn-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: #fff; }
+.btn-hero-ai { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; background: rgba(108, 52, 131, 0.52); border: 1.5px solid rgba(226, 184, 248, 0.65); color: #F6E9FC; font-weight: 700; font-size: 0.96rem; padding: 10px 18px; border-radius: 9px; transition: background 0.15s ease, border-color 0.15s ease; }
+.btn-hero-ai:hover { background: rgba(108, 52, 131, 0.82); border-color: #F6E9FC; }
+.btn-hero-ai-soon { display: inline-flex; align-items: center; justify-content: center; text-align: center; gap: 6px; background: rgba(108, 52, 131, 0.28); border: 1.5px dashed rgba(226, 184, 248, 0.65); color: #F0DAF9; font-weight: 700; font-size: 0.88rem; padding: 10px 15px; border-radius: 9px; cursor: default; }
+
+main.container { max-width: 1120px; width: 100%; margin: 18px auto 28px; padding: 0 20px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.card-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(31,42,54,0.05); }
+.sec-head { background: var(--light); border-bottom: 1px solid var(--line); padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sec-head h2 { margin: 0; font-size: 1.14rem; color: var(--dark); }
+.sec-head p { margin: 2px 0 0; font-size: 0.88rem; color: var(--grey); }
+.sec-body { padding: 14px 18px; }
+
+.percurso-grid { display: grid; grid-template-columns: 275px 1fr; gap: 14px; align-items: stretch; }
+.steps-right { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.step-card { border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 11px; padding: 12px 14px; background: #FAFBFD; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.step-card.step-lead { border-top-color: var(--acc); background: #fff; }
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-lead .step-num { background: var(--acc-btn); }
+.step-card h3 { margin: 0; font-size: 0.98rem; color: var(--dark); }
+.step-card p { margin: 3px 0 0; font-size: 0.88rem; color: var(--grey); }
+.step-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 7px; border-top: 1px solid var(--line); }
+.action-link { font-size: 0.88rem; font-weight: 700; color: var(--acc-text); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.action-link:hover { text-decoration: underline; }
+.action-link.teal { color: var(--teal-text); }
+
+.quick-visual { background: var(--light); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px; display: flex; flex-direction: column; gap: 6px; }
+.qv-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; font-size: 0.81rem; line-height: 1.3; }
+.qv-key { min-width: 82px; text-align: center; font-weight: 800; font-size: 0.7rem; padding: 3px 6px; border-radius: 5px; background: var(--dark); color: #fff; flex-shrink: 0; }
+.qv-key.acc { background: var(--acc-btn); }
+.qv-key.teal { background: var(--teal-text); }
+.qv-key.red { background: var(--red-text); }
+.qv-desc { color: var(--dark); font-weight: 600; }
+
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.shortcut-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; box-shadow: 0 3px 10px rgba(31,42,54,0.04); }
+.shortcut-card.red { border-top-color: var(--red); }
+.shortcut-card.purple { border-top-color: var(--purple); }
+.shortcut-card h3 { margin: 0 0 3px; font-size: 0.98rem; color: var(--dark); }
+.shortcut-card p { margin: 0; font-size: 0.88rem; color: var(--grey); }
+.shortcut-note { margin-top: 4px !important; font-size: 0.84rem !important; color: var(--dark) !important; font-weight: 600; }
+.soon-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; background: var(--purple-soft); border: 1px solid #D7BDE2; color: var(--purple-text); font-size: 0.82rem; font-weight: 700; }
+.shortcut-alt { display: block; margin-top: 5px; font-size: 0.875rem; font-weight: 600; color: var(--teal-text); text-decoration: none; }
+.shortcut-alt:hover { text-decoration: underline; }
+
+.diag-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+.diag-sub { margin: 0 0 8px; font-size: 0.94rem; color: var(--dark); }
+.led-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 10px; }
+.led-btn { font: inherit; font-size: 0.86rem; font-weight: 600; padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--light); color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px; text-align: left; transition: all 0.14s ease; }
+.led-btn:hover, .led-btn.active { border-color: var(--dark); background: #fff; box-shadow: 0 3px 8px rgba(31,42,54,0.08); }
+
+.diag-panel { border: 1.5px solid var(--line); border-left: 5px solid var(--teal); border-radius: 10px; padding: 13px 15px; background: var(--teal-soft); }
+.diag-panel.warn { border-left-color: var(--acc); background: var(--acc-soft); }
+.diag-panel.danger { border-left-color: var(--red); background: var(--red-soft); }
+.diag-panel.ok { border-left-color: var(--green); background: var(--green-soft); }
+.diag-panel h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--dark); }
+.diag-panel p { margin: 0 0 6px; font-size: 0.9rem; }
+.diag-panel p:last-child { margin-bottom: 0; }
+.diag-help-foot { margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(31,42,54,0.22); font-size: 0.88rem; color: var(--dark); }
+.diag-help-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.diag-help-foot a:hover { text-decoration: underline; }
+
+.sym-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.sym-btn { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; transition: all 0.14s ease; }
+.sym-btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.sym-btn.active { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+.docs-list { list-style: none; margin: 0; padding: 0; }
+.doc-row { display: flex; justify-content: space-between; align-items: center; gap: 8px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.doc-row:first-child { padding-top: 0; }
+.doc-row:last-child { padding-bottom: 0; border-bottom: none; }
+.doc-title { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
+.doc-formats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fmt-link { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 4px 10px; border-radius: 7px; border: 1px solid var(--line); background: var(--light); color: var(--dark); white-space: nowrap; transition: border-color 0.14s ease, background 0.14s ease; }
+.fmt-link:hover { border-color: var(--acc-btn); color: var(--acc-text); background: var(--acc-soft); }
+.fmt-link.web { background: var(--teal-soft); border-color: #B9DEE4; color: var(--teal-text); }
+.fmt-link.web:hover { background: #D7EEF2; }
+.fmt-link.quiz { background: var(--green-soft); border-color: #B7DEC8; color: var(--green-text); }
+.fmt-link.quiz:hover { background: #D6EFE1; }
+
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; list-style: none; padding: 0; margin: 0; }
+.check-grid label { display: flex; gap: 9px; align-items: flex-start; background: var(--light); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.88rem; }
+.check-grid input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
+.check-grid input:checked + span { color: var(--grey); text-decoration: line-through; }
+.return-ready { margin-top: 14px; padding: 12px 15px; border-radius: 9px; background: var(--green-soft); border: 1.5px solid var(--green); color: #124C2A; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 700; font-size: 0.94rem; }
+
+.btn { font: inherit; font-size: 0.88rem; font-weight: 700; border: 1.5px solid var(--line); background: #fff; color: var(--dark); padding: 7px 14px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-green { background: var(--green-text); border-color: var(--green-text); color: #fff; }
+.btn-green:hover { background: #12542D; border-color: #12542D; color: #fff; }
+
+.details-stack { display: flex; flex-direction: column; gap: 10px; }
+details.fold-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,42,54,0.04); }
+details.fold-box summary { list-style: none; cursor: pointer; padding: 14px 20px; font-weight: 700; font-size: 1rem; color: var(--dark); background: var(--light); display: flex; align-items: center; gap: 10px; }
+details.fold-box summary::-webkit-details-marker { display: none; }
+details.fold-box summary::before { content: "▸"; display: inline-block; color: var(--acc-text); font-size: 1.05rem; transition: transform 0.15s ease; }
+details.fold-box[open] summary::before { transform: rotate(90deg); }
+details.fold-box[open] summary { border-bottom: 1px solid var(--line); }
+.fold-body { padding: 14px 20px; font-size: 0.92rem; }
+.fold-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fold-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.specs-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.specs-list li { font-size: 0.9rem; color: var(--text); }
+.specs-list strong { color: var(--dark); }
+
+.ext-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; }
+.ext-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.ext-list a { font-size: 0.9rem; font-weight: 700; color: var(--teal-text); text-decoration: none; }
+.ext-list a:hover { text-decoration: underline; color: var(--acc-text); }
+.ext-list p { margin: 1px 0 0; font-size: 0.85rem; color: var(--grey); }
+
+footer { text-align: center; padding: 16px 20px 96px; font-size: 0.88rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+footer a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-contact { margin: 0 0 8px; color: var(--dark); font-weight: 600; }
+
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 960px) {
+  .percurso-grid { grid-template-columns: 1fr; }
+  .diag-grid, .shortcuts-grid, .ext-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  header.hero { padding: 16px 14px 18px; }
+  .hero-inner { gap: 12px; align-items: flex-start; }
+  .hero-media { width: 88px; height: 76px; padding: 4px; border-radius: 10px; }
+  .hero h1 { font-size: 1.38rem; }
+  .hero .sub { font-size: 0.92rem; }
+  .hero-actions { margin-top: 10px; gap: 8px; }
+  .btn-hero-primary, .btn-hero-secondary, .btn-hero-ai, .btn-hero-ai-soon { width: 100%; padding: 9px 16px; }
+  .fab-help { right: 12px; bottom: 12px; padding: 8px 13px; font-size: 0.84rem; }
+  main.container { margin: 12px auto 20px; padding: 0 12px; gap: 11px; }
+  .sec-head { padding: 9px 14px; }
+  .sec-body { padding: 10px 14px; }
+  .steps-right { grid-template-columns: 1fr; gap: 8px; }
+  .step-card { padding: 10px 12px; gap: 6px; }
+  .shortcuts-grid { gap: 8px; }
+  .shortcut-card { padding: 10px 13px; gap: 6px; }
+  .diag-grid { gap: 12px; }
+  .diag-panel { padding: 10px 12px; }
+  .check-grid { grid-template-columns: 1fr; gap: 6px; }
+  .check-grid label { padding: 7px 10px; }
+  .led-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .led-btn { padding: 7px 8px; font-size: 0.82rem; }
+  .sym-btn { padding: 5px 10px; font-size: 0.84rem; }
+  .ext-list { gap: 4px; }
+  .ext-list li { padding: 4px 0; }
+  details.fold-box summary { padding: 11px 14px; }
+}
+@media print {
+  .fab-help { display: none !important; }
+  footer { padding-bottom: 20px; }
+}
+</style>
+<link rel="stylesheet" href="../cte-leds.css">
+<link rel="stylesheet" href="../cte-hub.css">
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">&larr; Portal CTE</a> &rsaquo; Promethean ActivPanel LX (65&quot;)</nav>
+    <span>CTE Informático</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-media" id="heroMedia">
+      <!-- FASE 3 (P1): pode substituir promethean_activpanel_lx.jpg por fotografia real de um dos 6 painéis do CTE -->
+      <img src="promethean_activpanel_lx.jpg" alt="Painel Interativo Promethean ActivPanel LX de 65 polegadas com duas canetas na bandeja frontal" id="heroImg">
+      <svg id="heroSvgFallback" hidden viewBox="0 0 150 110" width="112" height="82" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="14" y="12" width="122" height="72" rx="6" fill="rgba(30,126,140,0.38)" stroke="#fff"/>
+        <rect x="20" y="18" width="110" height="56" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.45)" stroke-width="1.4"/>
+        <path d="M36 55 L56 36 L74 49 L98 28 L112 40" stroke="#FFB37B" stroke-width="3"/>
+        <circle cx="75" cy="79" r="2.2" fill="#4CE0F5" stroke="none"/>
+        <line x1="56" y1="79" x2="67" y2="79" stroke="#C7D6E5" stroke-width="2"/>
+        <line x1="83" y1="79" x2="94" y2="79" stroke="#C7D6E5" stroke-width="2"/>
+        <line x1="52" y1="84" x2="48" y2="98" stroke="#C7D6E5"/>
+        <line x1="98" y1="84" x2="102" y2="98" stroke="#C7D6E5"/>
+        <line x1="38" y1="98" x2="112" y2="98" stroke="#fff" stroke-width="3"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1>Usar o Promethean ActivPanel LX na aula</h1>
+      <p class="sub">Do arranque e quadro branco (OPS-A) à ligação de portáteis e espelhamento sem fios, em 5 passos.</p>
+      <div class="hero-actions">
+        <a class="btn-hero-primary" href="#percurso">Começar aqui</a>
+        <a class="btn-hero-secondary" href="#diagnostico">Algo não funciona?</a>
+        <a class="btn-hero-ai" id="heroAiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Perguntar à IA &#8599;</a>
+        <span class="btn-hero-ai-soon" id="heroAiSoon" title="O caderno NotebookLM ainda está em preparação">Assistente IA · disponível brevemente</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. PERCURSO EM 5 PASSOS -->
+  <section class="card-section" id="percurso">
+    <div class="sec-head">
+      <div>
+        <h2>Percurso recomendado (5 passos)</h2>
+        <p>Siga esta ordem para começar a usar rapidamente qualquer um dos 6 painéis ActivPanel LX 65&quot; (Estúdios STEM, TEC1, TEC2, Hardware D3 e Oficinas O1 e O3).</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="percurso-grid">
+        <article class="step-card step-lead">
+          <div>
+            <div class="step-head"><span class="step-num">1</span><h3>Ver o essencial (1 min)</h3></div>
+            <p>4 regras vitais para usar o painel, o toque e as ligações sem falhas.</p>
+          </div>
+          <!-- FASE 3 (Vídeo): quando gravar o vídeo curto (60-90 s), pode substituir .quick-visual por:
+          <div class="video-box">
+            <video controls preload="metadata" src="Como_Usar_o_ActivPanel_LX.mp4#t=0.5">
+              <track kind="captions" src="Como_Usar_o_ActivPanel_LX.vtt" srclang="pt" label="Português" default>
+            </video>
+          </div>
+          -->
+          <div class="quick-visual" aria-label="4 regras vitais do Promethean ActivPanel LX">
+            <div class="qv-item"><span class="qv-key red">SÓ CANETAS</span><span class="qv-desc">Use dedo ou canetas do painel (nunca marcadores!)</span></div>
+            <div class="qv-item"><span class="qv-key teal">USB-C = TUDO</span><span class="qv-desc">1 cabo dá vídeo, som, toque e 15 W (HDMI exige USB Touch)</span></div>
+            <div class="qv-item"><span class="qv-key acc">SCREEN SHARE</span><span class="qv-desc">Código de 6 dígitos na app OPS-A + aprovar entrada</span></div>
+            <div class="qv-item"><span class="qv-key">FIM DE AULA</span><span class="qv-desc">Terminar conta Google e pôr em Standby (LED vermelho)</span></div>
+          </div>
+          <div class="step-links">
+            <a class="action-link" href="ActivPanel_LX_Infografico_Inicio_Rapido.html">Guia de Início Rápido &rarr;</a>
+          </div>
+        </article>
+
+        <div class="steps-right">
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">2</span><h3>Tirar a Carta de Utilização</h3></div>
+              <p>8 perguntas sobre ligações, toque, segurança do ecrã e fim de aula, com cartão imprimível.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="ActivPanel_LX_Quiz_Habilitacao.html">Fazer o quiz &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">3</span><h3>Ligar e usar o OPS-A (Android)</h3></div>
+              <p>Confirmar interruptor traseiro (<code>I</code>), acordar o painel e abrir Quadro Branco, Chrome ou Drive.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link teal" href="ActivPanel_LX_Manual_Utilizador.html#s4">Botões e arranque &rarr;</a>
+              <a class="action-link teal" href="ActivPanel_LX_Manual_Utilizador.html#s5">Apps do OPS-A &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">4</span><h3>Ligar PC ou espelhar ecrãs</h3></div>
+              <p>Usar USB-C (1 cabo), HDMI + USB Touch ou espelhar tablets e portáteis via Screen Share.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" id="reqLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Reservar sala &#8599;</a>
+              <a class="action-link teal" href="ActivPanel_LX_Manual_Utilizador.html#s6">Cabos HDMI/USB-C &rarr;</a>
+              <a class="action-link teal" href="ActivPanel_LX_Manual_Utilizador.html#s7">Screen Share &rarr;</a>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div>
+              <div class="step-head"><span class="step-num">5</span><h3>Terminar a aula</h3></div>
+              <p>6 verificações rápidas: fechar conta Google, arrumar canetas/cabos e colocar em Standby.</p>
+            </div>
+            <div class="step-links">
+              <a class="action-link" href="#devolucao">Abrir checklist &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRECISO DE... (3 ATALHOS) -->
+  <section aria-label="Atalhos rápidos">
+    <div class="shortcuts-grid">
+      <div class="shortcut-card red">
+        <div>
+          <h3>Algo não funciona</h3>
+          <p>Veja a causa e solução pelo LED de energia ou pelo problema observado na sala.</p>
+        </div>
+        <a class="action-link" href="#diagnostico">Abrir diagnóstico &rarr;</a>
+      </div>
+
+      <div class="shortcut-card">
+        <div>
+          <h3>Ideias para a aula</h3>
+          <p>5 dinâmicas interativas prontas a aplicar: Quadro Branco, multi-ecrã, anotações sobre código e avaliações.</p>
+        </div>
+        <a class="action-link teal" href="ActivPanel_LX_Manual_Utilizador.html#s8">Ver propostas de aula &rarr;</a>
+      </div>
+
+      <div class="shortcut-card purple">
+        <div>
+          <h3>Perguntar à IA</h3>
+          <p>Assistente NotebookLM baseado nos manuais e regras dos painéis Promethean ActivPanel LX do CTE.</p>
+          <p class="shortcut-note" id="aiSoonText"><span class="soon-pill">Será disponibilizado brevemente</span></p>
+          <p class="shortcut-note" id="aiAccountNote" hidden>Requer conta Google da escola.</p>
+        </div>
+        <div>
+          <a class="action-link" id="aiLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir assistente IA &#8599;</a>
+          <a class="shortcut-alt" href="#diagnostico">Entretanto, use o diagnóstico rápido &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIAGNÓSTICO RÁPIDO -->
+  <section class="card-section" id="diagnostico">
+    <div class="sec-head">
+      <div>
+        <h2>Diagnóstico rápido</h2>
+        <p>Selecione o estado do LED no botão de energia frontal ou o problema observado durante a aula.</p>
+      </div>
+      <a class="btn" href="ActivPanel_LX_Manual_Tecnico.html#t5">Tabela completa (10 casos) &rarr;</a>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): locais previstos para fotografias reais de apoio no diagnóstico:
+           activpanel_consola_frontal.jpg (botões centrais frontais: Energia, Fonte, Vol-, Vol+, Freeze, Definições)
+           activpanel_portas_frontais.jpg (painel frontal inferior: USB-C, HDMI, USB-B Touch e USB-A)
+           activpanel_interruptor_ops.jpg (traseira do painel: interruptor I/O, cabo AC, LAN RJ45 e ranhura OPS-A) -->
+      <div class="diag-grid">
+        <div>
+          <h3 class="diag-sub">1. LED do botão de energia</h3>
+          <div class="led-buttons" id="ledButtons">
+            <button type="button" class="led-btn active" data-led="on" data-led-desc="Azul ou Branco fixo (ligado)" aria-pressed="true"><span class="led-orb led-pat-solid-blue"></span>Azul / Branco fixo</button>
+            <button type="button" class="led-btn" data-led="standby" data-led-desc="Vermelho fixo (em Standby)" aria-pressed="false"><span class="led-orb led-pat-solid-red"></span>Vermelho fixo</button>
+            <button type="button" class="led-btn" data-led="boot" data-led-desc="A pulsar / A piscar (a arrancar)" aria-pressed="false"><span class="led-orb led-pat-breathe-white"></span>A pulsar / piscar</button>
+            <button type="button" class="led-btn" data-led="amber" data-led-desc="Âmbar fixo (sem sinal / poupança)" aria-pressed="false"><span class="led-orb led-pat-solid-amber"></span>Âmbar / Sem sinal</button>
+            <button type="button" class="led-btn" data-led-desc="Vermelho a piscar rápido (alerta)" data-led="err" aria-pressed="false"><span class="led-orb led-pat-blink-red-fast"></span>Vermelho a piscar</button>
+            <button type="button" class="led-btn" data-led="off" data-led-desc="Apagado (sem corrente)" aria-pressed="false"><span class="led-orb led-pat-off"></span>Apagado (Sem luz)</button>
+          </div>
+          <div class="diag-panel" id="ledResult" aria-live="polite"></div>
+        </div>
+
+        <div>
+          <h3 class="diag-sub">2. Problema em sala de aula</h3>
+          <div class="sym-pills" id="symButtons">
+            <button type="button" class="sym-btn active" data-sym="nosignal" aria-pressed="true">Sem imagem / Sem sinal</button>
+            <button type="button" class="sym-btn" data-sym="notouch" aria-pressed="false">Toque não funciona no PC</button>
+            <button type="button" class="sym-btn" data-sym="freeze" aria-pressed="false">Ecrã congelado (Freeze)</button>
+            <button type="button" class="sym-btn" data-sym="nosound" aria-pressed="false">Sem som nas colunas</button>
+            <button type="button" class="sym-btn" data-sym="screenshare" aria-pressed="false">Screen Share não liga</button>
+            <button type="button" class="sym-btn" data-sym="ops" aria-pressed="false">OPS-A (Android) não abre</button>
+            <button type="button" class="sym-btn" data-sym="pen" aria-pressed="false">Caneta ou toque impreciso</button>
+            <button type="button" class="sym-btn" data-sym="locked" aria-pressed="false">Painel bloqueado / lento</button>
+          </div>
+          <div class="diag-panel warn" id="symResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCUMENTOS (LINHAS COMPACTAS) -->
+  <section class="card-section" id="documentos">
+    <div class="sec-head">
+      <div>
+        <h2>Documentos</h2>
+        <p>Versões web para consultar no ecrã e guia A4 pronto a imprimir e plastificar junto a cada painel.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="docs-list">
+        <li class="doc-row">
+          <span class="doc-title">Guia de Início Rápido</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="ActivPanel_LX_Infografico_Inicio_Rapido.html">Ver online (A4)</a>
+            <a class="fmt-link" href="ActivPanel_LX_Guia_Inicio_Rapido.pdf">PDF · 197 KB</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Manual de Utilizador e Aulas Interativas</span>
+          <div class="doc-formats">
+            <a class="fmt-link web" href="ActivPanel_LX_Manual_Utilizador.html">Ver online</a>
+          </div>
+        </li>
+        <li class="doc-row">
+          <span class="doc-title">Carta de Utilização (Quiz)</span>
+          <div class="doc-formats">
+            <a class="fmt-link quiz" href="ActivPanel_LX_Quiz_Habilitacao.html">Fazer o quiz</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CHECKLIST DE FIM DE AULA -->
+  <section class="card-section" id="devolucao">
+    <div class="sec-head">
+      <div>
+        <h2>Checklist de fim de aula</h2>
+        <p>Confirme os 6 pontos antes de sair da sala (as marcações limpam-se automaticamente ao fim de 4 h).</p>
+      </div>
+      <button class="btn" type="button" id="hubResetCheck">Limpar marcações</button>
+    </div>
+    <div class="sec-body">
+      <!-- FASE 3 (P1): descomentar quando fornecer a fotografia real do posto de sala arrumado (canetas na bandeja + comando + cabos)
+      <figure style="margin:0 0 14px">
+        <img src="activpanel_posto_arrumado.jpg" alt="Painel Promethean ActivPanel LX arrumado no final da aula com as 2 canetas na bandeja e cabos sem tensão" loading="lazy" style="width:100%;max-width:680px;border-radius:10px;border:1px solid var(--line)">
+      </figure>
+      -->
+      <ul class="check-grid">
+        <li><label><input type="checkbox" id="ap-c1"><span><strong>1. Contas encerradas (OPS-A):</strong> Terminou sessão no Google Drive, Chrome e apps onde iniciou login.</span></label></li>
+        <li><label><input type="checkbox" id="ap-c2"><span><strong>2. Quadro guardado e limpo:</strong> Exportou anotações importantes (PDF/Drive) e fechou ficheiros temporários.</span></label></li>
+        <li><label><input type="checkbox" id="ap-c3"><span><strong>3. Cabos desligados pela ficha:</strong> Retirou portáteis (USB-C / HDMI / USB Touch) sem dobrar nem puxar os cabos.</span></label></li>
+        <li><label><input type="checkbox" id="ap-c4"><span><strong>4. Acessórios no lugar (3 itens):</strong> As <strong>2 canetas passivas</strong> na bandeja frontal e o <strong>comando IR</strong> no suporte.</span></label></li>
+        <li><label><input type="checkbox" id="ap-c5"><span><strong>5. Standby e suporte seguro:</strong> Painel em <strong>Standby</strong> (LED vermelho) e rodas do suporte móvel (<code>INV-191</code>) travadas.</span></label></li>
+        <li><label><input type="checkbox" id="ap-c6"><span><strong>6. Aviso ao CTE:</strong> Comunicar canetas em falta, falha de toque/OPS-A ou dano indicando a sala (STEM, TEC1, TEC2, D3, O1 ou O3).</span></label></li>
+      </ul>
+      <div class="return-ready" id="returnReadyBox" hidden>
+        <span>Tudo pronto! A sala e o ActivPanel LX estão preparados para a turma seguinte.</span>
+        <a class="btn btn-green" id="returnRegBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Registar utilização &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECÇÕES RECOLHIDAS (DOCENTES/CTE + FICHA DO EQUIPAMENTO) -->
+  <div class="details-stack">
+    <details class="fold-box">
+      <summary>Para professores e equipa CTE</summary>
+      <div class="fold-body">
+        <ul class="fold-list">
+          <li>
+            <span><strong>Manual Técnico, OPS-A, Rede, MDM e Manutenção</strong> (Ethernet pass-through, Screen Share em VLAN escolar, Radix MDM, limpeza segura e 10 casos)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="ActivPanel_LX_Manual_Tecnico.html">Ver online</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Documento-fonte e prompts para o NotebookLM</strong> (base de conhecimento pronta a carregar quando criar o caderno)</span>
+            <div class="doc-formats">
+              <a class="fmt-link" href="ActivPanel_LX_Base_Conhecimento_NotebookLM.md">Markdown</a>
+            </div>
+          </li>
+          <li>
+            <span><strong>Ideias interdisciplinares</strong> (Programação/Redes, STEM/Hardware, Línguas/Humanidades e Apresentações colaborativas)</span>
+            <div class="doc-formats">
+              <a class="fmt-link web" href="ActivPanel_LX_Manual_Utilizador.html#s8-inter">Ver sugestões</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold-box">
+      <summary>Ficha do equipamento</summary>
+      <div class="fold-body">
+        <ul class="specs-list">
+          <li><strong>Inventário:</strong> INV-186 · 6 unidades · STEM, TEC1, TEC2, Hardware (D3) e Oficinas O1 e O3</li>
+          <li><strong>Ecrã &amp; Toque:</strong> 65&quot; 4K UHD (3840 × 2160 @ 60 Hz) · vidro temperado antirreflexo 3,2 mm · <strong>20 pontos de toque</strong> (Vellum)</li>
+          <li><strong>Módulo Computacional:</strong> <strong>OPS-A (Android 12 · certificação Google EDLA)</strong> com gestão remota via <strong>MDM</strong></li>
+          <li><strong>Portas Frontais:</strong> 1× HDMI 2.0 · 1× USB-C (vídeo/áudio/toque/15 W) · 1× USB-A · 1× USB-B (Touch)</li>
+          <li><strong>Portas Traseiras &amp; Som:</strong> 2× HDMI 2.0 · 2× USB-B Touch · VGA · Áudio 3,5 mm · LAN RJ45 In/Out · Colunas frontais 2× 15 W</li>
+          <li><strong>Acessórios &amp; Suporte:</strong> 2 canetas passivas (sem pilhas) · comando IR · suportes móveis c/ rodas <code>INV-191</code> nos estúdios</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. SABER MAIS (LIGAÇÕES OFICIAIS) -->
+  <section class="card-section" id="saber-mais">
+    <div class="sec-head">
+      <h2>Saber mais (ligações oficiais)</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="ext-list">
+        <li>
+          <a href="https://www.prometheanworld.com/products/interactive-displays/activpanel-lx/" target="_blank" rel="noopener noreferrer">Página Oficial Promethean ActivPanel LX &#8599;</a>
+          <p>Visão geral do produto, características do ecrã 4K e especificações oficiais.</p>
+        </li>
+        <li>
+          <a href="https://support.prometheanworld.com/s/article/ActivPanel-LX" target="_blank" rel="noopener noreferrer">Suporte Oficial ActivPanel LX (Manuais) &#8599;</a>
+          <p>Guias do utilizador, ligações físicas, firmware e fichas de segurança.</p>
+        </li>
+        <li>
+          <a href="https://support.prometheanworld.com/s/article/OPS-A" target="_blank" rel="noopener noreferrer">Documentação Oficial do Módulo OPS-A &#8599;</a>
+          <p>Primeiros passos no Android EDLA, apps Google/Promethean e atualizações.</p>
+        </li>
+        <li>
+          <a href="https://support.prometheanworld.com/s/article/What-is-Screen-Share" target="_blank" rel="noopener noreferrer">Promethean Screen Share — Guia Oficial &#8599;</a>
+          <p>Espelhamento sem fios com código de 6 dígitos, Sala de Espera, AirPlay e Miracast.</p>
+        </li>
+        <li>
+          <a href="https://share.mypromethean.com/" target="_blank" rel="noopener noreferrer">Transferir Apps Promethean Screen Share &#8599;</a>
+          <p>Aplicação Sender para Windows, macOS, Chrome OS e dispositivos móveis.</p>
+        </li>
+        <li>
+          <a href="https://learn.prometheanworld.com/" target="_blank" rel="noopener noreferrer">Learn Promethean (Formação Gratuita) &#8599;</a>
+          <p>Cursos rápidos e vídeos de boas práticas pedagógicas para professores.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="footer-contact" id="footerContact" hidden></p>
+  <strong>CTE Informático</strong> · Ajuda Online Promethean ActivPanel LX (65&quot;) · <a href="../index.html">&larr; Voltar ao Portal CTE</a>
+</footer>
+
+<a class="fab-help" href="#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script src="../cte-config.js"></script>
+<script>
+(function() {
+  var FALLBACK_CONFIG = {
+    contactoCTE: { nome: "", email: "", sala: "", horario: "" },
+    urlRequisicao: "",
+    urlRegistoDevolucao: "",
+    urlNotebookLM: "",
+    checklistValidadeHoras: 4
+  };
+  var CONFIG = (window.CTE_CONFIG && window.CTE_CONFIG.getEquipConfig)
+    ? window.CTE_CONFIG.getEquipConfig("activpanel", FALLBACK_CONFIG)
+    : FALLBACK_CONFIG;
+
+  var heroImg = document.getElementById("heroImg");
+  var heroSvg = document.getElementById("heroSvgFallback");
+  var heroMedia = document.getElementById("heroMedia");
+  if (heroImg && heroSvg && heroMedia) {
+    heroImg.addEventListener("error", function() {
+      heroImg.hidden = true;
+      heroSvg.hidden = false;
+      heroMedia.classList.add("svg-fallback");
+    });
+  }
+
+  var reqLink = document.getElementById("reqLink");
+  if (reqLink && CONFIG.urlRequisicao) {
+    reqLink.href = CONFIG.urlRequisicao;
+    reqLink.hidden = false;
+  }
+
+  var aiLink = document.getElementById("aiLink");
+  var heroAiLink = document.getElementById("heroAiLink");
+  var heroAiSoon = document.getElementById("heroAiSoon");
+  var aiSoonText = document.getElementById("aiSoonText");
+  var aiAccountNote = document.getElementById("aiAccountNote");
+  if (CONFIG.urlNotebookLM) {
+    if (aiLink) { aiLink.href = CONFIG.urlNotebookLM; aiLink.hidden = false; }
+    if (heroAiLink) { heroAiLink.href = CONFIG.urlNotebookLM; heroAiLink.hidden = false; }
+    if (heroAiSoon) heroAiSoon.hidden = true;
+    if (aiSoonText) aiSoonText.hidden = true;
+    if (aiAccountNote) aiAccountNote.hidden = false;
+  } else {
+    if (aiLink) aiLink.hidden = true;
+    if (heroAiLink) heroAiLink.hidden = true;
+    if (heroAiSoon) heroAiSoon.hidden = false;
+    if (aiSoonText) aiSoonText.hidden = false;
+    if (aiAccountNote) aiAccountNote.hidden = true;
+  }
+
+  function formatContacto(includeHorario) {
+    var c = CONFIG.contactoCTE || {};
+    var parts = [];
+    if (c.nome) parts.push(c.nome);
+    if (c.email) parts.push(c.email);
+    if (c.sala) parts.push(c.sala);
+    if (includeHorario && c.horario) parts.push(c.horario);
+    return parts.join(" · ");
+  }
+
+  var footerContact = document.getElementById("footerContact");
+  var contactFull = formatContacto(true);
+  if (footerContact && contactFull) {
+    footerContact.textContent = "Contacto CTE: " + contactFull;
+    footerContact.hidden = false;
+  }
+
+  var LED_INFO = {
+    on: {
+      cls: "ok",
+      title: "LED Azul / Branco fixo — Painel ligado",
+      meaning: "O ActivPanel LX está ligado, a receber energia e pronto a mostrar o módulo OPS-A ou um portátil ligado.",
+      action: "Se o ecrã estiver escuro mas o LED estiver azul/branco, prima o botão de Seleção de Fonte na consola frontal para escolher OPS, HDMI ou USB-C."
+    },
+    standby: {
+      cls: "",
+      title: "LED Vermelho fixo — Modo Standby (Em espera)",
+      meaning: "O painel tem energia elétrica (interruptor traseiro em I) e está em espera de baixo consumo (<= 0,5 W).",
+      action: "Prima 1 vez o botão de Energia na consola frontal (ou o botão vermelho do comando IR) e aguarde alguns segundos até o ecrã acender."
+    },
+    boot: {
+      cls: "",
+      title: "LED a pulsar / piscar — A arrancar ou a atualizar",
+      meaning: "O painel está a sair de Standby, a inicializar o módulo OPS-A ou a instalar uma atualização enviada pelo MDM.",
+      action: "Aguarde 30 a 60 segundos SEM desligar o interruptor traseiro nem retirar o cabo de corrente."
+    },
+    amber: {
+      cls: "warn",
+      title: "LED Âmbar / Poupança — Sem sinal na fonte ativa",
+      meaning: "A entrada selecionada (ex.: HDMI 1 ou USB-C) não está a detetar imagem e o painel entrou em gestão de energia.",
+      action: "Confirme se o portátil está acordado (Win + P → Duplicar/Estender) e o cabo bem encaixado, ou mude a fonte para OPS na consola frontal."
+    },
+    err: {
+      cls: "danger",
+      title: "LED Vermelho a piscar rápido — Alerta de energia ou arranque",
+      meaning: "Ocorreu uma falha de arranque, proteção térmica ou instabilidade elétrica na alimentação.",
+      action: "Execute um reinício físico (Hard Power Reset): desligue o interruptor traseiro (O), desligue o cabo da tomada, aguarde 60 segundos, volte a ligar e prima Energia. Se persistir, contacte o CTE."
+    },
+    off: {
+      cls: "danger",
+      title: "LED completamente apagado — Sem alimentação",
+      meaning: "Não chega corrente elétrica ao painel: interruptor traseiro na posição O, cabo de alimentação solto ou tomada/extensão desligada.",
+      action: "Verifique a tomada da sala, encaixe firmemente o cabo AC atrás do painel e coloque o interruptor traseiro na posição I (o LED deve acender a vermelho)."
+    }
+  };
+
+  var SYM_INFO = {
+    nosignal: {
+      cls: "warn",
+      title: "Ecrã diz «Sem sinal» ou fica preto ao ligar o portátil",
+      cause: "Entrada errada selecionada no painel, cabo USB-C só de carregamento (sem vídeo), ou portátil configurado apenas para ecrã interno.",
+      action: "1) Prima o botão Fonte (Input) na consola frontal e escolha a entrada exata onde ligou o cabo (USB-C frontal, HDMI frontal ou HDMI 1/2 traseiro). 2) No portátil Windows prima Win + P e escolha Duplicar ou Estender (no Mac: Definições > Monitores). 3) Se usar USB-C, confirme que o cabo suporta vídeo (DP Alt Mode) ou use HDMI."
+    },
+    notouch: {
+      cls: "warn",
+      title: "Vejo o ecrã do portátil, mas o toque no painel não controla o PC",
+      cause: "Usou apenas um cabo HDMI (o HDMI transmite vídeo e áudio, mas NUNCA transmite toque!) sem ligar o cabo USB-B Touch correspondente.",
+      action: "Ligue também o cabo USB-B (Touch) da porta frontal/traseira correspondente a uma porta USB do portátil — ou substitua os dois cabos por 1 único cabo USB-C de dados+vídeo na porta USB-C frontal."
+    },
+    freeze: {
+      cls: "ok",
+      title: "A imagem ficou congelada no ecrã e não muda",
+      cause: "Foi premido acidentalmente o botão Freeze (Congelar ecrã) na consola frontal ou no comando à distância.",
+      action: "Volte a premir o botão Freeze na consola frontal (ou no comando IR) para descongelar imediatamente a imagem."
+    },
+    nosound: {
+      cls: "",
+      title: "Não sai som das colunas frontais do ActivPanel (2× 15 W)",
+      cause: "Volume do painel no mínimo/mudo, ou o portátil continua a enviar o áudio para as colunas internas em vez da saída HDMI/USB-C.",
+      action: "1) Suba o volume (+) na consola frontal e confirme que não está em mudo. 2) No portátil (ícone do altifalante), selecione o Promethean / HDMI / USB-C como dispositivo de saída de áudio. 3) Verifique se não está ligado nenhum jack na saída de auscultadores 3,5 mm traseira."
+    },
+    screenshare: {
+      cls: "warn",
+      title: "Screen Share, AirPlay ou Miracast não encontram o painel",
+      cause: "Os equipamentos estão em redes Wi-Fi/VLANs diferentes, o código de 6 dígitos expirou, ou o pedido ficou retido na Sala de Espera.",
+      action: "1) Abra a app Screen Share no OPS-A e confirme o código de 6 dígitos atual. 2) Confirme que o portátil/tablet está na rede Wi-Fi escolar autorizada. 3) No painel, abra a Sala de Espera (ícone de utilizadores) e aprove o pedido do dispositivo. 4) Se a app travar, limpe a cache da app Screen Share ou ligue por cabo USB-C/HDMI."
+    },
+    ops: {
+      cls: "",
+      title: "O ambiente Android (OPS-A) não aparece no arranque",
+      cause: "O painel arrancou na última entrada externa utilizada (HDMI/USB-C) ou o módulo OPS-A ainda está a concluir o arranque.",
+      action: "Prima o botão Fonte (Input) na consola frontal e selecione OPS. Aguarde até 30 segundos pelo arranque do Android. Se continuar sem sinal, desligue no interruptor traseiro (O), aguarde 60 s e volte a ligar (nunca remova o módulo OPS com o painel ligado!)."
+    },
+    pen: {
+      cls: "",
+      title: "A caneta falha, salta traços ou o toque fica desalinhado",
+      cause: "Poeira/objeto encostado à moldura interior dos sensores infravermelhos de toque, luz solar intensa direta ou resolução não nativa no PC.",
+      action: "1) Verifique se não há papéis, imãs, fita-cola ou poeira acumulada nos cantos internos da moldura do ecrã (limpe suavemente com pano seco). 2) No portátil ligado, defina a resolução para 16:9 (1920×1080 ou 3840×2160) em modo Duplicar/Estender. 3) Use apenas o dedo ou as canetas passivas Promethean."
+    },
+    locked: {
+      cls: "danger",
+      title: "O painel ou o OPS-A bloqueou totalmente / está muito lento",
+      cause: "Múltiplas apps/separadores abertos no Android, sessão anterior por fechar ou bloqueio temporário do sistema.",
+      action: "1) Prima o botão Energia para pôr em Standby e volte a ligar. 2) Se não responder de todo, faça um Hard Power Reset: coloque o interruptor traseiro em O, desligue da tomada durante 60 segundos e volte a ligar em I. 3) Se apresentar ecrã bloqueado por política MDM, contacte a equipa do CTE."
+    }
+  };
+
+  function diagFooterHtml() {
+    var contactShort = formatContacto(false);
+    var html = '<div class="diag-help-foot"><strong>Não resolveu?</strong> <a href="ActivPanel_LX_Manual_Tecnico.html#t5">Veja a tabela completa (10 casos) &rarr;</a>';
+    if (contactShort) { html += ' · Contacte o CTE: ' + contactShort; }
+    html += '</div>';
+    return html;
+  }
+
+  var ledRes = document.getElementById("ledResult");
+  var symRes = document.getElementById("symResult");
+
+  function renderLed(key) {
+    var d = LED_INFO[key];
+    ledRes.className = "diag-panel " + d.cls;
+    ledRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Significado:</strong> " + d.meaning + "</p><p><strong>O que fazer:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+  function renderSym(key) {
+    var d = SYM_INFO[key];
+    symRes.className = "diag-panel " + d.cls;
+    symRes.innerHTML = "<h3>" + d.title + "</h3><p><strong>Causa provável:</strong> " + d.cause + "</p><p><strong>Solução:</strong> " + d.action + "</p>" + diagFooterHtml();
+  }
+
+  var ledBtns = Array.prototype.slice.call(document.querySelectorAll("#ledButtons .led-btn"));
+  ledBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      ledBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderLed(b.getAttribute("data-led"));
+    });
+  });
+
+  var symBtns = Array.prototype.slice.call(document.querySelectorAll("#symButtons .sym-btn"));
+  symBtns.forEach(function(b) {
+    b.addEventListener("click", function() {
+      symBtns.forEach(function(x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("active");
+      b.setAttribute("aria-pressed", "true");
+      renderSym(b.getAttribute("data-sym"));
+    });
+  });
+
+  renderLed("on");
+  renderSym("nosignal");
+
+  var KEY = "activpanel-lx-hub-checklist";
+  var TTL_MS = (CONFIG.checklistValidadeHoras || 4) * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".check-grid input"));
+  var returnReadyBox = document.getElementById("returnReadyBox");
+  var returnRegBtn = document.getElementById("returnRegBtn");
+  var saved = {};
+
+  if (returnRegBtn && CONFIG.urlRegistoDevolucao) {
+    returnRegBtn.href = CONFIG.urlRegistoDevolucao;
+    returnRegBtn.hidden = false;
+  }
+
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+
+  function syncReturnState() {
+    var allDone = boxes.length > 0 && boxes.every(function(b) { return b.checked; });
+    if (returnReadyBox) returnReadyBox.hidden = !allDone;
+  }
+
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+      syncReturnState();
+    });
+  });
+  syncReturnState();
+
+  document.getElementById("hubResetCheck").addEventListener("click", function() {
+    boxes.forEach(function(b) { b.checked = false; });
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    syncReturnState();
+  });
+})();
+</script>
+<script src="../cte-diag.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
  * Configuração central do Portal de Ajuda CTE Informático (Escolas de Mangualde).
  *
  * Edite APENAS este ficheiro para atualizar contactos, formulários de requisição/devolução
- * e ligações NotebookLM em todo o portal (página inicial, Ajuda IA e páginas dos 7 equipamentos).
+ * e ligações NotebookLM em todo o portal (página inicial, Ajuda IA e páginas dos 9 equipamentos).
  */
 window.CTE_CONFIG = {
   // 1. Contacto global do CTE (exibido no rodapé e no diagnóstico quando preenchido)
@@ -27,8 +27,10 @@ window.CTE_CONFIG = {
     quest3: "https://notebook.google.com/notebook/33afbc15-9471-4332-996d-c35ea62004d6/preview",
     robomaster: "https://notebook.google.com/notebook/e3067140-32a5-4401-bc80-1ca6734cd525/preview",
     pocket2: "https://notebook.google.com/notebook/f520d382-dd9d-4cdb-a1f6-e05ca99b6f42/preview",
-    einstar: "", // colar aqui o link do NotebookLM quando estiver criado
-    tuxedo: ""   // colar aqui o link do NotebookLM quando estiver criado
+    einstar: "",    // colar aqui o link do NotebookLM quando estiver criado
+    tuxedo: "",     // colar aqui o link do NotebookLM quando estiver criado
+    cricut: "",     // colar aqui o link do NotebookLM quando estiver criado
+    activpanel: ""  // colar aqui o link do NotebookLM quando estiver criado
   },
 
   // 5. (Opcional) Substituições específicas por equipamento.
@@ -40,12 +42,14 @@ window.CTE_CONFIG = {
     robomaster: { urlRequisicao: "", urlRegistoDevolucao: "" },
     pocket2:    { urlRequisicao: "", urlRegistoDevolucao: "" },
     einstar:    { urlRequisicao: "", urlRegistoDevolucao: "" },
-    tuxedo:     { urlRequisicao: "", urlRegistoDevolucao: "" }
+    tuxedo:     { urlRequisicao: "", urlRegistoDevolucao: "" },
+    cricut:     { urlRequisicao: "", urlRegistoDevolucao: "" },
+    activpanel: { urlRequisicao: "", urlRegistoDevolucao: "" }
   },
 
   /**
    * Devolve a configuração efetiva para a página de um equipamento.
-   * @param {string} key - Chave do equipamento (nao, avata2, quest3, robomaster, pocket2, einstar, tuxedo)
+   * @param {string} key - Chave do equipamento (nao, avata2, quest3, robomaster, pocket2, einstar, tuxedo, cricut, activpanel)
    * @param {object} [fallback] - Valores de salvaguarda caso algum campo não exista
    */
   getEquipConfig: function(key, fallback) {

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta de Operador — Cricut Maker 3 (CTE)</title>
+<meta name="description" content="Verificação rápida de 8 perguntas sobre segurança, espaço livre, suportes A/B, tapetes e vinil termocolante (Espelhar!) na Cricut Maker 3 (INV-005), com cartão imprimível.">
+<meta property="og:title" content="Carta de Operador — Impressora de Corte Cricut Maker 3 (CTE)">
+<meta property="og:description" content="Valide em 2 minutos os cuidados de corte, segurança de lâminas, tapetes e HTV na Cricut Maker 3 (INV-005).">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='20' width='44' height='24' rx='6' fill='none' stroke='%23fff' stroke-width='2.8'/%3E%3Cline x1='15' y1='32' x2='49' y2='32' stroke='%234CE0F5' stroke-width='2.4'/%3E%3Crect x='25' y='25' width='14' height='12' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='1.8'/%3E%3Ccircle cx='46' cy='25' r='2.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-btn-hover: #96420A;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F4F6;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --light: #F3F6F9;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --text: #1F2A36;
+  --bg: #EEF2F6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif;
+  color: var(--text); background: var(--bg); line-height: 1.5;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 26px 24px 24px; border-bottom: 4px solid var(--acc); }
+.hero-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.crumb { font-size: 0.88rem; color: #C7D6E5; margin-bottom: 6px; }
+.crumb a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+.hero h1 { margin: 0; font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+.hero p { margin: 6px 0 0; color: #D4E1EE; font-size: 0.96rem; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; padding: 1px 6px; border-radius: 4px; }
+.nav-btn { text-decoration: none; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.28); padding: 9px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.nav-btn:hover { background: var(--acc-btn); border-color: var(--acc-btn); }
+
+main { max-width: 880px; width: 100%; margin: 24px auto 40px; padding: 0 20px; flex: 1; }
+.progress-card, .q-card, .result-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 16px rgba(31, 42, 54, 0.06); margin-bottom: 18px; }
+.progress-top { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--grey); margin-bottom: 8px; }
+.bar-bg { height: 10px; background: var(--light); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--acc)); transition: width 0.25s ease; }
+
+.q-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--teal-soft); color: var(--teal-text); padding: 3px 11px; border-radius: 999px; margin-bottom: 10px; }
+.q-title { margin: 0 0 16px; font-size: 1.2rem; color: var(--dark); }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { text-align: left; font: inherit; font-size: 0.96rem; padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--light); color: var(--text); cursor: pointer; display: flex; gap: 12px; align-items: flex-start; transition: all 0.15s ease; }
+.opt-btn:hover:not(:disabled) { border-color: var(--acc-btn); background: var(--acc-soft); }
+.opt-btn:disabled { cursor: default; }
+.opt-letter { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1px solid var(--line); font-weight: 800; font-size: 0.84rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opt-btn.correct { background: var(--green-soft); border-color: var(--green); color: #124C2A; }
+.opt-btn.correct .opt-letter { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+.opt-btn.wrong { background: var(--red-soft); border-color: var(--red); color: #6B2119; }
+.opt-btn.wrong .opt-letter { background: var(--red-text); color: #fff; border-color: var(--red-text); }
+
+.feedback { display: none; margin-top: 16px; padding: 13px 16px; border-radius: 10px; font-size: 0.94rem; border: 1px solid; }
+.feedback.ok { background: var(--green-soft); border-color: #A9DFBF; color: #124C2A; }
+.feedback.err { background: var(--red-soft); border-color: #F5B7B1; color: #6B2119; }
+
+.q-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px; }
+.btn { font: inherit; font-size: 0.92rem; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--dark); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+.btn-primary { background: var(--acc-btn); border-color: var(--acc-btn); color: #fff; }
+.btn-primary:hover { background: var(--acc-btn-hover); border-color: var(--acc-btn-hover); color: #fff; }
+.btn-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.result-card { display: none; text-align: center; }
+.score-big { font-size: 2.6rem; font-weight: 900; margin: 8px 0 4px; }
+.score-big.pass { color: var(--green-text); }
+.score-big.fail { color: var(--red-text); }
+
+.crit-alert { display: none; max-width: 640px; margin: 16px auto; text-align: left; background: var(--red-soft); border: 1.5px solid #E5B4AE; border-left: 5px solid var(--red); border-radius: 10px; padding: 14px 16px; color: #5D1B14; font-size: 0.92rem; }
+.crit-alert h3 { margin: 0 0 8px; font-size: 1rem; color: var(--red-text); }
+.crit-alert ul { margin: 0; padding-left: 20px; }
+.crit-alert li { margin-bottom: 8px; }
+.crit-alert li:last-child { margin-bottom: 0; }
+
+.cert-form { max-width: 520px; margin: 18px auto 14px; display: grid; grid-template-columns: 1fr 165px; gap: 12px; text-align: left; }
+.cert-form label { font-size: 0.86rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 4px; }
+.cert-form .req { color: var(--red-text); }
+.cert-form input { width: 100%; font: inherit; font-size: 0.95rem; padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); }
+.cert-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.cert-form input.invalid { border-color: var(--red); background: #FFF8F7; }
+.field-err { display: none; font-size: 0.84rem; font-weight: 600; color: var(--red-text); margin-top: 4px; }
+.field-err.show { display: block; }
+
+.certificate { display: none; margin: 22px auto 10px; max-width: 660px; border: 3px double var(--dark); border-radius: 12px; padding: 24px 28px; background: linear-gradient(180deg, #fff 0%, #F7FAFC 100%); text-align: center; position: relative; }
+.certificate::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--dark), var(--acc), var(--teal)); border-radius: 4px; margin-bottom: 16px; }
+.cert-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.certificate h2 { margin: 6px 0 4px; font-size: 1.55rem; color: var(--dark); }
+.cert-name { font-size: 1.45rem; font-weight: 800; color: var(--acc-text); margin: 12px 0 4px; border-bottom: 2px solid var(--line); display: inline-block; padding: 0 24px 4px; }
+.cert-code-box { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 14px; border-radius: 8px; background: var(--light); border: 1px solid var(--line); font-size: 0.88rem; color: var(--dark); }
+.cert-code-box code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; color: var(--dark); }
+.cert-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 0.86rem; color: var(--grey); }
+
+footer { text-align: center; padding: 20px 24px 96px; font-size: 0.86rem; color: var(--grey); border-top: 1px solid var(--line); background: #fff; }
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media print {
+  header.hero, .progress-card, .q-card, .no-print, footer, .fab-help { display: none !important; }
+  body { background: #fff; padding: 0; }
+  main { margin: 0; max-width: none; padding: 0; }
+  .result-card { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .certificate { display: block !important; max-width: none; }
+}
+@media (max-width: 600px) { .cert-form { grid-template-columns: 1fr; } }
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <nav class="crumb" aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Cricut Maker 3</a> &rsaquo; Carta de Operador</nav>
+      <h1>Carta de Operador — Cricut Maker 3</h1>
+      <p>Valide em 2 minutos os cuidados de espaço, lâminas, tapetes e vinil antes de usar uma unidade (<code>INV-005</code>).</p>
+    </div>
+    <a class="nav-btn" href="index.html">&larr; Voltar à página Cricut Maker 3</a>
+  </div>
+</header>
+
+<main>
+  <section class="progress-card" id="progressCard">
+    <div class="progress-top">
+      <span id="qCounter">Pergunta 1 de 8</span>
+      <span id="scoreLive">Pontuação: 0</span>
+    </div>
+    <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+  </section>
+
+  <section class="q-card" id="quizCard">
+    <span class="q-badge" id="qCat">Segurança</span>
+    <h2 class="q-title" id="qText"></h2>
+    <div class="options" id="optionsBox"></div>
+    <div class="feedback" id="feedbackBox" aria-live="polite"></div>
+    <div class="q-actions">
+      <button class="btn btn-primary" type="button" id="nextBtn" disabled>Próxima pergunta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard">
+    <div class="no-print">
+      <h2 id="resTitle" style="margin:0;color:var(--dark)">Resultado Final</h2>
+      <div class="score-big" id="resScore">0 / 8</div>
+      <p id="resMsg" style="color:var(--grey);max-width:580px;margin:0 auto 14px"></p>
+
+      <div class="crit-alert" id="critAlert">
+        <h3>Não aprovado — regras de segurança críticas a rever:</h3>
+        <ul id="critList"></ul>
+      </div>
+
+      <div id="passControls" style="display:none">
+        <div class="cert-form">
+          <div>
+            <label for="studentName">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentName" required placeholder="Ex.: Diogo Ferreira" autocomplete="name">
+            <div class="field-err" id="errName">Indique o nome antes de imprimir o cartão.</div>
+          </div>
+          <div>
+            <label for="studentClass">Turma / Grupo <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentClass" required placeholder="Ex.: 10.º Design">
+            <div class="field-err" id="errClass">Indique a turma ou grupo.</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="btn btn-primary" type="button" id="printCertBtn">Imprimir Cartão de Habilitação</button>
+          <button class="btn" type="button" id="retryBtnPass">Repetir quiz</button>
+        </div>
+      </div>
+
+      <div id="failControls" style="display:none;margin-top:14px">
+        <a class="btn" href="Cricut_Maker_3_Infografico_Inicio_Rapido.html" style="margin-right:8px">Rever Guia de Início Rápido</a>
+        <button class="btn btn-primary" type="button" id="retryBtnFail">Tentar de novo</button>
+      </div>
+    </div>
+
+    <div class="certificate" id="certificateBox">
+      <div class="cert-tag">CTE Informático · Equipamento INV-005</div>
+      <h2>Cartão de Habilitação — Cricut Maker 3</h2>
+      <p style="margin:6px 0;color:var(--grey);font-size:0.92rem">Certifica-se que o utilizador abaixo concluiu com aproveitamento a verificação de segurança e operação da Impressora de Corte Cricut Maker 3.</p>
+      <div class="cert-name" id="certNamePreview">Preencha o seu nome</div>
+      <div style="font-size:0.92rem;color:var(--dark);margin-top:4px">Turma / Grupo: <strong id="certClassPreview">—</strong></div>
+      <div style="margin-top:10px;font-size:0.9rem;color:var(--green-text);font-weight:700" id="certScorePreview">Aprovado com 8/8 (100%) · 5/5 regras críticas</div>
+      <div class="cert-code-box">Código de verificação: <code id="certCodePreview">------</code></div>
+      <div class="cert-meta">
+        <span>Data: <strong id="certDate"></strong></span>
+        <span>Visto do Professor: _______________________</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>CTE Informático</strong> · Carta de Operador — Cricut Maker 3 (<code>INV-005</code>) · Aprovação: <strong>5/5 regras críticas</strong> e mínimo <strong>7 em 8</strong>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var QUESTIONS = [
+    {
+      cat: "Espaço de trabalho",
+      critica: true,
+      q: "Porque é obrigatório deixar pelo menos 25 cm livres atrás da Cricut Maker 3 antes de cortar?",
+      opts: [
+        "Para melhorar o sinal Bluetooth com o computador da sala.",
+        "Para o tapete ou material deslizar sem bater na parede.",
+        "Para a fonte elétrica arrefecer melhor durante o corte.",
+        "Para o sensor ótico conseguir ler a cor da parede atrás."
+      ],
+      ans: 1,
+      exp: "Durante o carregamento e corte, o tapete ou Smart Material sai pela traseira da máquina. Se bater na parede, entorta o projeto, encrava o carro e pode puxar cabos."
+    },
+    {
+      cat: "Segurança física",
+      critica: true,
+      q: "O tapete entrou ligeiramente torto e o carro começou a cortar. Como deve atuar?",
+      opts: [
+        "Puxar depressa o tapete com as mãos para o endireitar.",
+        "Premir Pausa ou Descarregar para parar antes de mexer.",
+        "Segurar o suporte da lâmina para o impedir de deslizar.",
+        "Desligar logo o computador enquanto a lâmina continua."
+      ],
+      ans: 1,
+      exp: "Nunca meta os dedos nem puxe o tapete com o carro em movimento (força até 4 kg e lâmina afiada!). Prima Pausa ou Descarregar primeiro."
+    },
+    {
+      cat: "Suportes A e B",
+      critica: true,
+      q: "Vai instalar uma lâmina de corte no Suporte B (direita). Qual é a sequência correta?",
+      opts: [
+        "Inserir no Suporte A e fechar primeiro a aba direita.",
+        "Assentar plano no Suporte B e fechar aba esquerda primeiro.",
+        "Forçar a lâmina até ouvir um estalido com a aba aberta.",
+        "Limpar o fio da lâmina com o dedo antes de prender."
+      ],
+      ans: 1,
+      exp: "As lâminas vão sempre no Suporte B (Suporte A é só para canetas/vinco). Assente o colarinho plano e feche 1.º a aba esquerda, depois a direita."
+    },
+    {
+      cat: "Vinil termocolante (HTV)",
+      critica: true,
+      q: "Vai cortar vinil termocolante (Iron-On / HTV) para estampar uma t-shirt. O que é obrigatório?",
+      opts: [
+        "Lado brilhante para cima, sem Espelhar, e Transfer Tape.",
+        "Ativar Espelhar (Mirror) e lado brilhante para baixo.",
+        "Cortar em papel normal e colar no tecido com cola branca.",
+        "Desativar Espelhar para que o texto fique logo legível."
+      ],
+      ans: 1,
+      exp: "No vinil termocolante é obrigatório ativar Espelhar (Mirror) no Design Space, colocar o lado brilhante (película térmica) para baixo e NUNCA usar Transfer Tape!"
+    },
+    {
+      cat: "Energia e limpeza",
+      critica: true,
+      q: "Que cuidados são obrigatórios com a fonte elétrica e a limpeza da Cricut Maker 3?",
+      opts: [
+        "Usar qualquer fonte de 18 V e soprar ar comprimido dentro.",
+        "Usar fonte oficial 24 V / 3 A e microfibra sem ar comprimido.",
+        "Limpar toda a carcaça e rolos com acetona pura semanalmente.",
+        "Ligar apenas o cabo USB ao PC, que já traz energia suficiente."
+      ],
+      ans: 1,
+      exp: "A Maker 3 exige a fonte oficial 24 V / 3 A. Nunca use ar comprimido (empurra poeira para os sensores) nem acetona/álcool no plástico."
+    },
+    {
+      cat: "Tapete de corte",
+      critica: false,
+      q: "Cortou cartolina forte ou papel num tapete e vai guardá-lo. Como conserva a cola e evita rasgar?",
+      opts: [
+        "Puxar a cartolina para cima e guardar sem película plástica.",
+        "Dobrar o tapete p/ descolar e repor película protetora.",
+        "Lavar o tapete com álcool etílico após cada utilização.",
+        "Deixar o tapete ao sol junto à janela para reativar a cola."
+      ],
+      ans: 1,
+      exp: "Vire o tapete ao contrário e dobre-o suavemente para descolar o papel sem enrolar. Recoloque sempre a película transparente protetora antes de guardar!"
+    },
+    {
+      cat: "Cor dos tapetes",
+      critica: false,
+      q: "Qual o tapete mais indicado para papel fino/cartolina leve e qual para vinil adesivo padrão?",
+      opts: [
+        "Roxo (StrongGrip) p/ papel fino e Rosa p/ vinil adesivo.",
+        "Azul (LightGrip) p/ papel leve e Verde p/ vinil adesivo.",
+        "Verde (StandardGrip) p/ madeira balsa e Azul p/ couro.",
+        "Rosa (FabricGrip) p/ papel fino e Roxo p/ papel vegetal."
+      ],
+      ans: 1,
+      exp: "LightGrip (Azul) = papel fino/cartolina leve; StandardGrip (Verde) = cartolina forte, vinil adesivo e HTV; StrongGrip (Roxo) = materiais espessos; FabricGrip (Rosa) = tecido."
+    },
+    {
+      cat: "Smart Materials",
+      critica: false,
+      q: "Quando pode carregar um rolo de vinil diretamente na máquina sem usar tapete de corte?",
+      opts: [
+        "Com qualquer retalho de vinil normal desde que tenha 5 cm.",
+        "Com Smart Materials com pelo menos 33 cm × 15,2 cm.",
+        "Apenas quando cortar papel A4 comum de impressora escolar.",
+        "Sempre que usar uma lâmina Rotativa em vez da Fine-Point."
+      ],
+      ans: 1,
+      exp: "Só os Smart Materials (Smart Vinyl, Smart Iron-On, Smart Paper) dispensam tapete, exigindo peça com largura de 33 cm (13\") e mínimo de 15,2 cm (6\") de comprimento."
+    },
+    {
+      cat: "Design Space",
+      critica: false,
+      q: "Que computadores ou dispositivos NÃO são compatíveis com o software Cricut Design Space?",
+      opts: [
+        "Portáteis Windows 10/11 (64-bit) com 4 GB de RAM ou mais.",
+        "Chromebooks (ChromeOS) e computadores com Linux/Unix.",
+        "Computadores Mac com macOS 11 ou Apple Silicon mais recente.",
+        "Tablets iPad (iOS 15+) e smartphones Android recentes."
+      ],
+      ans: 1,
+      exp: "O Cricut Design Space funciona em Windows 10+, macOS 11+, iOS 15+ e Android 10+, mas NÃO é compatível com Chromebooks nem com sistemas Linux."
+    },
+    {
+      cat: "Luz LED vermelha",
+      critica: false,
+      q: "O botão Energia está Vermelho fixo ao mesmo tempo que o botão Carregar está Branco. O que significa?",
+      opts: [
+        "O tapete selecionado no ecrã é demasiado pequeno p/ peça.",
+        "Existe uma atualização de firmware pendente (ligar p/ USB).",
+        "A lâmina está gasta e tem de ser substituída imediatamente.",
+        "O modo Espelhar ficou ligado por engano no projeto anterior."
+      ],
+      ans: 1,
+      exp: "Energia Vermelho fixo + Carregar Branco indica atualização de firmware pendente. Ligue a Maker 3 por cabo USB ao PC e conclua no Design Space."
+    },
+    {
+      cat: "Luz LED roxa",
+      critica: false,
+      q: "O botão Energia acendeu com luz Roxa (fixa ou a piscar). O que significa essa cor na Maker 3?",
+      opts: [
+        "A máquina entrou em modo de poupança noturna automática.",
+        "É Bluetooth ativo (azul) + erro da máquina (vermelho).",
+        "A máquina reconheceu automaticamente um tapete StrongGrip.",
+        "Está a preparar a porta USB lateral para carregar um iPad."
+      ],
+      ans: 1,
+      exp: "Luz roxa é a mistura do LED azul (Bluetooth ligado) com o LED vermelho (erro). Ligue por cabo USB e resolva como erro vermelho (sensores, rolos ou calha)."
+    },
+    {
+      cat: "Print Then Cut",
+      critica: false,
+      q: "Imprimiu autocolantes na impressora e a Cricut cortou fora da margem. Como corrige?",
+      opts: [
+        "Mudar os autocolantes para o tapete roxo StrongGrip.",
+        "Correr a Calibração (Print Then Cut) no Design Space.",
+        "Desligar as rodinhas estrela puxando-as todas p/ direita.",
+        "Ativar Espelhar para alinhar com a impressora a cores."
+      ],
+      ans: 1,
+      exp: "Em cortes desalinhados no Print Then Cut, espace as rodinhas estrela uniformemente e execute Menu → Definições → Máquinas → Calibração da Máquina."
+    },
+    {
+      cat: "Rodinhas estrela",
+      critica: false,
+      q: "Quando deve deslizar as rodinhas estrela (Star Wheels) todas para a direita antes de cortar?",
+      opts: [
+        "Ao cortar vinil adesivo normal ou fazer Print Then Cut.",
+        "Ao usar couro, espuma, feltro, Foil ou Knife Blade.",
+        "Sempre que ligar o cabo USB em vez da ligação Bluetooth.",
+        "Apenas quando o botão Energia estiver a piscar a branco."
+      ],
+      ans: 1,
+      exp: "Em materiais delicados/espessos (couro, feltro, espuma, Foil, Knife Blade), deslize as rodinhas estrela p/ direita (máquina desligada) para não deixar marcas; volte a centrar depois!"
+    },
+    {
+      cat: "Organização no ecrã",
+      critica: false,
+      q: "Colocou um texto dentro de um retângulo e quer que a Cricut escreva e corte exatamente nessa posição. Que botão usa?",
+      opts: [
+        "Espelhar (Mirror) na janela de preparação do tapete.",
+        "Anexar (Attach) antes de clicar no botão Criar (Make It).",
+        "Desagrupar (Ungroup) para separar cada letra da caixa.",
+        "Duplicar (Duplicate) para criar duas cópias no ecrã."
+      ],
+      ans: 1,
+      exp: "Agrupar organiza apenas na tela de desenho; é Anexar (Attach) que fixa posições entre escrita/vinco e corte quando envia para o tapete."
+    },
+    {
+      cat: "Transferência",
+      critica: false,
+      q: "Para que serve a Fita de Transferência (Transfer Tape) e em que material NÃO se deve usar?",
+      opts: [
+        "Serve p/ tecido e nunca se deve usar em vinil adesivo.",
+        "Transfere vinil adesivo; nunca usar em HTV (Iron-On).",
+        "Serve para colar cartolina ao tapete Azul quando perde cola.",
+        "Protege a lâmina Fine-Point quando está dentro do Suporte B."
+      ],
+      ans: 1,
+      exp: "A Transfer Tape transfere vinil adesivo depilado para copos/placas. Nunca a use em vinil termocolante (HTV), pois o HTV já traz a sua própria película térmica!"
+    },
+    {
+      cat: "Manutenção",
+      critica: false,
+      q: "Durante um projeto, o botão Energia pisca a vermelho ao carregar o tapete. Qual é a primeira verificação?",
+      opts: [
+        "Desmontar a carcaça lateral da máquina com chave de fendas.",
+        "Limpar sensores dos rolos c/ microfibra e alinhar o tapete.",
+        "Mudar imediatamente para uma fonte de alimentação de 12 V.",
+        "Aplicar lubrificante líquido abundante sobre o tapete verde."
+      ],
+      ans: 1,
+      exp: "Desligue a máquina, deslize o carro 3–4× para soltar aparas, limpe suavemente os sensores junto às guias com microfibra seca (sem ar comprimido!) e alinhe o tapete às guias."
+    }
+  ];
+
+  var LETTERS = ["A", "B", "C", "D"];
+  var attempt = [], idx = 0, score = 0, answered = false, failedCriticals = [], certDateStr = "";
+
+  var qCounter = document.getElementById("qCounter");
+  var scoreLive = document.getElementById("scoreLive");
+  var barFill = document.getElementById("barFill");
+  var qCat = document.getElementById("qCat");
+  var qText = document.getElementById("qText");
+  var optionsBox = document.getElementById("optionsBox");
+  var feedbackBox = document.getElementById("feedbackBox");
+  var nextBtn = document.getElementById("nextBtn");
+  var quizCard = document.getElementById("quizCard");
+  var progressCard = document.getElementById("progressCard");
+  var resultCard = document.getElementById("resultCard");
+  var sName = document.getElementById("studentName");
+  var sClass = document.getElementById("studentClass");
+  var errName = document.getElementById("errName");
+  var errClass = document.getElementById("errClass");
+
+  function shuffle(arr) {
+    var copy = arr.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function buildAttempt() {
+    var crit = QUESTIONS.filter(function(q) { return q.critica; });
+    var rest = shuffle(QUESTIONS.filter(function(q) { return !q.critica; })).slice(0, 3);
+    var selected = shuffle(crit.concat(rest));
+
+    return selected.map(function(q) {
+      var indexed = q.opts.map(function(text, i) { return { text: text, isCorrect: i === q.ans }; });
+      var shuffledOpts = shuffle(indexed);
+      var newAns = 0;
+      for (var k = 0; k < shuffledOpts.length; k++) { if (shuffledOpts[k].isCorrect) { newAns = k; break; } }
+      return {
+        cat: q.cat, critica: q.critica, q: q.q,
+        opts: shuffledOpts.map(function(o) { return o.text; }),
+        ans: newAns, exp: q.exp
+      };
+    });
+  }
+
+  function makeVerifyCode(name, turma, dateStr) {
+    var raw = (name + "|" + turma + "|" + dateStr + "|CR3-INV005").toUpperCase().replace(/\s+/g, " ").trim();
+    var h = 2166136261;
+    for (var i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    var code = ((h >>> 0).toString(36)).toUpperCase();
+    while (code.length < 6) code = "0" + code;
+    return code.slice(-6);
+  }
+
+  function updateCertificatePreview() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    document.getElementById("certNamePreview").textContent = n || "Preencha o seu nome";
+    document.getElementById("certClassPreview").textContent = c || "—";
+    document.getElementById("certCodePreview").textContent = (n && c) ? makeVerifyCode(n, c, certDateStr) : "------";
+    if (n) { sName.classList.remove("invalid"); sName.removeAttribute("aria-invalid"); errName.classList.remove("show"); }
+    if (c) { sClass.classList.remove("invalid"); sClass.removeAttribute("aria-invalid"); errClass.classList.remove("show"); }
+  }
+
+  function renderQuestion() {
+    answered = false;
+    var item = attempt[idx];
+    qCounter.textContent = "Pergunta " + (idx + 1) + " de " + attempt.length;
+    scoreLive.textContent = "Pontuação: " + score;
+    barFill.style.width = ((idx / attempt.length) * 100) + "%";
+    qCat.textContent = item.cat;
+    qText.textContent = item.q;
+    feedbackBox.style.display = "none";
+    feedbackBox.className = "feedback";
+    nextBtn.disabled = true;
+    nextBtn.textContent = (idx === attempt.length - 1) ? "Ver resultado final →" : "Próxima pergunta →";
+
+    optionsBox.innerHTML = "";
+    item.opts.forEach(function(txt, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "opt-btn";
+      var letterSpan = document.createElement("span");
+      letterSpan.className = "opt-letter";
+      letterSpan.textContent = LETTERS[i];
+      var textSpan = document.createElement("span");
+      textSpan.textContent = txt;
+      btn.appendChild(letterSpan);
+      btn.appendChild(textSpan);
+      btn.addEventListener("click", function() { selectOption(i); });
+      optionsBox.appendChild(btn);
+    });
+  }
+
+  function selectOption(choice) {
+    if (answered) return;
+    answered = true;
+    var item = attempt[idx];
+    var btns = Array.prototype.slice.call(optionsBox.querySelectorAll(".opt-btn"));
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === item.ans) b.classList.add("correct");
+      else if (i === choice) b.classList.add("wrong");
+    });
+
+    if (choice === item.ans) {
+      score++;
+      scoreLive.textContent = "Pontuação: " + score;
+      feedbackBox.className = "feedback ok";
+      feedbackBox.innerHTML = "<strong>Correto!</strong> " + item.exp;
+    } else {
+      if (item.critica) failedCriticals.push(item);
+      feedbackBox.className = "feedback err";
+      feedbackBox.innerHTML = "<strong>Atenção:</strong> " + item.exp;
+    }
+    feedbackBox.style.display = "block";
+    nextBtn.disabled = false;
+  }
+
+  function showResults() {
+    barFill.style.width = "100%";
+    quizCard.style.display = "none";
+    progressCard.style.display = "none";
+    resultCard.style.display = "block";
+
+    var pct = Math.round((score / attempt.length) * 100);
+    var passed = (failedCriticals.length === 0) && (score >= 7);
+    var resScore = document.getElementById("resScore");
+    var resMsg = document.getElementById("resMsg");
+    var critAlert = document.getElementById("critAlert");
+    var critList = document.getElementById("critList");
+
+    resScore.textContent = score + " / " + attempt.length + " (" + pct + "%)";
+    resScore.className = "score-big " + (passed ? "pass" : "fail");
+    critAlert.style.display = "none";
+    critList.innerHTML = "";
+
+    if (passed) {
+      certDateStr = new Date().toLocaleDateString("pt-PT");
+      document.getElementById("certDate").textContent = certDateStr;
+      resMsg.textContent = "Excelente! Acertou todas as regras críticas de segurança e alcançou a pontuação mínima (7/8). Preencha o seu nome e turma abaixo para emitir o cartão de habilitação.";
+      document.getElementById("passControls").style.display = "block";
+      document.getElementById("failControls").style.display = "none";
+      document.getElementById("certificateBox").style.display = "block";
+      document.getElementById("certScorePreview").textContent = "Aprovado com " + score + "/" + attempt.length + " (" + pct + "%) · 5/5 regras críticas";
+      updateCertificatePreview();
+    } else {
+      document.getElementById("passControls").style.display = "none";
+      document.getElementById("failControls").style.display = "block";
+      document.getElementById("certificateBox").style.display = "none";
+
+      if (failedCriticals.length > 0) {
+        var firstCat = failedCriticals[0].cat;
+        resMsg.textContent = "Não aprovado: reveja a regra crítica «" + firstCat + "»" + (failedCriticals.length > 1 ? " e as restantes regras críticas abaixo" : "") + " antes de utilizar a Cricut Maker 3.";
+        failedCriticals.forEach(function(item) {
+          var li = document.createElement("li");
+          li.innerHTML = "<strong>" + item.cat + ":</strong> " + item.exp;
+          critList.appendChild(li);
+        });
+        critAlert.style.display = "block";
+      } else {
+        resMsg.textContent = "Acertou todas as regras críticas, mas precisa de pelo menos 7 em 8 respostas certas para aprovação. Reveja o Guia de Início Rápido e tente de novo.";
+      }
+    }
+  }
+
+  function restart() {
+    attempt = buildAttempt();
+    idx = 0; score = 0; failedCriticals = [];
+    resultCard.style.display = "none";
+    quizCard.style.display = "block";
+    progressCard.style.display = "block";
+    renderQuestion();
+  }
+
+  nextBtn.addEventListener("click", function() {
+    if (idx < attempt.length - 1) { idx++; renderQuestion(); }
+    else showResults();
+  });
+
+  document.getElementById("retryBtnPass").addEventListener("click", restart);
+  document.getElementById("retryBtnFail").addEventListener("click", restart);
+
+  document.getElementById("printCertBtn").addEventListener("click", function() {
+    var n = sName.value.trim();
+    var c = sClass.value.trim();
+    var ok = true;
+    if (!n) { sName.classList.add("invalid"); sName.setAttribute("aria-invalid", "true"); errName.classList.add("show"); ok = false; }
+    if (!c) { sClass.classList.add("invalid"); sClass.setAttribute("aria-invalid", "true"); errClass.classList.add("show"); ok = false; }
+    if (!ok) { if (!n) sName.focus(); else sClass.focus(); return; }
+    updateCertificatePreview();
+    window.print();
+  });
+
+  sName.addEventListener("input", updateCertificatePreview);
+  sClass.addEventListener("input", updateCertificatePreview);
+
+  restart();
+})();
+</script>
+</body>
+</html>

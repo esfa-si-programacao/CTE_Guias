@@ -1,4 +1,4 @@
-# A Fazer — Portal de Ajuda CTE Informático (7 Equipamentos)
+# A Fazer — Portal de Ajuda CTE Informático (9 Equipamentos)
 
 > Estado atualizado em **23/11/2026** após a conclusão técnica das **Fases 1 e 2**:
 > `cte-config.js` centralizado, pesquisa sem acentos com sinónimos e pesquisa global de sintomas/LEDs (`cte-search-index.js`), animações CSS realistas dos LEDs (`cte-leds.css` + `cte-diag.js`), diagnóstico móvel ≥ 44 px / 16 px + barra fixa (`cte-hub.css`), consolidação de `manuais.html` e `ajuda-ia.html` em `index.html` com seletor de intenção, arquivo do PNG de 4,15 MB do NAO e publicação limpa para Netlify (`netlify.toml` + `scripts/build_netlify.py`, `8,95 MB`, `0` links partidos).
@@ -8,13 +8,13 @@
 
 ## 1. Configuração imediata — editar apenas `cte-config.js`
 
-As **8 páginas** (página inicial unificada `index.html` e os 7 equipamentos) leem agora a configuração central a partir de **`cte-config.js`**:
+As **10 páginas** (página inicial unificada `index.html` e os 9 equipamentos) leem agora a configuração central a partir de **`cte-config.js`**:
 
 - [ ] **Contacto global do CTE** (`CTE_CONFIG.contactoCTE`): preencher `nome`, `email`, `sala` e `horario`.
-- [ ] **Formulário de requisição** (`CTE_CONFIG.urlRequisicao`): colar URL do formulário (ativa automaticamente o botão «Requisitar» no Passo 4 dos 7 equipamentos; se algum equipamento tiver formulário próprio, usar `CTE_CONFIG.equipamentos.<chave>`).
+- [ ] **Formulário de requisição** (`CTE_CONFIG.urlRequisicao`): colar URL do formulário (ativa automaticamente o botão «Requisitar» no Passo 4 dos equipamentos; se algum equipamento tiver formulário próprio, usar `CTE_CONFIG.equipamentos.<chave>`).
 - [ ] **Formulário de devolução** (`CTE_CONFIG.urlRegistoDevolucao`): colar URL (ativa «Registar devolução» quando os 6 itens da checklist estiverem marcados).
 - [ ] **Ligar a Carta de Habilitação à requisição:** incluir no formulário de requisição um campo para o código de verificação de 6 caracteres gerado pelo quiz.
-- [ ] **Cadernos NotebookLM em falta:** criar e colar em `CTE_CONFIG.notebooks` os links de `einstar` e `tuxedo`.
+- [ ] **Cadernos NotebookLM em falta:** criar e colar em `CTE_CONFIG.notebooks` os links de `einstar`, `tuxedo`, `cricut` e `activpanel`.
 - [ ] **Testar NotebookLM com conta Google de aluno:** confirmar se as contas escolares de alunos conseguem abrir os 5 cadernos já ativos sem bloqueio do Google Workspace.
 
 ---
@@ -45,6 +45,10 @@ As **8 páginas** (página inicial unificada `index.html` e os 7 equipamentos) l
 - [ ] **Hardware exato da Tuxedo (`INV-006`):** registar CPU, GPU(s), VRAM, RAM DDR5 e SSDs (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Tecnico.html` e `Tuxedo_NAS_Manual_Utilizador.html`).
 - [ ] **Configuração RAID/ZFS do NAS (`INV-223`):** registar capacidade e nível RAID/ZFS das 8 baías SATA e 2 NVMe (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Tecnico.html`).
 - [ ] **IPs fixos / hostnames reais no Estúdio 4C:** substituir os exemplos pelos IPs/hostnames reais da Tuxedo e do QNAP (`Tuxedo_AI_NAS_QNAP/Tuxedo_NAS_Manual_Utilizador.html`).
+
+### Painéis Interativos Promethean ActivPanel LX 65" (`INV-186`)
+- [ ] **Fixação nas 6 salas (`INV-186` / `INV-191`):** confirmar se STEM, TEC1, TEC2 e Hardware D3 estão nos suportes móveis com rodas `INV-191` e se as Oficinas O1 e O3 têm fixação de parede (`Promethean_ActivPanel_LX/ActivPanel_LX_Manual_Utilizador.html`).
+- [ ] **RAM/armazenamento dos OPS-A e consola MDM ativa:** confirmar se os OPS-A são 4 GB/32 GB ou 8 GB/64 GB, qual a consola MDM usada (Radix VISO / Promethean Admin Tools / Google Admin) e a lista exata de apps educativas pré-instaladas (`Promethean_ActivPanel_LX/ActivPanel_LX_Manual_Tecnico.html` e `ActivPanel_LX_Manual_Utilizador.html`).
 
 ---
 

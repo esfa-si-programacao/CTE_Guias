@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cricut Maker 3 — Manual de Utilizador e Design Space (CTE · INV-005)</title>
+<meta name="description" content="Manual completo da Impressora de Corte Cricut Maker 3 do CTE: Design Space, suportes A/B, escolha de tapetes, vinil adesivo vs. termocolante (Espelhar!), calibração e 5 projetos pedagógicos.">
+<meta property="og:title" content="Cricut Maker 3 — Manual de Utilizador e Corte Inteligente (CTE)">
+<meta property="og:description" content="Manual completo da Cricut Maker 3 (INV-005): Design Space, tapetes, suportes A/B, vinil vs. HTV (Espelhar), 5 projetos e devolução.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A36'/%3E%3Crect x='10' y='20' width='44' height='24' rx='6' fill='none' stroke='%23fff' stroke-width='2.8'/%3E%3Cline x1='15' y1='32' x2='49' y2='32' stroke='%234CE0F5' stroke-width='2.4'/%3E%3Crect x='25' y='25' width='14' height='12' rx='3' fill='%231E7E8C' stroke='%23fff' stroke-width='1.8'/%3E%3Ccircle cx='46' cy='25' r='2.5' fill='%23E8711C'/%3E%3C/svg%3E">
+<style>
+:root {
+  --dark: #1F2A36;
+  --dark2: #2C3B4B;
+  --acc: #E8711C;
+  --acc-btn: #B4530F;
+  --acc-text: #A84B0B;
+  --acc-soft: #FDF0E6;
+  --light: #EEF2F5;
+  --line: #D5DCE3;
+  --grey: #5B6672;
+  --teal: #1E7E8C;
+  --teal-text: #166874;
+  --teal-soft: #E6F3F5;
+  --blue: #1D63B8;
+  --blue-text: #18539B;
+  --blue-soft: #EBF3FC;
+  --red: #C0392B;
+  --red-text: #A93226;
+  --red-soft: #FBE9E7;
+  --green: #1E8449;
+  --green-text: #17693A;
+  --green-soft: #E8F6EF;
+  --bg: #fff;
+  --text: #1F2A36;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+body { margin: 0; font: 16px/1.62 system-ui, -apple-system, "Segoe UI", Calibri, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+.topbar { background: #151E27; color: #C7D6E5; font-size: 0.84rem; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar-in { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.topbar a { color: #FFD2B3; text-decoration: none; font-weight: 600; }
+.topbar a:hover { text-decoration: underline; }
+.topbar-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+header.hero { background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); color: #fff; padding: 40px 24px 36px; border-bottom: 4px solid var(--acc); }
+.hero-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; justify-content: space-between; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }
+.hero .sub { color: #FFB37B; font-size: 1.3rem; font-weight: 600; margin: 6px 0 12px; }
+.hero .kit { color: #C2D1E0; margin: 0; font-size: 0.96rem; }
+.hero .ver { color: #8FA3B5; font-size: 0.85rem; margin: 6px 0 0; }
+.hero code { background: rgba(255,255,255,0.14); color: #fff; }
+.hero-art { width: 118px; flex-shrink: 0; }
+
+.layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 270px 1fr; gap: 44px; padding: 32px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto; font-size: 0.88rem; border-right: 1px solid var(--line); padding-right: 16px; }
+nav.toc h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin: 0 0 8px; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc > ul > li { margin: 6px 0; }
+nav.toc > ul > li > a { font-weight: 600; }
+nav.toc ul ul { padding-left: 12px; margin: 2px 0 6px; }
+nav.toc a { color: var(--text); text-decoration: none; display: block; padding: 3px 7px; border-radius: 5px; }
+nav.toc a:hover, nav.toc a.on { background: var(--light); color: var(--acc-text); }
+
+main { min-width: 0; max-width: 840px; }
+section { margin-bottom: 42px; }
+section > h2 { font-size: 1.6rem; margin: 0 0 12px; padding-top: 8px; color: var(--dark); border-bottom: 2px solid var(--light); padding-bottom: 6px; }
+h3 { font-size: 1.18rem; color: var(--acc-text); margin: 26px 0 8px; }
+h4 { font-size: 1rem; color: var(--teal-text); margin: 16px 0 6px; }
+main a { color: var(--teal-text); font-weight: 600; }
+main a:hover { color: var(--acc-text); }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 14px; padding-left: 24px; }
+li { margin: 4px 0; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.9em; background: var(--light); padding: 1px 5px; border-radius: 4px; }
+
+.tw { overflow-x: auto; margin: 10px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--dark); color: #fff; border-color: var(--dark); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(odd) { background: var(--light); }
+table.log td { height: 36px; }
+table.log tbody tr { background: #fff; }
+
+.note { border: 1px solid; border-left-width: 5px; border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+.note.info { background: var(--teal-soft); border-color: var(--teal); }
+.note.info strong { color: var(--teal-text); }
+.note.warn { background: var(--acc-soft); border-color: var(--acc); }
+.note.warn strong { color: var(--acc-text); }
+.note.danger { background: var(--red-soft); border-color: var(--red); }
+.note.danger strong { color: var(--red-text); }
+
+.mat-badge { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: middle; border: 1px solid rgba(0,0,0,0.18); }
+
+.proj-card { border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; background: #FAFBFD; }
+.proj-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.proj-head h4 { margin: 0; font-size: 1.06rem; color: var(--dark); }
+.proj-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.lvl { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); }
+.lvl.inter { background: var(--acc-soft); color: var(--acc-text); }
+.lvl.adv { background: #F4ECF7; color: #5B2C6F; }
+
+.code-wrap { position: relative; margin: 12px 0 18px; }
+pre { background: #1B2430; color: #EBF1F7; padding: 16px 18px; border-radius: 9px; overflow-x: auto; font: 0.88rem/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; margin: 0; }
+.copy-btn { position: absolute; top: 10px; right: 10px; font: inherit; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { background: var(--acc); border-color: var(--acc); }
+
+ul.check { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+ul.check li { margin: 0; }
+ul.check label { display: flex; gap: 10px; align-items: flex-start; background: var(--light); border-radius: 8px; padding: 10px 12px; cursor: pointer; height: 100%; border: 1px solid var(--line); }
+ul.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+ul.check input:checked + span { color: var(--grey); text-decoration: line-through; }
+
+button.reset { font: inherit; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 7px 13px; cursor: pointer; margin: 6px 8px 14px 0; }
+button.reset:hover { border-color: var(--acc-btn); color: var(--acc-text); }
+
+.hint { color: var(--grey); font-size: 0.9rem; }
+footer { text-align: center; color: var(--grey); font-size: 0.86rem; padding: 24px 24px 96px; border-top: 1px solid var(--line); background: var(--light); }
+footer a { color: var(--teal-text); font-weight: 600; }
+
+.fab-help { position: fixed; right: 18px; bottom: 18px; z-index: 90; display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 999px; background: var(--dark); color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 700; border: 2px solid var(--acc); box-shadow: 0 6px 18px rgba(31, 42, 54, 0.28); transition: transform 0.15s ease, background 0.15s ease; }
+.fab-help:hover { background: var(--acc-btn); transform: translateY(-2px); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 16px; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 16px; }
+  .hero-art { width: 88px; }
+  ul.check { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hero-art { display: none; } }
+@media print {
+  .topbar, nav.toc, button.reset, .copy-btn, .hint, .fab-help { display: none !important; }
+  footer { padding-bottom: 24px; }
+  header.hero { background: none; color: var(--dark); padding: 0 0 14px; border-bottom: 2px solid var(--dark); }
+  .hero .sub { color: var(--acc-text); }
+  .hero .kit, .hero .ver { color: var(--grey); }
+  .hero code { background: var(--light); color: var(--dark); }
+  .layout { display: block; padding: 12px 0 0; }
+  main { max-width: none; }
+  h2, h3 { break-after: avoid; }
+  tr, .note, .proj-card { break-inside: avoid; }
+  body { font-size: 10.5pt; }
+}
+</style>
+<link rel="stylesheet" href="../cte-theme.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <nav aria-label="Caminho de navegação"><a href="../index.html">Portal CTE</a> &rsaquo; <a href="index.html">Cricut Maker 3</a> &rsaquo; Manual de Utilizador</nav>
+    <div class="topbar-links">
+      <a href="Cricut_Maker_3_Infografico_Inicio_Rapido.html">Guia de Início Rápido</a>
+      <a href="Cricut_Maker_3_Quiz_Habilitacao.html">Carta de Operador</a>
+      <a href="Cricut_Maker_3_Manual_Tecnico.html">Manual Técnico</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>Cricut Maker 3</h1>
+      <p class="sub">Manual de Utilizador, Tapetes, Lâminas e Cricut Design Space</p>
+      <p class="kit">Impressora de Corte Inteligente · 4 unidades (<code>INV-005</code>) · Estúdio 4C &amp; Estúdio SC - LMAS · Software <strong>Cricut Design Space</strong></p>
+      <p class="ver">Versão 1.0 · novembro de 2026 · Destinatários: Professores e Alunos do CTE</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 130 96" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="10" y="20" width="110" height="56" rx="11" fill="rgba(30,126,140,0.45)" stroke="#fff"/>
+      <line x1="20" y1="48" x2="110" y2="48" stroke="#C7D6E5" stroke-width="2.4"/>
+      <rect x="46" y="34" width="24" height="24" rx="4" fill="#1F2A36" stroke="#E8711C" stroke-width="2.4"/>
+      <circle cx="96" cy="31" r="4.5" fill="#fff"/>
+      <circle cx="108" cy="31" r="3" fill="#4CE0F5" stroke="none"/>
+      <rect x="26" y="58" width="78" height="28" rx="3" fill="rgba(255,255,255,0.16)" stroke="#C7D6E5" stroke-width="1.8"/>
+    </svg>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Índice do manual">
+    <h2>Índice</h2>
+    <ul>
+      <li><a href="#s1">1. Sobre este manual</a></li>
+      <li><a href="#s2">2. Conhecer a Cricut Maker 3</a>
+        <ul>
+          <li><a href="#s2-1">2.1 Botões e anatomia</a></li>
+          <li><a href="#s2-2">2.2 Suportes A e B (ferramentas)</a></li>
+          <li><a href="#s2-3">2.3 Requisitos do Design Space</a></li>
+        </ul>
+      </li>
+      <li><a href="#s3">3. Regras de ouro e segurança</a></li>
+      <li><a href="#s4">4. Ligar, luzes LED e calibração</a>
+        <ul>
+          <li><a href="#s4-1">4.1 Espaço livre e ligação</a></li>
+          <li><a href="#s4-2">4.2 Luzes do botão Energia</a></li>
+          <li><a href="#s4-3">4.3 Calibração (Print Then Cut)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s5">5. Tapetes, Smart Materials e vinil</a>
+        <ul>
+          <li><a href="#s5-1">5.1 Tapetes por cor (aderência)</a></li>
+          <li><a href="#s5-2">5.2 Smart Materials (sem tapete)</a></li>
+          <li><a href="#s5-3">5.3 Vinil Adesivo vs. HTV (Espelhar!)</a></li>
+        </ul>
+      </li>
+      <li><a href="#s6">6. Passo a passo do corte seguro</a></li>
+      <li><a href="#s7">7. Depilar, transferir e descolar</a></li>
+      <li><a href="#s8">8. 5 projetos pedagógicos</a>
+        <ul>
+          <li><a href="#s8-plano">8.1 Ficha de planeamento</a></li>
+          <li><a href="#s8-inter">8.2 Ideias interdisciplinares</a></li>
+        </ul>
+      </li>
+      <li><a href="#s9">9. Desligar, devolver e registo</a>
+        <ul>
+          <li><a href="#s9-1">9.1 Checklist de devolução</a></li>
+          <li><a href="#s9-2">9.2 Folha de registo (INV-005)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="s1">
+      <h2>1. Sobre este manual</h2>
+      <p>O <strong>CTE Informático</strong> dispõe de <strong>4 impressoras de corte inteligentes Cricut Maker 3</strong> (<code>INV-005</code>), distribuídas pelo <strong>Estúdio 4C</strong> (2 unidades), <strong>Estúdio SC - LMAS</strong> (1 unidade) e Direção (1 unidade). Com até <strong>4 kg (4 000 g) de força de corte</strong>, corta com precisão mais de 300 materiais — desde papel fino e vinil adesivo/termocolante até cartolina espessa, feltro, tecido, couro e madeira balsa.</p>
+      <p>Antes da primeira utilização, todos os alunos devem concluir a <a href="Cricut_Maker_3_Quiz_Habilitacao.html">Carta de Operador</a> e preparar o projeto no <strong>Cricut Design Space</strong>.</p>
+      <div class="note info">
+        <strong>Para docentes responsáveis e equipa CTE:</strong> Consulte o <a href="Cricut_Maker_3_Manual_Tecnico.html">Manual Técnico e Manutenção</a> (gestão dos 4 kits, atualização de firmware por USB, limpeza segura de sensores/rolos sem ar comprimido e matriz de 10 casos).
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2>2. Conhecer a Cricut Maker 3 e o software</h2>
+
+      <h3 id="s2-1">2.1 Botões e partes principais da máquina</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Elemento</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Botão Energia (Power)</strong></td><td>Liga/desliga a máquina. A sua luz indica se está pronta (branco fixo), a trabalhar (branco a piscar) ou em erro (vermelho/roxo).</td></tr>
+            <tr><td><strong>Botão Carregar/Descarregar (↑↓)</strong></td><td>Alimenta ou ejeta o tapete de corte ou <em>Smart Material</em> após o encostar às guias laterais.</td></tr>
+            <tr><td><strong>Botão Iniciar / Ir (▶)</strong></td><td>Pisca a branco quando o Design Space envia o corte — prima para começar a cortar/escrever.</td></tr>
+            <tr><td><strong>Botão Pausa (⏸)</strong></td><td>Pausa o corte em curso sem perder a posição, permitindo inspecionar a lâmina ou o material.</td></tr>
+            <tr><td><strong>Guias laterais e rodinhas estrela</strong></td><td>As guias orientam o tapete a direito; as rodinhas brancas (<em>Star Wheels</em>) mantêm o material firme (deslizar p/ direita só em materiais espessos/delicados).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s2-2">2.2 Suporte A (Esquerda) e Suporte B (Direita)</h3>
+      <ul>
+        <li><strong>Suporte A (Esquerda — <em>Clamp A</em>):</strong> Exclusivo para <strong>canetas, marcadores Cricut</strong> e estilete de vinco (<em>Scoring Stylus</em>). Abra o gancho, deixe a caneta descer até assentar no batente (sem forçar) e feche.</li>
+        <li><strong>Suporte B (Direita — <em>Clamp B</em>):</strong> Exclusivo para <strong>lâminas e pontas de corte</strong> (inclui a <em>Premium Fine-Point Blade</em> pré-instalada). Suporta as ferramentas do <em>Adaptive Tool System</em> (Lâmina Rotativa, <em>Knife Blade</em>, sistema <em>QuickSwap</em>).</li>
+      </ul>
+      <div class="note warn">
+        <strong>Ordem obrigatória ao fechar o Suporte B:</strong> Garanta que o colarinho da ferramenta assenta perfeitamente plano no topo do Suporte B e feche <strong>primeiro a aba esquerda</strong> e depois a direita — fechar ao contrário ou torto faz a lâmina cortar fora do sítio!
+      </div>
+
+      <h3 id="s2-3">2.3 Software Cricut Design Space e compatibilidade</h3>
+      <p>O <strong>Cricut Design Space</strong> (<a href="https://design.cricut.com" target="_blank" rel="noopener noreferrer">design.cricut.com &#8599;</a>) é obrigatório para desenhar, importar vetores (<code>.svg</code>) ou imagens (<code>.png</code>) e enviar os cortes para a máquina.</p>
+      <ul>
+        <li><strong>Sistemas compatíveis:</strong> Windows 10+ (64-bit, 4 GB RAM), macOS 11+ (4 GB RAM), iOS/iPadOS 15+ e Android 10+, com ligação à Internet (2–3 Mbps) e porta USB ou Bluetooth.</li>
+        <li><strong>NÃO funciona em Chromebooks nem Linux!</strong></li>
+      </ul>
+      <!-- CONFIRMAR: confirmar com o docente qual a conta Cricut Design Space (conta da escola vs. conta individual dos alunos) e quais os portáteis/tablets dos Estúdios 4C e SC - LMAS com o Design Space instalado -->
+    </section>
+
+    <section id="s3">
+      <h2>3. Regras de ouro, segurança e cuidados críticos</h2>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Regra</th><th>Porquê e o que fazer</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. 25 cm (10") livres atrás</strong></td><td>Deixe pelo menos 25 cm livres atrás e à frente da máquina. Se o tapete ou vinil bater na parede, entorta o corte ou arranca os cabos!</td></tr>
+            <tr><td><strong>2. Fonte oficial 24 V / 3 A</strong></td><td>Use apenas o adaptador de <strong>24 V / 3 A</strong> da Maker 3 (nunca use fontes de 18 V ou 2,5 A de modelos antigos).</td></tr>
+            <tr><td><strong>3. Dedos longe da calha e lâminas</strong></td><td>Nunca meta as mãos nem puxe o tapete com o carro em movimento. Use capa protetora ao guardar ou trocar lâminas afiadas.</td></tr>
+            <tr><td><strong>4. Vinil HTV = Espelhar!</strong></td><td>Em vinil termocolante (t-shirts), ative sempre <strong>Espelhar (Mirror)</strong>, coloque o <strong>lado brilhante para baixo</strong> e nunca use <em>Transfer Tape</em>.</td></tr>
+            <tr><td><strong>5. Película protetora no tapete</strong></td><td>Recoloque sempre a película transparente sobre o tapete ao terminar e <strong>dobre o tapete</strong> para descolar papel (para não enrolar).</td></tr>
+            <tr><td><strong>6. Sem ar comprimido nem álcool</strong></td><td>Nunca sopre ar comprimido para dentro da máquina (empurra poeira para os sensores) nem limpe plásticos com álcool/acetona.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2>4. Ligar, luzes LED e calibração</h2>
+
+      <h3 id="s4-1">4.1 Preparar a bancada e ligar a máquina</h3>
+      <ol>
+        <li>Coloque a Cricut Maker 3 numa mesa firme deixando pelo menos <strong>25 cm livres atrás e à frente</strong>.</li>
+        <li>Ligue o adaptador oficial <strong>24 V / 3 A</strong> à traseira da máquina e diretamente à tomada elétrica.</li>
+        <li>Ligue o <strong>cabo USB</strong> diretamente ao computador (recomendado em sala com várias máquinas para evitar interferência Bluetooth) ou emparelhe via Bluetooth nas definições do dispositivo.</li>
+        <li>Prima o botão <strong>Energia</strong> e aguarde até ficar <strong>Branco fixo</strong>.</li>
+      </ol>
+
+      <h3 id="s4-2">4.2 Luzes indicadoras do botão Energia</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Luz do botão Energia</th><th>Significado e Ação</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Branco fixo</strong></td><td>Ligada e pronta a receber projetos do Design Space.</td></tr>
+            <tr><td><strong>Branco a piscar</strong></td><td>A processar instruções, a aguardar clique no botão indicado ou a atualizar.</td></tr>
+            <tr><td><strong>Vermelho fixo (sem outras luzes)</strong></td><td>Falha elétrica — confirmar que a fonte oficial <strong>24 V / 3 A</strong> está bem ligada numa tomada funcional.</td></tr>
+            <tr><td><strong>Vermelho fixo + Carregar branco</strong></td><td>Atualização de <em>firmware</em> pendente — ligar por <strong>cabo USB</strong> ao PC e atualizar no Design Space.</td></tr>
+            <tr><td><strong>Vermelho a piscar</strong></td><td>Obstrução traseira, carro encravado ou aparas/poeira nos sensores dos rolos (desligar, limpar suavemente os rolos/sensores e garantir 25 cm livres).</td></tr>
+            <tr><td><strong>Roxo (fixo ou a piscar)</strong></td><td>Bluetooth ativo + erro vermelho em simultâneo — ligar por cabo USB e seguir os passos de erro vermelho.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s4-3">4.3 Calibração (<em>Print Then Cut</em>, Rotativa e <em>Knife Blade</em>)</h3>
+      <p>Se imprimir um desenho primeiro na impressora a cores e depois o cortar na Cricut (<em>Print Then Cut</em>) e o corte sair desviado, aceda a <strong>Menu → Definições → Máquinas → Calibração da Máquina</strong> e siga o assistente numa folha A4 simples. Também é necessário calibrar ao trocar uma <strong>Lâmina Rotativa</strong> ou antes de estrear a <strong>Knife Blade</strong>.</p>
+    </section>
+
+    <section id="s5">
+      <h2>5. Tapetes, Smart Materials e diferença entre vinis</h2>
+
+      <h3 id="s5-1">5.1 Escolher o tapete de corte pela cor</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Tapete</th><th>Aderência</th><th>Materiais recomendados</th></tr></thead>
+          <tbody>
+            <tr><td><span class="mat-badge" style="background:#3B82F6"></span><strong>LightGrip (Azul)</strong></td><td>Suave</td><td>Papel fino (80–120 g), papel de cópia, cartolina leve, papel vegetal.</td></tr>
+            <tr><td><span class="mat-badge" style="background:#22C55E"></span><strong>StandardGrip (Verde)</strong></td><td>Média (padrão)</td><td>Cartolina forte, papel estampado, <strong>vinil adesivo</strong>, <strong>vinil termocolante (HTV)</strong>.</td></tr>
+            <tr><td><span class="mat-badge" style="background:#8B5CF6"></span><strong>StrongGrip (Roxo)</strong></td><td>Forte</td><td>Cartolina grossa/purpurina, cartão prensado, couro, madeira balsa, tecido com entretela.</td></tr>
+            <tr><td><span class="mat-badge" style="background:#EC4899"></span><strong>FabricGrip (Rosa)</strong></td><td>Específica p/ têxtil</td><td>Tecidos de algodão, feltro e seda (com a <strong>Lâmina Rotativa</strong>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s5-2">5.2 <em>Smart Materials</em> (corte sem tapete)</h3>
+      <p>Os rolos oficiais <strong>Cricut Smart Vinyl</strong>, <strong>Smart Iron-On</strong> e <strong>Smart Paper Sticker Cardstock</strong> carregam diretamente na máquina sem tapete, permitindo cortes contínuos até 3,65 m (12 pés) e até 2× mais rápidos. Para carregar sem tapete, a peça tem de ter no mínimo <strong>33 cm de largura × 15,2 cm de comprimento</strong> (sobras mais pequenas têm de ser coladas num tapete verde!).</p>
+
+      <h3 id="s5-3">5.3 Vinil Adesivo vs. Vinil Termocolante (HTV / <em>Iron-On</em>)</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Passo</th><th>Vinil Adesivo (Autocolantes, Copos, Placas)</th><th>Vinil Termocolante / HTV (T-shirts, Sacos)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. No Design Space</strong></td><td><strong>Espelhar: DESLIGADO</strong> (corta direito).</td><td><strong>Espelhar: LIGADO (ON)!</strong></td></tr>
+            <tr><td><strong>2. Posição no tapete</strong></td><td>Face colorida <strong>para cima</strong> (papel de base para baixo).</td><td><strong>Lado brilhante (película transparente) para baixo!</strong></td></tr>
+            <tr><td><strong>3. Transferência</strong></td><td>Depilar e aplicar com <strong>Fita de Transferência</strong>.</td><td>Depilar e prensar com ferro/prensa (<strong>NUNCA usar Transfer Tape!</strong>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2>6. Passo a passo de um corte seguro</h2>
+      <ol>
+        <li><strong>Criar ou importar no Design Space:</strong> Construa o desenho, junte elementos que devam manter posições relativas com <strong>Anexar (<em>Attach</em>)</strong> e confirme dimensões finais.</li>
+        <li><strong>Clicar em «Criar» (<em>Make It</em>):</strong> Escolha se vai cortar <em>Sem Tapete</em> (<em>Smart Materials</em>) ou <em>No Tapete</em> (especifique 12"×12" ou 12"×24"). Se for HTV, <strong>ative Espelhar!</strong></li>
+        <li><strong>Selecionar o material exato:</strong> Escolha na lista do Design Space o material real que colocou no tapete (ex.: <em>Premium Vinyl</em>, <em>Everyday Iron-On</em>, <em>Medium Cardstock</em>). Confirme no ecrã qual ferramenta colocar no Suporte A e Suporte B.</li>
+        <li><strong>Alinhar e carregar:</strong> Encoste o tapete (ou <em>Smart Material</em>) firmemente às guias laterais e contra os rolos, e prima o botão a piscar <strong>Carregar (↑↓)</strong>.</li>
+        <li><strong>Confirmar espaço livre e iniciar:</strong> Verifique os 25 cm livres atrás e prima o botão a piscar <strong>Iniciar (▶)</strong>.</li>
+        <li><strong>Descarregar:</strong> Só depois de o corte concluir, prima <strong>Descarregar (↑↓)</strong> para ejetar o tapete com segurança.</li>
+      </ol>
+    </section>
+
+    <section id="s7">
+      <h2>7. Depilar, transferir e descolar sem rasgar</h2>
+      <ul>
+        <li><strong>Descolar papel/cartolina sem enrolar:</strong> Vire o tapete ao contrário sobre a mesa e <strong>dobre suavemente o tapete</strong> afastando-o da cartolina (nunca puxe a cartolina diretamente para cima!).</li>
+        <li><strong>Depilar vinil (<em>Weeding</em>):</strong> Use o gancho depilador para remover os pedaços negativos em excesso (como o interior das letras «O», «A», «e»), deixando apenas o desenho colado à base.</li>
+        <li><strong>Transferir vinil adesivo:</strong> Aplique um retângulo de <em>Transfer Tape</em> sobre o desenho depilado, alise bem com a espátula/raspador, descole a película com o vinil aderido, posicione na peça final, alise e retire a fita em ângulo raso (180°).</li>
+      </ul>
+    </section>
+
+    <section id="s8">
+      <h2>8. 5 projetos pedagógicos progressivos</h2>
+      <p>Sugestão de progressão prática para turmas, do primeiro autocolante ao fabrico multi-camadas e têxtil:</p>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 1 — Autocolante de Identificação CTE (Vinil Adesivo)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">20 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Dominar o Design Space, corte em tapete Verde (<em>StandardGrip</em>), depilação e <em>Transfer Tape</em>.</p>
+        <p><strong>Tarefas:</strong> Criar o logótipo ou etiqueta da equipa/portátil em vinil adesivo (<em>Espelhar desligado</em>), carregar no tapete verde, cortar com lâmina <em>Fine-Point</em>, depilar e aplicar com <em>Transfer Tape</em> num caderno ou caixa de projeto.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 2 — Cartão Geométrico / Pop-Up (Caneta + Vinco + Corte)</h4>
+          <div class="proj-badges"><span class="lvl">Iniciante</span><span class="lvl">25 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Usar em simultâneo o <strong>Suporte A</strong> (caneta/vinco) e o <strong>Suporte B</strong> (corte) em tapete Azul (<em>LightGrip</em>).</p>
+        <p><strong>Tarefas:</strong> Configurar uma linha de dobra (<em>Score</em>), texto em escrita (<em>Draw</em>) e contorno de recorte (<em>Cut</em>), usando <strong>Anexar</strong> no Design Space. No final, dobrar o tapete ao contrário para descolar o cartão sem enrolar.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 3 — Etiquetas e Embalagens (<em>Print Then Cut</em>)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">30 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Imprimir ilustrações coloridas na impressora da escola e recortar os contornos exatos na Cricut.</p>
+        <p><strong>Tarefas:</strong> Aplicar <em>Achatar (Flatten)</em> nos elementos gráficos no Design Space, confirmar calibração <em>Print Then Cut</em> (se necessário), imprimir a folha com a marca de registo preta e recortar no tapete azul/verde com as rodinhas estrela uniformes.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 4 — Saco / T-shirt da Turma em Vinil Termocolante (HTV)</h4>
+          <div class="proj-badges"><span class="lvl inter">Intermédio</span><span class="lvl">35 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Executar um projeto têxtil sem esquecer as regras críticas do HTV.</p>
+        <p><strong>Tarefas:</strong> Ativar <strong>Espelhar (ON)</strong> antes de cortar, colocar o vinil <strong>lado brilhante para baixo</strong> no tapete verde (ou <em>Smart Iron-On</em>), depilar o excesso e transferir com calor sob supervisão docente (sem <em>Transfer Tape</em>!).</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <h4>Projeto 5 — Maquete / Caixa Protótipo para Robótica ou STEM</h4>
+          <div class="proj-badges"><span class="lvl adv">Projeto</span><span class="lvl">45 min</span></div>
+        </div>
+        <p><strong>Objetivo:</strong> Desenhar um ficheiro <code>.svg</code> técnico (ex.: suporte de sensores, viseira em cartolina grossa ou painel frontal para Arduino/Micro:bit) e fabricá-lo com exatidão.</p>
+        <p><strong>Tarefas:</strong> Exportar vetor em milímetros (Inkscape / Fusion / Illustrator) em <code>.svg</code>, importar para o Design Space, testar em cartolina (tapete verde/roxo) ou madeira balsa fina/cartão prensado (tapete roxo <em>StrongGrip</em> + rodinhas estrela à direita + fita de pintor nos bordos).</p>
+      </div>
+
+      <h3 id="s8-plano">8.1 Modelo copiável de Ficha de Planeamento de Corte</h3>
+      <div class="code-wrap">
+        <button class="copy-btn" type="button" data-copy>Copiar modelo</button>
+        <pre><code>FICHA DE PLANEAMENTO — CRICUT MAKER 3 (CTE · INV-005)
+==========================================================
+Data / Turma:   ____/____/202__   |   Unidade / Sala: ______________
+Grupo / Alunos: __________________________________________________
+
+1. VERIFICAÇÃO DE BANCADA &amp; MÁQUINA
+   [ ] Espaço livre mínimo de 25 cm (10") atrás e à frente da máquina
+   [ ] Fonte oficial 24 V / 3 A ligada + USB ou Bluetooth OK (Luz Branca)
+   [ ] Suporte A: _________________  |  Suporte B: ___________________
+   [ ] Suporte B fechado: colarinho plano, 1.º aba esquerda, depois dir.
+
+2. MATERIAL &amp; TAPETE ESCOLHIDO
+   Material:   ____________________________________________________
+   Tapete:     [ ] Azul (Light)  [ ] Verde (Standard)  [ ] Roxo (Strong)
+               [ ] Rosa (Fabric) [ ] Sem Tapete (Smart Material >= 15x33 cm)
+   Vinil HTV?  [ ] Não  [ ] Sim -> ESPELHAR LIGADO [ ] + Brilhante p/ baixo [ ]
+   Rodinhas:   [ ] Distribuídas (normal/Print Then Cut)  [ ] À direita (espesso)
+
+3. PÓS-CORTE &amp; DEVOLUÇÃO
+   [ ] Tapete limpo e PELÍCULA PROTETORA recolocada
+   [ ] Lâminas/ferramentas arrumadas · sobras úteis guardadas</code></pre>
+      </div>
+
+      <h3 id="s8-inter">8.2 Ideias interdisciplinares</h3>
+      <ul>
+        <li><strong>Educação Visual &amp; Design:</strong> Cartazes em camadas de cartolina, <em>stencils</em> reutilizáveis, embalagens de produtos e sinalética escolar.</li>
+        <li><strong>Português, Línguas &amp; História:</strong> Maquetes de monumentos em cartão, marcadores de livros personalizados e cronologias visuais recortadas.</li>
+        <li><strong>Ciências, Matemática &amp; Robótica:</strong> Sólidos geométricos planificados com linhas de vinco, pistas e alvos visuais para o <a href="../DJI_RoboMaster_TT/index.html">DJI RoboMaster TT</a>, etiquetas para sensores ou painéis para circuitos Arduino/Micro:bit.</li>
+        <li><strong>Empreendedorismo &amp; Clubes:</strong> Personalização de sacos/t-shirts de eventos escolares com HTV e autocolantes de clubes.</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. Desligar, devolver e registo de utilização</h2>
+
+      <h3 id="s9-1">9.1 Checklist interativa de devolução (4 h de validade)</h3>
+      <p class="hint">Marque os 6 pontos antes de entregar o kit no <strong>Estúdio 4C</strong> ou <strong>Estúdio SC - LMAS</strong>. As marcações limpam-se automaticamente ao fim de 4 horas.</p>
+      <button class="reset" type="button" id="resetChecklist">Limpar marcações</button>
+      <button class="reset" type="button" onclick="window.print()">Imprimir folha de registo</button>
+      <ul class="check">
+        <li><label><input type="checkbox" id="u-cr3-1"><span><strong>1. Projeto guardado e máquina desligada:</strong> Design Space fechado e botão Energia desligado.</span></label></li>
+        <li><label><input type="checkbox" id="u-cr3-2"><span><strong>2. Tapete limpo e protegido:</strong> Aparas removidas e <strong>película protetora transparente</strong> recolocada.</span></label></li>
+        <li><label><input type="checkbox" id="u-cr3-3"><span><strong>3. Lâminas e ferramentas conferidas:</strong> Lâmina no Suporte B (ou com capa protetora), depilador e espátula guardados.</span></label></li>
+        <li><label><input type="checkbox" id="u-cr3-4"><span><strong>4. Rodinhas estrela e carro livres:</strong> Sem restos de papel/vinil na calha nem nos rolos; rodinhas centradas.</span></label></li>
+        <li><label><input type="checkbox" id="u-cr3-5"><span><strong>5. Cabos e sobras organizados:</strong> Cabo USB + fonte 24 V/3 A intactos e retalhos grandes (≥ 15 cm) guardados.</span></label></li>
+        <li><label><input type="checkbox" id="u-cr3-6"><span><strong>6. Aviso ao CTE:</strong> Comunicar lâmina sem corte, tapete gasto ou qualquer luz vermelha/anomalia.</span></label></li>
+      </ul>
+
+      <h3 id="s9-2">9.2 Folha imprimível de registo de utilizações (<code>INV-005</code>)</h3>
+      <div class="tw">
+        <table class="log">
+          <thead><tr><th>Data</th><th>Turma / Grupo</th><th>Unidade (4C-1/2 · SC)</th><th>Material / Lâmina</th><th>Tapete c/ Película?</th><th>Estado na Devolução / Ocorrências</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>CTE Informático</strong> · Manual de Utilizador Cricut Maker 3 (<code>INV-005</code>) · Em caso de dúvida técnica, consulte o <a href="Cricut_Maker_3_Manual_Tecnico.html">Manual Técnico</a>.
+</footer>
+
+<a class="fab-help" href="index.html#diagnostico" aria-label="Algo não funciona? Abrir diagnóstico">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+  </svg>
+  Ajuda
+</a>
+
+<script>
+(function() {
+  var KEY = "cricut-user-checklist";
+  var TTL_MS = 4 * 60 * 60 * 1000;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("ul.check input"));
+  var saved = {};
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.itens && raw.ts && (Date.now() - raw.ts) <= TTL_MS) { saved = raw.itens; }
+    else if (raw) { localStorage.removeItem(KEY); }
+  } catch (e) {}
+  boxes.forEach(function(b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", function() {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify({ itens: saved, ts: Date.now() })); } catch (e) {}
+    });
+  });
+  var resetBtn = document.getElementById("resetChecklist");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      boxes.forEach(function(b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var code = btn.parentNode.querySelector("code");
+      if (!code) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = "Copiado!";
+          setTimeout(function() { btn.textContent = "Copiar modelo"; }, 1800);
+        });
+      }
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var targets = links.map(function(a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  function spy() {
+    var y = window.scrollY + 50, cur = -1;
+    targets.forEach(function(t, i) { if (t && t.offsetTop <= y) cur = i; });
+    links.forEach(function(a, i) { a.classList.toggle("on", i === cur); });
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+})();
+</script>
+</body>
+</html>
